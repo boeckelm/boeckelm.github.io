@@ -1,0 +1,25 @@
+:root {
+  /* Farben für eigene Tools */
+  --myred: #b33333;
+  --mygreen: #33a333;
+  --myblue: #114da1;
+  /* Old value
+  --myblue: #6ab0de;
+  --myblue: #3333e3;*/
+  --myyellow: #000;
+  --myorange: #f0b37e;
+	--mydarkorange: #be814c;
+  --mynoteyellow: #ffe065;
+  --mylightred: #e0adad;
+  --mylightgreen: #ade0ad;
+  --mylightblue: #b7c9e2; /* 30% Farbe, 70% Weissanteil */
+  /* Old value
+  --mylightblue: #e7f2fa; 
+  --mylightblue: #adc3e0;*/
+  --mylightyellow: #efefd6;
+  --mylightorange: #ffedcc;
+  --myshadow: rgba(0,0,0,0.4);
+  --mypostitgrey: #333;
+  /* Evtl. folgende Farbe an obiges yellow anpassen */
+  --mypostityellow: #eae672;
+}

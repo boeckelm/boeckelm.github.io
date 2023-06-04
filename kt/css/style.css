@@ -1,0 +1,122 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+div.example {
+	margin-bottom: 10px;
+}
+
+div.popupsolution {
+	display: none;
+	margin-bottom: 10px;
+}
+
+/* Theorem style */
+div.theorem {
+  margin: 0 0 10px 0;
+  color: black;
+	font-style: normal;
+  text-align: left;
+  border-radius: 5px 5px 5px 5px;
+  background-color: var(--mylightblue);
+  padding: 5px 10px 5px 10px;
+}
+
+span.theorem {
+	display: block;
+  margin: -5px -10px 0px -10px;
+	width: "100%";
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--myblue);
+  padding: 0 10px 0 10px;
+}
+
+/* Remark style */
+div.remark {
+  margin: 0 0 10px 0;
+  color: black;
+	font-style: normal;
+  text-align: left;
+  border-radius: 5px 5px 5px 5px;
+  background-color: var(--mylightblue);
+  padding: 5px 10px 5px 10px;
+}
+
+span.remark {
+	display: block;
+  margin: -5px -10px 0px -10px;
+	width: "100%";
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--myblue);
+  padding: 0 10px 0 10px;
+}
+
+/* Exercise style */
+div.exercise {
+  margin: 0 0 10px 0;
+  color: black;
+	font-style: normal;
+  text-align: left;
+  border-radius: 5px 5px 5px 5px;
+  background-color: var(--mylightorange);
+  padding: 5px 10px 5px 10px;
+}
+
+span.exercise {
+	display: block;
+  margin: -5px -10px 0px -10px;
+	width: "100%";
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--myorange);
+  padding: 0 10px 0 10px;
+}
+
+/* Definition style */
+div.definition {
+  margin: 0 0 10px 0;
+  color: black;
+	font-style: normal;
+  text-align: left;
+  border-radius: 5px 5px 5px 5px;
+  background-color: var(--mylightred);
+  padding: 5px 10px 5px 10px;
+}
+
+span.definition {
+	display: block;
+  margin: -5px -10px 0px -10px;
+	width: "100%";
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--myred);
+  padding: 0 10px 0 10px;
+}
+
+/* Horizontal scroll bar for equations on mobile devices (MathJax v3.0) */
+span.math.display {
+    display:block;
+    overflow-x:auto;
+		overflow-y:hidden;
+}
