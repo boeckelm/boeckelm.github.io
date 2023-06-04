@@ -1,0 +1,70 @@
+.body {
+}
+.quiz {
+  margin: 0 0 0 0;
+  color: black;
+  text-align: left;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: var(--mylightorange);
+  padding: 0 0 50px 0;
+}
+.quiz div.question-core {
+  margin: 0;
+  color: black;
+  text-align: left;
+  border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  background-color: var(--mylightorange);
+  padding: 0 0 0 10px;
+}
+.quiz div.question-title {
+  margin: 0 0 0 0;
+  color: white;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  background-color: var(--myorange);
+  padding: 0 0 0 10px;
+}
+
+.quiz input[type="checkbox"] {
+  display:none;
+}
+
+/*.quiz input[type="submit"]:before {
+  content:'<br>';
+}*/
+
+.quiz input[type="submit"] {
+  display: inline-block;
+  float:right;
+  font-size:.8em;
+  margin: 10px 10px 0 0;
+}
+
+.quiz div label {
+  display: block;
+  padding:5px 5px 5px 10px;
+  margin:10px;
+  border-radius: 5px;
+  background: var(--mylightblue);
+}
+
+.quiz input[type="checkbox"]:checked + label {
+  background: var(--myblue);
+  color: white;
+}
+.quiz label.correct {
+  background: var(--mygreen) !important;
+  color: white;
+}
+.quiz label.wrong {
+  background: var(--myred) !important;
+  color: white;
+}
