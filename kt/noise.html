@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Detection of Baseband Signals in Noise | COMMUNICATIONS ENGINEERING</title>
+  <meta name="description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Detection of Baseband Signals in Noise | COMMUNICATIONS ENGINEERING" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Detection of Baseband Signals in Noise | COMMUNICATIONS ENGINEERING" />
+  
+  <meta name="twitter:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="Guido Dietl" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="baseband.html"/>
+<link rel="next" href="passband.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<!-- Load my plugins -->
+<script src="plugins/quizcompiler.js"></script>
+<script src="plugins/popup.js"> </script>
+
+<!-- Load Mathjax version 3 -->
+<!--<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>-->
+
+<!-- Comment in case of local Mathjax! -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="plugins/quiz.css" type="text/css" />
+<link rel="stylesheet" href="plugins/popup.css" type="text/css" />
+<link rel="stylesheet" href="css/colors.css" type="text/css" />
+<link rel="stylesheet" href="css/postit.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="text-align:center">COMMUNICATIONS ENGINEERING</p>
+<p style="text-align:center">Guido Dietl</p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html"><i class="fa fa-check"></i>Disclaimer and Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#haftungsausschluss-disclaimer"><i class="fa fa-check"></i>Haftungsausschluss / Disclaimer</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#inhalt"><i class="fa fa-check"></i>Inhalt</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verweise-und-links"><i class="fa fa-check"></i>Verweise und Links</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#urheber--und-kennzeichenrecht"><i class="fa fa-check"></i>Urheber- und Kennzeichenrecht</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#rechtwirksamkeit"><i class="fa fa-check"></i>Rechtwirksamkeit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutz-data-protection"><i class="fa fa-check"></i>Datenschutz / Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutzerklärung"><i class="fa fa-check"></i>Datenschutzerklärung</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verantwortlicher"><i class="fa fa-check"></i>Verantwortlicher</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#personenbezogene-daten"><i class="fa fa-check"></i>Personenbezogene Daten</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#daten-beim-websiteaufruf"><i class="fa fa-check"></i>Daten beim Websiteaufruf</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#ihre-rechte"><i class="fa fa-check"></i>Ihre Rechte</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#einsatz-von-cookies"><i class="fa fa-check"></i>Einsatz von Cookies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-communications-engineering"><i class="fa fa-check"></i><b>1.1</b> What is Communications Engineering?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#history"><i class="fa fa-check"></i><b>1.2</b> History of Communications</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#signals-in-communications"><i class="fa fa-check"></i><b>1.3</b> Signals in Communications</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#signals-and-their-spectra"><i class="fa fa-check"></i><b>1.3.1</b> Signals and Their Spectra</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#detstosignals"><i class="fa fa-check"></i><b>1.3.2</b> Deterministic and Stochastic Signals</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#continuous-and-discrete-signals"><i class="fa fa-check"></i><b>1.3.3</b> Continuous and Discrete Signals</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#digital-representation"><i class="fa fa-check"></i><b>1.3.4</b> Digital Representation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#communications-systems"><i class="fa fa-check"></i><b>1.4</b> Communications Systems</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#wired-and-wireless-systems"><i class="fa fa-check"></i><b>1.4.1</b> Wired and Wireless Systems</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#frequency-bands"><i class="fa fa-check"></i><b>1.4.2</b> Frequency Bands</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#block-diagram"><i class="fa fa-check"></i><b>1.4.3</b> Block Diagram</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html"><i class="fa fa-check"></i><b>2</b> Digital Representation of Analog Signals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#sampling"><i class="fa fa-check"></i><b>2.1</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#energylimited"><i class="fa fa-check"></i><b>2.1.1</b> Energy- and Band-Limited Signals</a></li>
+<li class="chapter" data-level="2.1.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#ideal-sampling"><i class="fa fa-check"></i><b>2.1.2</b> Ideal Sampling</a></li>
+<li class="chapter" data-level="2.1.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#reconstruction"><i class="fa fa-check"></i><b>2.1.3</b> Ideal Reconstruction and Sampling Theorem</a></li>
+<li class="chapter" data-level="2.1.4" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#over--and-undersampling"><i class="fa fa-check"></i><b>2.1.4</b> Over- and Undersampling</a></li>
+<li class="chapter" data-level="2.1.5" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#real-sampling"><i class="fa fa-check"></i><b>2.1.5</b> Real Sampling</a></li>
+<li class="chapter" data-level="2.1.6" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#passbandsampling"><i class="fa fa-check"></i><b>2.1.6</b> Sampling of Passband Signals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#quantisation"><i class="fa fa-check"></i><b>2.2</b> Quantisation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#linear-quantisation"><i class="fa fa-check"></i><b>2.2.1</b> Linear Quantisation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#nonlinear-quantisation-or-companding"><i class="fa fa-check"></i><b>2.2.2</b> Nonlinear Quantisation or Companding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#pcm"><i class="fa fa-check"></i><b>2.3</b> Pulse Code Modulation (PCM)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="baseband.html"><a href="baseband.html"><i class="fa fa-check"></i><b>3</b> Baseband Communications</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="baseband.html"><a href="baseband.html#modulation"><i class="fa fa-check"></i><b>3.1</b> Modulation</a></li>
+<li class="chapter" data-level="3.2" data-path="baseband.html"><a href="baseband.html#pulseshaping"><i class="fa fa-check"></i><b>3.2</b> Pulse Shaping</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="baseband.html"><a href="baseband.html#rectfilter"><i class="fa fa-check"></i><b>3.2.1</b> Rectangular Filter or Non-Return-to-Zero (NRZ) Code</a></li>
+<li class="chapter" data-level="3.2.2" data-path="baseband.html"><a href="baseband.html#manchester-code"><i class="fa fa-check"></i><b>3.2.2</b> Manchester Code</a></li>
+<li class="chapter" data-level="3.2.3" data-path="baseband.html"><a href="baseband.html#sincfilter"><i class="fa fa-check"></i><b>3.2.3</b> Sinc Filter</a></li>
+<li class="chapter" data-level="3.2.4" data-path="baseband.html"><a href="baseband.html#nyquistrolloff"><i class="fa fa-check"></i><b>3.2.4</b> Raised-Cosine or Nyquist-Roll-Off Filter</a></li>
+<li class="chapter" data-level="3.2.5" data-path="baseband.html"><a href="baseband.html#gaussfilter"><i class="fa fa-check"></i><b>3.2.5</b> Gaussian Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="baseband.html"><a href="baseband.html#heisenberg"><i class="fa fa-check"></i><b>3.3</b> Time-Bandwidth Product</a></li>
+<li class="chapter" data-level="3.4" data-path="baseband.html"><a href="baseband.html#isi"><i class="fa fa-check"></i><b>3.4</b> First Nyquist Criterion</a></li>
+<li class="chapter" data-level="3.5" data-path="baseband.html"><a href="baseband.html#eyediagram"><i class="fa fa-check"></i><b>3.5</b> Eye Diagram</a></li>
+<li class="chapter" data-level="3.6" data-path="baseband.html"><a href="baseband.html#spectral-efficiency"><i class="fa fa-check"></i><b>3.6</b> Spectral Efficiency</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="noise.html"><a href="noise.html"><i class="fa fa-check"></i><b>4</b> Detection of Baseband Signals in Noise</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="noise.html"><a href="noise.html#awgn"><i class="fa fa-check"></i><b>4.1</b> Additive White Gaussian Noise (AWGN) Channel</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="noise.html"><a href="noise.html#whitenoise"><i class="fa fa-check"></i><b>4.1.1</b> White Gaussian Noise</a></li>
+<li class="chapter" data-level="4.1.2" data-path="noise.html"><a href="noise.html#signal-to-noise-power-ratio"><i class="fa fa-check"></i><b>4.1.2</b> Signal-to-Noise Power Ratio</a></li>
+<li class="chapter" data-level="4.1.3" data-path="noise.html"><a href="noise.html#noise-figure"><i class="fa fa-check"></i><b>4.1.3</b> Noise Figure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="noise.html"><a href="noise.html#baseband-receiver-for-detection"><i class="fa fa-check"></i><b>4.2</b> Baseband Receiver for Detection</a></li>
+<li class="chapter" data-level="4.3" data-path="noise.html"><a href="noise.html#matched-filter"><i class="fa fa-check"></i><b>4.3</b> Matched Filter</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="noise.html"><a href="noise.html#maximizing-snr"><i class="fa fa-check"></i><b>4.3.1</b> Maximizing SNR</a></li>
+<li class="chapter" data-level="4.3.2" data-path="noise.html"><a href="noise.html#frequency-selective-channel"><i class="fa fa-check"></i><b>4.3.2</b> Frequency-Selective Channel</a></li>
+<li class="chapter" data-level="4.3.3" data-path="noise.html"><a href="noise.html#root-raised-cosine-filter"><i class="fa fa-check"></i><b>4.3.3</b> Root-Raised-Cosine Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="noise.html"><a href="noise.html#bit-error-probability-bep"><i class="fa fa-check"></i><b>4.4</b> Bit Error Probability (BEP)</a></li>
+<li class="chapter" data-level="4.5" data-path="noise.html"><a href="noise.html#sync"><i class="fa fa-check"></i><b>4.5</b> Clock and Frame Synchronisation</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="noise.html"><a href="noise.html#clocksync"><i class="fa fa-check"></i><b>4.5.1</b> Clock Synchronisation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="noise.html"><a href="noise.html#framesync"><i class="fa fa-check"></i><b>4.5.2</b> Frame Synchronisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="passband.html"><a href="passband.html"><i class="fa fa-check"></i><b>5</b> Passband Communications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="passband.html"><a href="passband.html#equivalent"><i class="fa fa-check"></i><b>5.1</b> Equivalent Baseband Signal</a></li>
+<li class="chapter" data-level="5.2" data-path="passband.html"><a href="passband.html#QAM"><i class="fa fa-check"></i><b>5.2</b> Quadrature Amplitude Modulation (QAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="passband.html"><a href="passband.html#QAD"><i class="fa fa-check"></i><b>5.3</b> Quadrature Amplitude Demodulation (QAD)</a></li>
+<li class="chapter" data-level="5.4" data-path="passband.html"><a href="passband.html#carriersync"><i class="fa fa-check"></i><b>5.4</b> Carrier Synchronisation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="moddet.html"><a href="moddet.html"><i class="fa fa-check"></i><b>6</b> Digital Modulation and Detection Methods</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="moddet.html"><a href="moddet.html#linear-modulation-schemes"><i class="fa fa-check"></i><b>6.1</b> Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="moddet.html"><a href="moddet.html#ask"><i class="fa fa-check"></i><b>6.1.1</b> Amplitude Shift Keying (ASK)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="moddet.html"><a href="moddet.html#phase-shift-keying-psk"><i class="fa fa-check"></i><b>6.1.2</b> Phase Shift Keying (PSK)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="moddet.html"><a href="moddet.html#quadrature-amplitude-modulation-qam"><i class="fa fa-check"></i><b>6.1.3</b> Quadrature Amplitude Modulation (QAM)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="moddet.html"><a href="moddet.html#fsk"><i class="fa fa-check"></i><b>6.2</b> Binary Frequency-Shift-Keying (FSK)</a></li>
+<li class="chapter" data-level="6.3" data-path="moddet.html"><a href="moddet.html#coherent"><i class="fa fa-check"></i><b>6.3</b> Coherent Detection of Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="moddet.html"><a href="moddet.html#beps"><i class="fa fa-check"></i><b>6.3.1</b> BEPs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="moddet.html"><a href="moddet.html#frame-error-rate-and-mean-data-rate"><i class="fa fa-check"></i><b>6.3.2</b> Frame Error Rate and Mean Data Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="moddet.html"><a href="moddet.html#noncoherent-detection-of-ask-and-fsk"><i class="fa fa-check"></i><b>6.4</b> Noncoherent Detection of ASK and FSK</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="moddet.html"><a href="moddet.html#ed"><i class="fa fa-check"></i><b>6.4.1</b> Envelope Detection</a></li>
+<li class="chapter" data-level="6.4.2" data-path="moddet.html"><a href="moddet.html#noncoherent-ask-detector"><i class="fa fa-check"></i><b>6.4.2</b> Noncoherent ASK Detector</a></li>
+<li class="chapter" data-level="6.4.3" data-path="moddet.html"><a href="moddet.html#noncoherent-fsk-detector"><i class="fa fa-check"></i><b>6.4.3</b> Noncoherent FSK Detector</a></li>
+<li class="chapter" data-level="6.4.4" data-path="moddet.html"><a href="moddet.html#bep-of-noncoherent-detection"><i class="fa fa-check"></i><b>6.4.4</b> BEP of Noncoherent Detection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="moddet.html"><a href="moddet.html#comparison-of-digital-modulation-schemes"><i class="fa fa-check"></i><b>6.5</b> Comparison of Digital Modulation Schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="information.html"><a href="information.html"><i class="fa fa-check"></i><b>7</b> A Brief Introduction to Information Theory, Source and Channel Coding</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html"><i class="fa fa-check"></i><b>A</b> Geniuses of Communications</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#bell"><i class="fa fa-check"></i><b>A.1</b> Alexander Graham Bell</a></li>
+<li class="chapter" data-level="A.2" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#chappe"><i class="fa fa-check"></i><b>A.2</b> Abbé Claude Chappe</a></li>
+<li class="chapter" data-level="A.3" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#gauss"><i class="fa fa-check"></i><b>A.3</b> Johann Carl Friedrich Gauss</a></li>
+<li class="chapter" data-level="A.4" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hertz"><i class="fa fa-check"></i><b>A.4</b> Heinrich Rudolf Hertz</a></li>
+<li class="chapter" data-level="A.5" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hooke"><i class="fa fa-check"></i><b>A.5</b> Robert Hooke</a></li>
+<li class="chapter" data-level="A.6" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#marconi"><i class="fa fa-check"></i><b>A.6</b> Guglielmo Marconi</a></li>
+<li class="chapter" data-level="A.7" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#maxwell"><i class="fa fa-check"></i><b>A.7</b> James Clerk Maxwell</a></li>
+<li class="chapter" data-level="A.8" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#reeves"><i class="fa fa-check"></i><b>A.8</b> Alec Harley Reeves</a></li>
+<li class="chapter" data-level="A.9" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#shannon"><i class="fa fa-check"></i><b>A.9</b> Claude Elwood Shannon</a></li>
+<li class="chapter" data-level="A.10" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#weber"><i class="fa fa-check"></i><b>A.10</b> Wilhelm Eduard Weber</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="apphistory.html"><a href="apphistory.html"><i class="fa fa-check"></i><b>B</b> Historical Background Information</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="apphistory.html"><a href="apphistory.html#opttele"><i class="fa fa-check"></i><b>B.1</b> Optical Telegraphy</a></li>
+<li class="chapter" data-level="B.2" data-path="apphistory.html"><a href="apphistory.html#emwaves"><i class="fa fa-check"></i><b>B.2</b> Hertz’s Electromagnetic Waves Experiment</a></li>
+<li class="chapter" data-level="B.3" data-path="apphistory.html"><a href="apphistory.html#marconiradio"><i class="fa fa-check"></i><b>B.3</b> Marconi’s Radio Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="units.html"><a href="units.html"><i class="fa fa-check"></i><b>C</b> Units</a></li>
+<li class="chapter" data-level="D" data-path="important-functions.html"><a href="important-functions.html"><i class="fa fa-check"></i><b>D</b> Important Functions</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="important-functions.html"><a href="important-functions.html#rect"><i class="fa fa-check"></i><b>D.1</b> Rectangular Function</a></li>
+<li class="chapter" data-level="D.2" data-path="important-functions.html"><a href="important-functions.html#sinc"><i class="fa fa-check"></i><b>D.2</b> Sinc Function</a></li>
+<li class="chapter" data-level="D.3" data-path="important-functions.html"><a href="important-functions.html#sgn"><i class="fa fa-check"></i><b>D.3</b> Signum Function</a></li>
+<li class="chapter" data-level="D.4" data-path="important-functions.html"><a href="important-functions.html#erfc"><i class="fa fa-check"></i><b>D.4</b> Complimentary Error Function</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="mathematical-basics.html"><a href="mathematical-basics.html"><i class="fa fa-check"></i><b>E</b> Mathematical Basics</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#fourier"><i class="fa fa-check"></i><b>E.1</b> Fourier Transform</a></li>
+<li class="chapter" data-level="E.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#dirac"><i class="fa fa-check"></i><b>E.2</b> Dirac Delta Function</a>
+<ul>
+<li class="chapter" data-level="E.2.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#definition-and-properties"><i class="fa fa-check"></i><b>E.2.1</b> Definition and Properties</a></li>
+<li class="chapter" data-level="E.2.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#diraccomb"><i class="fa fa-check"></i><b>E.2.2</b> Dirac Comb</a></li>
+</ul></li>
+<li class="chapter" data-level="E.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#conv"><i class="fa fa-check"></i><b>E.3</b> Convolution</a></li>
+<li class="chapter" data-level="E.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#probability"><i class="fa fa-check"></i><b>E.4</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="E.4.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-experiment"><i class="fa fa-check"></i><b>E.4.1</b> Random Experiment</a></li>
+<li class="chapter" data-level="E.4.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-variable"><i class="fa fa-check"></i><b>E.4.2</b> Random Variable</a></li>
+<li class="chapter" data-level="E.4.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>E.4.3</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="E.4.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#pdf"><i class="fa fa-check"></i><b>E.4.4</b> Probability Density Function</a></li>
+<li class="chapter" data-level="E.4.5" data-path="mathematical-basics.html"><a href="mathematical-basics.html#mean"><i class="fa fa-check"></i><b>E.4.5</b> Mean</a></li>
+<li class="chapter" data-level="E.4.6" data-path="mathematical-basics.html"><a href="mathematical-basics.html#variance"><i class="fa fa-check"></i><b>E.4.6</b> Variance</a></li>
+<li class="chapter" data-level="E.4.7" data-path="mathematical-basics.html"><a href="mathematical-basics.html#randomprocess"><i class="fa fa-check"></i><b>E.4.7</b> Random Process</a></li>
+<li class="chapter" data-level="E.4.8" data-path="mathematical-basics.html"><a href="mathematical-basics.html#ensemble-and-time-average"><i class="fa fa-check"></i><b>E.4.8</b> Ensemble and Time Average</a></li>
+<li class="chapter" data-level="E.4.9" data-path="mathematical-basics.html"><a href="mathematical-basics.html#stationarity-and-ergodicity"><i class="fa fa-check"></i><b>E.4.9</b> Stationarity and Ergodicity</a></li>
+<li class="chapter" data-level="E.4.10" data-path="mathematical-basics.html"><a href="mathematical-basics.html#autocorr"><i class="fa fa-check"></i><b>E.4.10</b> Auto-Correlation Function</a></li>
+<li class="chapter" data-level="E.4.11" data-path="mathematical-basics.html"><a href="mathematical-basics.html#psd"><i class="fa fa-check"></i><b>E.4.11</b> Power Spectral Density</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="../kt.html">COMMUNICATIONS ENGINEERING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="noise" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Detection of Baseband Signals in Noise</h1>
+<div id="awgn" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Additive White Gaussian Noise (AWGN) Channel</h2>
+<p>In case of a <strong>Additive White Gaussian Noise</strong> (AWGN, German: <em>additives, weiss’sches Gauß’sches Rauschen</em>) channel, the <strong>receive signal</strong> <span class="math inline">\(r(t)/\sqrt{\mathrm{W}}\in\mathbb{R}\)</span> (German: <em>Empfangssignal</em>) can be written as (see also Figure <a href="noise.html#fig:awgnchannel">4.1</a>)
+<span class="math display">\[r(t) = s(t) + n(t),\]</span>
+with the transmit signal <span class="math inline">\(s(t)/\sqrt{\mathrm{W}}\in\mathbb{R}\)</span> as defined in Section <a href="baseband.html#pulseshaping">3.2</a> and the additive <strong>noise signal</strong> <span class="math inline">\(n(t)/\sqrt{\mathrm{W}}\in\mathbb{R}\)</span> (German: <em>Rauschssignal</em>) being a white real-valued zero-mean Gaussian (or normal) distributed random process. See Appendix <a href="mathematical-basics.html#randomprocess">E.4.7</a> and the succeeding Appendices for more details on random processes.</p>
+<div class="figure" style="text-align: center"><span id="fig:awgnchannel"></span>
+<img src="kt_files/figure-html/awgnchannel-1.svg" alt="Block diagram of AWGN channel" width="40%" />
+<p class="caption">
+Figure 4.1: Block diagram of AWGN channel
+</p>
+</div>
+<p>Note that in a real system, the noise is not added “in the air” as might be concluded from the channel model depicted in Figure <a href="noise.html#fig:awgnchannel">4.1</a>, but by noisy components in the receiver, e.g., by noisy resistors. Therefore, <span class="math inline">\(r(t)\)</span> is in fact not the signal at the input of the receiver but a signal somewhere within the receiver. However, one can consider <span class="math inline">\(r(t)\)</span> as the signal at the input of an imaginary noiseless receiver, i.e., where all the noise of the real receiver has been summarised by <span class="math inline">\(n(t)\)</span> and added before reception.</p>
+<div id="whitenoise" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> White Gaussian Noise</h3>
+<p>In this subsection, we take a closer look of the white Gaussian noise <span class="math inline">\(n(t)\)</span>.</p>
+
+<div class="definition">
+<p><span id="def:whitenoise" class="definition"><strong>Definition 4.1  (White Gaussian Noise)  </strong></span>The signal <span class="math inline">\(n(t)/\sqrt{\mathrm{W}}\in\mathbb{R}\)</span> is denoted as <strong>white Gaussian noise</strong> if</p>
+<ul>
+<li><p>for each <span class="math inline">\(t/\mathrm{s}\in\mathbb{R}\)</span>, the value <span class="math inline">\(n(t)\)</span> is zero-mean Gaussian (or normal) distributed (cf. Definition <a href="mathematical-basics.html#def:gaussdistro">E.7</a>), i.e., <span class="math inline">\(n\sim {\cal N}(0,\sigma_n^2)\)</span> with the variance <span class="math inline">\(\sigma_n^2\)</span> and</p></li>
+<li><p>at two different time instances <span class="math inline">\(t/\mathrm{s}\)</span>, <span class="math inline">\((t+\tau)/\mathrm{s}\in\mathbb{R}\)</span>, <span class="math inline">\(\tau\neq 0\)</span>, the corresponding values <span class="math inline">\(n(t)\)</span> and <span class="math inline">\(n(t+\tau)\)</span> are uncorrelated, i.e., the auto-correlation function <span class="math inline">\(\varphi_n(\tau)=\frac{N_0}{2}\delta(\tau)\)</span> (cf. Appendix <a href="mathematical-basics.html#autocorr">E.4.10</a>) or the power spectral density <span class="math inline">\(\Phi_n(f) = \frac{N_0}{2}\leftrightarrow\varphi_n(\tau)\)</span> (cf. Appendix <a href="mathematical-basics.html#psd">E.4.11</a>).<a href="noise.html#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a></p></li>
+</ul>
+<span class="math inline">\(N_0\)</span> is the so-called <strong>one-sided noise power density</strong> (German: <em>einseitige Rauschleistungsdichte</em>) with the unit <span class="math inline">\([N_0] = \text{W}/\text{Hz}\)</span>.
+</div>
+<p>The term “white” refers to the fact that the power spectral density <span class="math inline">\(\Phi_n(f)\)</span> of the noise signal <span class="math inline">\(n(t)\)</span> is flat, i.e., all frequencies or “colors” have the same power density, leading to a “white” mixture.</p>
+<p>It remains the question, why the constant value of the power density spectrum <span class="math inline">\(\Phi_n(f)\)</span> is <span class="math inline">\(N_0/2\)</span> and not <span class="math inline">\(N_0\)</span>. If the noise signal <span class="math inline">\(n(t)\)</span> is not band-limited, the corresponding noise power is not defined (cf. Appendix <a href="mathematical-basics.html#psd">E.4.11</a>), i.e.,
+<span class="math display">\[P_n = \int\limits_{-\infty}^\infty \Phi_n(f) df = \int\limits_{-\infty}^\infty \frac{N_0}{2} df \to \infty.\]</span>
+Clearly, this case is not realistic anyway because all physical systems are band-limited (see, e.g., Example <a href="intro.html#exm:stochastic">1.3</a>). In case of a baseband system with the bandwidth <span class="math inline">\(B=f_\mathrm{max}\)</span> (cf. Definition <a href="digitalrepresentation.html#def:bandlimit">2.1</a>), the noise power computes as
+<span class="math display">\[P_n = \int\limits_{-B}^B \Phi_n(f) df = \int\limits_{-B}^B \frac{N_0}{2} df =N_0 B,\]</span>
+and in case of a passband system with the center frequency <span class="math inline">\(f_0\)</span> and the bandwdith <span class="math inline">\(B=f_\mathrm{max}-f_\mathrm{min}\)</span> (cf. Definition <a href="digitalrepresentation.html#def:bandwidth">2.4</a>) to
+<span class="math display">\[\begin{aligned}
+P_n &amp;= \int\limits_{-f_0-B/2}^{-f_0+B/2} \Phi_n(f) df + \int\limits_{f_0-B/2}^{f_0+B/2} \Phi_n(f) df\\
+&amp;= 2\int\limits_{f_0-B/2}^{f_0+B/2} \frac{N_0}{2} df= N_0 B.
+\end{aligned}\]</span>
+So, the factor 1/2 is necessary to end up with a noise power of <span class="math inline">\(P_n=N_0 B\)</span> in all considered cases, i.e., baseband and passband systems. Otherwise, the noise power would be <span class="math inline">\(2N_0B\)</span> because of the fact that real-valued signals have a symmetric spectrum, i.e., a spectrum with positive and negative frequency components and the noise power is distributed among these positive and negative frequencies.</p>
+<p>In most of the cases, the cause of the noise signal are thermal movements of charges, also known as the <strong>Brownian motion</strong> (German: <em>Brown’sche Molekularbewegung</em>) as depicted in Figure <a href="noise.html#fig:brownian">4.2</a>. This type of noise is also denoted as <strong>thermal noise</strong> (German: <em>thermisches Rauschen</em>) and the noise power density reads as
+<span class="math display">\[N_0=k T_0,\]</span>
+with the absolute temperature <span class="math inline">\(T_0\)</span> in Kelvin, i..e, <span class="math inline">\([T_0]=1\,\mathrm{K}\)</span>, and the Boltzmann constant <span class="math inline">\(k\approx 1.3806503\cdot 10^{-23}\,\mathrm{Ws}/\mathrm{K}\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:brownian"></span>
+<img src="images/brownian_motion.gif" alt="Brownian motion of plastic particles in water (Source: [Jkrieger](https://de.wikipedia.org/wiki/Benutzer:Jkrieger) am [Deutschen Krebsforschungszentrum](https://de.wikipedia.org/wiki/Deutsches_Krebsforschungszentrum) in der Arbeitsgruppe B040 Biophysik der Makromoleküle - Eigenes Werk, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Link](https://commons.wikimedia.org/w/index.php?curid=12213651))" width="30%" />
+<p class="caption">
+Figure 4.2: Brownian motion of plastic particles in water (Source: <a href="https://de.wikipedia.org/wiki/Benutzer:Jkrieger">Jkrieger</a> am <a href="https://de.wikipedia.org/wiki/Deutsches_Krebsforschungszentrum">Deutschen Krebsforschungszentrum</a> in der Arbeitsgruppe B040 Biophysik der Makromoleküle - Eigenes Werk, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=12213651">Link</a>)
+</p>
+</div>
+
+<div class="example">
+<span id="exm:noisepower" class="example"><strong>Example 4.1  (Noise Power in a UMTS System)  </strong></span>Consider a UMTS System at a working temperature of 20 ℃. In this case, the absolute temperature reads as
+<span class="math display">\[T_0=273.15\,\mathrm{K}+20\,\mathrm{K}=293.15\,\mathrm{K}\]</span>
+and the noise power density
+<span class="math display">\[N_0=kT_0\approx 4.047\cdot 10^{-21} \frac{\mathrm{W}}{\mathrm{Hz}}.\]</span>
+Besides, remember from Example <a href="digitalrepresentation.html#exm:umtssampling">2.6</a> that <span class="math inline">\(B=5\,\mathrm{MHz}\)</span>. Thus, the noise power computes to <span class="math inline">\(P_n=N_0B\approx 20.237\,\mathrm{fW}\)</span>.
+</div>
+</div>
+<div id="signal-to-noise-power-ratio" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Signal-to-Noise Power Ratio</h3>
+<p>The performance of communications systems cannot be determined solely based on the noise power. The signal power is additionally needed and precisely, the performance depends on the ratio of the signal to the noise power defined as follows (similar to the SNR <span class="math inline">\(\gamma_\mathrm{q}\)</span> in Definition <a href="digitalrepresentation.html#def:defsnrq">2.7</a>).<a href="noise.html#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
+
+<div class="definition">
+<span id="def:snr" class="definition"><strong>Definition 4.2  (Signal-to-Noise Power Ratio, SNR)  </strong></span>The <strong>Signal-to-Noise (power) Ratio</strong> (SNR, German: <em>Signal-zu-Rauschleistungsverhältnis</em>) is defined as
+<span class="math display">\[\gamma = \frac{P_s}{P_n},\]</span>
+with the <strong>signal power</strong> <span class="math inline">\(P_s\)</span> (German: <em>Signalleistung</em>) and the <strong>noise power</strong>
+<span class="math inline">\(P_n\)</span> (German: <em>Rauschleistung</em>).
+</div>
+<p>If <span class="math inline">\(s(t)\)</span> is deterministic, the signal power computes to<a href="noise.html#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>
+<span class="math display">\[P_s=\lim_{T\to\infty}\frac{1}{2T}\int\limits_{-T}^{T}|s(t)|^2dt,\]</span>
+and if <span class="math inline">\(s(t)\)</span> is stochastic to
+<span class="math display">\[P_s=\sigma_s^2=E\left[|s|^2\right] = \int\limits_{-\infty}^\infty |s|^2 f_s(s)ds.\]</span></p>
+<p>In some cases, the signal power is also defined as an <strong>instantaneous power</strong> (German: <em>Momentanleistung</em>) at a certain time instance <span class="math inline">\(t=t_0\)</span>, i.e.,
+<span class="math display">\[P_s=|s(t_0)|^2.\]</span></p>
+<p>Since the noise power is <em>per se</em> stochastic, it computes to
+<span class="math display">\[P_n=\sigma_n^2=E\left[|n|^2\right] = \int\limits_{-\infty}^\infty |n|^2 f_n(n)dn.\]</span></p>
+</div>
+<div id="noise-figure" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Noise Figure</h3>
+<p>Here, we consider an <strong>amplifier</strong> (German: <em>Verstärker</em>) as a typical receiver component and its effects on the noise power. Assume that there is a noise signal with power <span class="math inline">\(P_n\)</span> at the input of the amplifier, e.g., generated by preceding receiver components. If the amplifier has the <strong>amplification factor</strong> <span class="math inline">\(a\)</span> (German: <em>Verstärkungsfaktor</em>) and an internal noise (German: <em>Eigenrauschen</em>) source with the power <span class="math inline">\(P_{n,\mathrm{i}}\)</span>, the noise power at the output computes to
+<span class="math display">\[P_{n}^\prime=aP_n+P_{n,\mathrm{i}}.\]</span>
+Figure <a href="noise.html#fig:amplifier">4.3</a> summarises the noise powers at the considered amplifier.</p>
+<div class="figure" style="text-align: center"><span id="fig:amplifier"></span>
+<img src="kt_files/figure-html/amplifier-1.svg" alt="Noise powers at an amplifier with an internal noise source" width="50%" />
+<p class="caption">
+Figure 4.3: Noise powers at an amplifier with an internal noise source
+</p>
+</div>
+
+<div class="definition">
+<span id="def:noisefigure" class="definition"><strong>Definition 4.3  (Noise Figure)  </strong></span>The <strong>noise figure</strong> <span class="math inline">\(F\)</span> (German: <em>Rauschzahl</em>) describes the ratio of the noise power at the output of a system component, e.g., an amplifier, or the system itself, including the internal noise, to the power at the output without the internal noise and is defined as
+<span class="math display">\[F=\frac{P_{n}^\prime}{aP_n}=\frac{aP_n+P_{n,\mathrm{i}}}{aP_n}=1+\frac{P_{n,\mathrm{i}}}{aP_n}.\]</span>
+The noise figure in dB (German: <em>Rauschmaß</em>) computes as
+<span class="math display">\[F_\mathrm{dB}=10\lg F.\]</span>
+</div>
+<p>With the consideration of an additional signal power <span class="math inline">\(P_s\)</span>, the noise figure influences also the SNR at the input and output of the system component. It holds the following theorem.</p>
+
+<div class="theorem">
+<span id="thm:snrnoisefigure" class="theorem"><strong>Theorem 4.1  (Noise Figure and SNR)  </strong></span>The SNR <span class="math inline">\(\gamma^\prime\)</span> at the output of a system with the noise figure <span class="math inline">\(F\)</span> reads as
+<span class="math display">\[\gamma^\prime=\frac{aP_s}{FaP_n}=\frac{\gamma}{F},\]</span>
+with <span class="math inline">\(\gamma\)</span> being its input SNR. With the corresponding values in dB, it holds
+<span class="math display">\[\gamma_{\mathrm{dB}}^\prime=\gamma_\mathrm{dB}-F_\mathrm{dB}.\]</span>
+</div>
+<p>In words, when processed by a system component with the noise figure <span class="math inline">\(F_\mathrm{dB}\)</span> in dB, the SNR in dB of the corresponding signals is reduced by <span class="math inline">\(F_\mathrm{dB}\)</span> due to the additional noise of the internal noise source.</p>
+<form class="quiz" data-correct="1" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Assume a system with a noise figure of 6 dB. Which of the following statements is true?
+</div>
+<input value="A. The input SNR is by 6 dB larger than the output SNR."/>
+<input value="B. The input SNR is by 6 dB smaller than the output SNR."/>
+<input value="C. The SNR at the input is 6 dB."/>
+<input value="D. The SNR at the output is 6 dB."/>
+</form>
+
+<div class="exercise">
+<p><span id="exr:awgn" class="exercise"><strong>Exercise 4.1  (AWGN)  </strong></span>The signal <span class="math inline">\(s(t)\)</span> is superposed by additive white Gaussian noise <span class="math inline">\(n(t)\)</span> with the power density spectrum <span class="math inline">\(\Phi_n(f) = N_0/2\)</span>. The noisy signal is filtered by an ideal passband filter with the center frequency (German: <em>Mittenfrequenz</em>) <span class="math inline">\(f_0=100\,\mathrm{kHz}\)</span> and the bandwidth <span class="math inline">\(B=3\,\mathrm{kHz}\)</span>. We measure the signal power at the output of the filter. If <span class="math inline">\(s(t)\)</span> is sinusoidal with amplitude <span class="math inline">\(\hat{s}\)</span> and frequency <span class="math inline">\(f_1=100\,\mathrm{kHz}\)</span>, we measure a power of <span class="math inline">\(P_1=1\,\mathrm{mW}\)</span>. Changing the center frequency of the passband filter such that the sinusoidal signal lies outside the passband, reduces the power to <span class="math inline">\(P_2=0.2\,\mathrm{mW}\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the noise power density <span class="math inline">\(N_0\)</span>.</li>
+<li>Compute the SNR <span class="math inline">\(P_s/P_n\)</span> of the first measurement. What is the value <span class="math inline">\(10\lg (P_s/P_n)\)</span> in dB?</li>
+<li>Finally, compute the amplitude <span class="math inline">\(\hat{s}\)</span> of the signal <span class="math inline">\(s(t)\)</span>.</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;awgnsol&#39;)">
+Solution
+</button>
+<div id="awgnsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (AWGN). </span> The solution to Exercise <a href="noise.html#exr:awgn">4.1</a> is as follows: <span class="math inline">\(P_2\)</span> is the noise power and <span class="math inline">\(P_1\)</span> is the signal and noise power, i.e., <span class="math inline">\(P_2=P_n\)</span> and <span class="math inline">\(P_1=P_s+P_n\)</span>, respectively.
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(P_2 = \frac{N_0}{2}2B = N_0 B = P_n\)</span><br>
+<span class="math inline">\(\Rightarrow N_0 = \frac{P_2}{B} = \frac{0.2\,\mathrm{mW}}{3\,\mathrm{kHz}} \approx 66.7\,\frac{\text{nW}}{\text{Hz}}\)</span></li>
+<li><span class="math inline">\(\frac{P_s}{P_n} = \frac{P_1}{P_n} - 1 = \frac{P_1}{P_2} - 1 = \frac{1\,\mathrm{mW}}{0.2\,\mathrm{mW}} - 1 = 4\ (P_1=P_s+P_n)\)</span><br>
+<span class="math inline">\(10\lg\frac{P_s}{P_n} = 10\lg 4 \approx 6\,\mathrm{dB}\)</span></li>
+<li><span class="math inline">\(P_s = \frac{1}{T}\int_0^T \hat{s}^2 \cos^2 (2\pi f_0 t) dt = \frac{\hat{s}^2}{T}\cdot \frac{T}{2} = \frac{\hat{s}^2}{2}\)</span><br>
+<span class="math inline">\(\frac{\hat{s}^2}{2}=P_1-P_2\ \Rightarrow\ \hat{s} = \sqrt{2(P_1-P_2)} = \sqrt{2\cdot 0.8\,\mathrm{mW}} = 0.04 \sqrt{W}\)</span></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="baseband-receiver-for-detection" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Baseband Receiver for Detection</h2>
+<p>Before deriving an optimal receive filter in the next section, we briefly review the <strong>baseband receiver</strong> (German: <em>Basisbandempfänger</em>) for <strong>detection</strong> (German: <em>Detektion</em>) . Figure <a href="noise.html#fig:receiver">4.4</a> depicts the corresponding block diagram for detection of a transmit signal in a baseband with polar symbol mapping, i.e., <span class="math inline">\(d[\ell]\in\{-D,D\}\)</span>, and causal time-limited pulse shaping, i.e., <span class="math inline">\(p(t)=0\)</span> for <span class="math inline">\(t\neq [0,T]\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:receiver"></span>
+<img src="kt_files/figure-html/receiver-1.svg" alt="Block diagram of a baseband receiver for a transmit signal with polar symbol mapping and causal time-limited pulse shaping" width="672" />
+<p class="caption">
+Figure 4.4: Block diagram of a baseband receiver for a transmit signal with polar symbol mapping and causal time-limited pulse shaping
+</p>
+</div>
+<p>After application of the <strong>receive filter</strong> <span class="math inline">\(g(t)\)</span> (German: <em>Empfangsfilter</em>) to the receive signal <span class="math inline">\(r(t)\)</span>, i.e.,
+<span class="math display">\[y(t)=g(t)*r(t),\]</span>
+the resulting signal <span class="math inline">\(y(t)\)</span> is sampled with the symbol duration <span class="math inline">\(T\)</span> according to
+<span class="math display">\[y[\ell]=y(\ell T + T).\]</span>
+As will be seen in the next section, it is important to sample at the end of a symbol period, i.e., at <span class="math inline">\(t=\ell T+ T\)</span> in order to collect all available energy of <span class="math inline">\(d[\ell]\)</span> which <span class="math inline">\(r(t)\)</span> contains in the time interval <span class="math inline">\([\ell T, \ell T + T]\)</span>.</p>
+<p>Finally, based on <span class="math inline">\(y[\ell]\)</span>, the data symbols <span class="math inline">\(d[\ell]\)</span> are detected by applying a <strong>decision</strong> (German: <em>Entscheider</em>), i.e., the signum function (cf. Appendix <a href="important-functions.html#sgn">D.3</a>). Mathematically speaking, the <strong>detected symbols</strong> (German: <em>detektierte Symbole</em>) are obtained via<a href="noise.html#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>
+<span class="math display">\[\tilde{d}[\ell]=\mathrm{sgn}(y[\ell])D\in\{-D,D\}.\]</span></p>
+<p>Although we assume analog receive filters in this textbook, they can be also implemented as digital filters. In thise case, analog-to-digital conversion, including sampling with a sample rate greater than the symbol rate, is applied before filtering.</p>
+</div>
+<div id="matched-filter" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Matched Filter</h2>
+<p>After applying a receive filter <span class="math inline">\(g(t)\)</span> to the receive signal <span class="math inline">\(r(t)\)</span>, the output <span class="math inline">\(y(t)\)</span> of this receive filter can be written as
+<span class="math display">\[\begin{aligned}
+y(t)&amp;=g(t)*r(t)=g(t)*(s(t)+n(t))=\\
+&amp;=\underbrace{g(t)*s(t)}_{=:y_s(t)}+\underbrace{g(t)*n(t)}_{=:y_n(t)},
+\end{aligned}\]</span>
+where <span class="math inline">\(y_s(t)=g(t)*s(t)\)</span> is the filtered noiseless signal and <span class="math inline">\(y_n(t)=g(t)*n(t)\)</span> is the filtered noise signal.</p>
+<div id="maximizing-snr" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Maximizing SNR</h3>
+<p>The <strong>Matched Filter</strong> (MF, German: <em>signalangepasste Filter</em>) is the receive filter which maximises the SNR at its output, i.e., of the sampled receive signal. Without loss of generality, we consider only the first transmitted symbol/bit in the time period <span class="math inline">\(t\in[0,T]\)</span>, i.e., <span class="math inline">\(\ell=0\)</span>.<a href="noise.html#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a> As already mentioned above, in order to be able to collect all symbol energy in this time period, we sample at its end, i.e., we choose <span class="math inline">\(t=T\)</span>. In this case, the SNR at the output of the receive filter computes as
+<span class="math display">\[ \gamma_{g} = \frac{P_{y_s}}{P_{y_n}}=
+\frac{|y_s(T)|^2}
+{\mathrm{E}\left[|y_n(t)|^2\right]},\]</span>
+and the MF maximises the SNR <span class="math inline">\(\gamma_g\)</span>, i.e.,
+<span class="math display">\[g_\mathrm{MF}(t)=\mathop{\mathrm{argmax}}\limits_{g(t)} \gamma_g.\]</span></p>
+<p>Let us first consider the power <span class="math inline">\(P_{y_s}\)</span> of the filtered noiseless signal <span class="math inline">\(y_s(t)\)</span> at the time instance <span class="math inline">\(t=T\)</span>. With Equation <a href="baseband.html#eq:txsignal">(3.1)</a> in Section <a href="baseband.html#pulseshaping">3.2</a> and the fact that <span class="math inline">\(d[\ell]\in\{-D,D\}\)</span> in case of polar symbol mapping, it holds
+<span class="math display">\[\begin{aligned}
+y_s(t)&amp;=g(t)*s(t)\\
+&amp;=g(t)* T\sum_{\ell=-\infty}^\infty d[\ell] p(t-\ell T)\\
+&amp;=\pm DT \sum_{\ell=-\infty}^\infty g(t) * p(t-\ell T),
+\end{aligned}\]</span>
+and for <span class="math inline">\(t=T\)</span> and <span class="math inline">\(\ell=0\)</span> (cf. Definition <a href="mathematical-basics.html#def:defconvolution">E.3</a> of convolution)<a href="noise.html#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>
+<span class="math display">\[\begin{aligned}
+y_s(T)&amp;=\pm DT (g(t) * p(t))|_{t=T}\\
+&amp;=\pm DT \int\limits_{-\infty}^\infty g(\tau)p^*(T-\tau) d\tau.
+\end{aligned}\]</span>
+Then, the instantaneous power <span class="math inline">\(P_{y_s}\)</span> yields
+<span class="math display">\[P_{y_s}=|y_s(T)|^2=D^2T^2\left|\int\limits_{-\infty}^\infty g(\tau)p^*(T-\tau) d\tau\right|^2.\]</span></p>
+<p>Next, we compute the power <span class="math inline">\(P_{y_n}\)</span> of the filtered noise signal <span class="math inline">\(y_n(t)\)</span>. Based on the power spectral density <span class="math inline">\(\Phi_n(f)=N_0/2\)</span> and Equation <a href="mathematical-basics.html#eq:psdfiltered">(E.7)</a> of Appendix <a href="mathematical-basics.html#psd">E.4.11</a>, we get
+<span class="math display">\[P_{y_n}=\int\limits_{-\infty}^\infty
+\Phi_n(f)|G(f)|^2 df
+=\frac{N_0}{2}
+\int\limits_{-\infty}^\infty |G(f)|^2 df.\]</span>
+With Parseval’s theorem<a href="noise.html#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>
+<span class="math display">\[\int_{-\infty}^\infty |G(f)|^2 df=\int_{-\infty}^\infty |g(t)|^2 dt,\]</span>
+it follows
+<span class="math display" id="eq:noisepower">\[\begin{equation}
+P_{y_n}=\frac{N_0}{2}
+\int\limits_{-\infty}^\infty |g(t)|^2 dt,
+\tag{4.1}
+\end{equation}\]</span>
+and the SNR at the output of the receive filter reads as
+<span class="math display">\[\gamma_g=\frac{P_{y_s}}{P_{y_n}}=
+\frac{D^2T^2\left|\int\limits_{-\infty}^\infty g(\tau)p^*(T-\tau) d\tau\right|^2}
+{\frac{N_0}{2}
+\int\limits_{-\infty}^\infty |g(t)|^2 dt}.\]</span>
+The Cauchy-Schwarz inequality<a href="noise.html#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a> tells us an upper bound of <span class="math inline">\(\gamma_g\)</span> according to
+<span class="math display">\[\begin{aligned}
+\gamma_g=\frac{P_{y_s}}{P_{y_n}}&amp;\leq 
+\frac{D^2T^2
+\int\limits_{-\infty}^\infty |g(t)|^2 dt
+\int\limits_{-\infty}^\infty |p^*(T-t)|^2 dt
+}{\frac{N_0}{2}
+\int\limits_{-\infty}^\infty |g(t)|^2 dt}\\
+&amp;=\frac{2D^2T^2}{N_0}\int\limits_{-\infty}^\infty |p^*(T-t)|^2 dt,
+\end{aligned}\]</span>
+where we substituted <span class="math inline">\(\tau\)</span> by <span class="math inline">\(t\)</span> and where equality holds for <span class="math inline">\(g(t)=\beta p^*(T-t)\)</span>. In words, the SNR <span class="math inline">\(\gamma_g\)</span> is always smaller than or equal to this upper bound. Thus, the upper bound itself is the maximum of the SNR which is reached by choosing the matched filter <span class="math inline">\(g_\mathrm{MF}(t)=\beta p^*(T-t)\)</span> as the receive filter.</p>
+<!--Matched Filter
+  <p>With the <a href=#/fourier_prop>properties of the Fourier transform</a>:</p>
+  $$P(f)\leftrightarrow p(t)$$
+  $$P(f)e^{2\pi f T}\leftrightarrow p(t+T)$$
+  $$P^*(f)e^{-2\pi f T}\leftrightarrow p^*(-t+T)=p^*(T-t)$$-->
+<p>With the normalisation of the pulse shaping filter <span class="math inline">\(p(t)\)</span> as introduced in Equation <a href="baseband.html#eq:pulsenorm">(3.3)</a> of Section <a href="baseband.html#pulseshaping">3.2</a>, i.e.,<a href="noise.html#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>
+<span class="math display">\[\int\limits_{-\infty}^\infty |p^*(T-t)|^2 dt=\int\limits_{-\infty}^\infty |p(t)|^2 dt=\frac{1}{T},\]</span>
+and the symbol energy <span class="math inline">\(E_s=D^2T\)</span> from Theorem <a href="baseband.html#thm:symbolenergy">3.1</a>, the SNR at the output of the MF reads as
+<span class="math display" id="eq:mfsnr">\[\begin{equation}
+\gamma_{g_\mathrm{MF}}=\frac{2D^2T^2}{N_0}\cdot\frac{1}{T}=
+\frac{2 D^2 T}{N_0}=\frac{2 E_s}{N_0}.
+\tag{4.2}
+\end{equation}\]</span></p>
+
+<div class="theorem">
+<span id="thm:matchedfilter" class="theorem"><strong>Theorem 4.2  (Matched Filter, MF)  </strong></span>With the pulse shaping filter <span class="math inline">\(p(t)\)</span>, the symbol duration <span class="math inline">\(T\)</span> and the arbitrary constant <span class="math inline">\(\beta\in\mathbb{R}\)</span>, the MF is given by
+<span class="math display">\[g_\mathrm{MF}(t)=\beta p^*(T-t),\]</span>
+and maximises the SNR at its output. The maximum SNR reads as
+<span class="math display">\[\gamma_{g_\mathrm{MF}}=\frac{P_{y_s}}{P_{y_n}}=\frac{2E_s}{N_0},\]</span>
+with the noise power density <span class="math inline">\(N_0\)</span> and the symbol energy <span class="math inline">\(E_s\)</span>.
+</div>
+<p>Note that <span class="math inline">\(g_\mathrm{MF}(t)=\beta p(T-t)\)</span> in case of real-valued pulse shaping filters. In words, the MF <span class="math inline">\(g_\mathrm{MF}(t)\)</span> is the pulse shaping filter <span class="math inline">\(p(t)\)</span> reflected across the line at <span class="math inline">\(t=T/2\)</span> and weighted with <span class="math inline">\(\beta\)</span>.</p>
+
+<div class="example">
+<span id="exm:mfawgn" class="example"><strong>Example 4.2  (MF in Case of AWGN Channel)  </strong></span>If we consider a triangular pulse shaping filter <span class="math inline">\(p(t)\)</span><a href="noise.html#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a> as depicted in Figure <a href="noise.html#fig:toothpulse">4.5</a>, the corresponding MF <span class="math inline">\(g_\mathrm{MF}(t)\)</span> is shown in Figure <a href="noise.html#fig:toothmf">4.6</a> for <span class="math inline">\(\beta=1\)</span>. The axis of reflection at <span class="math inline">\(t=T/2\)</span> is visualised by a red vertical line.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:toothpulse"></span>
+<img src="kt_files/figure-html/toothpulse-1.svg" alt="Triangular pulse shaping filter $p(t)$" width="80%" />
+<p class="caption">
+Figure 4.5: Triangular pulse shaping filter <span class="math inline">\(p(t)\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:toothmf"></span>
+<img src="kt_files/figure-html/toothmf-1.svg" alt="MF $g_\mathrm{MF}(t)$ of the triangular pulse shaping filter $p(t)$" width="80%" />
+<p class="caption">
+Figure 4.6: MF <span class="math inline">\(g_\mathrm{MF}(t)\)</span> of the triangular pulse shaping filter <span class="math inline">\(p(t)\)</span>
+</p>
+</div>
+</div>
+<div id="frequency-selective-channel" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Frequency-Selective Channel</h3>
+<p>A more general channel compared to the AWGN channel is depicted in Figure <a href="noise.html#fig:multipathchannel">4.7</a> where a channel impulse response <span class="math inline">\(h(t)\)</span> is present before the noise signal is added. This channel type is called a <strong>frequency-selective channel</strong> (German: <em>frequenzselektiver Kanal</em>) or <strong>mulitpath channel</strong> (German: <em>Mehrwegekanal</em>). The AWGN channel is a special case thereof with the impulse response <span class="math inline">\(h(t)=\delta(t)\)</span> <span class="math inline">\(\leftrightarrow\)</span> <span class="math inline">\(H(f)=1\)</span>. Since all frequencies are weighted with one in this case, the AWGN channel is also denoted as a <strong>frequency-flat channel</strong> (German: <em>frequenzflacher Kanal</em>). In case of a frequency-selective channel, <span class="math inline">\(h(t)\neq \delta(t)\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:multipathchannel"></span>
+<img src="kt_files/figure-html/multipathchannel-1.svg" alt="Block diagram of frequency-selective channel" width="60%" />
+<p class="caption">
+Figure 4.7: Block diagram of frequency-selective channel
+</p>
+</div>
+<p>Considering a frequency-selective channel, it is not sufficient to solely match the receive filter <span class="math inline">\(g(t)\)</span> to the pulse shaping filter <span class="math inline">\(p(t)\)</span>. The channel impulse response <span class="math inline">\(h(t)\)</span> must be considered additionally. This is done by combining <span class="math inline">\(h(t)\)</span> and <span class="math inline">\(p(t)\)</span> to a total pulse shaping filter
+<span class="math display">\[p_\mathrm{tot}(t)=h(t)*p(t),\]</span>
+of duration <span class="math inline">\(T_\mathrm{tot}\)</span>, i.e., <span class="math inline">\(p_\mathrm{tot}=0\)</span> for <span class="math inline">\(t\neq [0,T_\mathrm{tot}]\)</span>. If <span class="math inline">\(p(t)\)</span> has duration <span class="math inline">\(T\)</span> and <span class="math inline">\(h(t)\)</span> duration <span class="math inline">\(T_h\)</span>, then <span class="math inline">\(T_\mathrm{tot}=T+T_h\)</span>. Using the total pulse shaping filter <span class="math inline">\(p_\mathrm{tot}(t)\)</span> instead of <span class="math inline">\(p(t)\)</span> for the derivation of the MF, the resulting channel is again purely AWGN and the MF computes to
+<span class="math display">\[g_\mathrm{MF}(t)=\beta p_\mathrm{tot}^*(T_\mathrm{tot}-t).\]</span>
+Note that in this case, the output signal <span class="math inline">\(y(t)\)</span> of the MF needs to be sampled at <span class="math inline">\(t=\ell T + T_\mathrm{tot}\)</span> to collect all symbol energy in the receive signal within the time interval <span class="math inline">\([\ell T, \ell T + T_\mathrm{tot}]\)</span>.</p>
+
+<div class="example">
+<span id="exm:mffs" class="example"><strong>Example 4.3  (MF in Case of Frequency-Selective Channel)  </strong></span>If we consider again the triangular pulse shaping filter <span class="math inline">\(p(t)\)</span> as depicted in Figure <a href="noise.html#fig:toothpulse">4.5</a> and the channel impulse response
+<span class="math display">\[h(t)=\delta(t)+\frac{1}{2}\delta\left(t-\frac{T}{2}\right),\]</span>
+the resulting total pulse shaping filter (cf. Theorem <a href="mathematical-basics.html#thm:dirac">E.2</a>)
+<span class="math display">\[p_\mathrm{tot}(t)=h(t)*p(t)=p(t)+\frac{1}{2}p\left(t-\frac{T}{2}\right),\]</span>
+which is shown in Figure <a href="noise.html#fig:totalpulse">4.8</a> with a duration of <span class="math inline">\(T_\mathrm{tot}=3T/2\)</span>. The corresponding MF <span class="math inline">\(g_\mathrm{MF}(t)\)</span> is drawn in Figure <a href="noise.html#fig:fschannelmf">4.9</a> for <span class="math inline">\(\beta=1\)</span>. The line at <span class="math inline">\(t=T_\mathrm{tot}/2=3T/4\)</span> across which <span class="math inline">\(p(t)\)</span> is reflected, is visualised by a red vertical line.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:totalpulse"></span>
+<img src="kt_files/figure-html/totalpulse-1.svg" alt="Total pulse shaping filter $p_\mathrm{tot}(t)$" width="80%" />
+<p class="caption">
+Figure 4.8: Total pulse shaping filter <span class="math inline">\(p_\mathrm{tot}(t)\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fschannelmf"></span>
+<img src="kt_files/figure-html/fschannelmf-1.svg" alt="MF $g_\mathrm{MF}(t)$ of the total pulse shaping filter $p_\mathrm{tot}(t)$" width="80%" />
+<p class="caption">
+Figure 4.9: MF <span class="math inline">\(g_\mathrm{MF}(t)\)</span> of the total pulse shaping filter <span class="math inline">\(p_\mathrm{tot}(t)\)</span>
+</p>
+</div>
+<p>Due to the fact, that the duration <span class="math inline">\(T_\mathrm{tot}\)</span> of the total pulse shaping filter is larger than the symbol duration <span class="math inline">\(T\)</span>, i.e., <span class="math inline">\(T_\mathrm{tot}&gt;T\)</span>, the first Nyquist criterion is not fulfilled, resulting in severe ISI (see Section <a href="baseband.html#isi">3.4</a>). Thus, in case of freqency-selective channels, maximizing the SNR is not the right figure of merit because the signal power contains the power of the signal of interest as well as the one of the interference, i.e., there is no distinction between both of them. Alternative receive filters are either forcing the unwanted interference completely to zero, resulting in the so-called <strong>Zero-Forcing</strong> (ZF) filter, or minimizing the mean squared error, resulting in the so-called <strong>Wiener Filter</strong> (WF). Since the focus of this lecture lies on AWGN channels, these two filters are not discussed any further. However, these filters are usually implemented by a MF as derived in this section, followed by a digital filter operating on the sampled signal <span class="math inline">\(y[\ell]\)</span>.</p>
+<!--Further details can be found in, e.g., <span style="color:red">TODO: Insert citation here! Note that ZF and WF contain also MF filter, in fact they can be factorised in a time-continuous MF followed a time-discrete ZF and WF after sampling.</span>-->
+</div>
+<div id="root-raised-cosine-filter" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Root-Raised-Cosine Filter</h3>
+<p>One problem of applying a MF at the receiver for maximizing the SNR at its output, is that, in general, the first Nyquist criterion (cf. Section <a href="baseband.html#isi">3.4</a>) is only fulfilled at its input but no longer at its output. This is especially true for the raised-cosine filter. The reason for this lies in the fact that the pulse shaping filter is applied twice, once originally and the second time by the MF as a reflected version thereof. The combination of the MF and the pulse shaping filter yields<a href="noise.html#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>
+<span class="math display">\[g_\mathrm{MF}(t)*p(t)=\beta p^*(-t)*p(t),\]</span>
+with the corresponding spectrum
+<span class="math display">\[G_\mathrm{MF}(f)P(f)=\beta |P(f)|^2,\]</span>
+no longer following Theorem <a href="baseband.html#thm:nyquist">3.2</a>. In order to avoid this problem, a pulse shaping filter with a spectrum being the square-root of the original spectrum is applied. We demonstrate this approach for the practically most relevant filter, i.e., the raised-cosine filter (see Subsection <a href="baseband.html#nyquistrolloff">3.2.4</a>), leading to the so-called root-raised-cosine filter.</p>
+
+<div class="definition">
+<span id="def:rrcf" class="definition"><strong>Definition 4.4  (Root-Raised-Cosine Filter)  </strong></span>The <strong>root-raised-cosine filter</strong> <span class="math inline">\(p(t)\leftrightarrow P(f)\)</span> is defined via its spectrum
+<span class="math display">\[P(f) = \begin{cases}
+1, &amp; |f|\leq(1-\alpha)\frac{1}{2T},\\
+\sqrt{\frac{1}{2}\left(
+1-\sin\left(\frac{\pi T}{\alpha}\left(|f|-\frac{1}{2T}\right)\right)\right)}, &amp; \frac{1-\alpha}{2T}&lt;|f|\leq\frac{1+\alpha}{2T},\\
+0, &amp; \text{otherwise},
+\end{cases}\]</span>
+being the square-root of the raised-cosine filter’s spectrum. Based on this spectrum, the corresponding impulse response is given by (see, e.g., <span class="citation"><a href="references.html#ref-Cu12" role="doc-biblioref">Cubukukcu</a> (<a href="references.html#ref-Cu12" role="doc-biblioref">2012</a>)</span>)
+<span class="math display">\[p(t)=\frac{2\alpha}{\pi T} \frac{
+\cos\left((1+\alpha)\frac{\pi t}{T}\right)+\frac{T\sin\left(\frac{(1-\alpha)\pi t}{T}\right)}{4\alpha t}}
+{1-\left(\frac{4\alpha t}{T}\right)^2}.\]</span>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-31" class="example"><strong>Example 4.4  (Root-Raised-Cosine Filter)  </strong></span>Figure <a href="noise.html#fig:rrcfsignalspectrum">4.10</a> shows the impulse response as well as the corresponding frequency response of a root-raised-cosine filter compared to the respective responses of the raised-cosine filter, both assuming <span class="math inline">\(\alpha=0.5\)</span>. It can be clearly seen that the root-raised-cosine filter does not fulfill the first Nyquist criterion because <span class="math inline">\(p_\mathrm{RRC}(t)\neq 0\)</span> for <span class="math inline">\(t=nT\)</span>, <span class="math inline">\(n\in\mathbb{Z}\setminus \{0\}\)</span>. However, after application of the MF, the combination of MF and root-raised-cosine filter yields a raised-cosine filter which fulfills again the first Nyquist criterion.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:rrcfsignalspectrum"></span>
+<img src="kt_files/figure-html/rrcfsignalspectrum-1.svg" alt="Impulse response $p_\mathrm{RRC}(t)$ and the corresponding frequency response $P_\mathrm{RRC}(f)$ of the Root-Raised-Cosine (RRC) filter compared to the impulse response $p_\mathrm{RC}(t)$ and the corresponding frequency response $P_\mathrm{RC}(f)$ of the Raised-Cosine (RC) filter, both with $\alpha=0.5$" width="80%" />
+<p class="caption">
+Figure 4.10: Impulse response <span class="math inline">\(p_\mathrm{RRC}(t)\)</span> and the corresponding frequency response <span class="math inline">\(P_\mathrm{RRC}(f)\)</span> of the Root-Raised-Cosine (RRC) filter compared to the impulse response <span class="math inline">\(p_\mathrm{RC}(t)\)</span> and the corresponding frequency response <span class="math inline">\(P_\mathrm{RC}(f)\)</span> of the Raised-Cosine (RC) filter, both with <span class="math inline">\(\alpha=0.5\)</span>
+</p>
+</div>
+<p>So far, we have only considered the symmetric and non-causal root-raised-cosine filter. Similar to the derivations in Section <a href="baseband.html#pulseshaping">3.2</a>, a causal version can be obtained by windowing to the time interval <span class="math inline">\([-NT,NT]\)</span>, <span class="math inline">\(N\in\mathbb{N}\)</span>, and applying a time translation of <span class="math inline">\(NT\)</span> to the right. The resulting causal root-raised-cosine filter reads as
+<span class="math display">\[p_+(t) = p(t-NT) \mathrm{rect}\left(\frac{t-NT}{2NT}\right)\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}P_+(f) &amp;= P(f)*2NT\mathrm{sinc}(2NTf)e^{-j2\pi f NT}.
+\end{aligned}\]</span>
+The MF in this case computes to
+<span class="math display">\[g_\mathrm{MF}(t)=\beta p^*(2NT-t),\]</span>
+which is <span class="math inline">\(p(t)\)</span> reflected accross the line <span class="math inline">\(t=NT\)</span>. The output <span class="math inline">\(y(t)=g_\mathrm{MF}(t)*r(t)\)</span> has then to be sampled at the time instances <span class="math inline">\(t=\ell T + 2NT\)</span>.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-32" class="example"><strong>Example 4.5  (MF GNU Radio Simulation)  </strong></span>The following GNU Radio simulation shows the eye diagram of a signal with polar symbol mapping and a root-raised-cosine pulse shaping filter at the input or output of a MF.<a href="noise.html#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>
+It can be seen that there is severe ISI at the input, i.e., without a MF, but no ISI at its output if the noise voltage is zero. This observation is obvious because the root-raised-cosine filter has been designed to fulfill the first Nyquist criterion only in combination with a MF. Moreover, if the noise voltage is greater than zero, the signal at the input of the MF is very noisy, whereas the one at the output is much less noisy. This is a direct consequence of the fact that the MF maximises the SNR, i.e., minimises the noise influence if the signal power is assumed to be constant. Nevertheless, the output signal of the MF is no longer ISI-free in this case.
+</div>
+<figure style="text-align:center;margin-bottom:10px">
+<video width="80%" controls>
+<source src="media/eyediagram_rrc.mp4" type="video/mp4">
+</video>
+</figure>
+<form class="quiz" data-correct="4" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following statements is true?
+</div>
+<input value="A. A MF can only be implemented in an analog way."/>
+<input value="B. A MF has always the same length as the corresponding pulse shaping filter."/>
+<input value="C. In any case, sampled symbols after the MF are delayed by one symbol duration compared to the transmitted symbols."/>
+<input value="D. A MF maximises the SNR of its sampled output signal."/>
+</form>
+</div>
+</div>
+<div id="bit-error-probability-bep" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Bit Error Probability (BEP)</h2>
+<p>In this section, we derive the <strong>Bit Error Probability</strong> <span class="math inline">\(P_\mathrm{BE}\)</span> (BEP, German: <em>Bitfehlerwahrscheinlichkeit</em>) , i.e., the probability that one bit gets erroneous during transmission. To do so, we assume baseband communications with polar symbol mapping, pulse shaping with a filter fulfilling the first Nyquist criterion, in the following briefly denoted as <strong>Nyquist pulse shaping</strong> (German: <em>Nyquist-Impulsformung</em>), and matched filtering at the receiver. Moreover, we assume perfect clock and frame synchronisation, i.e., the output signal of the MF is precisely sampled at multiples of the symbol duration and the position of the first transmitted bit is perfectly known. Some details on clock and frame synchronisation in real systems are discussed in Section <a href="noise.html#sync">4.5</a>.</p>
+<p>Without loss of generality, we consider only the first bit <span class="math inline">\(u[0]\)</span> which corresponds to the input <span class="math inline">\(y[0]\)</span> at the decision in Figure <a href="noise.html#fig:receiver">4.4</a>. Remember that the sampled value <span class="math inline">\(y[0]\)</span> includes a delay which depends on the type of pulse shaping filter, i.e., if it is time-limited or not, and on the type of channel, i.e., if it is frequency-selective or not (see discussions in Section <a href="noise.html#matched-filter">4.3</a>). Besides, since the factor <span class="math inline">\(\beta\)</span> of the MF has no influence on the SNR at its output, we assume <span class="math inline">\(\beta=1\)</span> for simplicity, i.e., <span class="math inline">\(y[0]=\pm D\)</span> with the power <span class="math inline">\(P_{y_s}=D^2\)</span> and the noise power at the output of the MF computes as <span class="math inline">\(P_{y_n}=\sigma_{y_n}^2=N_0/(2T)\)</span> (see Equation <a href="noise.html#eq:mfsnr">(4.2)</a>).</p>
+<p>Figure <a href="noise.html#fig:beppdf">4.11</a> shows the conditional PDFs <span class="math inline">\(f_y(y[0]|u[0]=0)\)</span> and <span class="math inline">\(f_y(y[0]|u[0]=1)\)</span>, respectively, i.e., the PDFs of the received sample <span class="math inline">\(y[0]\)</span> if <span class="math inline">\(u[0]=1\)</span> and <span class="math inline">\(u[0]=0\)</span>, respectively, has been transmitted. Remember that in case of polar symbol mapping <span class="math inline">\(d[0]=+D\)</span> if <span class="math inline">\(u[0]=0\)</span> and <span class="math inline">\(d[0]=-D\)</span> if <span class="math inline">\(u[0]=1\)</span> (cf. Section <a href="baseband.html#modulation">3.1</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:beppdf"></span>
+<img src="kt_files/figure-html/beppdf-1.svg" alt="Conditional PDFs of the received sample $y[0]$ if a $u[0]=1$ or a $u[0]=0$ has been transmitted ($\beta=1$)" width="80%" />
+<p class="caption">
+Figure 4.11: Conditional PDFs of the received sample <span class="math inline">\(y[0]\)</span> if a <span class="math inline">\(u[0]=1\)</span> or a <span class="math inline">\(u[0]=0\)</span> has been transmitted (<span class="math inline">\(\beta=1\)</span>)
+</p>
+</div>
+<p>A bit error occurs, if <span class="math inline">\(y[0]&lt;0\)</span> and <span class="math inline">\(u[0]=0\)</span> (<span class="math inline">\(d[0]=+D\)</span>) or if <span class="math inline">\(y[0]&gt;0\)</span> and <span class="math inline">\(u[0]=1\)</span> (<span class="math inline">\(d[0]=-D\)</span>) has been transmitted. The probability for this event computes as
+<span class="math display">\[\begin{aligned}
+P_\mathrm{BE}&amp;=P(u[0]=0)\underbrace{P(y[0]&lt;0|u[0]=0)}_{=:P_{b,0}}\\
+&amp;\phantom{=}+ P(u[0]=1)\underbrace{P(y[0]&gt;0|u[0]=1)}_{=:P_{b,1}}\\
+&amp;=P(u[0]=0)
+\underbrace{\int\limits_{-\infty}^0 p(y[0]|u[0]=0)dy[0]}_{=:P_{b,0}}\\
+&amp;\phantom{=}+P(u[0]=1)
+\underbrace{\int\limits_{0}^\infty p(y[0]|u[0]=1)dy[0]}_{=:P_{b,1}},
+\end{aligned}\]</span>
+with the probabilities <span class="math inline">\(P(u[0]=0)\)</span> that a “0” and <span class="math inline">\(P(u[0]=1)\)</span> that a “1” has been sent. In the following, we assume that both bits are equiprobable, i.e.,
+<span class="math display">\[P(u[0]=0)=P(u[0]=1)=\frac{1}{2},\]</span>
+which is quite realistic if <strong>source coding</strong> (German: <em>Quellencodierung</em>) is performed at the transmitter since a well-designed source coder results in equiprobable bits at its output. However, in this textbook, we do not consider source coding.</p>
+<p>Together with Definition <a href="mathematical-basics.html#def:gaussdistro">E.7</a> of the Gaussian distribution and Definition <a href="important-functions.html#def:deferfc">D.4</a> of the complimentary error function, the BEP simplifies to
+<span class="math display">\[\begin{aligned}
+P_\mathrm{BE}&amp;=2\cdot \frac{1}{2}
+\int\limits_{-\infty}^0 p(y[0]|u[0]=0)dy[0]\\
+&amp;=\int\limits_{-\infty}^0\frac{1}{\sigma_{y_n}\sqrt{2\pi}}
+e^{
+-\frac{\left(y[0]-D\right)^2}{2\sigma_{y_n}^2}}dy[0]\\
+&amp;=
+\frac{1}{\sqrt{\pi}}
+\int\limits_{\frac{D}{\sigma_{y_n}\sqrt{2}}}^\infty
+e^{-z^2}dz=
+\frac{1}{2}\mathrm{erfc}\left(\frac{D}{\sigma_{y_n}\sqrt{2}}\right),
+\end{aligned}\]</span>
+where we substituted <span class="math inline">\((D-y[0])/(\sigma_{y_n}\sqrt{2})\)</span> by <span class="math inline">\(z\)</span> and consequently, <span class="math inline">\(dy[0]\)</span> by <span class="math inline">\(-\sigma_{y_n}\sqrt{2} dz\)</span>.<a href="noise.html#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
+<p>Since we are especially interested in the dependency of the BEP on the SNR, it remains to express the argument of the complimentary error function by the SNR. It holds (with the symbol energy <span class="math inline">\(E_s\)</span> from Theorem <a href="baseband.html#thm:symbolenergy">3.1</a>)
+<span class="math display">\[\gamma_{g_\mathrm{MF}}=\frac{P_{y_s}}{P_{y_n}}=
+\frac{D^2}{\sigma_{y_n}^2}=
+\frac{2D^2T}{N_0}=\frac{2E_s}{N_0}=\frac{2E_b}{N_0},\]</span>
+and
+<span class="math display">\[\frac{D}{\sigma_{y_n}\sqrt{2}}=
+\sqrt{\frac{\gamma_{g_\mathrm{MF}}}{2}}=\sqrt{\frac{E_s}{N_0}}=\sqrt{\frac{E_b}{N_0}},\]</span>
+where we introduced additionally the <strong>bit energy</strong> <span class="math inline">\(E_b\)</span> (German: <em>Bitenergie</em>) which is equal to the symbol energy, i.e., <span class="math inline">\(E_b=E_s\)</span>, in case of polar symbol mapping because one symbol contains exactly one bit. In Chapter <a href="moddet.html#moddet">6</a>, we will see that this is not true for all possible modulation schemes.</p>
+
+<div class="theorem">
+<span id="thm:bepawgnpolar" class="theorem"><strong>Theorem 4.3  (BEP of Polar Baseband Communications over an AWGN Channel)  </strong></span>The BEP of baseband communcations over an AWGN channel with polar symbol mapping, Nyquist pulse shaping and matched filtering at the receiver reads as
+<span class="math display">\[P_\mathrm{BE}=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\gamma_{g_\mathrm{MF}}}{2}}\right)=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{E_b}{N_0}}\right),\]</span>
+<!--\approx
+\frac{1}{2}e^{-\frac{E_b}{N_0}},$$-->
+with the complimentary error function <span class="math inline">\(\mathrm{erfc}(\cdot)\)</span> as defined in Appendix <a href="important-functions.html#erfc">D.4</a>, the SNR <span class="math inline">\(\gamma_{g_\mathrm{MF}}\)</span> at the output of the MF, the bit energy <span class="math inline">\(E_b\)</span> and the noise power density <span class="math inline">\(N_0\)</span>.
+</div>
+<p>Before showing a bit error simulation example, let us briefly discuss the BEP of unipolar baseband communcations over an AWGN channel first. In this case, <span class="math inline">\(d[0]=0\)</span> if <span class="math inline">\(u[0]=0\)</span> and <span class="math inline">\(d[0]=D_\mathrm{uni}\)</span> if <span class="math inline">\(u[0]=1\)</span> (cf. Section <a href="baseband.html#modulation">3.1</a>). Note that <span class="math inline">\(D_\mathrm{uni}\)</span> can be different from the value <span class="math inline">\(D\)</span> of polar symbol mapping, e.g., if both symbol mappings shall result in the same transmit power, we need to set <span class="math inline">\(D_\mathrm{uni}=\sqrt{2}D\)</span> because in case of unipolar symbol mapping, half of the time, no signal is transmitted if we assume again equiprobable bits and this results in half of the transmit power if <span class="math inline">\(D\)</span> is not adjusted accordingly.</p>
+<p>Consequently, the means of the conditional Gaussian distributions as plotted in Figure <a href="noise.html#fig:beppdf">4.11</a> for polar symbol mapping, are located at <span class="math inline">\(y[0]=0\)</span> and at <span class="math inline">\(y[0]=D_\mathrm{uni}\)</span> instead of <span class="math inline">\(y[0]=-D\)</span> and <span class="math inline">\(y[0]=+D\)</span>. Besides, the threshold of the signum function for detection has to be adjusted to lie at <span class="math inline">\(D_\mathrm{uni}/2\)</span> and the detector reads finally as
+<span class="math display">\[\tilde{d}_\mathrm{uni}[\ell]=\frac{1}{2}
+\left(1+\mathrm{sgn}\left(y[\ell]-\frac{D_\mathrm{uni}}{2}\right)\right)D_\mathrm{uni}.\]</span></p>
+<p>Furthermore, the distance from the threshold to a <span class="math inline">\(y[0]\)</span> leading to a wrong desicion is no longer <span class="math inline">\(D\)</span> like in the case of polar symbol mapping, but <span class="math inline">\(D_\mathrm{uni}/2\)</span>, i.e., the BEP computes as
+<span class="math display">\[P_{b,\text{uni}}=\frac{1}{2}\mathrm{erfc}\left(\frac{D_\mathrm{uni}}{2\sigma_{y_n}\sqrt{2}}\right).\]</span>
+With <span class="math inline">\(P_{y_n}=\sigma_{y_n}^2=N_0/(2T)\)</span>, <span class="math inline">\(P_{y_s}=D_\mathrm{uni}^2/2\)</span> and <span class="math inline">\(E_s=E_b=D_\mathrm{uni}^2T/2\)</span>,<a href="noise.html#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> it follows
+<span class="math display">\[P_{b,\text{uni}}=\frac{1}{2}\mathrm{erfc}\left(\frac{\sqrt{\gamma_{g_\mathrm{MF}}}}{2}\right)=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{E_b}{2N_0}}\right).\]</span>
+In other words, there is a 3-dB-shift between the BEPs of polar and unipolar baseband communications over an AWGN channel. Therefore, polar symbol mapping should always be preferred compared to unipolar symbol mapping when possible. This is also the reason, why we focus mostly on polar symbol mapping in the previous and this chapter.</p>
+
+<div class="example">
+<span id="exm:bersim" class="example"><strong>Example 4.6  (Monte-Carlo BER Simulation With Perfect Clock and Frame Synchronisation)  </strong></span>Figure <a href="noise.html#fig:bersimpy">4.12</a> plots the BEP of polar or unipolar baseband communications over an AWGN channel together with the result of a simulation of the so-called <strong>Bit Error Rate</strong> (BER, German: <em>Bitfehlerrate</em>), i.e., an approximation of the BEP obtained by transmitting a certain number of random bits over the AWGN channel and counting the resulting bit errors. This type of simulation is also known as a <strong>Monte-Carlo simulation</strong> since a random experiment is executed several times, similar to gambling at a casino in Monte Carlo. Note that the BER simulation considers only the sampled received signal. Pulse shaping and matched filtering is not explicitly implemented but implicitly included due to the fact that a maximum SNR is assumed for the sampled received signal and that there is no ISI, i.e., the first Nyquist criterion is fulfilled. These perfect conditions can be obtained when using perfect clock and frame synchronisation (see Section <a href="noise.html#sync">4.5</a> for more details). For the BER simulation in Figure <a href="noise.html#fig:bersimpy">4.12</a>, <span class="math inline">\(10^7\)</span> bits have been transmitted. The results demonstrate that the analytical BEP and simulated BER are approximately the same for all considered SNR values.
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="noise.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="noise.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> erfc</span>
+<span id="cb7-3"><a href="noise.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-4"><a href="noise.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="noise.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># simulation parameters</span></span>
+<span id="cb7-6"><a href="noise.html#cb7-6" aria-hidden="true" tabindex="-1"></a>EbN0_dB_min <span class="op">=</span> <span class="op">-</span><span class="dv">2</span> </span>
+<span id="cb7-7"><a href="noise.html#cb7-7" aria-hidden="true" tabindex="-1"></a>EbN0_dB_max <span class="op">=</span> <span class="dv">11</span></span>
+<span id="cb7-8"><a href="noise.html#cb7-8" aria-hidden="true" tabindex="-1"></a>block_size <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb7-9"><a href="noise.html#cb7-9" aria-hidden="true" tabindex="-1"></a>no_trials <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb7-10"><a href="noise.html#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="noise.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># EbN0</span></span>
+<span id="cb7-12"><a href="noise.html#cb7-12" aria-hidden="true" tabindex="-1"></a>EbN0_dB <span class="op">=</span> np.arange(EbN0_dB_min,EbN0_dB_max<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb7-13"><a href="noise.html#cb7-13" aria-hidden="true" tabindex="-1"></a>EbN0 <span class="op">=</span> <span class="dv">10</span><span class="op">**</span>(EbN0_dB<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb7-14"><a href="noise.html#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="noise.html#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># polar transmit signal</span></span>
+<span id="cb7-16"><a href="noise.html#cb7-16" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.random.choice([<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>], size<span class="op">=</span>(block_size,), p<span class="op">=</span>[<span class="fl">.5</span>,<span class="fl">.5</span>])</span>
+<span id="cb7-17"><a href="noise.html#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="noise.html#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># unipolar transmit signal</span></span>
+<span id="cb7-19"><a href="noise.html#cb7-19" aria-hidden="true" tabindex="-1"></a>s_uni <span class="op">=</span> np.random.choice([<span class="dv">0</span>,np.sqrt(<span class="dv">2</span>)], size<span class="op">=</span>(block_size,), p<span class="op">=</span>[<span class="fl">.5</span>,<span class="fl">.5</span>])</span>
+<span id="cb7-20"><a href="noise.html#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="noise.html#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># analytical computation of BEP and its approximation</span></span>
+<span id="cb7-22"><a href="noise.html#cb7-22" aria-hidden="true" tabindex="-1"></a>EbN0_dB_smooth <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">15</span>,<span class="dv">1000</span>)</span>
+<span id="cb7-23"><a href="noise.html#cb7-23" aria-hidden="true" tabindex="-1"></a>EbN0_smooth <span class="op">=</span> <span class="dv">10</span><span class="op">**</span>(EbN0_dB_smooth<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb7-24"><a href="noise.html#cb7-24" aria-hidden="true" tabindex="-1"></a>BEP <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>erfc(np.sqrt(EbN0_smooth))</span>
+<span id="cb7-25"><a href="noise.html#cb7-25" aria-hidden="true" tabindex="-1"></a>BEP_uni <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>erfc(np.sqrt(EbN0_smooth<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb7-26"><a href="noise.html#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="noise.html#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># simulation of BER</span></span>
+<span id="cb7-28"><a href="noise.html#cb7-28" aria-hidden="true" tabindex="-1"></a>BER <span class="op">=</span> np.zeros(<span class="bu">len</span>(EbN0_dB))</span>
+<span id="cb7-29"><a href="noise.html#cb7-29" aria-hidden="true" tabindex="-1"></a>BER_uni <span class="op">=</span> np.zeros(<span class="bu">len</span>(EbN0_dB))</span>
+<span id="cb7-30"><a href="noise.html#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(EbN0_dB)):</span>
+<span id="cb7-31"><a href="noise.html#cb7-31" aria-hidden="true" tabindex="-1"></a>  noise_power <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>EbN0[i])</span>
+<span id="cb7-32"><a href="noise.html#cb7-32" aria-hidden="true" tabindex="-1"></a>  no_biterrors <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-33"><a href="noise.html#cb7-33" aria-hidden="true" tabindex="-1"></a>  no_biterrors_uni <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-34"><a href="noise.html#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> trial <span class="kw">in</span> np.arange(no_trials):</span>
+<span id="cb7-35"><a href="noise.html#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># noise signal</span></span>
+<span id="cb7-36"><a href="noise.html#cb7-36" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.sqrt(noise_power)<span class="op">*</span>np.random.randn(block_size)</span>
+<span id="cb7-37"><a href="noise.html#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># received signal</span></span>
+<span id="cb7-38"><a href="noise.html#cb7-38" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> s <span class="op">+</span> n</span>
+<span id="cb7-39"><a href="noise.html#cb7-39" aria-hidden="true" tabindex="-1"></a>    x_uni <span class="op">=</span> s_uni <span class="op">+</span> n</span>
+<span id="cb7-40"><a href="noise.html#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># detection</span></span>
+<span id="cb7-41"><a href="noise.html#cb7-41" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.sign(x)</span>
+<span id="cb7-42"><a href="noise.html#cb7-42" aria-hidden="true" tabindex="-1"></a>    y_uni <span class="op">=</span> np.sqrt(<span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>np.sign(x_uni<span class="op">-</span>np.sqrt(<span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb7-43"><a href="noise.html#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sum of errors </span></span>
+<span id="cb7-44"><a href="noise.html#cb7-44" aria-hidden="true" tabindex="-1"></a>    biterrors <span class="op">=</span> np.where (y <span class="op">!=</span> s)</span>
+<span id="cb7-45"><a href="noise.html#cb7-45" aria-hidden="true" tabindex="-1"></a>    biterrors_uni <span class="op">=</span> np.where (y_uni <span class="op">!=</span> s_uni)</span>
+<span id="cb7-46"><a href="noise.html#cb7-46" aria-hidden="true" tabindex="-1"></a>    no_biterrors <span class="op">+=</span> <span class="bu">len</span>(biterrors[<span class="dv">0</span>])</span>
+<span id="cb7-47"><a href="noise.html#cb7-47" aria-hidden="true" tabindex="-1"></a>    no_biterrors_uni <span class="op">+=</span> <span class="bu">len</span>(biterrors_uni[<span class="dv">0</span>])</span>
+<span id="cb7-48"><a href="noise.html#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute BER </span></span>
+<span id="cb7-49"><a href="noise.html#cb7-49" aria-hidden="true" tabindex="-1"></a>  BER[i] <span class="op">=</span> no_biterrors<span class="op">/</span>(block_size<span class="op">*</span>no_trials)</span>
+<span id="cb7-50"><a href="noise.html#cb7-50" aria-hidden="true" tabindex="-1"></a>  BER_uni[i] <span class="op">=</span> no_biterrors_uni<span class="op">/</span>(block_size<span class="op">*</span>no_trials)</span>
+<span id="cb7-51"><a href="noise.html#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="noise.html#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb7-53"><a href="noise.html#cb7-53" aria-hidden="true" tabindex="-1"></a>plt.semilogy(EbN0_dB_smooth, BEP, <span class="st">&#39;-&#39;</span>, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb7-54"><a href="noise.html#cb7-54" aria-hidden="true" tabindex="-1"></a>plt.semilogy(EbN0_dB, BER, <span class="st">&#39;o--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb7-55"><a href="noise.html#cb7-55" aria-hidden="true" tabindex="-1"></a>plt.semilogy(EbN0_dB_smooth, BEP_uni, <span class="st">&#39;-&#39;</span>, color<span class="op">=</span><span class="st">&#39;#33a333&#39;</span>)</span>
+<span id="cb7-56"><a href="noise.html#cb7-56" aria-hidden="true" tabindex="-1"></a>plt.semilogy(EbN0_dB, BER_uni, <span class="st">&#39;x--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb7-57"><a href="noise.html#cb7-57" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb7-58"><a href="noise.html#cb7-58" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb7-59"><a href="noise.html#cb7-59" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb7-60"><a href="noise.html#cb7-60" aria-hidden="true" tabindex="-1"></a>plt.legend((<span class="st">&#39;BEP, polar&#39;</span>,<span class="st">&#39;BER, polar&#39;</span>, <span class="st">&#39;BEP, unipolar&#39;</span>, <span class="st">&#39;BER, unipolar&#39;</span>))</span>
+<span id="cb7-61"><a href="noise.html#cb7-61" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$10\lg(E_\mathrm</span><span class="sc">{b}</span><span class="vs">/N_0)$ in dB&#39;</span>)</span>
+<span id="cb7-62"><a href="noise.html#cb7-62" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim([<span class="op">-</span><span class="fl">2.5</span>,<span class="dv">15</span>])</span>
+<span id="cb7-63"><a href="noise.html#cb7-63" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.ylim([<span class="fl">1e-9</span>,<span class="fl">5e-1</span>])</span>
+<span id="cb7-64"><a href="noise.html#cb7-64" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:bersimpy"></span>
+<img src="kt_files/figure-html/bersimpy-1.svg" alt="BEP and simulated BER for baseband communications over an AWGN channel with polar or unipolar symbol mapping, Nyquist pulse shaping, matched filtering and perfect clock and frame synchronisation" width="80%" />
+<p class="caption">
+Figure 4.12: BEP and simulated BER for baseband communications over an AWGN channel with polar or unipolar symbol mapping, Nyquist pulse shaping, matched filtering and perfect clock and frame synchronisation
+</p>
+</div>
+
+<div class="exercise">
+<p><span id="exr:bep" class="exercise"><strong>Exercise 4.2  (BEP)  </strong></span>A binary communications system transmits a unipolar NRZ signal with a rectangular pulse shaping filter over an AWGN channel. The symbols <span class="math inline">\(d[\ell]\in\{0,1\sqrt{\mathrm{W}}\}\)</span>, i.e., <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span>, and the symbol duration is <span class="math inline">\(T\)</span>. The communications channel has an attenuation of 25 dB. At the input of the receiver, the noise power is measured as 50 μW and the noise figure of the receiver is given as 6 dB.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the resulting BEP?</li>
+<li>What is the BEP if we choose polar symbol mapping with <span class="math inline">\(d[\ell]\in\{-1\sqrt{\text{W}},1\sqrt{\text{W}}\}\)</span>?</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;bepsol&#39;)">
+Solution
+</button>
+<div id="bepsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (BEP). </span> The solution to Exercise <a href="noise.html#exr:bep">4.2</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>The power of the transmit signal is <span class="math inline">\(\frac{1}{2} (1\sqrt{\mathrm{W}})^2+\frac{1}{2} (0\sqrt{\mathrm{W}})^2=0.5\,\mathrm{W}\)</span>. The factor <span class="math inline">\(1/2\)</span> is due to the assumption that bits ‘<span class="math inline">\(0\)</span>’ and ‘<span class="math inline">\(1\)</span>’ are equiprobable.
+An attenuation of 25 dB results in a factor of
+<span class="math inline">\(10^{-25/10}\)</span>. The power of the sampled signal at the output of the MF computes then to
+<span class="math display">\[P_{y_s}=10^{-25/10}\cdot 0.5\,\mathrm{W}\approx 1.58\,\mathrm{mW}.\]</span>
+A noise figure of 6 dB results in noise whose power is by a factor of <span class="math inline">\(10^{6/10}\)</span> larger, i.e., the noise power at the output of the MF computes to
+<span class="math display">\[P_{y_n}=10^{6/10}\cdot 50\,\mu\mathrm{W}\approx 199.05\,\mu\mathrm{W}.\]</span>
+Consequently, the SNR at the output of the MF computes to
+<span class="math display">\[\gamma_{g_\mathrm{MF}}=\frac{P_{y_s}}{P_{y_n}}\approx \frac{1.58\,\mathrm{mW}}{199.05\,\mathrm{mW}}\approx 7.943,\]</span>
+and the BEP to (using the Python library <code>scipy.special</code> or from Figure <a href="important-functions.html#fig:erfc">D.4</a>)
+<span class="math display">\[P_{b,\mathrm{uni}}\approx \frac{1}{2}\mathrm{erfc}\left(\frac{\sqrt{7.943}}{2}\right)\approx 2.31\cdot 10^{-2}.\]</span></li>
+<li>In this case, the power of the transmit signal is 1, which is twice the power of the unipolar case. Thus, the SNR is also twice the SNR in case of unipolar symbol mapping and the BEP computes to (consider additionally 3-dB-shift between unipolar and polar symbol mapping)
+<span class="math display">\[P_\mathrm{BE}\approx \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{2\cdot 7.943}{2}}\right)\approx 3.36\cdot 10^{-5}.\]</span></li>
+</ol>
+</div>
+
+<div class="exercise">
+<p><span id="exr:mfbep" class="exercise"><strong>Exercise 4.3  (MF and BEP)  </strong></span>The binary data <span class="math inline">\(u[\ell]\in\{0,1\}\)</span> of a source shall be wirelessly transmitted. To do so, the data is pulse shaped using the triangular function
+<span class="math display">\[\begin{equation*}
+p(t) = \begin{cases}
+\frac{\sqrt{3}}{T}\left(1-\frac{t}{T}\right), &amp; 0 \leq t \leq T, \\
+0, &amp; \text{elsewhere},
+\end{cases}
+\end{equation*}\]</span>
+with the normalisation <span class="math inline">\(\int_{-\infty}^\infty|p(t)|^2 dt=1/T\)</span> and the symbol period <span class="math inline">\(T\)</span>. The resulting transmit signal reads as
+<span class="math display">\[\begin{equation*}
+s(t) = T\sum_{\ell=-\infty}^{\infty}
+d[\ell] p(t- \ell T),
+\end{equation*}\]</span>
+with
+<span class="math display">\[\begin{equation*}
+d[\ell] = \begin{cases}
+-D, &amp; u[\ell] = 1, \\
+D, &amp; u[\ell] = 0,
+\end{cases}
+\end{equation*}\]</span>
+and is perturbed by AWGN <span class="math inline">\(n(t)\)</span> with the power density spectrum <span class="math inline">\(\Phi_n(f) = N_0/2\)</span>. At the receiver, we apply the filter with the impulse response <span class="math inline">\(g(t)\)</span>
+which is at first a simple integrator (unmatched filter).</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute and plot the signal part <span class="math inline">\(y_s(t)=g(t) * s(t)\)</span> of the signal <span class="math inline">\(y(t)\)</span> at the output of the receive filter for <span class="math inline">\(0\leq t \leq T\)</span> if <span class="math inline">\(u[0]=0\)</span> has been transmitted.</li>
+<li>Compute the SNR at the output of the receive filter and at the sampling time <span class="math inline">\(t=T\)</span>. Why has a constant factor in the impulse response <span class="math inline">\(g(t)\)</span> no influence on the SNR?</li>
+<li>Compute the BEP of the complete system.</li>
+</ol>
+<p>In the following, the receive filter <span class="math inline">\(g(t)\)</span> is chosen to be the MF, i.e., <span class="math inline">\(g(t)=g_\mathrm{MF}(t)\)</span>.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Determine <span class="math inline">\(g_\mathrm{MF}(t)\)</span> in this case and compute and plot <span class="math inline">\(y_s(t)\)</span> for <span class="math inline">\(0\leq t\leq T\)</span> if again <span class="math inline">\(u[0]=0\)</span> has been transmitted.</li>
+<li>How much larger is the SNR compared to using an integrator as the receive filter?</li>
+<li>How does this influence the BEP?</li>
+<li>Assume that it is not synchronously sampled, i.e., <span class="math inline">\(t=aT\)</span> with <span class="math inline">\(0\leq a \leq 1\)</span>. How does this change the BEP?
+</div></li>
+</ol>
+<button class="popup" onclick="popup(&#39;mfbepsol&#39;)">
+Solution
+</button>
+<div id="mfbepsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (MF and BEP). </span> The solution to Exercise <a href="noise.html#exr:mfbep">4.3</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>The impulse response of the integrator is a rectangular function and reads as
+<span class="math display">\[g(t)=\frac{\beta}{T}\mathrm{rect}\left(\frac{t}{T}-\frac{1}{2}\right).\]</span>
+With <span class="math inline">\(u[0]=0\)</span>, <span class="math inline">\(d[0]=D\)</span>, it holds for <span class="math inline">\(t\in[0,T]\)</span> that
+<span class="math display">\[\begin{aligned}y_s(t) &amp;= g(t) * s(t) = g(t) * DTp(t-0\cdot T)\\
+  &amp;= DT\int\limits_{-\infty}^{\infty}p(\tau)g(t-\tau)d\tau\\
+  &amp;= DT\int\limits_{-\infty}^{\infty}\frac{\beta}{T}\mathrm{rect}\left(\frac{t-\tau}{T}-\frac{1}{2}\right)p(\tau)d\tau\\
+  &amp;= \beta D \int\limits_0^t p(\tau) d\tau.
+  \end{aligned}\]</span>
+For the last equality, we exploited the fact that <span class="math inline">\(p(\tau)=0\)</span> for <span class="math inline">\(\tau\neq[0,T]\)</span> and that <span class="math inline">\(\mathrm{rect}((t-\tau)/T-1/2)=0\)</span> for <span class="math inline">\(\tau\neq[t-T,t]\)</span>. The interval for <span class="math inline">\(\tau\)</span> where both are unequal to zero is therefore <span class="math inline">\([0,t]\)</span>. With the triangular function <span class="math inline">\(p(t)\)</span>, we finally get
+<span class="math display">\[y_s(t)=\frac{\beta D\sqrt{3}}{T}\left[\tau-\frac{\tau^2}{2T}\right]_0^t=
+\beta D\sqrt{3}\left(\frac{t}{T}-\frac{t^2}{2T^2}\right).\]</span>
+Figure <a href="noise.html#fig:rxsignalintegrator">4.13</a> shows the signal <span class="math inline">\(y_s(t)\)</span> for <span class="math inline">\(t\in[0,T]\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:rxsignalintegrator"></span>
+<img src="kt_files/figure-html/rxsignalintegrator-1.svg" alt="Signal $y_s(t)$ at the output of an integrator" width="80%" />
+<p class="caption">
+Figure 4.13: Signal <span class="math inline">\(y_s(t)\)</span> at the output of an integrator
+</p>
+</div></li>
+<li><p>At <span class="math inline">\(t=T\)</span>, the power of <span class="math inline">\(y_s(t)\)</span> computes as
+<span class="math display">\[P_{y_s}=|y_s(T)|^2=\frac{3}{4}\beta^2 D^2,\]</span>
+and the power of <span class="math inline">\(y_n(t)=g(t)*n(t)\)</span> as (cf. Equation <a href="noise.html#eq:noisepower">(4.1)</a>)
+<span class="math display">\[\begin{aligned}
+  P_{y_n}&amp;=\frac{N_0}{2}\int\limits_{-\infty}^\infty |g(t)|^2 dt\\
+  &amp;=\frac{N_0}{2}\int\limits_0^T \left|\frac{\beta}{T}\mathrm{rect}\left(\frac{t}{T}-\frac{1}{2}\right)\right|^2 dt\\
+  &amp;=\frac{N_0}{2}\frac{\beta^2}{T^2}\underbrace{\int\limits_0^T 1 dt}_{=T}\\
+  &amp;=\frac{\beta^2 N_0}{2T}.
+  \end{aligned}\]</span>
+The resulting SNR is then
+<span class="math display">\[\gamma_g = \frac{P_{y_s}}{P_{y_n}} = \frac{3D^2 T}{2N_0}.\]</span>
+The constant factor <span class="math inline">\(\beta\)</span> amplifies the signal as well as the noise, i.e., it has no influence on the SNR.</p></li>
+<li><p>In case of polar baseband communications over an AWGN channel, it holds
+<span class="math display">\[\begin{aligned}
+  P_\mathrm{BE} &amp;= \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\gamma_g}{2}}\right)\\
+  &amp;= \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{3D^2 T}{4N_0}}\right)\\
+  &amp;= \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{3E_b}{4N_0}}\right),
+  \end{aligned}\]</span>
+exploiting the fact that <span class="math inline">\(p(t)\)</span> is normalised, i.e., <span class="math inline">\(E_b=E_s=D^2T\)</span>.</p></li>
+<li><p>The MF to the triangular pulse shaping filter is
+<span class="math display">\[g_\mathrm{MF}(t)=\beta p^*(T-t)=\frac{\beta t \sqrt{3}}{T^2}.\]</span>
+Thus, the signal <span class="math inline">\(y_s(t)\)</span> for <span class="math inline">\(t\in[0,T]\)</span> reads as
+<span class="math display">\[\begin{aligned}y_s(t) &amp;= g_\mathrm{MF}(t) * s(t) = g_\mathrm{MF}(t) * DTp(t-0\cdot T)\\
+  &amp;= DT\int\limits_{-\infty}^{\infty}p(\tau)g_\mathrm{MF}(t-\tau)d\tau\\
+  &amp;= \frac{3\beta D}{T^2}\int\limits_{0}^{t}\left(1-\frac{\tau}{T}\right)\left(t-\tau\right)d\tau\\
+  &amp;= \frac{3\beta D}{T^2}\int\limits_{0}^{t}\left(t-\tau-\frac{\tau t}{T}+\frac{\tau^2}{T}\right)d\tau\\
+  &amp;= \frac{3\beta D}{T^2} \left[t\tau - \frac{\tau^2}{2}-\frac{\tau^2 t}{2T}+\frac{\tau^3}{3T}\right]_0^t\\
+  &amp;= \frac{3\beta D}{T^2}\left(t^2 - \frac{t^2}{2}-\frac{t^3}{2T}+\frac{t^3}{3T}\right)= 3\beta D\left(\frac{t^2}{2T^2}-\frac{t^3}{6T^3}\right).
+  \end{aligned}\]</span>
+Figure <a href="noise.html#fig:rxsignalmf">4.14</a> shows <span class="math inline">\(y_s(t)\)</span> when applying a MF instead of the integrator.</p>
+<div class="figure" style="text-align: center"><span id="fig:rxsignalmf"></span>
+<img src="kt_files/figure-html/rxsignalmf-1.svg" alt="Signal $y_s(t)$ at the output of a MF" width="80%" />
+<p class="caption">
+Figure 4.14: Signal <span class="math inline">\(y_s(t)\)</span> at the output of a MF
+</p>
+</div></li>
+<li><p>At <span class="math inline">\(t=T\)</span>, the power of <span class="math inline">\(y_s(t)\)</span> computes as
+<span class="math display">\[P_{y_s}=|y_s(T)|^2=\beta^2 D^2.\]</span>
+The power of <span class="math inline">\(y_n(t)=g(t)*n(t)\)</span> is unchanged, because
+<span class="math display">\[\begin{aligned}
+  P_{y_n}&amp;=\frac{N_0}{2}\int\limits_{-\infty}^\infty |g_\mathrm{MF}(t)|^2 dt\\
+&amp;=\frac{N_0\beta^2}{2}\underbrace{\int\limits_{-\infty}^\infty |p(t)|^2 dt}_{=\frac{1}{T}}\\
+  &amp;=\frac{\beta^2 N_0}{2T}.
+  \end{aligned}\]</span>
+The resulting SNR is then
+<span class="math display">\[\gamma_{g_\mathrm{MF}} = \frac{P_{y_s}}{P_{y_n}} = \frac{2D^2 T}{N_0}.\]</span>
+Alternatively, you can directly use Equation <a href="noise.html#eq:mfsnr">(4.2)</a> where we have already derived the SNR at the output of a MF. Thus,
+<span class="math display">\[\frac{\gamma_{g_\mathrm{MF}}}{\gamma_{g}}=\frac{4}{3},\]</span>
+i.e., the SNR at the output of a MF is four third the SNR at the output of an integrator.</p></li>
+<li><p>The BEP when applying the MF is (see Theorem <a href="noise.html#thm:bepawgnpolar">4.3</a>)
+<span class="math display">\[\begin{aligned}
+  P_\mathrm{BE} &amp;= \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\gamma_{g_\mathrm{MF}}}{2}}\right)\\
+  &amp;= \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{E_b}{N_0}}\right),
+  \end{aligned}\]</span>
+i.e., the BEP curve when using the MF as the receive filter is shifted by <span class="math inline">\(10\lg(4/3)\approx 1.25\,\mathrm{dB}\)</span> to the left compared to the BEP curve when using the integrator.</p></li>
+<li><p>If we sample at <span class="math inline">\(t=aT\)</span>, <span class="math inline">\(a\in[0,1]\)</span>, the previous symbol <span class="math inline">\(d[-1]\)</span> also influences the sampled value <span class="math inline">\(y_s(aT)\)</span>. Two cases, i.e., <span class="math inline">\(d[-1]=+D\)</span> and <span class="math inline">\(d[-1]=D\)</span>, have to be considered. Figure <a href="noise.html#fig:asynchron">4.15</a> helps to understand the following convolution.</p>
+<div class="figure" style="text-align: center"><span id="fig:asynchron"></span>
+<img src="kt_files/figure-html/asynchron-1.svg" alt="Visualisation for understanding the convolution in case of asynchronous sampling" width="80%" />
+<p class="caption">
+Figure 4.15: Visualisation for understanding the convolution in case of asynchronous sampling
+</p>
+</div>
+<p>It holds for <span class="math inline">\(d[-1]=+D\)</span> that
+<span class="math display">\[\begin{aligned}
+  y_s(aT) &amp;= \left. g_\mathrm{MF}(t) * s(t)\right|_{t=aT} \\
+  &amp;= \left. g_\mathrm{MF}(t) * DT(p(t+T)+p(t))\right|_{t=aT}\\
+  &amp;= DT\left(
+  \int\limits_{aT-T}^{0}p(\tau+T)g_\mathrm{MF}(aT-\tau)d\tau+
+\int\limits_{0}^{aT}p(\tau)g_\mathrm{MF}(aT-\tau)d\tau
+  \right)\\
+  &amp;= \frac{3\beta D}{T^2}\left(
+  \int\limits_{aT-T}^{0}\left(1-\frac{\tau+T}{T}\right)\left(aT-\tau\right)d\tau+
+  \int\limits_{0}^{aT}\left(1-\frac{\tau}{T}\right)\left(aT-\tau\right)d\tau\right)\\
+  &amp; = \dots \\
+  &amp;= \frac{\beta D}{2}\left(3a^2-3a+2\right).
+  \end{aligned}\]</span>
+Figure <a href="noise.html#fig:asynchrondependa">4.16</a> shows the dependency of <span class="math inline">\(y_s(aT)\)</span> on <span class="math inline">\(a\)</span> assuming that <span class="math inline">\(d[-1]=+D\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:asynchrondependa"></span>
+<img src="kt_files/figure-html/asynchrondependa-1.svg" alt="Dependency of $y_s(aT)$ on $a$ if $d[-1]=+D$" width="80%" />
+<p class="caption">
+Figure 4.16: Dependency of <span class="math inline">\(y_s(aT)\)</span> on <span class="math inline">\(a\)</span> if <span class="math inline">\(d[-1]=+D\)</span>
+</p>
+</div>
+<p>We see that the minimum lies at <span class="math inline">\(a=0.5\)</span> leading to <span class="math inline">\(y_s(T/2)=0.625 \beta D\)</span>. Therefore, the resulting SNR is <span class="math inline">\(\gamma=0.625^2\gamma_\mathrm{MF}\)</span>, i.e., the BEP curve is shifted by <span class="math inline">\(10\lg(1/0.625^2)\approx 4.082\,\mathrm{dB}\)</span> to the left compared to the one in case of perfect sampling.</p>
+<p>If <span class="math inline">\(d[-1]=-D\)</span>, we get
+<span class="math display">\[\begin{aligned}
+  y_s(aT) &amp;= \left. g_\mathrm{MF}(t) * s(t)\right|_{t=aT} \\
+  &amp;= \left. g_\mathrm{MF}(t) * DT(-p(t+T)+p(t))\right|_{t=aT}\\
+  &amp;= DT\left(
+  -\int\limits_{aT-T}^{0}p(\tau+T)g_\mathrm{MF}(aT-\tau)d\tau+
+\int\limits_{0}^{aT}p(\tau)g_\mathrm{MF}(aT-\tau)d\tau
+  \right)\\
+  &amp;= \frac{3\beta D}{T^2}\left(
+  -\int\limits_{aT-T}^{0}\left(1-\frac{\tau+T}{T}\right)\left(aT-\tau\right)d\tau+
+  \int\limits_{0}^{aT}\left(1-\frac{\tau}{T}\right)\left(aT-\tau\right)d\tau\right)\\
+  &amp; = \dots \\
+  &amp;= \frac{\beta D}{2}\left(-2a^3+3a^2+3a-2\right).
+  \end{aligned}\]</span>
+Figure <a href="noise.html#fig:asynchrondependa2">4.17</a> shows the dependency of <span class="math inline">\(y_s(aT)\)</span> on <span class="math inline">\(a\)</span> assuming that <span class="math inline">\(d[-1]=-D\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:asynchrondependa2"></span>
+<img src="kt_files/figure-html/asynchrondependa2-1.svg" alt="Dependency of $y_s(aT)$ on $a$ if $d[-1]=-D$" width="80%" />
+<p class="caption">
+Figure 4.17: Dependency of <span class="math inline">\(y_s(aT)\)</span> on <span class="math inline">\(a\)</span> if <span class="math inline">\(d[-1]=-D\)</span>
+</p>
+</div>
+<p>In this case, the effect of asynchronous sampling is much more severe. If <span class="math inline">\(a\leq 0.5\)</span>, the signal <span class="math inline">\(y_s(aT)\leq 0\)</span> leading to permanent bit errors because <span class="math inline">\(d[0]=D\)</span> has been transmitted. Thus, the BEP is <span class="math inline">\(0.5\)</span> in this case.</p></li>
+</ol>
+</div>
+</div>
+<div id="sync" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Clock and Frame Synchronisation</h2>
+<div id="clocksync" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Clock Synchronisation</h3>
+<p>The <strong>clock signal</strong> (German: <em>Taktsignal</em>) is a periodic signal whose period is equal to the symbol duration <span class="math inline">\(T\)</span>. It is required to decide when to sample a received signal for decision. So far, we assumed that the receiver has access to the clock signal of the transmitter, e.g., if both are located on the same circuit board. In this case, we are able to sample exactly at multiples of <span class="math inline">\(T\)</span> and at the time instances where the vertical eye size is maximum (remember the eye diagram introduced in Section <a href="baseband.html#eyediagram">3.5</a>). Remember Exercise <a href="noise.html#exr:mfbep">4.3</a> g., where we have seen that an asynchronous clock can increase the BEP tremendously.</p>
+<p>In communications systems with long distances between transmitter and receiver, transmitting the clock signal over the channel tremendously reduces spectral efficiency. Thus, in these cases, an additional clock signal is generated at the receiver and synchronised to the one of the transmitter. If this <strong>clock synchronisation</strong> (German: <em>Taktsynchronisation</em>) is perfect, the result is the same than having access to the clock signal of the transmitter (see Example <a href="noise.html#exm:bersim">4.6</a>).</p>
+<p>Clock synchronisation can be applied to the time-continuous output signal <span class="math inline">\(y(t)\)</span> of the MF or if the MF is implemented digitally with an oversampled version of the received signal, it can be also applied in a time-discrete manner. One popular method in this context is <strong>polyphase clock synchronisation</strong> which is based on <strong>polyphase filterbanks</strong> as introduced by <span class="citation"><a href="references.html#ref-HaRi01" role="doc-biblioref">Harris and Rice</a> (<a href="references.html#ref-HaRi01" role="doc-biblioref">2001</a>)</span>. This method has two advantages, it includes already matched filtering and outputs the sampled output signal <span class="math inline">\(y[\ell]\)</span> of the matched filter. Although we use polyphase clock synchronisation in some examples of this textbook, we do not present further details here but refer to the original publication by <span class="citation"><a href="references.html#ref-HaRi01" role="doc-biblioref">Harris and Rice</a> (<a href="references.html#ref-HaRi01" role="doc-biblioref">2001</a>)</span> or communications textbooks by <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span>, <span class="citation"><a href="references.html#ref-Kammeyer" role="doc-biblioref">Kammeyer</a> (<a href="references.html#ref-Kammeyer" role="doc-biblioref">2004</a>)</span> or <span class="citation"><a href="references.html#ref-MeMoFe98" role="doc-biblioref">Meyr, Moeneclaey, and Fechtel</a> (<a href="references.html#ref-MeMoFe98" role="doc-biblioref">2001</a>)</span>.</p>
+<p>Another time-discrete clock synchronisation approach has been introduced by <span class="citation"><a href="references.html#ref-MuMu76" role="doc-biblioref">Mueller and Müller</a> (<a href="references.html#ref-MuMu76" role="doc-biblioref">1976</a>)</span> already in the 70ies. However, it is not considered in this textbook. Again, if you are interested in more details, see the original paper or communications textbooks by <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span>, <span class="citation"><a href="references.html#ref-Kammeyer" role="doc-biblioref">Kammeyer</a> (<a href="references.html#ref-Kammeyer" role="doc-biblioref">2004</a>)</span> or <span class="citation"><a href="references.html#ref-MeMoFe98" role="doc-biblioref">Meyr, Moeneclaey, and Fechtel</a> (<a href="references.html#ref-MeMoFe98" role="doc-biblioref">2001</a>)</span>.</p>
+<form class="quiz" data-correct="3" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following statements is true?
+</div>
+<input value="A. The transmitter's clock signal is always available at the receiver."/>
+<input value="B. Clock synchronisation synchronises primarily frames."/>
+<input value="C. Clock synchronisation synchronises a clock at the receiver which has no connection to the transmiter's clock."/>
+<input value="D. Clock synchronisation does not improve the BER."/>
+</form>
+</div>
+<div id="framesync" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Frame Synchronisation</h3>
+<p>In real communications systems, the data stream is split into <strong>packets</strong> (German: <em>Pakete</em>), also denoted as <strong>frames</strong> (German: <em>Rahmen</em>). Each of these frames consists of <span class="math inline">\(N_s\)</span> symbols and contains a <strong>frame header</strong> or briefly <strong>header</strong> (German: <em>Rahmenkopf</em>) and a <strong>payload</strong> (German: <em>Nutzdaten</em>). The header includes several information fulfilling the following purposes:</p>
+<ul>
+<li>a <strong>frame keyword</strong> (German: <em>Rahmenkennungswort</em>), i.e., a special known synchronisation sequence which is used to find the beginning of the frame,</li>
+<li>a <strong>frame number</strong> (German: <em>Rahmennummer</em>) helps to detect if a packet is lost,</li>
+<li>and further information about the payload.</li>
+</ul>
+<p>The frame keyword is used to find the beginning of the frame. This process is also called <strong>frame synchronisation</strong> (German: <em>Rahmensynchronisation</em>). One popular method in this context is to correlate the detected symbol stream <span class="math inline">\(\tilde{d}[\ell]\)</span> with a synchronisation sequence <span class="math inline">\(d_\mathrm{sync}[\ell]\)</span> of length <span class="math inline">\(N_\mathrm{sync}\)</span>. Similar to the time-continuous auto-correlation function as defined in Appendix <a href="mathematical-basics.html#autocorr">E.4.10</a>, the time-discrete cross-correlation function reads as
+<span class="math display">\[\varphi_{d_\mathrm{sync}\tilde{d}}[\lambda]=\sum_{\ell=0}^{N_\mathrm{sync}-1} d_\mathrm{sync}[\ell]\tilde{d}^*[\ell+\lambda],\]</span>
+which is used for <strong>correlation</strong> by determining its maximum.</p>
+<p>To end up with an acceptable synchronisation performance, <span class="math inline">\(d_\mathrm{sync}[\ell]\)</span> needs to have a proper auto-correlation function, i.e., one maximum at <span class="math inline">\(\lambda=0\)</span> and zero elsewhere. This property avoids synchronisation at one of the side maxima. The so-called <strong>Barker sequences</strong> are designed such that their auto-correlation function reads as
+<span class="math display">\[\varphi_{d_\mathrm{sync}d_\mathrm{sync}}[\lambda]
+\begin{cases}
+=N_\mathrm{sync}, &amp; \lambda=0,\\
+\leq 1, &amp; \lambda\neq 0,
+\end{cases}\]</span>
+and are therefore, a good candidate for such a synchronisation sequence. See, e.g., <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span> for examples of Barker sequences.</p>
+<p>In addition to correlation, one can exploit the fact that the header starts every <span class="math inline">\(N_s\)</span> symbols in a stream-like transmission, i.e., where one frame after the other is sent. If this periodicity is broken, we know that there are problems with the frame synchronisation. Clearly, this does not help anything in a bursty transmission, i.e., when frames arrive only from time to time.</p>
+
+<div class="example">
+<span id="exm:bersimsync" class="example"><strong>Example 4.7  (Monte-Carlo BER Simulation With Realistic Clock and Frame Synchronisation)  </strong></span>In this example, we simulate the BER of polar baseband communications over an AWGN channel with root-raised cosine pulse shaping, matched filtering, polyphase clock synchronisation and frame synchronisation based on correlation.<a href="noise.html#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> Here, frame synchronisation is necessary in order to know which detected bit shall be compared to which transmitted bit for computing the BER. If many bit errors occur, it can happen that the header is so erroneous that frame synchronisation fails and the packet is lost. In this case, we exclude the frame from BER computation, i.e., we act like if this packet has never been transmitted. Therefore, lost packets do not influence the BER, except if all packets of one transmission are lost. Then, the BER is set to 0.5 which is equal to a receiver which is randomly choosing “0” or “1” without regarding the output signal of the MF. In a practical system, it would be fatal to disregard lost packets. There, these packets are usually requested for retransmission. Figure <a href="noise.html#fig:bersimsyncpy">4.18</a> shows the BER for different SNR values where 100 times 100 frames of length <span class="math inline">\(N_s=1000\)</span> have been transmitted. The tranmission has been aborted once 100 bit errors have been counted. This is a common break criterion to obtain a smooth BER curve. The simulation includes oversampling where 5 samples per symbols have been chosen. The roll-off factor of the root-raised cosine filter is 0.5. It can be seen that for <span class="math inline">\(10\lg(E_b/N_0)\leq 1\,\mathrm{dB}\)</span>, the bits are so erroneous that not a single packet can be detected. Thus, the BER equals 0.5 in this case. For <span class="math inline">\(1\,\mathrm{dB}&lt;10\lg(E_b/N_0)\leq 5\,\mathrm{dB}\)</span> packets are detected, however, the BER is slightly higher than the analytical BEP. This might be due to the fact that clock synchronisation is not working properly if the noise is too large. Beginning from <span class="math inline">\(10\lg(E_b/N_0)= 6\,\mathrm{dB}\)</span>, the BER approximates the BEP very well. Finally, for <span class="math inline">\(10\lg(E_b/N_0)&gt;10\,\mathrm{dB}\)</span>, the simulated transmission does result in less than 100 bit errors. That is why the BER does not approximate the BEP very well. To obtain better results in this region, much more frames need to be transmitted leading to very long (several days on a personal computer) simulation times.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:bersimsyncpy"></span>
+<img src="kt_files/figure-html/bersimsyncpy-1.svg" alt="Simulated BER for baseband communications over an AWGN channel with polar symbol mapping, Nyquist pulse shaping, matched filtering and including real clock and frame synchronisation" width="80%" />
+<p class="caption">
+Figure 4.18: Simulated BER for baseband communications over an AWGN channel with polar symbol mapping, Nyquist pulse shaping, matched filtering and including real clock and frame synchronisation
+</p>
+</div>
+<form class="quiz" data-correct="2" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following statements is true?
+</div>
+<input value="A. Frame synchronisation synchronises the clock at the transmitter with the one at the receiver."/>
+<input value="B. Without a frame header or special pulse, the beginning of a frame cannot be detected."/>
+<input value="C. With a proper frame header, frame synchronisation always succeeds."/>
+<input value="D. Digital communications does not necessarily require frame headers."/>
+</form>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="30">
+<li id="fn30"><p>The original definition of the auto-correlation function is <span class="math inline">\(\varphi_n(\tau) = \lim_{T\to\infty}\frac{1}{2T}\int_{-T}^Tn(\tau)n(t+\tau)dt\)</span> which equals <span class="math inline">\(E[n(t)n(t+\tau)]\)</span> in the case of stationary and ergodic processes <span class="math inline">\(n(t)\)</span> (see Appendix~).<a href="noise.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn31"><p>Have a look at this funny <a href="http://dilbert.com/strip/2018-06-04">Dilbert comic</a> about the SNR.<a href="noise.html#fnref31" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p>In case of <span class="math inline">\(T_\mathrm{p}\)</span>-periodic signals, this formula simplifies to <span class="math inline">\(P_s=\frac{1}{T_\mathrm{p}}\int_{0}^{T_\mathrm{p}}|s(t)|^2dt\)</span>.<a href="noise.html#fnref32" class="footnote-back">↩︎</a></p></li>
+<li id="fn33"><p>Here, the output of the signum function is one if <span class="math inline">\(y[\ell]=0\)</span>. Although, the probability for this event is zero because of the Gaussian distribution of the noise, it would be better to initiate a random experiment in this case which outputs <span class="math inline">\(\tilde{y}[\ell]=D\)</span> and <span class="math inline">\(\tilde{y}[\ell]=-D\)</span> equally likely.<a href="noise.html#fnref33" class="footnote-back">↩︎</a></p></li>
+<li id="fn34"><p>In the time interval <span class="math inline">\([0,T]\)</span>, only the summand with <span class="math inline">\(\ell=0\)</span> is relevant.<a href="noise.html#fnref34" class="footnote-back">↩︎</a></p></li>
+<li id="fn35"><p>Although, <span class="math inline">\(p(t)\)</span> is real-valued, we still keep the complex conjugate operatior “<span class="math inline">\((\cdot)^*\)</span>” for generality.<a href="noise.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn36"><p>The Parseval’s theorem in its general form reads as <span class="math inline">\(\int\limits_{-\infty}^\infty Z_1(f)Z_2^*(f)df=\int\limits_{-\infty}^\infty z_1(t)z_2^*(t)dt\)</span>.<a href="noise.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<li id="fn37"><p>The Cauchy-Schwarz inequality reads as <span class="math inline">\(\left|\int\limits_{-\infty}^\infty z_1(t)z_2^*(t)dt\right|^2\leq \int\limits_{-\infty}^\infty |z_1(t)|^2 dt \int\limits_{-\infty}^\infty |z_2(t)|^2 dt.\)</span> Equality holds for <span class="math inline">\(z_2(t)=\beta z_1(t)\)</span>, <span class="math inline">\(\beta\in\mathbb{R}\)</span>.<a href="noise.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<li id="fn38"><p>Note that a reflection across the line at <span class="math inline">\(t=T/2\)</span> does not change the integral, nor does the application of the complex conjugate operator "$()^*". The latter is due to the fact that <span class="math inline">\(|z^*|=|z|\)</span>, <span class="math inline">\(z\in\mathbb{C}\)</span>.<a href="noise.html#fnref38" class="footnote-back">↩︎</a></p></li>
+<li id="fn39"><p>Note that the triangular pulse shaping filter is a pure academic example for which one can easily demonstrate the construction of a MF. It has no practical relevance whatsoever.<a href="noise.html#fnref39" class="footnote-back">↩︎</a></p></li>
+<li id="fn40"><p>In case of symmetric and non-causal pulse shaping filters, the MF reads as <span class="math inline">\(g_\mathrm{MF}(t)=\beta p^*(-t)\)</span>.<a href="noise.html#fnref40" class="footnote-back">↩︎</a></p></li>
+<li id="fn41"><p>Again, the simulation file <a href="material/eyediagram_rrc.grc.html"><code>eyediagram_rrc.grc</code></a> can be used to run the code on your own GNU Radio installation.<a href="noise.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p>With <span class="math inline">\(y[0]=D-\sigma_{y_n}\sqrt{2}z\)</span>, <span class="math inline">\(\frac{dy[0]}{dz}=-\sigma_{y_n}\sqrt{2}\)</span>.<a href="noise.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn43"><p>Generally, it holds <span class="math inline">\(P_{y_s}=E[|d[\ell]|^2]\)</span> and <span class="math inline">\(E_s=P_{y_s}T\)</span>.<a href="noise.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p>The simulation file <a href="material/bersim_bpsk_awgn_clock_and_frame_sync.py.html"><code>bersim_bpsk_awgn_clock_and_frame_sync.py</code></a> can be used to run the code on your own Python and GNU Radio installation. Be aware that the simulation takes a while when simulating the required number of bit errors (usually, 100) at high SNR values.<a href="noise.html#fnref44" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="baseband.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="passband.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": null
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"info": true,
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

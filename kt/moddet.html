@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Digital Modulation and Detection Methods | COMMUNICATIONS ENGINEERING</title>
+  <meta name="description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Digital Modulation and Detection Methods | COMMUNICATIONS ENGINEERING" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Digital Modulation and Detection Methods | COMMUNICATIONS ENGINEERING" />
+  
+  <meta name="twitter:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="Guido Dietl" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="passband.html"/>
+<link rel="next" href="information.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<!-- Load my plugins -->
+<script src="plugins/quizcompiler.js"></script>
+<script src="plugins/popup.js"> </script>
+
+<!-- Load Mathjax version 3 -->
+<!--<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>-->
+
+<!-- Comment in case of local Mathjax! -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="plugins/quiz.css" type="text/css" />
+<link rel="stylesheet" href="plugins/popup.css" type="text/css" />
+<link rel="stylesheet" href="css/colors.css" type="text/css" />
+<link rel="stylesheet" href="css/postit.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="text-align:center">COMMUNICATIONS ENGINEERING</p>
+<p style="text-align:center">Guido Dietl</p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html"><i class="fa fa-check"></i>Disclaimer and Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#haftungsausschluss-disclaimer"><i class="fa fa-check"></i>Haftungsausschluss / Disclaimer</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#inhalt"><i class="fa fa-check"></i>Inhalt</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verweise-und-links"><i class="fa fa-check"></i>Verweise und Links</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#urheber--und-kennzeichenrecht"><i class="fa fa-check"></i>Urheber- und Kennzeichenrecht</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#rechtwirksamkeit"><i class="fa fa-check"></i>Rechtwirksamkeit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutz-data-protection"><i class="fa fa-check"></i>Datenschutz / Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutzerklärung"><i class="fa fa-check"></i>Datenschutzerklärung</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verantwortlicher"><i class="fa fa-check"></i>Verantwortlicher</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#personenbezogene-daten"><i class="fa fa-check"></i>Personenbezogene Daten</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#daten-beim-websiteaufruf"><i class="fa fa-check"></i>Daten beim Websiteaufruf</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#ihre-rechte"><i class="fa fa-check"></i>Ihre Rechte</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#einsatz-von-cookies"><i class="fa fa-check"></i>Einsatz von Cookies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-communications-engineering"><i class="fa fa-check"></i><b>1.1</b> What is Communications Engineering?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#history"><i class="fa fa-check"></i><b>1.2</b> History of Communications</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#signals-in-communications"><i class="fa fa-check"></i><b>1.3</b> Signals in Communications</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#signals-and-their-spectra"><i class="fa fa-check"></i><b>1.3.1</b> Signals and Their Spectra</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#detstosignals"><i class="fa fa-check"></i><b>1.3.2</b> Deterministic and Stochastic Signals</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#continuous-and-discrete-signals"><i class="fa fa-check"></i><b>1.3.3</b> Continuous and Discrete Signals</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#digital-representation"><i class="fa fa-check"></i><b>1.3.4</b> Digital Representation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#communications-systems"><i class="fa fa-check"></i><b>1.4</b> Communications Systems</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#wired-and-wireless-systems"><i class="fa fa-check"></i><b>1.4.1</b> Wired and Wireless Systems</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#frequency-bands"><i class="fa fa-check"></i><b>1.4.2</b> Frequency Bands</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#block-diagram"><i class="fa fa-check"></i><b>1.4.3</b> Block Diagram</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html"><i class="fa fa-check"></i><b>2</b> Digital Representation of Analog Signals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#sampling"><i class="fa fa-check"></i><b>2.1</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#energylimited"><i class="fa fa-check"></i><b>2.1.1</b> Energy- and Band-Limited Signals</a></li>
+<li class="chapter" data-level="2.1.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#ideal-sampling"><i class="fa fa-check"></i><b>2.1.2</b> Ideal Sampling</a></li>
+<li class="chapter" data-level="2.1.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#reconstruction"><i class="fa fa-check"></i><b>2.1.3</b> Ideal Reconstruction and Sampling Theorem</a></li>
+<li class="chapter" data-level="2.1.4" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#over--and-undersampling"><i class="fa fa-check"></i><b>2.1.4</b> Over- and Undersampling</a></li>
+<li class="chapter" data-level="2.1.5" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#real-sampling"><i class="fa fa-check"></i><b>2.1.5</b> Real Sampling</a></li>
+<li class="chapter" data-level="2.1.6" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#passbandsampling"><i class="fa fa-check"></i><b>2.1.6</b> Sampling of Passband Signals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#quantisation"><i class="fa fa-check"></i><b>2.2</b> Quantisation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#linear-quantisation"><i class="fa fa-check"></i><b>2.2.1</b> Linear Quantisation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#nonlinear-quantisation-or-companding"><i class="fa fa-check"></i><b>2.2.2</b> Nonlinear Quantisation or Companding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#pcm"><i class="fa fa-check"></i><b>2.3</b> Pulse Code Modulation (PCM)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="baseband.html"><a href="baseband.html"><i class="fa fa-check"></i><b>3</b> Baseband Communications</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="baseband.html"><a href="baseband.html#modulation"><i class="fa fa-check"></i><b>3.1</b> Modulation</a></li>
+<li class="chapter" data-level="3.2" data-path="baseband.html"><a href="baseband.html#pulseshaping"><i class="fa fa-check"></i><b>3.2</b> Pulse Shaping</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="baseband.html"><a href="baseband.html#rectfilter"><i class="fa fa-check"></i><b>3.2.1</b> Rectangular Filter or Non-Return-to-Zero (NRZ) Code</a></li>
+<li class="chapter" data-level="3.2.2" data-path="baseband.html"><a href="baseband.html#manchester-code"><i class="fa fa-check"></i><b>3.2.2</b> Manchester Code</a></li>
+<li class="chapter" data-level="3.2.3" data-path="baseband.html"><a href="baseband.html#sincfilter"><i class="fa fa-check"></i><b>3.2.3</b> Sinc Filter</a></li>
+<li class="chapter" data-level="3.2.4" data-path="baseband.html"><a href="baseband.html#nyquistrolloff"><i class="fa fa-check"></i><b>3.2.4</b> Raised-Cosine or Nyquist-Roll-Off Filter</a></li>
+<li class="chapter" data-level="3.2.5" data-path="baseband.html"><a href="baseband.html#gaussfilter"><i class="fa fa-check"></i><b>3.2.5</b> Gaussian Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="baseband.html"><a href="baseband.html#heisenberg"><i class="fa fa-check"></i><b>3.3</b> Time-Bandwidth Product</a></li>
+<li class="chapter" data-level="3.4" data-path="baseband.html"><a href="baseband.html#isi"><i class="fa fa-check"></i><b>3.4</b> First Nyquist Criterion</a></li>
+<li class="chapter" data-level="3.5" data-path="baseband.html"><a href="baseband.html#eyediagram"><i class="fa fa-check"></i><b>3.5</b> Eye Diagram</a></li>
+<li class="chapter" data-level="3.6" data-path="baseband.html"><a href="baseband.html#spectral-efficiency"><i class="fa fa-check"></i><b>3.6</b> Spectral Efficiency</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="noise.html"><a href="noise.html"><i class="fa fa-check"></i><b>4</b> Detection of Baseband Signals in Noise</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="noise.html"><a href="noise.html#awgn"><i class="fa fa-check"></i><b>4.1</b> Additive White Gaussian Noise (AWGN) Channel</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="noise.html"><a href="noise.html#whitenoise"><i class="fa fa-check"></i><b>4.1.1</b> White Gaussian Noise</a></li>
+<li class="chapter" data-level="4.1.2" data-path="noise.html"><a href="noise.html#signal-to-noise-power-ratio"><i class="fa fa-check"></i><b>4.1.2</b> Signal-to-Noise Power Ratio</a></li>
+<li class="chapter" data-level="4.1.3" data-path="noise.html"><a href="noise.html#noise-figure"><i class="fa fa-check"></i><b>4.1.3</b> Noise Figure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="noise.html"><a href="noise.html#baseband-receiver-for-detection"><i class="fa fa-check"></i><b>4.2</b> Baseband Receiver for Detection</a></li>
+<li class="chapter" data-level="4.3" data-path="noise.html"><a href="noise.html#matched-filter"><i class="fa fa-check"></i><b>4.3</b> Matched Filter</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="noise.html"><a href="noise.html#maximizing-snr"><i class="fa fa-check"></i><b>4.3.1</b> Maximizing SNR</a></li>
+<li class="chapter" data-level="4.3.2" data-path="noise.html"><a href="noise.html#frequency-selective-channel"><i class="fa fa-check"></i><b>4.3.2</b> Frequency-Selective Channel</a></li>
+<li class="chapter" data-level="4.3.3" data-path="noise.html"><a href="noise.html#root-raised-cosine-filter"><i class="fa fa-check"></i><b>4.3.3</b> Root-Raised-Cosine Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="noise.html"><a href="noise.html#bit-error-probability-bep"><i class="fa fa-check"></i><b>4.4</b> Bit Error Probability (BEP)</a></li>
+<li class="chapter" data-level="4.5" data-path="noise.html"><a href="noise.html#sync"><i class="fa fa-check"></i><b>4.5</b> Clock and Frame Synchronisation</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="noise.html"><a href="noise.html#clocksync"><i class="fa fa-check"></i><b>4.5.1</b> Clock Synchronisation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="noise.html"><a href="noise.html#framesync"><i class="fa fa-check"></i><b>4.5.2</b> Frame Synchronisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="passband.html"><a href="passband.html"><i class="fa fa-check"></i><b>5</b> Passband Communications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="passband.html"><a href="passband.html#equivalent"><i class="fa fa-check"></i><b>5.1</b> Equivalent Baseband Signal</a></li>
+<li class="chapter" data-level="5.2" data-path="passband.html"><a href="passband.html#QAM"><i class="fa fa-check"></i><b>5.2</b> Quadrature Amplitude Modulation (QAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="passband.html"><a href="passband.html#QAD"><i class="fa fa-check"></i><b>5.3</b> Quadrature Amplitude Demodulation (QAD)</a></li>
+<li class="chapter" data-level="5.4" data-path="passband.html"><a href="passband.html#carriersync"><i class="fa fa-check"></i><b>5.4</b> Carrier Synchronisation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="moddet.html"><a href="moddet.html"><i class="fa fa-check"></i><b>6</b> Digital Modulation and Detection Methods</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="moddet.html"><a href="moddet.html#linear-modulation-schemes"><i class="fa fa-check"></i><b>6.1</b> Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="moddet.html"><a href="moddet.html#ask"><i class="fa fa-check"></i><b>6.1.1</b> Amplitude Shift Keying (ASK)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="moddet.html"><a href="moddet.html#phase-shift-keying-psk"><i class="fa fa-check"></i><b>6.1.2</b> Phase Shift Keying (PSK)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="moddet.html"><a href="moddet.html#quadrature-amplitude-modulation-qam"><i class="fa fa-check"></i><b>6.1.3</b> Quadrature Amplitude Modulation (QAM)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="moddet.html"><a href="moddet.html#fsk"><i class="fa fa-check"></i><b>6.2</b> Binary Frequency-Shift-Keying (FSK)</a></li>
+<li class="chapter" data-level="6.3" data-path="moddet.html"><a href="moddet.html#coherent"><i class="fa fa-check"></i><b>6.3</b> Coherent Detection of Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="moddet.html"><a href="moddet.html#beps"><i class="fa fa-check"></i><b>6.3.1</b> BEPs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="moddet.html"><a href="moddet.html#frame-error-rate-and-mean-data-rate"><i class="fa fa-check"></i><b>6.3.2</b> Frame Error Rate and Mean Data Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="moddet.html"><a href="moddet.html#noncoherent-detection-of-ask-and-fsk"><i class="fa fa-check"></i><b>6.4</b> Noncoherent Detection of ASK and FSK</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="moddet.html"><a href="moddet.html#ed"><i class="fa fa-check"></i><b>6.4.1</b> Envelope Detection</a></li>
+<li class="chapter" data-level="6.4.2" data-path="moddet.html"><a href="moddet.html#noncoherent-ask-detector"><i class="fa fa-check"></i><b>6.4.2</b> Noncoherent ASK Detector</a></li>
+<li class="chapter" data-level="6.4.3" data-path="moddet.html"><a href="moddet.html#noncoherent-fsk-detector"><i class="fa fa-check"></i><b>6.4.3</b> Noncoherent FSK Detector</a></li>
+<li class="chapter" data-level="6.4.4" data-path="moddet.html"><a href="moddet.html#bep-of-noncoherent-detection"><i class="fa fa-check"></i><b>6.4.4</b> BEP of Noncoherent Detection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="moddet.html"><a href="moddet.html#comparison-of-digital-modulation-schemes"><i class="fa fa-check"></i><b>6.5</b> Comparison of Digital Modulation Schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="information.html"><a href="information.html"><i class="fa fa-check"></i><b>7</b> A Brief Introduction to Information Theory, Source and Channel Coding</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html"><i class="fa fa-check"></i><b>A</b> Geniuses of Communications</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#bell"><i class="fa fa-check"></i><b>A.1</b> Alexander Graham Bell</a></li>
+<li class="chapter" data-level="A.2" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#chappe"><i class="fa fa-check"></i><b>A.2</b> Abbé Claude Chappe</a></li>
+<li class="chapter" data-level="A.3" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#gauss"><i class="fa fa-check"></i><b>A.3</b> Johann Carl Friedrich Gauss</a></li>
+<li class="chapter" data-level="A.4" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hertz"><i class="fa fa-check"></i><b>A.4</b> Heinrich Rudolf Hertz</a></li>
+<li class="chapter" data-level="A.5" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hooke"><i class="fa fa-check"></i><b>A.5</b> Robert Hooke</a></li>
+<li class="chapter" data-level="A.6" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#marconi"><i class="fa fa-check"></i><b>A.6</b> Guglielmo Marconi</a></li>
+<li class="chapter" data-level="A.7" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#maxwell"><i class="fa fa-check"></i><b>A.7</b> James Clerk Maxwell</a></li>
+<li class="chapter" data-level="A.8" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#reeves"><i class="fa fa-check"></i><b>A.8</b> Alec Harley Reeves</a></li>
+<li class="chapter" data-level="A.9" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#shannon"><i class="fa fa-check"></i><b>A.9</b> Claude Elwood Shannon</a></li>
+<li class="chapter" data-level="A.10" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#weber"><i class="fa fa-check"></i><b>A.10</b> Wilhelm Eduard Weber</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="apphistory.html"><a href="apphistory.html"><i class="fa fa-check"></i><b>B</b> Historical Background Information</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="apphistory.html"><a href="apphistory.html#opttele"><i class="fa fa-check"></i><b>B.1</b> Optical Telegraphy</a></li>
+<li class="chapter" data-level="B.2" data-path="apphistory.html"><a href="apphistory.html#emwaves"><i class="fa fa-check"></i><b>B.2</b> Hertz’s Electromagnetic Waves Experiment</a></li>
+<li class="chapter" data-level="B.3" data-path="apphistory.html"><a href="apphistory.html#marconiradio"><i class="fa fa-check"></i><b>B.3</b> Marconi’s Radio Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="units.html"><a href="units.html"><i class="fa fa-check"></i><b>C</b> Units</a></li>
+<li class="chapter" data-level="D" data-path="important-functions.html"><a href="important-functions.html"><i class="fa fa-check"></i><b>D</b> Important Functions</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="important-functions.html"><a href="important-functions.html#rect"><i class="fa fa-check"></i><b>D.1</b> Rectangular Function</a></li>
+<li class="chapter" data-level="D.2" data-path="important-functions.html"><a href="important-functions.html#sinc"><i class="fa fa-check"></i><b>D.2</b> Sinc Function</a></li>
+<li class="chapter" data-level="D.3" data-path="important-functions.html"><a href="important-functions.html#sgn"><i class="fa fa-check"></i><b>D.3</b> Signum Function</a></li>
+<li class="chapter" data-level="D.4" data-path="important-functions.html"><a href="important-functions.html#erfc"><i class="fa fa-check"></i><b>D.4</b> Complimentary Error Function</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="mathematical-basics.html"><a href="mathematical-basics.html"><i class="fa fa-check"></i><b>E</b> Mathematical Basics</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#fourier"><i class="fa fa-check"></i><b>E.1</b> Fourier Transform</a></li>
+<li class="chapter" data-level="E.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#dirac"><i class="fa fa-check"></i><b>E.2</b> Dirac Delta Function</a>
+<ul>
+<li class="chapter" data-level="E.2.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#definition-and-properties"><i class="fa fa-check"></i><b>E.2.1</b> Definition and Properties</a></li>
+<li class="chapter" data-level="E.2.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#diraccomb"><i class="fa fa-check"></i><b>E.2.2</b> Dirac Comb</a></li>
+</ul></li>
+<li class="chapter" data-level="E.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#conv"><i class="fa fa-check"></i><b>E.3</b> Convolution</a></li>
+<li class="chapter" data-level="E.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#probability"><i class="fa fa-check"></i><b>E.4</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="E.4.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-experiment"><i class="fa fa-check"></i><b>E.4.1</b> Random Experiment</a></li>
+<li class="chapter" data-level="E.4.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-variable"><i class="fa fa-check"></i><b>E.4.2</b> Random Variable</a></li>
+<li class="chapter" data-level="E.4.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>E.4.3</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="E.4.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#pdf"><i class="fa fa-check"></i><b>E.4.4</b> Probability Density Function</a></li>
+<li class="chapter" data-level="E.4.5" data-path="mathematical-basics.html"><a href="mathematical-basics.html#mean"><i class="fa fa-check"></i><b>E.4.5</b> Mean</a></li>
+<li class="chapter" data-level="E.4.6" data-path="mathematical-basics.html"><a href="mathematical-basics.html#variance"><i class="fa fa-check"></i><b>E.4.6</b> Variance</a></li>
+<li class="chapter" data-level="E.4.7" data-path="mathematical-basics.html"><a href="mathematical-basics.html#randomprocess"><i class="fa fa-check"></i><b>E.4.7</b> Random Process</a></li>
+<li class="chapter" data-level="E.4.8" data-path="mathematical-basics.html"><a href="mathematical-basics.html#ensemble-and-time-average"><i class="fa fa-check"></i><b>E.4.8</b> Ensemble and Time Average</a></li>
+<li class="chapter" data-level="E.4.9" data-path="mathematical-basics.html"><a href="mathematical-basics.html#stationarity-and-ergodicity"><i class="fa fa-check"></i><b>E.4.9</b> Stationarity and Ergodicity</a></li>
+<li class="chapter" data-level="E.4.10" data-path="mathematical-basics.html"><a href="mathematical-basics.html#autocorr"><i class="fa fa-check"></i><b>E.4.10</b> Auto-Correlation Function</a></li>
+<li class="chapter" data-level="E.4.11" data-path="mathematical-basics.html"><a href="mathematical-basics.html#psd"><i class="fa fa-check"></i><b>E.4.11</b> Power Spectral Density</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="../kt.html">COMMUNICATIONS ENGINEERING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="moddet" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Digital Modulation and Detection Methods</h1>
+<div id="linear-modulation-schemes" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Linear Modulation Schemes</h2>
+<p>Contrary to the baseband modulation schemes discussed in Chapter <a href="baseband.html#baseband">3</a>, we allow in this chapter that one symbol can carry <span class="math inline">\(b\in\mathbb{N}\)</span> bits instead of only one and that we consider passband communications where two baseband signals, viz., <span class="math inline">\(s_\mathrm{I}(t)\)</span> and <span class="math inline">\(s_\mathrm{Q}(t)\)</span>, can be transmitted simultaneously (cf. Chapter <a href="passband.html#passband">5</a>). Figure <a href="moddet.html#fig:linearmodulation">6.1</a> shows the block diagram of linear modulation in such a case.</p>
+<div class="figure" style="text-align: center"><span id="fig:linearmodulation"></span>
+<img src="kt_files/figure-html/linearmodulation-1.svg" alt="Block diagram of linear modulation" width="672" />
+<p class="caption">
+Figure 6.1: Block diagram of linear modulation
+</p>
+</div>
+<p>The coded<a href="moddet.html#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> bit stream <span class="math inline">\(u[k]\)</span>, <span class="math inline">\(k\in\mathbb{Z}\)</span>, is firstly processed by a <strong>serial-to-parallel converter</strong> whose output consists of the <span class="math inline">\(b\)</span> bits <span class="math inline">\(u[b\ell]\)</span>, <span class="math inline">\(u[b\ell+1]\)</span>, <span class="math inline">\(u[b\ell+2]\)</span>, <span class="math inline">\(\dots\)</span>, <span class="math inline">\(u[b\ell + b-1]\)</span>, <span class="math inline">\(\ell\in\mathbb{Z}\)</span>, which are used to choose the complex valued symbol
+<span class="math display">\[\frac{d[\ell]}{\sqrt{\mathrm{W}}}=\frac{d_\text{I}[\ell]}{\sqrt{\mathrm{W}}}+j\frac{d_\text{Q}[\ell]}{\sqrt{\mathrm{W}}}\in\mathbb{C},\quad \frac{d_\text{I/Q}[\ell]}{\sqrt{\mathrm{W}}}\in\mathbb{R},\]</span>
+from a finite set <span class="math inline">\(\cal M\)</span> of possible symbols whose cardinality is <span class="math inline">\(M=|{\cal M}|=2^b\)</span>.<a href="moddet.html#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> This process is also denoted as <strong>symbol mapping</strong>. Here, each symbol <span class="math inline">\(d[\ell]\in{\cal M}\)</span> corresponds to one specific bit sequence of length <span class="math inline">\(b\)</span>. Examples of different symbol mapping schemes are shown in the remainder of this section.</p>
+<p>Next, the real and imaginary part, i.e., <span class="math inline">\(d_\mathrm{I}[\ell]\)</span> and <span class="math inline">\(d_\mathrm{Q}[\ell]\)</span>, respectively, of the complex-valued symbol <span class="math inline">\(d[\ell]\)</span> are processed like the real-valued symbol in Section <a href="baseband.html#modulation">3.1</a> (cf. Figure <a href="baseband.html#fig:modulation">3.2</a>). We obtain the equivalent baseband signal
+<span class="math display">\[\begin{aligned}
+s_\text{EB}(t)&amp;=s_\text{I}(t)+j s_\text{Q}(t)\\
+&amp;=
+\left(T\sum_{\ell=-\infty}^\infty d[\ell]\delta(t-\ell T)\right)*p(t)\\
+&amp;=
+T\sum_{\ell=-\infty}^\infty d[\ell]g(t-\ell T)\\
+&amp;=T\sum_{\ell=-\infty}^\infty d_\text{I}[\ell]p(t-\ell T)+jT\sum_{\ell=-\infty}^\infty d_\text{Q}[\ell]p(t-\ell T).
+\end{aligned}\]</span>
+The real and imaginary part of the equivalent baseband signal <span class="math inline">\(s_\text{EB}(t)\)</span>, i.e., the inphase component <span class="math inline">\(s_\text{I}(t)\)</span> and the quadrature component <span class="math inline">\(s_\text{Q}(t)\)</span>, respectively, are the outputs of the linear modulator in Figure <a href="moddet.html#fig:linearmodulation">6.1</a> and are then processed by a QAM block as described in Section <a href="passband.html#QAM">5.2</a> (cf. Figure <a href="passband.html#fig:QAMmod">5.2</a>). The result is the real-valued passband signal (cf. also Theorem <a href="passband.html#thm:QAM">5.1</a>)
+<span class="math display">\[\begin{aligned}
+s(t)&amp;=\mathrm{Re}\left\{s_\text{EB}(t)e^{j2\pi f_0 t}\right\}\\
+&amp;=s_\text{I}(t)\cos(2\pi f_0 t)- s_\text{Q}(t)\sin(2\pi f_0 t)\\
+&amp;=\left(T\sum_{\ell=-\infty}^\infty d_\text{I}[\ell]p(t-\ell T)\right)\cos(2\pi f_0 t)\\
+&amp;\phantom{=\ }-\left(T\sum_{\ell=-\infty}^\infty d_\text{Q}[\ell]p(t-\ell T)\right)\sin(2\pi f_0 t).
+\end{aligned}\]</span></p>
+<p>Before we present different linear modulation schemes in the remainder of this section, we discuss the energy <span class="math inline">\(E\)</span> of passband signals. In case of energy-limited signals (cf. Subsection <a href="digitalrepresentation.html#energylimited">2.1.1</a>), it holds
+<span class="math display">\[\begin{aligned}
+E&amp;=\int\limits_{-\infty}^\infty s^2(t)dt=\int\limits_{-\infty}^\infty|\mathrm{Re}\left\{s_\text{EB}(t)e^{j2\pi f_0 t}\right\}|^2 dt\\
+&amp;=\int\limits_{-\infty}^\infty \left|
+\frac{1}{2}\left(s_\text{EB}(t)e^{j2\pi f_0t}+s^*_\text{EB}(t)e^{-j2\pi f_0t}\right)\right|^2 dt\\
+&amp;= \dots = \frac{1}{2}\int\limits_{-\infty}^\infty |s_\text{EB}(t)|^2dt
+\phantom{=}+\underbrace{\frac{1}{2}\int\limits_{-\infty}^\infty |s_\text{EB}(t)|^2e^{j2\pi f_0t}dt}_{\approx 0,\ \text{if narrow band signal}}.
+\end{aligned}\]</span>
+If <span class="math inline">\(s_\mathrm{EB}(t)\)</span> is assumed to be a narrow band signal, i.e., it is slowly time-varying and approximately constant during one period <span class="math inline">\(1/f_0\)</span> of the carrier signal, the energy of a passband signal approximates as
+<span class="math display" id="eq:energypassband">\[\begin{equation}
+E\approx\frac{1}{2}\int\limits_{-\infty}^\infty |s_\text{EB}(t)|^2dt.
+\tag{6.1}
+\end{equation}\]</span>
+In other words, the energy of a passband signal is approximately half of the energy of the equivalent baseband signal.</p>
+<p>For the computation of the BEP, we are more interested in the symbol energy <span class="math inline">\(E_s\)</span> of linearly modulated passband signals. To obtain <span class="math inline">\(E_s\)</span>, we consider only one summand in
+<span class="math display">\[s_\text{EB}(t)=T\sum_{\ell=-\infty}^\infty d[\ell] p(t-\ell T),\]</span>
+e.g., the one for <span class="math inline">\(\ell=0\)</span>. Replacing <span class="math inline">\(s_\mathrm{EB}(t)\)</span> in Equation <a href="moddet.html#eq:energypassband">(6.1)</a> by <span class="math inline">\(Td[\ell]p(t)\)</span> and applying again the normalisation of the pulse shaping filter according to Equation <a href="baseband.html#eq:pulsenorm">(3.3)</a> yields
+<span class="math display">\[\begin{aligned}
+E_s &amp;\approx \frac{1}{2}\int\limits_{-\infty}^\infty |Td[\ell]p(t)|^2 dt\\
+&amp;=\frac{T^2}{2}|d[\ell]|^2\underbrace{\int\limits_{-\infty}^\infty |p(t)|^2 dt}_{=\frac{1}{T}}\\
+&amp;=\frac{T}{2}|d[\ell]|^2.
+\end{aligned}\]</span>
+Theorem <a href="moddet.html#thm:symbolenergybandpass">6.1</a> summarizes the symbol energy and transmit signal power of linearly modulated passband communications.</p>
+
+<div class="theorem">
+<span id="thm:symbolenergybandpass" class="theorem"><strong>Theorem 6.1  (Symbol Energy, Bit Energy and Transmit Signal Power of Linearly Modulated Passband Communications)  </strong></span>In case of linear modulation with complex-valued symbols <span class="math inline">\(d[\ell]\in{\cal M}\subset\mathbb{C}\)</span> and pulse shaping with a normalised filter <span class="math inline">\(p(t)\)</span> according to <span class="math inline">\(\int_{-\infty}^{\infty}|p(t)|^2dt=\frac{1}{T}\)</span>, the symbol energy of the corresponding passband signal computes as
+<span class="math display">\[E_s \approx\frac{T}{2}|d[\ell]|^2,\]</span>
+and the <strong>mean symbol energy</strong> (cf. Subsection <a href="mathematical-basics.html#mean">E.4.5</a>) as
+<span class="math display">\[\bar{E}_s \approx\frac{T}{2}\underbrace{\sum_{d\in{\cal M}}|d|^2P(d[\ell]=d)}_{=\mathrm{E}\left[|d[\ell]|^2\right]}.\]</span>
+Since one symbol carry <span class="math inline">\(b=\mathrm{ld} M=\mathrm{ld}|{\cal M}|\)</span> bits, the <strong>mean bit energy</strong> reads as
+<span class="math display">\[\bar{E}_b=\frac{\bar{E}_s}{b}=\frac{\bar{E}_s}{\mathrm{ld}M}.\]</span>
+Finally, the mean energy of one symbol is transmitted in one symbol period <span class="math inline">\(T\)</span> resulting in the transmit signal power
+<span class="math display">\[P_s=\frac{\bar{E}_s}{T}=\frac{1}{2}\sum_{d\in{\cal M}}|d|^2P(d[\ell]=d).\]</span>
+</div>
+<div id="ask" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Amplitude Shift Keying (ASK)</h3>
+<p>In case of <strong>Amplitude Shift Keying</strong> (ASK, German: <em>Amplitudenumtastung</em>), the amplitude of the carrier signal is weighted depending on the transmitted bit sequence. Thus, the equivalent baseband signal is real-valued, i.e., there is only an inphase component and <span class="math inline">\(d_\mathrm{Q}[\ell]=s_\mathrm{Q}(t)=0\)</span>. Consequently, an ASK transceiver (transmitter and receiver) needs only one inphase branch and its complexity is reduced compared to a general QAM transceiver.</p>
+<div id="on-off-keying-ook" class="section level4" number="6.1.1.1">
+<h4><span class="header-section-number">6.1.1.1</span> On-Off-Keying (OOK)</h4>
+<p><strong>On-Off Keying</strong> (OOK, German: <em>Ein-Aus-Umtastung</em>) is the simpliest form of ASK where one symbol carries only <span class="math inline">\(b=1\)</span> bit, i.e., <span class="math inline">\(k=\ell\)</span>. In case of OOK, the carrier is switched on if the bit “1” is transmitted and switched off otherwise. Therefore, the equivalent baseband signal of OOK is equal to a baseband signal with unipolar symbol mapping, i.e.,
+<span class="math display">\[d[\ell]=\begin{cases}
+D, &amp; u[\ell]=1, \\
+0, &amp; u[\ell]=0.
+\end{cases}\]</span>
+Figure <a href="moddet.html#fig:ooksymbols">6.2</a> depicts the set <span class="math inline">\(\cal M\)</span> of OOK symbols <span class="math inline">\(d[\ell]\)</span> in the complex plane.</p>
+<div class="figure" style="text-align: center"><span id="fig:ooksymbols"></span>
+<img src="kt_files/figure-html/ooksymbols-1.svg" alt="Symbol mapping of OOK" width="50%" />
+<p class="caption">
+Figure 6.2: Symbol mapping of OOK
+</p>
+</div>
+<p>The mean symbol energy <span class="math inline">\(\bar{E}_s\)</span> of OOK assuming equally distributed symbols, i.e., <span class="math inline">\(P(d[\ell]=0)=P(d[\ell]=D)=\frac{1}{2}\)</span> reads as (cf. Theorem <a href="moddet.html#thm:symbolenergybandpass">6.1</a>)</p>
+<p><span class="math display">\[\bar{E}_s=\bar{E}_b=\frac{T}{2}\left(0^2\cdot\frac{1}{2}+D^2\cdot\frac{1}{2}\right)=\frac{D^2T}{4}.\]</span></p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-35" class="example"><strong>Example 6.1  (OOK Signal)  </strong></span>In this example, we plot the OOK signal <span class="math inline">\(s(t)\)</span> for the bit sequence
+<span class="math display">\[\begin{aligned}u[k] &amp;= 1\cdot\delta[k] + 0\cdot \delta[k-1] +
+1\cdot\delta[k-2] + 1\cdot\delta[k-3]\\ &amp;\phantom{=\ }+ 0\cdot\delta[k-4]+1\cdot\delta[k-5]+0\cdot\delta[k-6],\end{aligned}\]</span>
+assuming causual rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>. The resulting OOK signal is shown in Figure <a href="moddet.html#fig:ooksignal">6.3</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:ooksignal"></span>
+<img src="kt_files/figure-html/ooksignal-1.svg" alt="Example of an OOK signal with rectangular pulse shaping and a carrier frequency of $f_0=2/T$" width="80%" />
+<p class="caption">
+Figure 6.3: Example of an OOK signal with rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>
+</p>
+</div>
+<p>OOK has the following disadvantages:</p>
+<ul>
+<li>there is a 3-dB-shift in the BEP when compared to BPSK (see Subsection <a href="moddet.html#bpsk">6.1.2.2</a>) which transmits the same number of bits per symbol and</li>
+<li>in case of rectangular pulse shaping, the spectrum of OOK is not suitable for wireless communications.</li>
+</ul>
+<p>A typical use case of OOK is optical communications as used in, e.g., fibre optical systems.</p>
+</div>
+<div id="m-ary-ask-m-ask" class="section level4" number="6.1.1.2">
+<h4><span class="header-section-number">6.1.1.2</span> <em>M</em>-ary ASK (<em>M</em>-ASK)</h4>
+<p><strong><em>M</em>-ary ASK</strong> (<em>M</em>-ASK) allows more than two amplitude levels, thus, more than one bit per symbol can be transmitted. Assuming <span class="math inline">\(b=\mathrm{ld} M\)</span> bits per symbol, we choose the symbols of <em>M</em>-ASK as
+<span class="math display">\[d[\ell]\in{\cal M},\ {\cal M}=\left\{(m-1)D\,|\,m\in\left\{1,\dots,M\right\}\right\}.\]</span></p>
+
+<div class="example">
+<span id="exm:4ask" class="example"><strong>Example 6.2  (4-ASK Symbol Mapping)  </strong></span>The symbols of a 4-ASK signal are chosen according to the following symbol mapping:
+<span class="math display">\[d[\ell]=\begin{cases}
+3D, &amp; u[2\ell]=1\wedge u[2\ell+1]=0, \\
+2D, &amp; u[2\ell]=1 \wedge u[2\ell+1]=1,\\
+D, &amp; u[2\ell]=0 \wedge u[2\ell+1]=1,\\
+0, &amp; u[2\ell]=0\wedge u[2\ell+1]=0.
+\end{cases}\]</span>
+The symbol mapping of 4-ASK is visualised in Figure <a href="moddet.html#fig:masksymbols">6.4</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:masksymbols"></span>
+<img src="kt_files/figure-html/masksymbols-1.svg" alt="Symbol mapping of 4-ASK" width="60%" />
+<p class="caption">
+Figure 6.4: Symbol mapping of 4-ASK
+</p>
+</div>
+<p>Assuming equally distributed symbols, i.e.,
+<span class="math display">\[P(d[\ell]=d)=\frac{1}{M},\ d\in{\cal M},\]</span>
+results in the mean power
+<span class="math display">\[\begin{aligned}
+\mathrm{E}\left[|d[\ell]|^2\right]&amp;=\sum_{d\in{\cal M}}|d|^2P(d[\ell]=d)\\
+&amp;=\frac{1}{M}\sum_{m=1}^{M} (1-m)^2D^2\\
+&amp;=\dots=\frac{1}{6} D^2 \left(2 M^2 - 3 M + 1\right),
+\end{aligned}\]</span>
+and the mean symbol energy of <em>M</em>-ASK computes as (cf. Theorem <a href="moddet.html#thm:symbolenergybandpass">6.1</a>)</p>
+<p><span class="math display">\[\begin{aligned}
+\bar{E}_s&amp;=\frac{T}{2}\underbrace{\frac{D^2 \left(2 M^2 - 3 M + 1\right)}{6}}_{=\mathrm{E}\left[|d[\ell]|^2\right]}\\
+&amp;=\frac{D^2 \left(2 M^2 - 3 M + 1\right)T}{12},\end{aligned}\]</span>
+and the mean bit energy as
+<span class="math display">\[\bar{E}_b=\frac{D^2 \left(2 M^2 - 3 M + 1\right)T}{12\mathrm{ld}M}.\]</span></p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-36" class="example"><strong>Example 6.3  (4-ASK Signal)  </strong></span>In this example, we plot the 4-ASK signal <span class="math inline">\(s(t)\)</span> for the bit sequence
+<span class="math display">\[\begin{aligned}u[k] &amp;= 1\cdot\delta[k] + 0\cdot \delta[k-1] +
+1\cdot\delta[k-2] + 1\cdot\delta[k-3]\\ &amp;\phantom{=\ }+ 0\cdot\delta[k-4]+1\cdot\delta[k-5]+0\cdot\delta[k-6]+0\cdot\delta[k-7],\end{aligned}\]</span>
+assuming causual rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>. The resulting 4-ASK signal is shown in Figure <a href="moddet.html#fig:asksignal">6.5</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:asksignal"></span>
+<img src="kt_files/figure-html/asksignal-1.svg" alt="Example of an 4-ASK signal with rectangular pulse shaping and a carrier frequency of $f_0=2/T$" width="80%" />
+<p class="caption">
+Figure 6.5: Example of an 4-ASK signal with rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>
+</p>
+</div>
+</div>
+</div>
+<div id="phase-shift-keying-psk" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Phase Shift Keying (PSK)</h3>
+<p>Next, we consider <strong>Phase Shift Keying</strong> (PSK, German: <em>Phasenumtastung</em>). Contrary to ASK, PSK signals have a constant amplitude but the phase of the carrier signal is altered depending on the transmitted bit sequence.</p>
+<div id="m-ary-psk-m-psk" class="section level4" number="6.1.2.1">
+<h4><span class="header-section-number">6.1.2.1</span> <em>M</em>-ary PSK (<em>M</em>-PSK)</h4>
+<p>In case of <strong><em>M</em>-ary PSK</strong> (<em>M</em>-PSK), the <span class="math inline">\(b\)</span> bits are mapped to the following <span class="math inline">\(M=2^b\)</span> symbols
+<span class="math display">\[d[\ell]\in{\cal M},\ {\cal M}=\left\{De^{j2\pi\frac{m-1}{M}}\,|\,m\in\left\{1,\dots,M\right\}\right\}.\]</span></p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-37" class="example"><strong>Example 6.4  (8-PSK Symbol Mapping)  </strong></span>The symbols of a 8-PSK signal (<span class="math inline">\(M=8\)</span>, <span class="math inline">\(b=\mathrm{ld}8=3\)</span>) are chosen according to the following symbol mapping:
+<span class="math display">\[d[\ell]=\begin{cases}
+  D, &amp; u[3\ell]=0\wedge u[3\ell+1]=0 \wedge u[3\ell+2]=0,\\
+  \frac{D}{\sqrt{2}}(1+j), &amp; u[3\ell]=0 \wedge u[3\ell+1]=0\wedge u[3\ell+2]=1,\\
+  Dj, &amp; u[3\ell]=0 \wedge u[3\ell+1]=1\wedge u[3\ell+2]=0,\\
+  \frac{D}{\sqrt{2}}(-1+j), &amp; u[3\ell]=0\wedge u[3\ell+1]=1\wedge u[3\ell+2]=1,\\
+  -D, &amp; u[3\ell]=1\wedge u[3\ell+1]=0 \wedge u[3\ell+2]=0,\\
+  \frac{D}{\sqrt{2}}(-1-j), &amp; u[3\ell]=1 \wedge u[3\ell+1]=0\wedge u[3\ell+2]=1,\\
+  -Dj, &amp; u[3\ell]=1 \wedge u[3\ell+1]=1\wedge u[3\ell+2]=0,\\
+  \frac{D}{\sqrt{2}}(1-j), &amp; u[3\ell]=1\wedge u[3\ell+1]=1\wedge u[3\ell+2]=1.
+  \end{cases}\]</span>
+The symbol mapping of 8-PSK is visualised in Figure <a href="moddet.html#fig:psksymbols">6.6</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:psksymbols"></span>
+<img src="kt_files/figure-html/psksymbols-1.svg" alt="Symbol mapping of 8-PSK" width="60%" />
+<p class="caption">
+Figure 6.6: Symbol mapping of 8-PSK
+</p>
+</div>
+<p>Here, independent of the symbol distribution, it holds that
+<span class="math display">\[\begin{aligned}\mathrm{E}\left[|d[\ell]|^2\right]&amp;=\sum_{d\in{\cal M}}|d|^2P(d[\ell]=d)\\
+&amp;=D^2\underbrace{\sum_{d\in{\cal M}}P(d[\ell]=d)}_{=1}=D^2.\end{aligned}\]</span>
+Thus, the mean symbol energy in case of <em>M</em>-PSK reads as (cf. Theorem <a href="moddet.html#thm:symbolenergybandpass">6.1</a>)
+<span class="math display">\[\bar{E}_s=\frac{T}{2}\mathrm{E}\left[|d[\ell]|^2\right]=\frac{D^2T}{2},\]</span>
+and the mean bit enery of <em>M</em>-PSK as
+<span class="math display">\[\bar{E}_b=\frac{D^2T}{2\mathrm{ld}M}.\]</span></p>
+<p>Next, we consider two very famous examples of <em>M</em>-PSK.</p>
+</div>
+<div id="bpsk" class="section level4" number="6.1.2.2">
+<h4><span class="header-section-number">6.1.2.2</span> Binary Phase Shift Keying (BPSK)</h4>
+<p><strong>Binary Phase Shift Keying</strong> (BPSK, German: <em>binäre Phasenumtastung</em>) is <em>M</em>-PSK with <span class="math inline">\(M=2\)</span> symbols and <span class="math inline">\(b=1\)</span> bit per symbol. BPSK symbol mapping reads as
+<span class="math display">\[d[\ell]=
+\begin{cases}
++D,&amp; u[\ell]=0,\\
+-D,&amp; u[\ell]=1,
+\end{cases}\]</span>
+and is equal to polar symbol mapping. BPSK symbol mapping is visualised in Figure <a href="moddet.html#fig:bpsksymbols">6.7</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:bpsksymbols"></span>
+<img src="kt_files/figure-html/bpsksymbols-1.svg" alt="Symbol mapping of BPSK" width="60%" />
+<p class="caption">
+Figure 6.7: Symbol mapping of BPSK
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-38" class="example"><strong>Example 6.5  (BPSK Signal)  </strong></span>In this example, we plot the BPSK signal <span class="math inline">\(s(t)\)</span> for the bit sequence
+<span class="math display">\[\begin{aligned}u[k] &amp;= 1\cdot\delta[k] + 0\cdot \delta[k-1] +
+1\cdot\delta[k-2] + 1\cdot\delta[k-3]\\ &amp;\phantom{=\ }+ 0\cdot\delta[k-4]+1\cdot\delta[k-5]+0\cdot\delta[k-6],\end{aligned}\]</span>
+assuming causual rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>. The resulting BPSK signal is shown in Figure <a href="moddet.html#fig:bpsksignal">6.8</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:bpsksignal"></span>
+<img src="kt_files/figure-html/bpsksignal-1.svg" alt="Example of a BPSK signal with rectangular pulse shaping and a carrier frequency of $f_0=2/T$" width="80%" />
+<p class="caption">
+Figure 6.8: Example of a BPSK signal with rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-39" class="example"><strong>Example 6.6  (BPSK GNU Radio Simulation)  </strong></span>The following GNU Radio simulation shows a BSPK signal together with its spectrum for two different pulse shaping filters, viz., a rectangular filter and a sinc filter.<a href="moddet.html#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>
+It can be seen that the center of the passband spectrum equals the carrier frequency and that the out-of-band attenuation is much higher when using a sinc pulse shaping filter instead of a rectangular filter. This is due to the fact that the phase of the BPSK signal with the sinc filter changes smoothly, i.e., there are no longer jumps in the passband signal resulting in a high signal bandwidth.
+</div>
+<figure style="text-align:center;margin-bottom:10px">
+<video width="80%" controls>
+<source src="media/bpsk.mp4" type="video/mp4">
+</video>
+</figure>
+</div>
+<div id="quaternary-phase-shift-keying-qpsk" class="section level4" number="6.1.2.3">
+<h4><span class="header-section-number">6.1.2.3</span> Quaternary Phase Shift Keying (QPSK)</h4>
+<p><strong>Quaternary Phase Shift Keying</strong> (QPSK, German: <em>quaternäre Phasenumtastung</em>) is <em>M</em>-PSK with <span class="math inline">\(M=4\)</span> symbols and <span class="math inline">\(b=2\)</span> bits per symbol. QPSK symbol mapping reads as
+<span class="math display">\[d[\ell]=
+\begin{cases}
+D, &amp; u[2\ell]=0\wedge u[2\ell+1]=0, \\
+Dj, &amp; u[2\ell]=0 \wedge u[2\ell+1]=1,\\
+-D, &amp; u[2\ell]=1 \wedge u[2\ell+1]=1,\\
+-Dj, &amp; u[2\ell]=1\wedge u[2\ell+1]=0,
+\end{cases}\]</span>
+assuming the so-called <strong>Gray coding</strong> where the nearest symbols differ only in one bit. QPSK symbol mapping with Gray coding is visualised in Figure <a href="moddet.html#fig:qpsksymbols">6.9</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:qpsksymbols"></span>
+<img src="kt_files/figure-html/qpsksymbols-1.svg" alt="Symbol mapping of QPSK" width="50%" />
+<p class="caption">
+Figure 6.9: Symbol mapping of QPSK
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-40" class="example"><strong>Example 6.7  (QPSK Signal)  </strong></span>In this example, we plot the QPSK signal <span class="math inline">\(s(t)\)</span> for the bit sequence
+<span class="math display">\[\begin{aligned}u[k] &amp;= 1\cdot\delta[k] + 0\cdot \delta[k-1] +
+1\cdot\delta[k-2] + 1\cdot\delta[k-3]\\ &amp;\phantom{=\ }+ 0\cdot\delta[k-4]+1\cdot\delta[k-5]+0\cdot\delta[k-6]+0\cdot\delta[k-7],\end{aligned}\]</span>
+assuming causual rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>. The resulting QPSK signal is shown in Figure <a href="moddet.html#fig:qpsksignal">6.10</a>. The jumps in the signal result in a spectrum with a high bandwidth.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:qpsksignal"></span>
+<img src="kt_files/figure-html/qpsksignal-1.svg" alt="Example of a QPSK signal with rectangular pulse shaping and a carrier frequency of $f_0=2/T$" width="80%" />
+<p class="caption">
+Figure 6.10: Example of a QPSK signal with rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-41" class="example"><strong>Example 6.8  (PSK GNU Radio Simulation)  </strong></span>The following GNU Radio simulation shows the difference of QSPK and BPSK.<a href="moddet.html#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
+It can be seen that the equivalent baseband signal of BPSK is real-valued whereas the one of QPSK is complex-valued. However, the resulting passband signal is real-valued in both cases.
+</div>
+<figure style="text-align:center;margin-bottom:10px">
+<video width="80%" controls>
+<source src="media/qpsk.mp4" type="video/mp4">
+</video>
+</figure>
+</div>
+</div>
+<div id="quadrature-amplitude-modulation-qam" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Quadrature Amplitude Modulation (QAM)</h3>
+<p>Finally, <strong>Quadrature Amplitude Modulation</strong> (QAM, German: <em>Quadraturamplitudenmodulation</em>) combines <em>M</em>-ASK and <em>M</em>-PSK such that the set of complex-valued symbols <span class="math inline">\(d[\ell]\)</span> reads as
+<span class="math display">\[{\cal M}=\left\{\pm(2m-1)\pm j (2n-1)\left|m,n\in\left\{1,2,\dots,\frac{\sqrt{M}}{2}\right\}\right.\right\}.\]</span>
+Note that 4-QAM equals QPSK.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-42" class="example"><strong>Example 6.9  (16-QAM Symbol Mapping)  </strong></span>The symbols of 16-QAM (<span class="math inline">\(M=16\)</span>, <span class="math inline">\(b=\mathrm{ld}16=4\)</span>) assuming a so-called <strong>Karnaugh Map</strong> (K-Map) are depicted in Figure <a href="moddet.html#fig:qamsymbols">6.11</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:qamsymbols"></span>
+<img src="kt_files/figure-html/qamsymbols-1.svg" alt="Symbol mapping of 16-QAM" width="70%" />
+<p class="caption">
+Figure 6.11: Symbol mapping of 16-QAM
+</p>
+</div>
+<p>Assuming equally distributed symbols, i.e.,
+<span class="math display">\[P(d[\ell]=d)=\frac{1}{M},\ d\in{\cal M},\]</span>
+results in the mean power
+<span class="math display">\[\begin{aligned}
+\mathrm{E}\left[|d[\ell]|^2\right]&amp;=\sum_{d\in{\cal M}}|d|^2P(d[\ell]=d)\\
+&amp;=\frac{D^2}{M}\sum_{m=1}^{\frac{\sqrt{M}}{2}}\sum_{n=1}^{\frac{\sqrt{M}}{2}} \left(
+(2m-1)^2+(2n-1)^2\right)\\
+&amp;=\dots=\frac{D^2(M-1)}{6},
+\end{aligned}\]</span>
+and the mean symbol energy of QAM computes as (cf. Theorem <a href="moddet.html#thm:symbolenergybandpass">6.1</a>)
+<span class="math display">\[\bar{E}_s=\frac{D^2T(M-1)}{12},\]</span>
+and the mean bit energy as
+<span class="math display">\[\bar{E}_b=\frac{D^2T (M-1)}{12\mathrm{ld}M}.\]</span></p>
+
+<div class="exercise">
+<span id="exr:specialqam" class="exercise"><strong>Exercise 6.1  (Special 4-QAM)  </strong></span>The bit stream <span class="math inline">\(u[k]\)</span>, given by
+<span class="math display">\[\begin{equation*}
+u[k] = \delta[k-3]+\delta[k-4]+\delta[k-6]+\delta[k-7],
+\end{equation*}\]</span>
+with <span class="math inline">\(k\in\{0,1,2,3,4,5,6,7\}\)</span> shall be transmitted via a digital communications system. The symbol mapping is defined as follows:
+<span class="math display">\[\begin{equation*}
+\frac{d[\ell]}{\sqrt{\mathrm{W}}}=\begin{cases}
+0, &amp; u[2\ell]=0 \wedge u[2\ell+1]=0,\\
+j, &amp; u[2\ell]=1 \wedge u[2\ell+1]=0,\\
+1, &amp; u[2\ell]=0 \wedge u[2\ell+1]=1,\\
+1+j, &amp; u[2\ell]=1 \wedge u[2\ell+1]=1,
+\end{cases}
+\end{equation*}\]</span>
+where <span class="math inline">\(\ell\in\{0,1,2,3\}\)</span>. The rectangular filter <span class="math inline">\(p(t) = \frac{1}{T}\mathrm{rect}(t/T-1/2)\)</span> is used as the pulse shaping filter. The symbol duration is <span class="math inline">\(T=2/f_0\)</span> assuming a carrier frequency of <span class="math inline">\(f_0\)</span>. Derive and plot the resulting passband signal <span class="math inline">\(s(t)\)</span> as well as the inphase component <span class="math inline">\(s_\mathrm{I}(t)\)</span> and the quadradture component <span class="math inline">\(s_\mathrm{Q}(t)\)</span> for the time period <span class="math inline">\(t\in[0,4T]\)</span>!
+</div>
+<button class="popup" onclick="popup(&#39;specialqamsol&#39;)">
+Solution
+</button>
+<div id="specialqamsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Special 4-QAM). </span> The solution to Exercise <a href="moddet.html#exr:specialqam">6.1</a> is as follows:
+</div>
+<p>The given symbol mapping is depicted in Figure <a href="moddet.html#fig:specialqamsymbols">6.12</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:specialqamsymbols"></span>
+<img src="kt_files/figure-html/specialqamsymbols-1.svg" alt="Symbol mapping of the special 4-QAM" width="50%" />
+<p class="caption">
+Figure 6.12: Symbol mapping of the special 4-QAM
+</p>
+</div>
+<p>Table <a href="moddet.html#tab:bitsequence">6.1</a> summarises the transmitted bit sequence <span class="math inline">\(u[k]\)</span> as well as the resulting symbols <span class="math inline">\(d[\ell]=d_\mathrm{I}[\ell]+jd_\mathrm{Q}[\ell]\)</span>.</p>
+<table>
+<caption> <span id="tab:bitsequence">Table 6.1: </span> Bit and symbol sequence <span class="math inline">\(b[\ell]\)</span> and <span class="math inline">\(d[\ell]\)</span>, respectively</caption>
+<thead>
+<tr class="header">
+<th align="left"><span class="math inline">\(k\)</span></th>
+<th align="left"><span class="math inline">\(0\)</span></th>
+<th align="left"><span class="math inline">\(1\)</span></th>
+<th align="left"><span class="math inline">\(2\)</span></th>
+<th align="left"><span class="math inline">\(3\)</span></th>
+<th align="left"><span class="math inline">\(4\)</span></th>
+<th align="left"><span class="math inline">\(5\)</span></th>
+<th align="left"><span class="math inline">\(6\)</span></th>
+<th align="left"><span class="math inline">\(7\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(u[k]\)</span></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\ell\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(2\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(3\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\frac{d_\mathrm{I}[\ell]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\frac{d_\mathrm{Q}[\ell]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\frac{d[\ell]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(0\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(1\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(j\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(j+1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>With the causal rectangular pulse shaping filter as depicted in Figure <a href="baseband.html#fig:causalrecpulse">3.5</a>, the inphase and quadrature component <span class="math inline">\(s_\mathrm{I}(t)\)</span> and <span class="math inline">\(s_\mathrm{Q}(t)\)</span>, respectively, compute as shown in Figure <a href="moddet.html#fig:specialQAMEBsignal">6.13</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:specialQAMEBsignal"></span>
+<img src="kt_files/figure-html/specialQAMEBsignal-1.svg" alt="Inphase component $s_\mathrm{I}(t)$ and quadrature component $s_\mathrm{Q}(t)$ of the equivalent baseband signal corresponding to the special 4-QAM example" width="80%" />
+<p class="caption">
+Figure 6.13: Inphase component <span class="math inline">\(s_\mathrm{I}(t)\)</span> and quadrature component <span class="math inline">\(s_\mathrm{Q}(t)\)</span> of the equivalent baseband signal corresponding to the special 4-QAM example
+</p>
+</div>
+<p>And recalling formula
+<span class="math display">\[s(t)=s_\mathrm{I}(t)\cos(2\pi f_0 t) - s_\mathrm{Q}(t)\sin(2\pi f_0 t),\]</span>
+yields the passband signal <span class="math inline">\(s(t)\)</span> as depicted in Figure <a href="moddet.html#fig:specialQAMsignal">6.14</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:specialQAMsignal"></span>
+<img src="kt_files/figure-html/specialQAMsignal-1.svg" alt="Passband signal $s(t)$ of the special 4-QAM example" width="80%" />
+<p class="caption">
+Figure 6.14: Passband signal <span class="math inline">\(s(t)\)</span> of the special 4-QAM example
+</p>
+</div>
+</div>
+
+<div class="exercise">
+<p><span id="exr:16qam" class="exercise"><strong>Exercise 6.2  (16-QAM)  </strong></span>Consider QAM with the symbols
+<span class="math display">\[\begin{equation*}
+    d[\ell]\in\{\pm 1 \pm \text{j}, \pm 2 \pm 2\text{j}, \pm 1 \pm 2\text{j}, \pm 2 \pm \text{j}\}.
+\end{equation*}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Plot the symbols on the complex plane. How many symbols <span class="math inline">\(M\)</span> are available and how many bits <span class="math inline">\(b\)</span> per symbol can be transmitted?</li>
+<li>Add the decision lines to the plot. What is special in this case?</li>
+<li>Plot the block diagram of the corresponding modulator.</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;16qamsol&#39;)">
+Solution
+</button>
+<div id="16qamsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (16-QAM). </span> The solution to Exercise <a href="moddet.html#exr:16qam">6.2</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>There are <span class="math inline">\(M=16\)</span> symbols with <span class="math inline">\(b=\mathrm{ld} M = \mathrm{ld} 16 = 4\)</span> bits per symbol available. The symbols are plotted in Figure <a href="moddet.html#fig:16qamsymbols">6.15</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:16qamsymbols"></span>
+<img src="kt_files/figure-html/16qamsymbols-1.svg" alt="Symbol mapping of 16-QAM" width="70%" />
+<p class="caption">
+Figure 6.15: Symbol mapping of 16-QAM
+</p>
+</div></li>
+<li><p>The decision lines are the red dashed lines in Figure <a href="moddet.html#fig:16qamsymbols">6.15</a>. The distances between adjacent symbols are not the same for all symbols. For example, the distance between symbols with a sign change of the real or imaginary part is larger than the distance between symbols in the same quadrant. This symbol mapping pattern is used in hierarchical modulation schemes where in case of a very noisy channel, a QPSK transmission is still possible which can be switched to 16-QAM if the channel improves.</p></li>
+<li><p>The block diagram is the combination of Figure <a href="moddet.html#fig:linearmodulation">6.1</a> and Figure <a href="passband.html#fig:QAMmod">5.2</a> with <span class="math inline">\(b=4\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="fsk" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Binary Frequency-Shift-Keying (FSK)</h2>
+<p>In the previous section, we considered linear modulation schemes which alter the amplitude or the phase of the carrier signal depending on the transmitted bits. In this section, we deal with a nonlinear modulation scheme, the so-called <strong>Frequency Shift Keying</strong> (FSK, German: <em>Frequenzumtastung</em>) where the frequency of the carrier signal is altered depending on the transmitted bits.</p>
+<p>In <strong>binary FSK</strong>, there are two carrier signals of the same amplitude but with two different carrier frequencies <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2&gt; f_1\)</span>. This can be realised by, e.g., one LO whose frequency <span class="math inline">\(f_0\)</span> is changed by <span class="math inline">\(\pm \Delta f\)</span>, i.e., <span class="math inline">\(f_1=f_0-\Delta f\)</span> and <span class="math inline">\(f_2=f_0+\Delta f\)</span>. These changes are triggered by the bit sequence <span class="math inline">\(u[k]=u[\ell]\in\{0,1\}\)</span> in such a way that <span class="math inline">\(f_1\)</span> is used if <span class="math inline">\(u[\ell]=0\)</span> and <span class="math inline">\(f_2\)</span> if <span class="math inline">\(u[\ell]=1\)</span>. If we use again the QAM block in Figure <a href="passband.html#fig:QAMmod">5.2</a>, binary FSK in the time interval <span class="math inline">\(t\in[\ell T,(\ell+1) T]\)</span> can be represented by the equivalent baseband signal
+<span class="math display">\[s_\text{EB}(t)=De^{j2\pi\Delta f(t-\ell T)(2u[\ell]-1)+j\varphi_0(\ell T)},\]</span>
+where</p>
+<ul>
+<li><span class="math inline">\(\varphi_0(\ell T)\)</span> is the phase at the beginning of the specific symbol interval (it can be chosen such that the phase is continuous, <strong>Continuous Phase Frequency Shift Keying</strong>, CPFSK) and</li>
+<li><span class="math inline">\(\Delta f\)</span> is the <strong>one-sided frequency shift</strong> (frequency shift <span class="math inline">\(2\Delta f\)</span>, German: <em>Frequenzhub</em>).</li>
+</ul>
+<p>With the equivalent baseband signal <span class="math inline">\(s_\text{EB}(t)\)</span> of binary FSK as defined above, the passband signal <span class="math inline">\(s(t)\)</span> of binary FSK in the time interval <span class="math inline">\(t\in[\ell T,(\ell+1) T]\)</span> computes to
+<span class="math display" id="eq:fsk">\[\begin{align}
+s(t)&amp;=\mathrm{Re}\left\{s_\text{EB}(t)e^{j2\pi f_0 t}\right\}\\
+&amp;=\mathrm{Re}\left\{De^{j2\pi\Delta f(t-\ell T)(2u[\ell]-1)+j\varphi_0(\ell T)}e^{j2\pi f_0 t}\right\}\\
+&amp;=\mathrm{Re}\left\{De^{j2\pi f_0 t+j2\pi\Delta f(t-\ell T)(2u[\ell]-1)+j\varphi_0(\ell T)}\right\}\\
+  &amp;=D\cos(2\pi f_0 t+\underbrace{2\pi\Delta f(t-\ell T)(2u[\ell]-1))+\varphi_0(\ell T)}_{=:\varphi(t)}).
+\tag{6.2}
+    \end{align}\]</span></p>
+
+<div class="definition">
+<span id="def:modfsk" class="definition"><strong>Definition 6.1  (Modulation Index)  </strong></span>The <strong>modulation index</strong> <span class="math inline">\(h\)</span> of binary FSK is defined as
+<span class="math display">\[h=\frac{2\Delta f}{1/T}=2\Delta f T\]</span>
+with the frequency shift <span class="math inline">\(2\Delta f\)</span> and the symbol rate <span class="math inline">\(1/T\)</span>.
+</div>
+<p>Special choices of the modulation index <span class="math inline">\(h\)</span> lead to different types of binary FSK:</p>
+<ul>
+<li><span class="math inline">\(h=n0.5\)</span> with <span class="math inline">\(n\in\mathbb{N}\)</span>: <strong>orthogonal FSK</strong>, i.e., the correlation between <span class="math inline">\(s_\text{EB}(t)|_{u[\ell]=0}\)</span> and <span class="math inline">\(s_\text{EB}(t)|_{u[\ell]=1}\)</span> is zero,</li>
+<li><span class="math inline">\(h=0.72\)</span>: FSK with smallest cross-correlation (see, e.g., <span class="citation"><a href="references.html#ref-Proakis" role="doc-biblioref">Proakis</a> (<a href="references.html#ref-Proakis" role="doc-biblioref">2000</a>)</span>) but higher bandwidth compared to MSK and</li>
+<li><span class="math inline">\(h=0.5\)</span>: orthogonal FSK with the smallest relative frequency shift (<strong>Mininum Shift Keying</strong>, MSK).</li>
+</ul>
+<p>Let us now have a closer look at the phase <span class="math inline">\(\varphi(t)\)</span> of binary FSK as defined in Equation <a href="moddet.html#eq:fsk">(6.2)</a>. It holds
+<span class="math display">\[\begin{aligned}
+\varphi(t)&amp;=2\pi\Delta f (t-\ell T)(2u[\ell]-1)+\varphi_0(\ell T)\\
+&amp;=\pi h \left( \frac{t}{T}-\ell\right)(2u[\ell]-1)+\varphi_0(\ell T).
+\end{aligned}\]</span>
+The two different frequency states of the carrier, viz. <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span>, result in a linearly de- or increasing <span class="math inline">\(\varphi(t)\)</span>. Note that this phase adds up to the phase <span class="math inline">\(2\pi f_0t\)</span> of the carrier signal, i.e., finally, the total phase of the carrier is linearly increasing in any case but its slope is smaller if <span class="math inline">\(u[\ell]=0\)</span> and larger if <span class="math inline">\(u[\ell]=1\)</span> has been transmitted.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-45" class="example"><strong>Example 6.10  (Phase Diagram of CPFSK)  </strong></span>Figure <a href="moddet.html#fig:cpfsk">6.16</a> show the phase <span class="math inline">\(\varphi(t)\)</span> of CPFSK if the bit sequence
+<span class="math display">\[u[\ell]=1\cdot \delta[\ell]+0\cdot \delta[\ell-1]+0\cdot \delta[\ell-2]+1\cdot \delta[\ell-3],\]</span>
+has been transmitted.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:cpfsk"></span>
+<img src="kt_files/figure-html/cpfsk-1.svg" alt="Phase diagram of CPFSK for $\varphi_0(0)=0$" width="60%" />
+<p class="caption">
+Figure 6.16: Phase diagram of CPFSK for <span class="math inline">\(\varphi_0(0)=0\)</span>
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-46" class="example"><strong>Example 6.11  (Gaussian MSK)  </strong></span>Here, we like to investigate MSK, i.e., FSK with the modulation index <span class="math inline">\(h=0.5\)</span>. The carrier frequency is chosen to be <span class="math inline">\(f_0=2/T\)</span> where <span class="math inline">\(T\)</span> denotes the symbol period. Consequently, the frequency shift is <span class="math inline">\(2 \Delta f = \frac{1}{2T}=\frac{f_0}{4}\)</span>. The amplitude of the carrier signal is chosen to be <span class="math inline">\(D=1\,\sqrt{\mathrm{W}}\)</span>. The phase <span class="math inline">\(\varphi(t)\)</span> , the resulting passband signal <span class="math inline">\(s(t)\)</span> and the PSD estimate <span class="math inline">\(\hat{\Phi}_s(f)\)</span> are depicted in Figures <a href="moddet.html#fig:gmskphase">6.17</a> and <a href="moddet.html#fig:gmsksignal">6.18</a> for a random bit sequence <span class="math inline">\(u[\ell]\)</span>. These figures show additionally the phase, passband signal and PSD estimate of Gaussian MSK where the phase signal <span class="math inline">\(\varphi(t)\)</span> is processed by a Gaussian filter (see Subsection <a href="baseband.html#gaussfilter">3.2.5</a>) before applying it to the carrier signal. It can be seen that this approach leads to a spectrum with a much smaller bandwidth compared to MSK. This is also the reason why GMSK is a popular modulation method used in wireless communications systems like, e.g., Bluetooth or GSM, i.e., the second generation mobile communications system.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:gmskphase"></span>
+<img src="kt_files/figure-html/gmskphase-1.svg" alt="Phase $\varphi(t)$ of MSK and GMSK signal corresponding to the bit sequence $u[\ell]$" width="80%" />
+<p class="caption">
+Figure 6.17: Phase <span class="math inline">\(\varphi(t)\)</span> of MSK and GMSK signal corresponding to the bit sequence <span class="math inline">\(u[\ell]\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:gmsksignal"></span>
+<img src="kt_files/figure-html/gmsksignal-1.svg" alt="Passband signal $s(t)$ and the corresponding PSD estimate $\hat{\Phi}_s(f)$ of MSK and GMSK" width="80%" />
+<p class="caption">
+Figure 6.18: Passband signal <span class="math inline">\(s(t)\)</span> and the corresponding PSD estimate <span class="math inline">\(\hat{\Phi}_s(f)\)</span> of MSK and GMSK
+</p>
+</div>
+<p>Besides binary FSK, there exists also FSK schemes where the transmitter switches between more than two frequencies. If we assume <span class="math inline">\(M\)</span> such frequencies, the resulting modulation scheme is called <strong>Multiple Frequency Shift Keying</strong> (MFSK) or <em>M</em>-ary FSK or <em>M</em>-FSK. Similar to <em>M</em>-ASK or <em>M</em>-PSK, one <em>M</em>-FSK symbol carries <span class="math inline">\(b=\mathrm{ld}M\)</span> bits. <em>M</em>-FSK is not discussed any further in this textbook. If you are interested in more details, we refer to, e.g, <span class="citation"><a href="references.html#ref-Proakis" role="doc-biblioref">Proakis</a> (<a href="references.html#ref-Proakis" role="doc-biblioref">2000</a>)</span>.</p>
+</div>
+<div id="coherent" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Coherent Detection of Linear Modulation Schemes</h2>
+<p><strong>Coherent detection</strong> (German: <em>kohärente Detektion</em>) refers to a phase synchronous detection, i.e., the phase of the receiver’s LO must be the same than the phase of the transmitter’s LO (see Section <a href="passband.html#carriersync">5.4</a>). This type of detection is necessary when using QAM. Figure <a href="moddet.html#fig:QAMdemodrx">6.19</a> shows QAD similar to Figure <a href="passband.html#fig:QAMdemod">5.3</a> but where the input signal is no longer the transmit signal <span class="math inline">\(s(t)\)</span> but the received signal <span class="math inline">\(r(t)=s(t)+n(t)\)</span> which is perturbed by Gaussian noise. Thus, the outputs of QAD are estimates of the inphase and quadrature component, in the following denoted as <span class="math inline">\(\hat{s}_\mathrm{I}(t)\)</span> and <span class="math inline">\(\hat{s}_\mathrm{Q}(t)\)</span>, respectively.</p>
+<div class="figure" style="text-align: center"><span id="fig:QAMdemodrx"></span>
+<img src="kt_files/figure-html/QAMdemodrx-1.svg" alt="Block diagram of QAD" width="70%" />
+<p class="caption">
+Figure 6.19: Block diagram of QAD
+</p>
+</div>
+<p>These outputs are then further processed by the receiver structure as depicted in Figure <a href="moddet.html#fig:IQreceiver">6.20</a> (cf. also Figure <a href="noise.html#fig:receiver">4.4</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:IQreceiver"></span>
+<img src="kt_files/figure-html/IQreceiver-1.svg" alt="Block diagram of a passband receiver" width="672" />
+<p class="caption">
+Figure 6.20: Block diagram of a passband receiver
+</p>
+</div>
+<p>The <strong>decision</strong> block in Figure <a href="moddet.html#fig:IQreceiver">6.20</a> is more sophisticated than the one in Figure <a href="noise.html#fig:receiver">4.4</a> in case of baseband communications which simply applies a signum function. The decision block chooses the complex-valued output <span class="math inline">\(\tilde{d}[\ell]=\tilde{d}_\mathrm{I}[\ell]+j\tilde{d}_\mathrm{Q}[\ell]\)</span> as the element of the set <span class="math inline">\(\cal M\)</span> of possible symbols which is nearest to the received sampled value <span class="math inline">\(y[\ell]=y_\mathrm{I}[\ell]+jy_\mathrm{Q}[\ell]\)</span> in the complex plane. Here, the term “nearest” refers to the smallest Euclidean distance, i.e.,
+<span class="math display">\[\DeclareMathOperator*{\argmin}{argmin}\tilde{d}[\ell]=\argmin_{d\in{\cal M}} |y[\ell]-d|.\]</span>
+In case of BPSK, the decision operation simplifies to the signum function.</p>
+<p><strong>Symbol demapping</strong> is the inverse function of symbol mapping, i.e., finding the bit sequence of <span class="math inline">\(b\)</span> bits, i.e., <span class="math inline">\(\tilde{u}[b\ell]\)</span>, <span class="math inline">\(\tilde{u}[b\ell+1]\)</span>, <span class="math inline">\(\dots\)</span>, <span class="math inline">\(\tilde{u}[b\ell+b-2]\)</span> and <span class="math inline">\(\tilde{u}[b\ell+b-1]\)</span>, which corresponds to the detected complex-valued symbol <span class="math inline">\(\tilde{d}[\ell]=\tilde{d}_\mathrm{I}[\ell]+j\tilde{d}_\mathrm{Q}[\ell]\)</span>.</p>
+<p>Finally, the <strong>parallel-to-serial converter</strong> restructures the resulting bits to the bit stream <span class="math inline">\(\tilde{u}[k]\)</span> which is the same as the transmitted bit sequence <span class="math inline">\(u[k]\)</span> if no bit errors occured.</p>
+<!--
+<span style="color:red"> The following derivation might be not correct. Where is the consideration of the MF?</span>
+
+Next, we consider the received SNR at the output of the matched filter. Assuming $B$ being the system bandwidth, $T$ the symbol duration, $\bar{E}_s$ the mean symbol and $\bar{E}_s$ the mean bit energy, the received signal power $P_s=\frac{\bar{E}_s}{T}$ is and the received noise power $P_n=BN_0$. 
+
+  $$\text{SNR}=\frac{P_s}{P_n}=\frac{\bar{E}_s}{TBN_0}=\frac{\bar{E}_b}{TBN_0\mathrm{ld}M}$$
+-->
+<div id="beps" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> BEPs</h3>
+<div id="bep-of-coherent-bpsk-detection" class="section level4" number="6.3.1.1">
+<h4><span class="header-section-number">6.3.1.1</span> BEP of Coherent BPSK Detection</h4>
+<p>If a BPSK passband signal is detected coherently, the receiver branch with the quadrature component in Figures <a href="moddet.html#fig:QAMdemodrx">6.19</a> and <a href="moddet.html#fig:IQreceiver">6.20</a> can be omitted and it holds that <span class="math inline">\(\bar{E}_s=\bar{E}_b\)</span>. With the derivation in, e.g., <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span>, we get finally the same BEP as in the case of baseband communications with polar symbol mapping (cf. Theorem <a href="noise.html#thm:bepawgnpolar">4.3</a>), i.e.
+<span class="math display">\[P_\mathrm{BE}=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_s}{N_0}}\right)=
+  \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_b}{N_0}}\right).\]</span>
+See Figure <a href="moddet.html#fig:bepcomparison">6.26</a> for a visualisation of the BPSK’s BEP.</p>
+</div>
+<div id="bep-of-coherent-qpsk-detection-with-gray-coding" class="section level4" number="6.3.1.2">
+<h4><span class="header-section-number">6.3.1.2</span> BEP of Coherent QPSK Detection with Gray Coding</h4>
+<p>If a QPSK passband signal with Gray coding is detected coherently, both receiver branchs in Figures <a href="moddet.html#fig:QAMdemodrx">6.19</a> and <a href="moddet.html#fig:IQreceiver">6.20</a>, i.e., the one of the inphase as well as the one of the quadrature component are needed. It holds that <span class="math inline">\(\bar{E}_s=2\bar{E}_b\)</span>. With the derivation in, e.g., <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span>, we get finally the BEP
+<span class="math display">\[P_\mathrm{BE}=\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_s}{2N_0}}\right)=
+\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_b}{N_0}}\right).\]</span>
+See Figure <a href="moddet.html#fig:bepcomparison">6.26</a> for a visualisation of the QPSK’s BEP.</p>
+</div>
+<div id="bep-of-coherent-qam-detection" class="section level4" number="6.3.1.3">
+<h4><span class="header-section-number">6.3.1.3</span> BEP of Coherent QAM Detection</h4>
+<p>In case of coherent QAM detection, <span class="math inline">\(\bar{E}_s=\mathrm{ld}M\bar{E}_b\)</span> and it holds for <span class="math inline">\(M\geq 4\)</span> that
+<span class="math display">\[\begin{aligned}
+P_\mathrm{BE}&amp;\approx\frac{2}{\mathrm{ld}M}\left(1-\frac{1}{\sqrt{M}}\right)
+\mathrm{erfc}\left(\sqrt{\frac{3\bar{E}_s}{2(M-1)N_0}}\right)\\
+&amp;=\frac{2}{\mathrm{ld}M}\left(1-\frac{1}{\sqrt{M}}\right)
+\mathrm{erfc}\left(\sqrt{\frac{3\mathrm{ld}M\bar{E}_b}{2(M-1)N_0}}\right).
+\end{aligned}\]</span>
+Again, a derivation can be found in, e.g., <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span> and the BEP curves of 16- and 64-QAM are depicted in Figure <a href="moddet.html#fig:bepcomparison">6.26</a>.</p>
+
+<div class="exercise">
+<p><span id="exr:bpskqpsk" class="exercise"><strong>Exercise 6.3  (Satellite Communications System)  </strong></span>Consider a satellite system with a transponder bandwidth of 70 MHz and a maximum bit rate of 90 Mbit/s. The system uses QPSK modulation and root-raised-cosine pulse shaping.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What is the symbol rate <span class="math inline">\(1/T\)</span> of the transmission?</li>
+<li>What is the maximum possible roll-off factor <span class="math inline">\(\alpha\)</span>?</li>
+<li>What is the spectral efficiency <span class="math inline">\(\eta\)</span>?</li>
+<li>Compute the BEP <span class="math inline">\(P_\text{BE}\)</span> at <span class="math inline">\(10\lg(\bar{E}_b/N_0)=6\,\mathrm{dB}\)</span>.</li>
+<li>Now, we use BPSK instead of QPSK. How much do we need to increase the transmit power <span class="math inline">\(P_s\)</span> in order to achieve the same BEP?
+</div></li>
+</ol>
+<button class="popup" onclick="popup(&#39;bpskqpsksol&#39;)">
+Solution
+</button>
+<div id="bpskqpsksol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Satellite Communications Systems). </span> The solution to Exercise <a href="moddet.html#exr:bpskqpsk">6.3</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>QPSK: <span class="math inline">\(2\,\mathrm{bit}\)</span> per symbol<br>
+<span class="math inline">\(\Rightarrow \frac{1}{T} = 45\,\frac{\text{Msymbol}}{\text{s}}\)</span></p></li>
+<li><p><span class="math inline">\(T = \frac{1\,\mathrm{s}}{45\cdot 10^6} = 22.2\,\mathrm{ns}\)</span><br>
+<span class="math inline">\(\Rightarrow B=2(1+\alpha)\frac{1}{2T} = (1+\alpha)\frac{1}{T}\)</span><br>
+<span class="math inline">\(\Rightarrow \alpha = BT-1 = 70\,\mathrm{MHz}\cdot 22.2\,\mathrm{ns} - 1 = 0.56\)</span></p></li>
+<li><p><span class="math inline">\(\eta = \frac{R}{B} = \frac{90\,\frac{\text{Mbit}}{\text{s}}}{70\,\mathrm{MHz}} = 1.29\,\frac{\text{bit}}{\text{s} \cdot \text{Hz}}\)</span></p></li>
+<li><p><span class="math inline">\(\frac{\bar{E}_b}{N_0} = 10^{0.6} = 3.98\)</span><br>
+<span class="math inline">\(\Rightarrow P_\mathrm{BE} = \frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_b}{N_0}}\right) = \frac{1}{2}\mathrm{erfc}\left(\sqrt{3.98}\right) = 2.4\cdot 10^{-3}\)</span></p></li>
+<li><p>It holds for QPSK that <span class="math inline">\(P_s=\bar{E}_s/T=\bar{E}_b/(bT)=\bar{E}_b/(2T)\)</span> and for BPSK that <span class="math inline">\(P_s=\bar{E}_s/T=\bar{E}_b/T\)</span>. Thus, the transmit power has to be increased by 3 dB to achieve exactly the same bit error probability.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="frame-error-rate-and-mean-data-rate" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Frame Error Rate and Mean Data Rate</h3>
+<p>Recall the concept of frames which we have introduced in Subsection <a href="noise.html#framesync">4.5.2</a>. Let us further define the <strong>frame size</strong> <span class="math inline">\(N\)</span> as the number of bits per packet. Remember that <span class="math inline">\(N_s\)</span> denotes the number of symbols per packet. Thus, <span class="math inline">\(N=bN_s=N_s\mathrm{ld}M\)</span>. A frame is erroneous if it contains at least one bit error. With the BEP <span class="math inline">\(P_\mathrm{BE}\)</span>, the probability that one frame has no errors is <span class="math inline">\((1-P_\mathrm{BE})^N\)</span>. Thus, the <strong>Frame Error Probability</strong> (FEP, German: <em>Paketfehlerwahrscheinlichkeit</em>) is
+<span class="math display">\[P_\mathrm{FE}=1-(1-P_\mathrm{BE})^N.\]</span>
+If the FEP is approximated by the number of erroneously received frames divided by the total number of transmitted frames, it is called <strong>Frame Error Rate</strong> (FER, German: <em>Paketfehlerrate</em> oder <em>Blockfehlerrate</em>).</p>
+<p>Next, we investigate the <strong>mean data rate</strong> <span class="math inline">\(R\)</span> (German: <em>mittlere Datenrate</em>) which is equal to the mean number of correctly transmitted bits per channel use. Here, one channel use corresponds to the transmission of one symbol, i.e., one frame contains <span class="math inline">\(N_s\)</span> channel uses. If we assume that erroneous packets are completely lost and not retransmitted, the mean data rate computes as
+<span class="math display">\[R=\frac{N (1-P_\mathrm{FE})}{N_s}=b(1-P_\mathrm{BE})^N=\mathrm{ld}M (1-P_\mathrm{BE})^N.\]</span></p>
+
+<div class="example">
+<span id="exm:datarate" class="example"><strong>Example 6.12  (Mean Data Rates of QAM Passband Communications)  </strong></span>Figure <a href="moddet.html#fig:dataratecomparison">6.21</a> depicts the mean data rate <span class="math inline">\(R\)</span> for BPSK, QPSK, 16-QAM and 64-QAM over <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span>. Here, the frame size is assumed to be <span class="math inline">\(N=100\)</span> and no channel coding has been applied. It can be seen that the maximum number of bits per channel use, i.e., the maximum mean data rate, is equal to <span class="math inline">\(b=\mathrm{ld}M\)</span> of the corresponding modulation alphabet. Thus, the maximum possible mean data rate increases with <span class="math inline">\(M\)</span>. However, for larger <span class="math inline">\(M\)</span>, a higher <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span> is required to achieve the same <span class="math inline">\(R\)</span> in the low-rate regime. This is due to the fact that the complex-valued symbols are closer to each other in the complex plane and the additive noise has a higher influence.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:dataratecomparison"></span>
+<img src="kt_files/figure-html/dataratecomparison-1.svg" alt="Mean data rate $R$ over $10\lg(\bar{E}_s/N_0)$ for BPSK, QPSK, 16-QAM and 64-QAM" width="80%" />
+<p class="caption">
+Figure 6.21: Mean data rate <span class="math inline">\(R\)</span> over <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span> for BPSK, QPSK, 16-QAM and 64-QAM
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-48" class="example"><strong>Example 6.13  (Adaptive Modulation &amp; Coding, AMC)  </strong></span>Modern mobile communications systems like, e.g., UMTS, LTE or NR, are using <strong>Adaptive Modulation &amp; Coding</strong> (AMC). Depending on the channel quality, e.g., quantified by <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span>, which is fed back from the receiver to the transmitter, the transmitter chooses the modulation scheme and coding rate adaptively. For example, in Figure <a href="moddet.html#fig:dataratecomparison">6.21</a>, the modulation scheme is chosen according to Table <a href="moddet.html#tab:AMC">6.2</a> in order to achieve the highest mean data rate for all <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span>.
+</div>
+<table>
+<caption> <span id="tab:AMC">Table 6.2: </span> Modulation scheme depending on the channel quality</caption>
+<thead>
+<tr class="header">
+<th align="left">Channel Quality <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span></th>
+<th align="left">Modulation Scheme</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">&lt; 8.6 dB</td>
+<td align="left">BPSK</td>
+</tr>
+<tr class="even">
+<td align="left">&gt; 8.6 dB, <span class="math inline">\(\leq\)</span> 14.4 dB</td>
+<td align="left">QPSK</td>
+</tr>
+<tr class="odd">
+<td align="left">&gt; 14.4 dB, <span class="math inline">\(\leq\)</span> 21 dB</td>
+<td align="left">16-QAM</td>
+</tr>
+<tr class="even">
+<td align="left">&gt; 21 dB</td>
+<td align="left">64-QAM</td>
+</tr>
+</tbody>
+</table>
+<!-- FSK detection with PLL -->
+</div>
+</div>
+<div id="noncoherent-detection-of-ask-and-fsk" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Noncoherent Detection of ASK and FSK</h2>
+<p>Contrary to coherent detection in Section <a href="moddet.html#coherent">6.3</a>, <strong>noncoherent detection</strong> (German: <em>nichtkohärente Detektion</em>) does not require a LO whose phase is synchronous to the phase of the transmitter’s LO. In fact, some noncoherent detectors do not need a LO at all. The key component in most of the noncoherent detectors is the so-called envelope detector as described in the next subsection.</p>
+<div id="ed" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Envelope Detection</h3>
+<p>The <strong>Envelope Detector</strong> (ED, German: <em>Hüllkurvendetektor</em>) detects the hull or envelope of a signal. If we consider, e.g., an AM signal which we have briefly mentioned at the end of Section <a href="passband.html#equivalent">5.1</a>, the information is transported by the amplitude of the carrier signal. By applying an ED, exactly this information can be recovered because the ED outputs the time-varying amplitude of the carrier.</p>
+<p>There are two popular implementations of an ED:</p>
+<ol style="list-style-type: decimal">
+<li><p>A <strong>diode detector</strong> (German: <em>Diodendetektor</em>) uses a diode to firstly rectify (German: <em>gleichrichten</em>) the modulated carrier signal. Then, a low-pass filter, e.g., a <em>RC</em>-circuit, is applied to remove the carrier signal whose frequency is much higher than the time-varying amplitude. The time-varying amplitude signal remains at the output.</p></li>
+<li><p>The <strong>precision detector</strong> (German: <em>Präzisionsdetektor</em>) is a diode detector where the diode rectifier is replaced by a so-called <strong>precision rectifier</strong>. A precision rectifier is a circuit with an operational amplifier realizing an ideal diode, thus, avoiding the drawbacks of a diode rectifier, i.e., e.g., the voltage drop at the diode.</p></li>
+</ol>
+</div>
+<div id="noncoherent-ask-detector" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Noncoherent ASK Detector</h3>
+<p>Here, we consider the noncoherent detection of an ASK signal (cf. Subsection <a href="moddet.html#ask">6.1.1</a>). Figure <a href="moddet.html#fig:askdetector">6.22</a> depicts the block diagram of the corresponding detector where symbol demapping and parallel-to-serial conversion of the detected bits is omitted.</p>
+<div class="figure" style="text-align: center"><span id="fig:askdetector"></span>
+<img src="kt_files/figure-html/askdetector-1.svg" alt="Block diagram of a noncoherent ASK detector" width="80%" />
+<p class="caption">
+Figure 6.22: Block diagram of a noncoherent ASK detector
+</p>
+</div>
+<p>A Band-Pass (BP) filter with the center frequency <span class="math inline">\(f_0\)</span> and the one-sided bandwidth <span class="math inline">\(B\)</span> at the input of the detector extracts the frequency band of the transmitted signal and removes all other frequencies in the received signal <span class="math inline">\(r(t)\)</span> which belong to either interference or co-existing communications systems. Then, the ED (see Subsection <a href="moddet.html#ed">6.4.1</a>) recovers the estimate <span class="math inline">\(\hat{s}_\mathrm{EB}(t)\)</span> of the baseband signal and finally, the baseband receiver (rx) as shown in Figure <a href="noise.html#fig:receiver">4.4</a> determines the estimate <span class="math inline">\(\tilde{d}[\ell]\)</span> of the transmitted symbol.</p>
+<p>Similar to Figure <a href="moddet.html#fig:IQreceiver">6.20</a>, these symbols are then processed by a symbol demapper and a parallel-to-serial conversion to obtain finally the detected bit sequence <span class="math inline">\(\tilde{u}[k]\)</span>.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-49" class="example"><strong>Example 6.14  (Noncoherent Detection of 4-ASK Signal)  </strong></span>Figure <a href="moddet.html#fig:asksignaldetection">6.23</a> shows the detected baseband signal <span class="math inline">\(\hat{s}_\mathrm{EB}(t)\)</span> corresponding to Example <a href="moddet.html#exm:4ask">6.2</a> assuming an ideal ED.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:asksignaldetection"></span>
+<img src="kt_files/figure-html/asksignaldetection-1.svg" alt="Noncoherent detection of an 4-ASK signal with rectangular pulse shaping and a carrier frequency of $f_0=2/T$" width="80%" />
+<p class="caption">
+Figure 6.23: Noncoherent detection of an 4-ASK signal with rectangular pulse shaping and a carrier frequency of <span class="math inline">\(f_0=2/T\)</span>
+</p>
+</div>
+</div>
+<div id="noncoherent-fsk-detector" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Noncoherent FSK Detector</h3>
+<p>Figure <a href="moddet.html#fig:fskdetector">6.24</a> depicts a noncoherent detector for binary FSK as introduced in Section <a href="moddet.html#fsk">6.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fskdetector"></span>
+<img src="kt_files/figure-html/fskdetector-1.svg" alt="Block diagram of a noncoherent binary FSK detector" width="100%" />
+<p class="caption">
+Figure 6.24: Block diagram of a noncoherent binary FSK detector
+</p>
+</div>
+<p>Two bandpass filters with the center frequencies <span class="math inline">\(f_1=f_0-\Delta f\)</span> and <span class="math inline">\(f_2=f_0+\Delta f\)</span>, respectively, and the bandwidth smaller than the frequency shift <span class="math inline">\(2\Delta f\)</span> extract the carrier signal with the frequency <span class="math inline">\(f_1\)</span> and the one with the frequency <span class="math inline">\(f_2\)</span> from the received signal <span class="math inline">\(r(t)\)</span>, resulting in the signals <span class="math inline">\(r_1(t)\)</span> and <span class="math inline">\(r_2(t)\)</span>, respectively. The signal <span class="math inline">\(r_1(t)\)</span> is a noisy carrier signal with frequency <span class="math inline">\(f_1\)</span> if <span class="math inline">\(u[\ell]=0\)</span> has been transmitted, otherwise it is just filtered noise. The signal <span class="math inline">\(r_2(t)\)</span> is a noisy carrier signal with frequency <span class="math inline">\(f_2\)</span> if <span class="math inline">\(u[\ell]=1\)</span> has been transmitted, otherwise it is just filtered noise. The ED determines the amplitudes <span class="math inline">\(\hat{s}_{\mathrm{EB},1}(t)\)</span> and <span class="math inline">\(\hat{s}_{\mathrm{EB},1}(t)\)</span> of <span class="math inline">\(r_1(t)\)</span> and <span class="math inline">\(r_2(t)\)</span>, respectively.</p>
+<p>Then, the difference term <span class="math inline">\(\hat{s}_\mathrm{EB}(t)=\hat{s}_{\mathrm{EB},1}(t)-\hat{s}_{\mathrm{EB},2}(t)\)</span> represents a baseband signal with polar symbol mapping and rectangular pulse shaping which can be processed by the baseband receiver (cf. Figure <a href="noise.html#fig:receiver">4.4</a>) to get the estimate <span class="math inline">\(\tilde{d}[\ell]\)</span> of the transmitted symbol.</p>
+<p>Finally, the detected bit sequence <span class="math inline">\(\tilde{u}[k]\)</span> is obtained by polar symbol demapping, i.e.,
+<span class="math display">\[\tilde{u}[k]=\tilde{u}[\ell]=
+\begin{cases}
+0, &amp; \tilde{d}[\ell]=D,\\
+1, &amp; \tilde{d}[\ell]=-D.
+\end{cases}\]</span></p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-50" class="example"><strong>Example 6.15  (Noncoherent Detection of a Binary FSK Signal)  </strong></span>Here, we consider noncoherent FSK detection of the bit sequence
+<span class="math display">\[u[k]=\delta[k-1]+\delta[k-2]+\delta[k-4].\]</span>
+We set the frequencies <span class="math inline">\(f_1=f_0-\Delta f=\frac{2}{T}\)</span> and <span class="math inline">\(f_2=f_0+\Delta f=\frac{4}{T}\)</span>, i.e., <span class="math inline">\(f_0=\frac{3}{T}\)</span> and <span class="math inline">\(\Delta f=\frac{1}{T}\)</span>. Figure <a href="moddet.html#fig:fsksignaldetection">6.25</a> plots all occuring signals during noncoherent FSK detection for the noiseless case, i.e., <span class="math inline">\(n(t)=0\)</span> or <span class="math inline">\(r(t)=s(t)+n(t)=s(t)\)</span>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:fsksignaldetection"></span>
+<img src="kt_files/figure-html/fsksignaldetection-1.svg" alt="Noncoherent detection of a binary FSK signal with the frequencies $f_1=2/T$ and $f_2=4/T$ ($f_0=3/T$, $\Delta f=1/T$) in the noiseless case ($n(t)=0$)" width="80%" />
+<p class="caption">
+Figure 6.25: Noncoherent detection of a binary FSK signal with the frequencies <span class="math inline">\(f_1=2/T\)</span> and <span class="math inline">\(f_2=4/T\)</span> (<span class="math inline">\(f_0=3/T\)</span>, <span class="math inline">\(\Delta f=1/T\)</span>) in the noiseless case (<span class="math inline">\(n(t)=0\)</span>)
+</p>
+</div>
+</div>
+<div id="bep-of-noncoherent-detection" class="section level3" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> BEP of Noncoherent Detection</h3>
+<p>The BEP of noncoheret detection assuming orthogonal binary signals, i.e., either OOK (or 2-ASK which is the same) or binary FSK (or 2-FSK) and a AWGN channel as defined in Section <a href="noise.html#awgn">4.1</a> computes approximately to
+<span class="math display">\[P_\mathrm{BE}\approx \frac{1}{2}e^{-\frac{\bar{E}_s}{2N_0}}.\]</span>
+The derivation of this formula is omitted here but can be found in, e.g., <span class="citation"><a href="references.html#ref-Roppel18" role="doc-biblioref">Roppel</a> (<a href="references.html#ref-Roppel18" role="doc-biblioref">2018</a>)</span>.</p>
+</div>
+</div>
+<div id="comparison-of-digital-modulation-schemes" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Comparison of Digital Modulation Schemes</h2>
+<p>Table <a href="moddet.html#tab:bepcomparison">6.3</a> summarizes the BEPs of the digital modulation schemes discussed in the previous sections. The corresponding BEP curves are shown in Figure <a href="moddet.html#fig:bepcomparison">6.26</a>.</p>
+<table>
+<caption> <span id="tab:bepcomparison">Table 6.3: </span> Summary of BEPs for different digital modulation schemes</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Modulation Scheme</th>
+<th align="left">BEP <span class="math inline">\(P_\mathrm{BE}\)</span></th>
+<th align="left">Energy Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">BPSK</td>
+<td align="left"><span class="math inline">\(\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_b}{N_0}}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\bar{E}_s=\bar{E}_b\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">QPSK</td>
+<td align="left"><span class="math inline">\(\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_b}{N_0}}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\bar{E}_s=2\bar{E}_b\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">coherent orthogonal FSK (<span class="math inline">\(h=n0.5\)</span>)</td>
+<td align="left"><span class="math inline">\(\frac{1}{2}\mathrm{erfc}\left(\sqrt{\frac{\bar{E}_b}{2N_0}}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\bar{E}_s=\bar{E}_b\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">coherent FSK (<span class="math inline">\(h=0.72\)</span>)</td>
+<td align="left"><span class="math inline">\(\frac{1}{2}\mathrm{erfc}\left(\sqrt{1.22\frac{\bar{E}_b}{2N_0}}\right)\)</span></td>
+<td align="left"><span class="math inline">\(\bar{E}_s=\bar{E}_b\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">noncoherent orthogonal FSK</td>
+<td align="left"><span class="math inline">\(\frac{1}{2}e^{-\frac{\bar{E}_b}{2N_0}}\)</span></td>
+<td align="left"><span class="math inline">\(\bar{E}_s=\bar{E}_b\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:bepcomparison"></span>
+<img src="kt_files/figure-html/bepcomparison-1.svg" alt="BEP comparison of digital communications schemes" width="80%" />
+<p class="caption">
+Figure 6.26: BEP comparison of digital communications schemes
+</p>
+</div>
+<p>It can be seen that with respect to <span class="math inline">\(10\lg(\bar{E}_b/N_0)\)</span> (focus on mean bit energy), BPSK and QPSK have exactly the same BEP. However, this is not true if the BEP curves are plotted over <span class="math inline">\(10\lg(\bar{E}_s/N_0)\)</span> (focus on mean symbol energy) where there would be a 3-dB-shift between the BEP curves of BPSK and QPSK.</p>
+<p>Comparing all linear modulation schemes, BPSK and QPSK have the smallest BEP and 64-QAM the highest. The BEP curve of 16-QAM lies in the middle. As we have seen in Figure <a href="moddet.html#fig:dataratecomparison">6.21</a>, we cannot conclude from this fact that BPSK or QPSK is the best modulation scheme. Although the BEP is smaller, the number of bits transmitted per symbol in case of 16-QAM or 64-QAM is much higher, resulting in a higher mean data rate which is the final figure of merit.</p>
+<p>Concerning the binary FSK schemes, FSK with the modulation index <span class="math inline">\(h=0.72\)</span> and coherent detection results in the smallest BEP. However, its bandwidth is higher than the one of orthogonal FSK and coherent detection, e.g, MSK, i.e., orthogonal FSK with <span class="math inline">\(h=0.5\)</span>. If one needs to avoid coherent detection, e.g., due to hardware limitations, the resulting BEP of orthogonal FSK with noncoherent detection increases tremendously.</p>
+<p>Finally, Table <a href="moddet.html#tab:spectralefficiencycomparison">6.4</a> compares the spectral efficiencies of the digital modulation schemes discussed in the previous sections.</p>
+<table>
+<caption> <span id="tab:spectralefficiencycomparison">Table 6.4: </span> Summary of spectral efficiencies for different digital modulation schemes</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Modulation Scheme</th>
+<th align="left"><span class="math inline">\(10\lg(\bar{E}_b/N_0)\)</span> at <span class="math inline">\(P_\mathrm{BE}=10^{-4}\)</span></th>
+<th align="left">Spectral Efficiency <span class="math inline">\(\eta\)</span> in <span class="math inline">\(\frac{\text{bit}}{\text{sHz}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">coherent BPSK</td>
+<td align="left">8.4 dB</td>
+<td align="left">0.5 to 1.0 (Nyquist)</td>
+</tr>
+<tr class="even">
+<td align="left">coherent QPSK</td>
+<td align="left">8.4 dB</td>
+<td align="left">1.0 to 2.0 (Nyquist)</td>
+</tr>
+<tr class="odd">
+<td align="left">noncoherent FSK (<span class="math inline">\(h=1\)</span>)</td>
+<td align="left">12.3 dB</td>
+<td align="left">less or equal than 0.8 (rectangular)</td>
+</tr>
+<tr class="even">
+<td align="left">coherent FSK (<span class="math inline">\(h=0.72\)</span>)</td>
+<td align="left">10.5 dB</td>
+<td align="left">less or equal than 1.0 (rectangular)</td>
+</tr>
+<tr class="odd">
+<td align="left">MSK (<span class="math inline">\(h=0.5\)</span>)</td>
+<td align="left">11.4 dB</td>
+<td align="left">1.9</td>
+</tr>
+</tbody>
+</table>
+<form class="quiz" data-correct="2" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+What modulation index should be preferred in case of coherent binary FSK if bandwidth is no limiting factor?
+</div>
+<input value="A. 0.5"/>
+<input value="B. 0.72"/>
+<input value="C. 1"/>
+<input value="D. 1.5"/>
+</form>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="45">
+<li id="fn45"><p>Remember that we do not consider any coding in this course, i.e., <span class="math inline">\(u[k]=b[k]\)</span>. However, we still use a different notation for generality.<a href="moddet.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p><span class="math inline">\(|{\cal M}|\)</span> denotes the cardinality of the set <span class="math inline">\(\cal M\)</span>, i.e., the number of elements in the set.<a href="moddet.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>Again, the simulation file <a href="material/bpsk.grc.html"><code>bpsk.grc</code></a> can be used to run the code on your own GNU Radio installation.<a href="moddet.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>Again, the simulation file <a href="material/psk.grc.html"><code>psk.grc</code></a> can be used to run the code on your own GNU Radio installation.<a href="moddet.html#fnref48" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="passband.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="information.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": null
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"info": true,
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

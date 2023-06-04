@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Baseband Communications | COMMUNICATIONS ENGINEERING</title>
+  <meta name="description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Baseband Communications | COMMUNICATIONS ENGINEERING" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Baseband Communications | COMMUNICATIONS ENGINEERING" />
+  
+  <meta name="twitter:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="Guido Dietl" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="digitalrepresentation.html"/>
+<link rel="next" href="noise.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<!-- Load my plugins -->
+<script src="plugins/quizcompiler.js"></script>
+<script src="plugins/popup.js"> </script>
+
+<!-- Load Mathjax version 3 -->
+<!--<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>-->
+
+<!-- Comment in case of local Mathjax! -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="plugins/quiz.css" type="text/css" />
+<link rel="stylesheet" href="plugins/popup.css" type="text/css" />
+<link rel="stylesheet" href="css/colors.css" type="text/css" />
+<link rel="stylesheet" href="css/postit.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="text-align:center">COMMUNICATIONS ENGINEERING</p>
+<p style="text-align:center">Guido Dietl</p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html"><i class="fa fa-check"></i>Disclaimer and Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#haftungsausschluss-disclaimer"><i class="fa fa-check"></i>Haftungsausschluss / Disclaimer</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#inhalt"><i class="fa fa-check"></i>Inhalt</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verweise-und-links"><i class="fa fa-check"></i>Verweise und Links</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#urheber--und-kennzeichenrecht"><i class="fa fa-check"></i>Urheber- und Kennzeichenrecht</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#rechtwirksamkeit"><i class="fa fa-check"></i>Rechtwirksamkeit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutz-data-protection"><i class="fa fa-check"></i>Datenschutz / Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutzerklärung"><i class="fa fa-check"></i>Datenschutzerklärung</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verantwortlicher"><i class="fa fa-check"></i>Verantwortlicher</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#personenbezogene-daten"><i class="fa fa-check"></i>Personenbezogene Daten</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#daten-beim-websiteaufruf"><i class="fa fa-check"></i>Daten beim Websiteaufruf</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#ihre-rechte"><i class="fa fa-check"></i>Ihre Rechte</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#einsatz-von-cookies"><i class="fa fa-check"></i>Einsatz von Cookies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-communications-engineering"><i class="fa fa-check"></i><b>1.1</b> What is Communications Engineering?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#history"><i class="fa fa-check"></i><b>1.2</b> History of Communications</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#signals-in-communications"><i class="fa fa-check"></i><b>1.3</b> Signals in Communications</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#signals-and-their-spectra"><i class="fa fa-check"></i><b>1.3.1</b> Signals and Their Spectra</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#detstosignals"><i class="fa fa-check"></i><b>1.3.2</b> Deterministic and Stochastic Signals</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#continuous-and-discrete-signals"><i class="fa fa-check"></i><b>1.3.3</b> Continuous and Discrete Signals</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#digital-representation"><i class="fa fa-check"></i><b>1.3.4</b> Digital Representation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#communications-systems"><i class="fa fa-check"></i><b>1.4</b> Communications Systems</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#wired-and-wireless-systems"><i class="fa fa-check"></i><b>1.4.1</b> Wired and Wireless Systems</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#frequency-bands"><i class="fa fa-check"></i><b>1.4.2</b> Frequency Bands</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#block-diagram"><i class="fa fa-check"></i><b>1.4.3</b> Block Diagram</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html"><i class="fa fa-check"></i><b>2</b> Digital Representation of Analog Signals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#sampling"><i class="fa fa-check"></i><b>2.1</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#energylimited"><i class="fa fa-check"></i><b>2.1.1</b> Energy- and Band-Limited Signals</a></li>
+<li class="chapter" data-level="2.1.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#ideal-sampling"><i class="fa fa-check"></i><b>2.1.2</b> Ideal Sampling</a></li>
+<li class="chapter" data-level="2.1.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#reconstruction"><i class="fa fa-check"></i><b>2.1.3</b> Ideal Reconstruction and Sampling Theorem</a></li>
+<li class="chapter" data-level="2.1.4" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#over--and-undersampling"><i class="fa fa-check"></i><b>2.1.4</b> Over- and Undersampling</a></li>
+<li class="chapter" data-level="2.1.5" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#real-sampling"><i class="fa fa-check"></i><b>2.1.5</b> Real Sampling</a></li>
+<li class="chapter" data-level="2.1.6" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#passbandsampling"><i class="fa fa-check"></i><b>2.1.6</b> Sampling of Passband Signals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#quantisation"><i class="fa fa-check"></i><b>2.2</b> Quantisation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#linear-quantisation"><i class="fa fa-check"></i><b>2.2.1</b> Linear Quantisation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#nonlinear-quantisation-or-companding"><i class="fa fa-check"></i><b>2.2.2</b> Nonlinear Quantisation or Companding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#pcm"><i class="fa fa-check"></i><b>2.3</b> Pulse Code Modulation (PCM)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="baseband.html"><a href="baseband.html"><i class="fa fa-check"></i><b>3</b> Baseband Communications</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="baseband.html"><a href="baseband.html#modulation"><i class="fa fa-check"></i><b>3.1</b> Modulation</a></li>
+<li class="chapter" data-level="3.2" data-path="baseband.html"><a href="baseband.html#pulseshaping"><i class="fa fa-check"></i><b>3.2</b> Pulse Shaping</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="baseband.html"><a href="baseband.html#rectfilter"><i class="fa fa-check"></i><b>3.2.1</b> Rectangular Filter or Non-Return-to-Zero (NRZ) Code</a></li>
+<li class="chapter" data-level="3.2.2" data-path="baseband.html"><a href="baseband.html#manchester-code"><i class="fa fa-check"></i><b>3.2.2</b> Manchester Code</a></li>
+<li class="chapter" data-level="3.2.3" data-path="baseband.html"><a href="baseband.html#sincfilter"><i class="fa fa-check"></i><b>3.2.3</b> Sinc Filter</a></li>
+<li class="chapter" data-level="3.2.4" data-path="baseband.html"><a href="baseband.html#nyquistrolloff"><i class="fa fa-check"></i><b>3.2.4</b> Raised-Cosine or Nyquist-Roll-Off Filter</a></li>
+<li class="chapter" data-level="3.2.5" data-path="baseband.html"><a href="baseband.html#gaussfilter"><i class="fa fa-check"></i><b>3.2.5</b> Gaussian Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="baseband.html"><a href="baseband.html#heisenberg"><i class="fa fa-check"></i><b>3.3</b> Time-Bandwidth Product</a></li>
+<li class="chapter" data-level="3.4" data-path="baseband.html"><a href="baseband.html#isi"><i class="fa fa-check"></i><b>3.4</b> First Nyquist Criterion</a></li>
+<li class="chapter" data-level="3.5" data-path="baseband.html"><a href="baseband.html#eyediagram"><i class="fa fa-check"></i><b>3.5</b> Eye Diagram</a></li>
+<li class="chapter" data-level="3.6" data-path="baseband.html"><a href="baseband.html#spectral-efficiency"><i class="fa fa-check"></i><b>3.6</b> Spectral Efficiency</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="noise.html"><a href="noise.html"><i class="fa fa-check"></i><b>4</b> Detection of Baseband Signals in Noise</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="noise.html"><a href="noise.html#awgn"><i class="fa fa-check"></i><b>4.1</b> Additive White Gaussian Noise (AWGN) Channel</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="noise.html"><a href="noise.html#whitenoise"><i class="fa fa-check"></i><b>4.1.1</b> White Gaussian Noise</a></li>
+<li class="chapter" data-level="4.1.2" data-path="noise.html"><a href="noise.html#signal-to-noise-power-ratio"><i class="fa fa-check"></i><b>4.1.2</b> Signal-to-Noise Power Ratio</a></li>
+<li class="chapter" data-level="4.1.3" data-path="noise.html"><a href="noise.html#noise-figure"><i class="fa fa-check"></i><b>4.1.3</b> Noise Figure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="noise.html"><a href="noise.html#baseband-receiver-for-detection"><i class="fa fa-check"></i><b>4.2</b> Baseband Receiver for Detection</a></li>
+<li class="chapter" data-level="4.3" data-path="noise.html"><a href="noise.html#matched-filter"><i class="fa fa-check"></i><b>4.3</b> Matched Filter</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="noise.html"><a href="noise.html#maximizing-snr"><i class="fa fa-check"></i><b>4.3.1</b> Maximizing SNR</a></li>
+<li class="chapter" data-level="4.3.2" data-path="noise.html"><a href="noise.html#frequency-selective-channel"><i class="fa fa-check"></i><b>4.3.2</b> Frequency-Selective Channel</a></li>
+<li class="chapter" data-level="4.3.3" data-path="noise.html"><a href="noise.html#root-raised-cosine-filter"><i class="fa fa-check"></i><b>4.3.3</b> Root-Raised-Cosine Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="noise.html"><a href="noise.html#bit-error-probability-bep"><i class="fa fa-check"></i><b>4.4</b> Bit Error Probability (BEP)</a></li>
+<li class="chapter" data-level="4.5" data-path="noise.html"><a href="noise.html#sync"><i class="fa fa-check"></i><b>4.5</b> Clock and Frame Synchronisation</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="noise.html"><a href="noise.html#clocksync"><i class="fa fa-check"></i><b>4.5.1</b> Clock Synchronisation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="noise.html"><a href="noise.html#framesync"><i class="fa fa-check"></i><b>4.5.2</b> Frame Synchronisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="passband.html"><a href="passband.html"><i class="fa fa-check"></i><b>5</b> Passband Communications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="passband.html"><a href="passband.html#equivalent"><i class="fa fa-check"></i><b>5.1</b> Equivalent Baseband Signal</a></li>
+<li class="chapter" data-level="5.2" data-path="passband.html"><a href="passband.html#QAM"><i class="fa fa-check"></i><b>5.2</b> Quadrature Amplitude Modulation (QAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="passband.html"><a href="passband.html#QAD"><i class="fa fa-check"></i><b>5.3</b> Quadrature Amplitude Demodulation (QAD)</a></li>
+<li class="chapter" data-level="5.4" data-path="passband.html"><a href="passband.html#carriersync"><i class="fa fa-check"></i><b>5.4</b> Carrier Synchronisation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="moddet.html"><a href="moddet.html"><i class="fa fa-check"></i><b>6</b> Digital Modulation and Detection Methods</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="moddet.html"><a href="moddet.html#linear-modulation-schemes"><i class="fa fa-check"></i><b>6.1</b> Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="moddet.html"><a href="moddet.html#ask"><i class="fa fa-check"></i><b>6.1.1</b> Amplitude Shift Keying (ASK)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="moddet.html"><a href="moddet.html#phase-shift-keying-psk"><i class="fa fa-check"></i><b>6.1.2</b> Phase Shift Keying (PSK)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="moddet.html"><a href="moddet.html#quadrature-amplitude-modulation-qam"><i class="fa fa-check"></i><b>6.1.3</b> Quadrature Amplitude Modulation (QAM)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="moddet.html"><a href="moddet.html#fsk"><i class="fa fa-check"></i><b>6.2</b> Binary Frequency-Shift-Keying (FSK)</a></li>
+<li class="chapter" data-level="6.3" data-path="moddet.html"><a href="moddet.html#coherent"><i class="fa fa-check"></i><b>6.3</b> Coherent Detection of Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="moddet.html"><a href="moddet.html#beps"><i class="fa fa-check"></i><b>6.3.1</b> BEPs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="moddet.html"><a href="moddet.html#frame-error-rate-and-mean-data-rate"><i class="fa fa-check"></i><b>6.3.2</b> Frame Error Rate and Mean Data Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="moddet.html"><a href="moddet.html#noncoherent-detection-of-ask-and-fsk"><i class="fa fa-check"></i><b>6.4</b> Noncoherent Detection of ASK and FSK</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="moddet.html"><a href="moddet.html#ed"><i class="fa fa-check"></i><b>6.4.1</b> Envelope Detection</a></li>
+<li class="chapter" data-level="6.4.2" data-path="moddet.html"><a href="moddet.html#noncoherent-ask-detector"><i class="fa fa-check"></i><b>6.4.2</b> Noncoherent ASK Detector</a></li>
+<li class="chapter" data-level="6.4.3" data-path="moddet.html"><a href="moddet.html#noncoherent-fsk-detector"><i class="fa fa-check"></i><b>6.4.3</b> Noncoherent FSK Detector</a></li>
+<li class="chapter" data-level="6.4.4" data-path="moddet.html"><a href="moddet.html#bep-of-noncoherent-detection"><i class="fa fa-check"></i><b>6.4.4</b> BEP of Noncoherent Detection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="moddet.html"><a href="moddet.html#comparison-of-digital-modulation-schemes"><i class="fa fa-check"></i><b>6.5</b> Comparison of Digital Modulation Schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="information.html"><a href="information.html"><i class="fa fa-check"></i><b>7</b> A Brief Introduction to Information Theory, Source and Channel Coding</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html"><i class="fa fa-check"></i><b>A</b> Geniuses of Communications</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#bell"><i class="fa fa-check"></i><b>A.1</b> Alexander Graham Bell</a></li>
+<li class="chapter" data-level="A.2" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#chappe"><i class="fa fa-check"></i><b>A.2</b> Abbé Claude Chappe</a></li>
+<li class="chapter" data-level="A.3" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#gauss"><i class="fa fa-check"></i><b>A.3</b> Johann Carl Friedrich Gauss</a></li>
+<li class="chapter" data-level="A.4" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hertz"><i class="fa fa-check"></i><b>A.4</b> Heinrich Rudolf Hertz</a></li>
+<li class="chapter" data-level="A.5" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hooke"><i class="fa fa-check"></i><b>A.5</b> Robert Hooke</a></li>
+<li class="chapter" data-level="A.6" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#marconi"><i class="fa fa-check"></i><b>A.6</b> Guglielmo Marconi</a></li>
+<li class="chapter" data-level="A.7" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#maxwell"><i class="fa fa-check"></i><b>A.7</b> James Clerk Maxwell</a></li>
+<li class="chapter" data-level="A.8" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#reeves"><i class="fa fa-check"></i><b>A.8</b> Alec Harley Reeves</a></li>
+<li class="chapter" data-level="A.9" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#shannon"><i class="fa fa-check"></i><b>A.9</b> Claude Elwood Shannon</a></li>
+<li class="chapter" data-level="A.10" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#weber"><i class="fa fa-check"></i><b>A.10</b> Wilhelm Eduard Weber</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="apphistory.html"><a href="apphistory.html"><i class="fa fa-check"></i><b>B</b> Historical Background Information</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="apphistory.html"><a href="apphistory.html#opttele"><i class="fa fa-check"></i><b>B.1</b> Optical Telegraphy</a></li>
+<li class="chapter" data-level="B.2" data-path="apphistory.html"><a href="apphistory.html#emwaves"><i class="fa fa-check"></i><b>B.2</b> Hertz’s Electromagnetic Waves Experiment</a></li>
+<li class="chapter" data-level="B.3" data-path="apphistory.html"><a href="apphistory.html#marconiradio"><i class="fa fa-check"></i><b>B.3</b> Marconi’s Radio Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="units.html"><a href="units.html"><i class="fa fa-check"></i><b>C</b> Units</a></li>
+<li class="chapter" data-level="D" data-path="important-functions.html"><a href="important-functions.html"><i class="fa fa-check"></i><b>D</b> Important Functions</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="important-functions.html"><a href="important-functions.html#rect"><i class="fa fa-check"></i><b>D.1</b> Rectangular Function</a></li>
+<li class="chapter" data-level="D.2" data-path="important-functions.html"><a href="important-functions.html#sinc"><i class="fa fa-check"></i><b>D.2</b> Sinc Function</a></li>
+<li class="chapter" data-level="D.3" data-path="important-functions.html"><a href="important-functions.html#sgn"><i class="fa fa-check"></i><b>D.3</b> Signum Function</a></li>
+<li class="chapter" data-level="D.4" data-path="important-functions.html"><a href="important-functions.html#erfc"><i class="fa fa-check"></i><b>D.4</b> Complimentary Error Function</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="mathematical-basics.html"><a href="mathematical-basics.html"><i class="fa fa-check"></i><b>E</b> Mathematical Basics</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#fourier"><i class="fa fa-check"></i><b>E.1</b> Fourier Transform</a></li>
+<li class="chapter" data-level="E.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#dirac"><i class="fa fa-check"></i><b>E.2</b> Dirac Delta Function</a>
+<ul>
+<li class="chapter" data-level="E.2.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#definition-and-properties"><i class="fa fa-check"></i><b>E.2.1</b> Definition and Properties</a></li>
+<li class="chapter" data-level="E.2.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#diraccomb"><i class="fa fa-check"></i><b>E.2.2</b> Dirac Comb</a></li>
+</ul></li>
+<li class="chapter" data-level="E.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#conv"><i class="fa fa-check"></i><b>E.3</b> Convolution</a></li>
+<li class="chapter" data-level="E.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#probability"><i class="fa fa-check"></i><b>E.4</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="E.4.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-experiment"><i class="fa fa-check"></i><b>E.4.1</b> Random Experiment</a></li>
+<li class="chapter" data-level="E.4.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-variable"><i class="fa fa-check"></i><b>E.4.2</b> Random Variable</a></li>
+<li class="chapter" data-level="E.4.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>E.4.3</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="E.4.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#pdf"><i class="fa fa-check"></i><b>E.4.4</b> Probability Density Function</a></li>
+<li class="chapter" data-level="E.4.5" data-path="mathematical-basics.html"><a href="mathematical-basics.html#mean"><i class="fa fa-check"></i><b>E.4.5</b> Mean</a></li>
+<li class="chapter" data-level="E.4.6" data-path="mathematical-basics.html"><a href="mathematical-basics.html#variance"><i class="fa fa-check"></i><b>E.4.6</b> Variance</a></li>
+<li class="chapter" data-level="E.4.7" data-path="mathematical-basics.html"><a href="mathematical-basics.html#randomprocess"><i class="fa fa-check"></i><b>E.4.7</b> Random Process</a></li>
+<li class="chapter" data-level="E.4.8" data-path="mathematical-basics.html"><a href="mathematical-basics.html#ensemble-and-time-average"><i class="fa fa-check"></i><b>E.4.8</b> Ensemble and Time Average</a></li>
+<li class="chapter" data-level="E.4.9" data-path="mathematical-basics.html"><a href="mathematical-basics.html#stationarity-and-ergodicity"><i class="fa fa-check"></i><b>E.4.9</b> Stationarity and Ergodicity</a></li>
+<li class="chapter" data-level="E.4.10" data-path="mathematical-basics.html"><a href="mathematical-basics.html#autocorr"><i class="fa fa-check"></i><b>E.4.10</b> Auto-Correlation Function</a></li>
+<li class="chapter" data-level="E.4.11" data-path="mathematical-basics.html"><a href="mathematical-basics.html#psd"><i class="fa fa-check"></i><b>E.4.11</b> Power Spectral Density</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="../kt.html">COMMUNICATIONS ENGINEERING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="baseband" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Baseband Communications</h1>
+<!--<span style="color:red">TODO: Avoid the use of pulse, use filter instead!</span>-->
+<p>Here, <strong>baseband communications</strong> (German: <em>Basisbandübertragung</em>) refers to the transmission of a data signal in the <strong>baseband</strong>, i.e., in a spectrum from <span class="math inline">\(0\)</span> to <span class="math inline">\(f_\mathrm{max}=B\)</span>. Thus, no high-frequency carrier signal, which transports the information, is required. Examples of communications systems operating in the baseband are the landline phone, Ethernet, USB and hard disk storage. An alternative to baseband communications is <strong>passband communications</strong> (German: <em>Bandpassübertragung</em>) which will be discussed in Chapter <a href="passband.html#passband">5</a>.</p>
+<p>In this chapter, we will answer the question how the digital signal <span class="math inline">\(b[k]\)</span>, resulting from PCM, is going to be transmitted over an analog baseband channel. To do so, we firstly take a closer look at <strong>modulation</strong> in the next section.</p>
+<div id="modulation" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Modulation</h2>
+
+<div class="definition">
+<span id="def:defmodulation" class="definition"><strong>Definition 3.1  (Modulation)  </strong></span><strong>Modulation</strong> (German: <em>Modulation</em>) in the block diagram of a communications system as shown in Figure <a href="intro.html#fig:comsystem">1.3</a> denotes the transformation of the digital bit stream <span class="math inline">\(b[k]\)</span> in an analog signal <span class="math inline">\(s(t)\)</span> which can be transmitted over an analog channel.
+</div>
+<p>After PCM, the resulting bit stream <span class="math inline">\(b[k]\in\{0,1\}\)</span> is generally source and channel coded. In this course, we neglect this step and assume that <span class="math inline">\(u[k]=b[k]\in\{0,1\}\)</span>. Next, we assume that the bits in <span class="math inline">\(u[k]\)</span> are mapped to <strong>data symbols</strong> <span class="math inline">\(d[\ell]\)</span> (German: <em>Datensymbole</em>), also known as <strong>symbol mapping</strong> (German: <em>Symbolzuordnung</em>), in the following two ways:<a href="baseband.html#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+<ul>
+<li><p><strong>Unipolar (binary) symbol mapping</strong>:
+<span class="math display">\[d[\ell] = \begin{cases}
+0,&amp; u[\ell]=0,\\
+D,&amp; u[\ell]=1,
+\end{cases}\]</span></p></li>
+<li><p><strong>Polar (binary) symbol mapping</strong>:
+<span class="math display">\[d[\ell] = \begin{cases}
++D,&amp; u[\ell]=0,\\
+-D,&amp; u[\ell]=1,
+\end{cases}\]</span></p></li>
+</ul>
+<p>where the unit of the peak value <span class="math inline">\(D&gt;0\)</span> is <span class="math inline">\([D]=1\sqrt{\mathrm{W}}\)</span>. Note that symbol mapping seems to be unnecessary at this point—which is basically true—however, it paves the way for the generalisation to arbitrary digital modulation schemes in Chapter <a href="moddet.html#moddet">6</a>.</p>
+<p>Additionally, in order to end up with an analog and time-continuous signal, which can be applied to the analog channel, we define the <strong>data signal</strong> (German: <em>Datensignal</em>)
+<span class="math display">\[d(t) = T\sum_{\ell=-\infty}^\infty d[\ell] \delta(t-\ell T),\]</span>
+with <span class="math inline">\(T\)</span> being the <strong>symbol duration</strong> (German: <em>Symboldauer</em>) or <span class="math inline">\(1/T\)</span> being the <strong>symbol rate</strong> (German: <em>Symbolrate</em>).<a href="baseband.html#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
+
+<div class="example">
+<p><span id="exm:exasymbolmapping" class="example"><strong>Example 3.1  (Symbol Mapping)  </strong></span>In this example, we compute the symbol sequence <span class="math inline">\(d[\ell]\)</span> and plot the data signal <span class="math inline">\(d(t)\)</span> for the bit sequence
+<span class="math display">\[\begin{aligned}b[k] &amp;= 0\cdot\delta[k] + 1\cdot \delta[k-1] +
+0\cdot\delta[k-2] + 0\cdot\delta[k-3]\\ &amp;\phantom{=}+ 1\cdot\delta[k-4]+0\cdot\delta[k-5]+0\cdot\delta[k-6],\end{aligned}\]</span>
+assuming polar symbol mapping with <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and a symbol duration of <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>.</p>
+Due to polar symbol mapping, we get the symbol sequence <span class="math inline">\(d[\ell]\)</span> as shown in Table <a href="baseband.html#tab:symbolmapping">3.1</a>. The resulting data signal
+<span class="math display">\[d(t)=1\,\mu\mathrm{s}\cdot \sum_{\ell=0}^6 d[\ell] \delta(t-\ell\cdot 1\,\mu\mathrm{s})\]</span>
+is plotted in Figure <a href="baseband.html#fig:symbolmapping">3.1</a>.
+</div>
+<table>
+<caption> <span id="tab:symbolmapping">Table 3.1: </span> Bit and symbol sequence <span class="math inline">\(b[\ell]\)</span> and <span class="math inline">\(d[\ell]\)</span>, respectively</caption>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(k=\ell\)</span></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(b[\ell]\)</span></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\frac{d[\ell]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left">1</td>
+<td align="left">–1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">–1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:symbolmapping"></span>
+<img src="kt_files/figure-html/symbolmapping-1.svg" alt="Data signal $d(t)$" width="80%" />
+<p class="caption">
+Figure 3.1: Data signal <span class="math inline">\(d(t)\)</span>
+</p>
+</div>
+<p>Then, modulation can be summarised as shown in Figure <a href="baseband.html#fig:modulation">3.2</a> where <strong>pulse shaping</strong> (German: <em>Pulsformung</em>) transforms the data signal <span class="math inline">\(d(t)\)</span> into the signal <span class="math inline">\(s(t)/\sqrt{\mathrm{W}}\in\mathbb{R}\)</span> being finally transmitted over the analog channel.</p>
+<div class="figure" style="text-align: center"><span id="fig:modulation"></span>
+<img src="kt_files/figure-html/modulation-1.svg" alt="Block diagram of modulation" width="672" />
+<p class="caption">
+Figure 3.2: Block diagram of modulation
+</p>
+</div>
+<p>In the next section, we focus on pulse shaping and derive some important facts in this context. Although all the following pulse shaping filters are derived as analog filters, they can be also implemented in a digital way, e.g., via a <strong>Digital Signal Processor</strong> (DSP), followed by a digital-to-analog converter.</p>
+</div>
+<div id="pulseshaping" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Pulse Shaping</h2>
+<p>After pulse shaping, the <strong>transmit signal</strong> <span class="math inline">\(s(t)\)</span> (German: <em>Sendesignal</em>) reads as (cf. Theorem <a href="mathematical-basics.html#thm:dirac">E.2</a>)
+<span class="math display" id="eq:txsignal">\[\begin{align}
+s(t) = p(t) * d(t) &amp;= p(t) * T\sum_{\ell=-\infty}^\infty d[\ell] \delta(t-\ell T)\nonumber\\
+&amp;=
+T\sum_{\ell=-\infty}^\infty d[\ell] p(t-\ell T),
+\tag{3.1}
+\end{align}\]</span>
+where <span class="math inline">\(p(t)\)</span> denotes the <strong>pulse shaping filter</strong> (German: <em>Pulsformfilter</em>). The purpose of this filter is to transform the weighted Dirac comb <span class="math inline">\(d(t)\)</span> to a time-continuous transmit signal <span class="math inline">\(s(t)\)</span>. Figure <a href="baseband.html#fig:figpulseshaping">3.3</a> visualises the process of pulse shaping and can be seen as an alternative representation of the latter two boxes in Figure <a href="baseband.html#fig:modulation">3.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:figpulseshaping"></span>
+<img src="kt_files/figure-html/figpulseshaping-1.svg" alt="Block diagram of pulse shaping" width="60%" />
+<p class="caption">
+Figure 3.3: Block diagram of pulse shaping
+</p>
+</div>
+<p>In case of random data <span class="math inline">\(d[\ell]\)</span>, there exists no Fourier transform of <span class="math inline">\(s(t)\)</span> and we need to use the Power Spectral Density (PSD, cf. Appendix <a href="mathematical-basics.html#psd">E.4.11</a>) if we are interested in the spectrum of the baseband signal. If the symbols have zero mean (cf. Appendix <a href="mathematical-basics.html#mean">E.4.5</a>), i.e., <span class="math inline">\(m_d=E[d[\ell]]=0\)</span>, the PSD <span class="math inline">\(\Phi_s(f)\)</span> of the transmit signal <span class="math inline">\(s(t)\)</span> computes as (see, e.g., <span class="citation"><a href="references.html#ref-Proakis" role="doc-biblioref">Proakis</a> (<a href="references.html#ref-Proakis" role="doc-biblioref">2000</a>)</span> or <span class="citation"><a href="references.html#ref-ProakisSalehi" role="doc-biblioref">Proakis and Salehi</a> (<a href="references.html#ref-ProakisSalehi" role="doc-biblioref">2004</a>)</span> for a derivation)
+<span class="math display">\[\Phi_s(f) = T |P(f)|^2 E\left[|d[\ell]|^2\right],\]</span>
+with <span class="math inline">\(P(f)\)</span> being the Fourier transform of the pulse shaping filter <span class="math inline">\(p(t)\)</span>. Note that unipolar symbol mapping has a mean unequal to zero, thus, Equation <a href="baseband.html#eq:psd">(3.2)</a> does not hold in this case,<a href="baseband.html#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> but polar symbol mapping has zero mean and Equation <a href="baseband.html#eq:psd">(3.2)</a> holds with <span class="math inline">\(E[|d[\ell]|^2]=D^2\)</span>, i.e.,
+<span class="math display" id="eq:psd">\[\begin{equation}
+\Phi_s(f) = T D^2 |P(f)|^2.
+\tag{3.2}
+\end{equation}\]</span>
+Therefore, with Parseval’s theorem<a href="baseband.html#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>
+<span class="math display">\[\int_{-\infty}^\infty |P(f)|^2 df=\int_{-\infty}^\infty |p(t)|^2 dt,\]</span>
+the power of the transmit signal computes to
+<span class="math display">\[\begin{aligned}
+P_s&amp;= \int\limits_{-\infty}^{\infty}\Phi_s(f)df\\
+&amp;=TD^2 \int\limits_{-\infty}^{\infty}|P(f)|^2df\\
+&amp;=TD^2 \int\limits_{-\infty}^{\infty}|p(t)|^2dt\\
+&amp;=TD^2\cdot\frac{1}{T}=D^2,
+\end{aligned}\]</span>
+if we assume a normalisation of the pulse shaping filter <span class="math inline">\(p(t)\)</span> such that
+<span class="math display" id="eq:pulsenorm">\[\begin{equation}
+\int\limits_{-\infty}^{\infty}|p(t)|^2dt=\frac{1}{T}.
+\tag{3.3}
+\end{equation}\]</span></p>
+
+<div class="theorem">
+<span id="thm:symbolenergy" class="theorem"><strong>Theorem 3.1  (Transmit Signal Power and Symbol Energy of Polar Baseband Communications)  </strong></span>In case of polar symbol mapping with <span class="math inline">\(d[\ell]\in\{-D,+D\}\)</span> and pulse shaping with a normalised filter <span class="math inline">\(p(t)\)</span> according to <span class="math inline">\(\int_{-\infty}^{\infty}|p(t)|^2dt=\frac{1}{T}\)</span>, the <strong>transmit power</strong> of a baseband signal computes to
+<span class="math display">\[P_s=D^2,\]</span>
+and the corresponding <strong>symbol energy</strong> to
+<span class="math display">\[E_s=P_s T=D^2T,\]</span>
+with <span class="math inline">\(T\)</span> being the duration of one symbol.
+</div>
+<p>In the following, we investigate different pulse shaping filters which are time-limited, band-limited or neither time- nor band-limited.</p>
+<div id="rectfilter" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Rectangular Filter or Non-Return-to-Zero (NRZ) Code</h3>
+<p>The <strong>rectangular filter</strong> (German: <em>Rechteckfilter</em>) or <strong>Non-Return-to-Zero</strong> (NRZ)<a href="baseband.html#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> code is defined as
+<span class="math display">\[p(t) = \frac{1}{T}\mathrm{rect}\left(\frac{t}{T}\right) =:
+\begin{cases}
+\frac{1}{T}, &amp; |t|\leq\frac{T}{2}\\
+0, &amp; |t|&gt;\frac{T}{2}
+\end{cases}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P(f) = \mathrm{sinc}(f T) = \frac{\sin(\pi f T)}
+{\pi f T},\]</span>
+and depicted in Figure <a href="baseband.html#fig:recpulse">3.4</a>. It can be seen that the NRZ code is time-limited while its spectrum is not limited. Note that a time-limited signal can never have a band-limited spectrum (cf. Section <a href="baseband.html#heisenberg">3.3</a>)!</p>
+<div class="figure" style="text-align: center"><span id="fig:recpulse"></span>
+<img src="kt_files/figure-html/recpulse-1.svg" alt="Impulse response $p(t)$ and frequency response $P(f)$ of the NRZ code" width="672" />
+<p class="caption">
+Figure 3.4: Impulse response <span class="math inline">\(p(t)\)</span> and frequency response <span class="math inline">\(P(f)\)</span> of the NRZ code
+</p>
+</div>
+<p>Because of the fact that the NRZ code filter <span class="math inline">\(p(t)\)</span> as shown in Figure <a href="baseband.html#fig:recpulse">3.4</a> is symmetric<a href="baseband.html#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>
+with respect to <span class="math inline">\(t=0\)</span>, the corresponding frequency response <span class="math inline">\(P(f)\)</span> is real-valued. However, this version of the NRZ code is not causal, i.e., the output of the pulse shaping filter depends on an input signal of the future. Clearly, this is not realistic. A causal version of the NRZ code filter <span class="math inline">\(p_+(t)\)</span> with <span class="math inline">\(p_+(t)=0\)</span> for <span class="math inline">\(t&lt;0\)</span> can be defined by a time translation of <span class="math inline">\(p(t)\)</span> with a <span class="math inline">\(T/2\)</span>-shift to the right, leading to a complex-valued spectrum with a phase term (cf. Exercise <a href="mathematical-basics.html#exr:exefourier">E.1</a>). Precisely speaking, we get
+<span class="math display">\[p_+(t) = \frac{1}{T}\mathrm{rect}\left(\frac{t}{T}-\frac{1}{2}\right) =:
+\begin{cases}
+\frac{1}{T}, &amp; 0\leq t\leq T\\
+0, &amp; \mathrm{otherwise}
+\end{cases}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P_+(f) = \mathrm{sinc}(f T) e^{-j\pi f T} = \frac{\sin(\pi f T)}{\pi f T}e^{-j\pi f T}.\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:causalrecpulse"></span>
+<img src="kt_files/figure-html/causalrecpulse-1.svg" alt="Impulse response $p_+(t)$ and the absolute value of the frequency response $P_+(f)$ of the causal NRZ code" width="672" />
+<p class="caption">
+Figure 3.5: Impulse response <span class="math inline">\(p_+(t)\)</span> and the absolute value of the frequency response <span class="math inline">\(P_+(f)\)</span> of the causal NRZ code
+</p>
+</div>
+
+<div class="example">
+<span id="exm:exanrzsignal" class="example"><strong>Example 3.2  (NRZ Transmit Signal)  </strong></span>In this example, we plot the transmit signal <span class="math inline">\(s(t)\)</span> to the bit sequence
+<span class="math display">\[\begin{aligned}b[k] &amp;= 0\cdot\delta[k] + 1\cdot \delta[k-1] +
+0\cdot\delta[k-2] + 0\cdot\delta[k-3]\\ &amp;\phantom{=}+ 1\cdot\delta[k-4]+0\cdot\delta[k-5]+0\cdot\delta[k-6]\end{aligned}\]</span>
+from Example <a href="baseband.html#exm:exasymbolmapping">3.1</a> assuming causal NRZ pulse shaping with either unipolar or polar symbol mapping. Again, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the symbol duration is <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>. The result is depicted in Figure <a href="baseband.html#fig:nrzsignal">3.6</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:nrzsignal"></span>
+<img src="kt_files/figure-html/nrzsignal-1.svg" alt="Transmit signal $s(t)$ with causal NRZ pulse shaping (unipolar and polar symbol mapping)" width="80%" />
+<p class="caption">
+Figure 3.6: Transmit signal <span class="math inline">\(s(t)\)</span> with causal NRZ pulse shaping (unipolar and polar symbol mapping)
+</p>
+</div>
+<p>It can be seen that the NRZ signal has no rest or zero state like, e.g., the <strong>Return-to-Zero</strong> (RZ) code As a consequence, the NRZ code contains more energy than the RZ code.</p>
+
+<div class="example">
+<span id="exm:exanrzspectrum" class="example"><strong>Example 3.3  (NRZ Transmit PSD)  </strong></span>In this example, we estimate the two-sided Power Sectral Density (PSD, see Appendix <a href="mathematical-basics.html#probability">E.4</a>) of a NRZ transmit signal with 500 equally distributed random bits based on a simulation with Python and compare it to its analytical expression (cf. Equation <a href="baseband.html#eq:psd">(3.2)</a>)
+<span class="math display">\[\Phi_s(f)=TD^2|\mathrm{sinc}(fT)|^2.\]</span>
+Again, we assume causal pulse shaping, polar symbol mapping, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the symbol duration is <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>. The code and result is depicted in Figure <a href="baseband.html#fig:nrzspectrum">3.7</a>.
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="baseband.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="baseband.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.signal <span class="im">as</span> sps</span>
+<span id="cb2-3"><a href="baseband.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="baseband.html#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="baseband.html#cb2-5" aria-hidden="true" tabindex="-1"></a>no_symbols <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb2-6"><a href="baseband.html#cb2-6" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1e-6</span></span>
+<span id="cb2-7"><a href="baseband.html#cb2-7" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> <span class="fl">1e-7</span></span>
+<span id="cb2-8"><a href="baseband.html#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="baseband.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random NRZ transmit signal</span></span>
+<span id="cb2-10"><a href="baseband.html#cb2-10" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, no_symbols<span class="op">*</span>T, no_symbols<span class="op">*</span><span class="bu">int</span>(T<span class="op">/</span>Ts))</span>
+<span id="cb2-11"><a href="baseband.html#cb2-11" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.ones(<span class="bu">int</span>(T<span class="op">/</span>Ts))</span>
+<span id="cb2-12"><a href="baseband.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(no_symbols):</span>
+<span id="cb2-13"><a href="baseband.html#cb2-13" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>np.random.choice([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], size<span class="op">=</span>(<span class="dv">1</span>,), p<span class="op">=</span>[<span class="fl">1.</span><span class="op">/</span><span class="dv">2</span>, <span class="fl">1.</span><span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb2-14"><a href="baseband.html#cb2-14" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span>np.concatenate((s, d<span class="op">*</span>np.ones(<span class="bu">int</span>(T<span class="op">/</span>Ts))), axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-15"><a href="baseband.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="baseband.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PSD</span></span>
+<span id="cb2-17"><a href="baseband.html#cb2-17" aria-hidden="true" tabindex="-1"></a>f, s_spec <span class="op">=</span> sps.welch(s, <span class="dv">1</span><span class="op">/</span>Ts, return_onesided<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-18"><a href="baseband.html#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="baseband.html#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># cut-out positive frequencies</span></span>
+<span id="cb2-20"><a href="baseband.html#cb2-20" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> f[<span class="dv">0</span>:<span class="bu">int</span>(f.size<span class="op">/</span><span class="dv">2</span>)]</span>
+<span id="cb2-21"><a href="baseband.html#cb2-21" aria-hidden="true" tabindex="-1"></a>s_spec <span class="op">=</span> s_spec[<span class="dv">0</span>:<span class="bu">int</span>(s_spec.size<span class="op">/</span><span class="dv">2</span>)]</span>
+<span id="cb2-22"><a href="baseband.html#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="baseband.html#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># compute analytical PSD</span></span>
+<span id="cb2-24"><a href="baseband.html#cb2-24" aria-hidden="true" tabindex="-1"></a>s_spec_theory <span class="op">=</span> T<span class="op">*</span><span class="bu">abs</span>(np.sinc(f<span class="op">*</span>T))<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-25"><a href="baseband.html#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="baseband.html#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb2-27"><a href="baseband.html#cb2-27" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.semilogy(f<span class="op">*</span><span class="fl">1e-6</span>, <span class="bu">abs</span>(s_spec), <span class="st">&#39;#114da1&#39;</span>, f<span class="op">*</span><span class="fl">1e-6</span>, s_spec_theory, <span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb2-28"><a href="baseband.html#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;$f$ in MHz&#39;</span>)</span>
+<span id="cb2-29"><a href="baseband.html#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;in W/Hz&#39;</span>)</span>
+<span id="cb2-30"><a href="baseband.html#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb2-31"><a href="baseband.html#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb2-32"><a href="baseband.html#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb2-33"><a href="baseband.html#cb2-33" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="dv">0</span>,<span class="fl">4.5</span>)</span>
+<span id="cb2-34"><a href="baseband.html#cb2-34" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.ylim(<span class="fl">1e-11</span>,<span class="fl">2e-6</span>)</span>
+<span id="cb2-35"><a href="baseband.html#cb2-35" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.legend([<span class="vs">r&#39;Estimate $\hat{\Phi}_s(f)$&#39;</span>, <span class="vs">r&#39;Exact $\Phi_s(f)$&#39;</span>])</span>
+<span id="cb2-36"><a href="baseband.html#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-37"><a href="baseband.html#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:nrzspectrum"></span>
+<img src="kt_files/figure-html/nrzspectrum-1.svg" alt="Cut-out of the two-sided PSD of a random polar NRZ transmit signal" width="80%" />
+<p class="caption">
+Figure 3.7: Cut-out of the two-sided PSD of a random polar NRZ transmit signal
+</p>
+</div>
+<!--<span style="color:red">TODO: From where arises the difference of one half at high frequencies?</span>-->
+<p>The major advantage of the NRZ code is that its spectrum is rather concentrated around zero and it goes to zero very quickly with increasing <span class="math inline">\(f\)</span>. However, if the transmitted bit stream consists solely of ones or zeros, the transmitted signal is constant which makes it very difficult to reconstruct the clock signal based on <span class="math inline">\(s(t)\)</span> (see also Section <a href="noise.html#sync">4.5</a>). The latter step is necessary at the receiver of a communications system because the clock oscillators at the transmitter and receiver are generally not the same and need to be synchronised in order to ensure error free transmission.</p>
+</div>
+<div id="manchester-code" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Manchester Code</h3>
+<p>Another time-limited pulse shaping filter is the <strong>Manchester code</strong> defined as
+<span class="math display">\[\begin{aligned} 
+p(t) &amp;= \frac{1}{T}\left(
+2\mathrm{rect}\left(\frac{2t}{T}\right)
+-\mathrm{rect}\left(\frac{t}{T}\right)\right)\\
+&amp; =
+\begin{cases}
+\frac{1}{T}, &amp; |t|\leq\frac{T}{4}\\
+-\frac{1}{T}, &amp; \frac{T}{4}&lt;|t|\leq\frac{T}{2}\\
+0, &amp; |t|&gt;\frac{T}{2}
+\end{cases}\end{aligned}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P(f) = \mathrm{sinc}\left(f\frac{T}{2}\right)-\mathrm{sinc}(f T),\]</span>
+and depicted in Figure <a href="baseband.html#fig:manchesterpulse">3.8</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:manchesterpulse"></span>
+<img src="kt_files/figure-html/manchesterpulse-1.svg" alt="Impulse response $p(t)$ and frequency response $P(f)$ of the Manchester code" width="672" />
+<p class="caption">
+Figure 3.8: Impulse response <span class="math inline">\(p(t)\)</span> and frequency response <span class="math inline">\(P(f)\)</span> of the Manchester code
+</p>
+</div>
+<p>Compared to the NRZ code, the causal version of the Manchester code is usually not obtained by a simple time translation. A common definition of the causal Manchester code in case of polar symbol mapping reads as (cf. Theorem <a href="mathematical-basics.html#thm:fourier">E.1</a> and with the Euler formula <span class="math inline">\(e^{jx}=\cos x + j\sin x\)</span>)
+<span class="math display">\[\begin{aligned}
+p_+(t) &amp;= 
+\frac{1}{T}\left(\mathrm{rect}\left(\frac{2t}{T}-\frac{1}{2}\right)-\mathrm{rect}\left(\frac{2t}{T}-\frac{3}{2}\right)\right)\\
+&amp;= \begin{cases}
+\frac{1}{T}, &amp; 0 \leq t\leq\frac{T}{2}\\
+-\frac{1}{T}, &amp; \frac{T}{2}&lt;t\leq T\\
+0, &amp; \mathrm{otherwise} 
+\end{cases}\end{aligned}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}
+P_+(f) &amp;= \mathrm{sinc}\left(f\frac{T}{2}\right)e^{-j\pi f T}
+\underbrace{\frac{1}{2}\left(e^{j\pi f \frac{T}{2}}-e^{-j\pi f \frac{T}{2}}\right)}_{j\sin\left(\pi f \frac{T}{2}\right)}\\
+&amp;= \mathrm{sinc}\left(f\frac{T}{2}\right)\sin\left(\pi f \frac{T}{2}\right)e^{j\pi\left(\frac{1}{2}- f T\right)},
+\end{aligned}\]</span>
+and is depicted in Figure <a href="baseband.html#fig:causalmanchesterpulse">3.9</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:causalmanchesterpulse"></span>
+<img src="kt_files/figure-html/causalmanchesterpulse-1.svg" alt="Impulse response $p_+(t)$ and the absolute value of the frequency response $P_+(f)$ of the causal Manchester code" width="672" />
+<p class="caption">
+Figure 3.9: Impulse response <span class="math inline">\(p_+(t)\)</span> and the absolute value of the frequency response <span class="math inline">\(P_+(f)\)</span> of the causal Manchester code
+</p>
+</div>
+
+<div class="example">
+<span id="exm:examanchestersignal" class="example"><strong>Example 3.4  (Manchester Transmit Signal)  </strong></span>In this example, we plot the transmit signal <span class="math inline">\(s(t)\)</span> to the bit sequence
+<span class="math display">\[\begin{aligned}b[k] &amp;= 0\cdot\delta[k] + 1\cdot \delta[k-1] +
+0\cdot\delta[k-2] + 0\cdot\delta[k-3]\\ &amp;\phantom{=}+ 1\cdot\delta[k-4]+0\cdot\delta[k-5]+0\cdot\delta[k-6]\end{aligned}\]</span>
+from Example <a href="baseband.html#exm:exasymbolmapping">3.1</a> assuming causal Manchester pulse shaping with polar symbol mapping. Again, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the symbol duration is <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>. The result is depicted in Figure <a href="baseband.html#fig:manchestersignal">3.10</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:manchestersignal"></span>
+<img src="kt_files/figure-html/manchestersignal-1.svg" alt="Transmit signal $s(t)$ with causal Manchester pulse shaping and polar symbol mapping" width="80%" />
+<p class="caption">
+Figure 3.10: Transmit signal <span class="math inline">\(s(t)\)</span> with causal Manchester pulse shaping and polar symbol mapping
+</p>
+</div>
+<p>So, in case of Manchester pulse shaping, the information about the transmitted bits are contained in the middle slope within the symbol duration <span class="math inline">\(T\)</span>. This information would be lost in case of unipolar symbol mapping because the impulse response is nulled and therefore, there is no slope, if a 0 is transmitted. Thus, for unipolar symbol mapping, the pulse shaping filter is not simply multiplied by the transmitted bit according to Equation <a href="baseband.html#eq:txsignal">(3.1)</a> but defined differently depending on the transmitted bit. Figure <a href="baseband.html#fig:unipolarmanchester">3.11</a> shows a common definition of the Manchester code in this case where the signal <span class="math inline">\(s_{0}(t)\)</span> is transmitted if the information bit is 0 and <span class="math inline">\(s_{1}(t)\)</span> if it is 1.</p>
+<div class="figure" style="text-align: center"><span id="fig:unipolarmanchester"></span>
+<img src="kt_files/figure-html/unipolarmanchester-1.svg" alt="Transmitted signal $s_{0}(t)$ and $s_{1}(t)$ in case of causal Manchester pulse shaping and unipolar symbol mapping" width="672" />
+<p class="caption">
+Figure 3.11: Transmitted signal <span class="math inline">\(s_{0}(t)\)</span> and <span class="math inline">\(s_{1}(t)\)</span> in case of causal Manchester pulse shaping and unipolar symbol mapping
+</p>
+</div>
+
+<div class="example">
+<span id="exm:examanchesterspectrum" class="example"><strong>Example 3.5  (Manchester Transmit PSD)  </strong></span>In this example, we estimate the two-sided Power Sectral Density (PSD, see Appendix <a href="mathematical-basics.html#probability">E.4</a>) of a Manchester transmit signal with 500 equally distributed random bits based on a simulation with Python and compare it to its analytical expression (cf. Equation <a href="baseband.html#eq:psd">(3.2)</a>)
+<span class="math display">\[\Phi_s(f)=TD^2\left|\mathrm{sinc}\left(f\frac{T}{2}\right)
+\sin\left(\pi f\frac{T}{2}\right)\right|^2.\]</span>
+Again, we assume causal pulse shaping, polar symbol mapping, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the symbol duration is <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>. The code and result is depicted in Figure <a href="baseband.html#fig:manchesterspectrum">3.12</a>.
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="baseband.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="baseband.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal</span>
+<span id="cb3-3"><a href="baseband.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="baseband.html#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="baseband.html#cb3-5" aria-hidden="true" tabindex="-1"></a>no_symbols <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb3-6"><a href="baseband.html#cb3-6" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1e-6</span></span>
+<span id="cb3-7"><a href="baseband.html#cb3-7" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> <span class="fl">1e-7</span></span>
+<span id="cb3-8"><a href="baseband.html#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="baseband.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random Manchester signal</span></span>
+<span id="cb3-10"><a href="baseband.html#cb3-10" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, no_symbols<span class="op">*</span>T, no_symbols<span class="op">*</span><span class="bu">int</span>(T<span class="op">/</span>Ts))</span>
+<span id="cb3-11"><a href="baseband.html#cb3-11" aria-hidden="true" tabindex="-1"></a>pulse <span class="op">=</span> np.concatenate((np.ones(<span class="bu">int</span>(T<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>Ts))), <span class="op">-</span>np.ones(<span class="bu">int</span>(T<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>Ts)))))</span>
+<span id="cb3-12"><a href="baseband.html#cb3-12" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pulse</span>
+<span id="cb3-13"><a href="baseband.html#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(no_symbols):</span>
+<span id="cb3-14"><a href="baseband.html#cb3-14" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>np.random.choice([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], size<span class="op">=</span>(<span class="dv">1</span>,), p<span class="op">=</span>[<span class="fl">1.</span><span class="op">/</span><span class="dv">2</span>, <span class="fl">1.</span><span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb3-15"><a href="baseband.html#cb3-15" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span>np.concatenate((s, d<span class="op">*</span>pulse), axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-16"><a href="baseband.html#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="baseband.html#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PSD</span></span>
+<span id="cb3-18"><a href="baseband.html#cb3-18" aria-hidden="true" tabindex="-1"></a>f, s_spec <span class="op">=</span> signal.welch(s, <span class="dv">1</span><span class="op">/</span>Ts, return_onesided<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-19"><a href="baseband.html#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="baseband.html#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># cut-out positive frequencies</span></span>
+<span id="cb3-21"><a href="baseband.html#cb3-21" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> f[<span class="dv">0</span>:<span class="bu">int</span>(f.size<span class="op">/</span><span class="dv">2</span>)]</span>
+<span id="cb3-22"><a href="baseband.html#cb3-22" aria-hidden="true" tabindex="-1"></a>s_spec <span class="op">=</span> s_spec[<span class="dv">0</span>:<span class="bu">int</span>(s_spec.size<span class="op">/</span><span class="dv">2</span>)]</span>
+<span id="cb3-23"><a href="baseband.html#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="baseband.html#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># compute analytical PSD</span></span>
+<span id="cb3-25"><a href="baseband.html#cb3-25" aria-hidden="true" tabindex="-1"></a>s_spec_theory <span class="op">=</span> T<span class="op">*</span><span class="bu">abs</span>(np.sinc(f<span class="op">*</span>T<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>np.sin(np.pi<span class="op">*</span>f<span class="op">*</span>T<span class="op">/</span><span class="dv">2</span>))<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-26"><a href="baseband.html#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="baseband.html#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb3-28"><a href="baseband.html#cb3-28" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.semilogy(f<span class="op">*</span><span class="fl">1e-6</span>, <span class="bu">abs</span>(s_spec), <span class="st">&#39;#114da1&#39;</span>, f<span class="op">*</span><span class="fl">1e-6</span>, s_spec_theory, <span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb3-29"><a href="baseband.html#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;$f$ in MHz&#39;</span>)</span>
+<span id="cb3-30"><a href="baseband.html#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;in W/Hz&#39;</span>)</span>
+<span id="cb3-31"><a href="baseband.html#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb3-32"><a href="baseband.html#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb3-33"><a href="baseband.html#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb3-34"><a href="baseband.html#cb3-34" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="dv">0</span>,<span class="fl">4.5</span>)</span>
+<span id="cb3-35"><a href="baseband.html#cb3-35" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.ylim(<span class="fl">1e-11</span>,<span class="fl">2e-6</span>)</span>
+<span id="cb3-36"><a href="baseband.html#cb3-36" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.legend([<span class="vs">r&#39;Estimate $\hat{\Phi}_s(f)$&#39;</span>, <span class="vs">r&#39;Exact $\Phi_s(f)$&#39;</span>])</span>
+<span id="cb3-37"><a href="baseband.html#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-38"><a href="baseband.html#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:manchesterspectrum"></span>
+<img src="kt_files/figure-html/manchesterspectrum-1.svg" alt="Cut-out of the two-sided PSD of a random polar Manchester transmit signal" width="80%" />
+<p class="caption">
+Figure 3.12: Cut-out of the two-sided PSD of a random polar Manchester transmit signal
+</p>
+</div>
+<p>Compared to the NRZ code, the clock signal can be recovered in case of Manchester pulse shaping even if only ones or zeros are transmitted. Besides, <span class="math inline">\(P(0)=0\)</span>, i.e., a Manchester signal has no bias. However, one major drawback of the Manchester code is the slightly higher bandwidth compared to the NRZ code. The first root of its spectrum is at <span class="math inline">\(f=2/T\)</span> compared to <span class="math inline">\(f=1/T\)</span> in case of NRZ.</p>
+
+<div class="exercise">
+<p><span id="exr:timelimitedpulse" class="exercise"><strong>Exercise 3.1  (Time-Limited Pulse Shaping Filter)  </strong></span>Consider the following causal pulse shaping filters:</p>
+<ul>
+<li>unipolar  (NRZ) code (no symbol mapping is applied, i.e., <span class="math inline">\(d_\mathrm{uni}[\ell]=Du[\ell]\in\{0,D\}\)</span>,</li>
+<li>polar NRZ code (<span class="math inline">\(d[\ell]\in\{-D,D\}\)</span>) and</li>
+<li>Manchester code.</li>
+</ul>
+<p>Based on these filters, the binary PCM stream <span class="math inline">\(u[\ell]\)</span> as given in Table <a href="baseband.html#tab:timelimitedpulse">3.2</a> shall be transmitted in the baseband.</p>
+<table>
+<caption> <span id="tab:timelimitedpulse">Table 3.2: </span> Bits <span class="math inline">\(u[\ell]\)</span> to be transmitted</caption>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ell\)</span></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">8</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(u[\ell]\)</span></td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>What specific characteristic is the same for all pulse shaping filters? In what kind of systems are they mainly used therefore?</li>
+<li>Plot for all three filters the transmit signal <span class="math inline">\(s(t)=T\sum_{\ell=0}^9 d[\ell] p(t-\ell T)\)</span> of the data stream given in Table <a href="baseband.html#tab:timelimitedpulse">3.2</a> in the region <span class="math inline">\(t\in[0,10T]\)</span> and with <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span>. Compute all values for <span class="math inline">\(d_\mathrm{uni}[\ell]\)</span> and <span class="math inline">\(d[\ell]\)</span> (unipolar and polar symbols) first.</li>
+<li>Let <span class="math inline">\(T=10\,\mu\mathrm{s}\)</span>. What is the minimum necessary transmission bandwidth for all three filters<br>
+<strong>Hint:</strong> Since the considered filters are not band-limited, use the first root in the spectrum as the definition of the bandwidth.</li>
+<li>List advantages and drawbacks for each of the filters.</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;timelimitedpulsesol&#39;)">
+Solution
+</button>
+<div id="timelimitedpulsesol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Time-Limited Pulse Shaping Filters). </span> The solution to Exercise <a href="baseband.html#exr:timelimitedpulse">3.1</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>All filters are time-limited to <span class="math inline">\(T\)</span>, therefore not band-limited. Due to the high bandwidth, they are used in systems where spectrum is easily available like, e.g., in optical communications systems.</p></li>
+<li><p>Table <a href="baseband.html#tab:timelimitedpulsesol">3.3</a> summarises the results for <span class="math inline">\(d_\mathrm{uni} [\ell]\)</span> and <span class="math inline">\(d[\ell]\)</span>.</p>
+<table>
+<caption> <span id="tab:timelimitedpulsesol">Table 3.3: </span> Data signal <span class="math inline">\(d_\mathrm{uni}[\ell]\)</span> and <span class="math inline">\(d[\ell]\)</span></caption>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ell\)</span></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">8</td>
+<td align="left">9</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(u[\ell]\)</span></td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d_\mathrm{uni}[\ell]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{d[\ell]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left">–1</td>
+<td align="left">–1</td>
+<td align="left">1</td>
+<td align="left">–1</td>
+<td align="left">1</td>
+<td align="left">–1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">–1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>The transmit signals corresponding to the three pulse shaping filters are shown in Figure <a href="baseband.html#fig:timelimitedpulsesol">3.13</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:timelimitedpulsesol"></span>
+<img src="kt_files/figure-html/timelimitedpulsesol-1.svg" alt="Transmit signal $s(t)$ with causal NRZ (unipolar and polar) and polar Manchester pulse shaping" width="80%" />
+<p class="caption">
+Figure 3.13: Transmit signal <span class="math inline">\(s(t)\)</span> with causal NRZ (unipolar and polar) and polar Manchester pulse shaping
+</p>
+</div></li>
+<li><p>With <span class="math inline">\(T=10\,\mu\mathrm{s}\)</span>, the first root in the spectrum lies at
+<span class="math display">\[B_\mathrm{NRZ}=\frac{1}{T}=100\,\mathrm{kHz}\]</span>
+in case of the unipolar and polar NRZ signal. Contrary to that, the first root in the spectrum of the Manchester signal lies at
+<span class="math display">\[B_\mathrm{Manchester}=\frac{2}{T}=200\,\mathrm{kHz}.\]</span>
+Although, all time-limited filters have an unlimited bandwidth, the spectrum of the NRZ signal is slightly more concentrated around <span class="math inline">\(f=0\)</span> compared to the one of the Manchester signal.</p></li>
+<li><p>Unipolar NRZ pulse shaping:</p>
+<ul>
+<li>Advantages:
+<ul>
+<li>around <span class="math inline">\(f=0\)</span> concentrated bandwidth</li>
+</ul></li>
+<li>when applied to passband communications (cf. Chapter <a href="passband.html#passband">5</a>), on-off-keying of carrier <span class="math inline">\(\Rightarrow\)</span> simple receiver implementations possible</li>
+<li>Disadvantage:
+<ul>
+<li>Clock signal cannot be reconstructed easily from the received signal.</li>
+</ul></li>
+</ul>
+<p>Polar NRZ pulse shaping:</p>
+<ul>
+<li>Advantage:
+<ul>
+<li>around <span class="math inline">\(f=0\)</span> concentrated bandwidth</li>
+</ul></li>
+<li>Disadvantages:</li>
+<li>when applied to passband communications (cf. Chapter <a href="passband.html#passband">5</a>), phase shift keying of carrier <span class="math inline">\(\Rightarrow\)</span> more complex receiver implementations necessary
+<ul>
+<li>Clock signal cannot be reconstructed easily from the received signal.</li>
+</ul></li>
+</ul>
+<p>Manchester pulse shaping:</p>
+<ul>
+<li>Advantages:
+<ul>
+<li>Clock reconstruction (German: <em>Trägerrückgewinnung</em>) is easily possbile.</li>
+<li>Spectrum contains no value at <span class="math inline">\(f=0\)</span> (German: <em>Gleichstromfreiheit</em>).</li>
+</ul></li>
+<li>Disadvantages:</li>
+<li>when applied to passband communications (cf. Chapter <a href="passband.html#passband">5</a>), phase shift keying of carrier <span class="math inline">\(\Rightarrow\)</span> more complex receiver implementations necessary
+<ul>
+<li>higher bandwidth</li>
+</ul></li>
+</ul>
+<p>Disadvantage of all time-limited filters:</p>
+<ul>
+<li>Spectrum is not band-limited.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="sincfilter" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Sinc Filter</h3>
+<p>The <strong>sinc filter</strong> is a band-limited filter. Therefore, its impulse response is not time-limited and reads as (cf. Exercise <a href="mathematical-basics.html#exr:exefourier">E.1</a>)
+<span class="math display">\[p(t) = \frac{1}{T}\mathrm{sinc}\left(\frac{t}{T}\right) := \frac{1}{T}\frac{\sin\left(\frac{\pi t}{T}\right)} {\frac{\pi t}{T}}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P(f) = \mathrm{rect}\left(f T\right) =: \begin{cases}
+1, &amp; |f|\leq\frac{1}{2T},\\
+0, &amp; |f|&gt;\frac{1}{2T}.
+\end{cases}\]</span>
+Figure <a href="baseband.html#fig:sincpulse">3.14</a> shows the sinc filter with its spectrum.</p>
+<div class="figure" style="text-align: center"><span id="fig:sincpulse"></span>
+<img src="kt_files/figure-html/sincpulse-1.svg" alt="Impulse response $p(t)$ and frequency response $P(f)$ of the sinc filter" width="672" />
+<p class="caption">
+Figure 3.14: Impulse response <span class="math inline">\(p(t)\)</span> and frequency response <span class="math inline">\(P(f)\)</span> of the sinc filter
+</p>
+</div>
+<p>Three problems of the sinc filter are that</p>
+<ul>
+<li>ideal lowpass filtering is not feasible, i.e., a straight-forward implementation of the sinc filter is not possbile,</li>
+<li>the resulting transmit signal is intersymbol-interference free only for <span class="math inline">\(t=kT\)</span>, <span class="math inline">\(k\in\mathbb{Z}\)</span>, and</li>
+<li>the sinc filter is non-causal and a simple time translation does not solve the problem in this case because of the fact that the sinc filter is not time-limited.</li>
+</ul>
+<p>In order to end up with a causal and implementable version <span class="math inline">\(p_+(t)\)</span> of the sinc filter, <strong>windowing</strong> (German: <em>Fensterung</em>) has to be applied, i.e., the sinc filter is multiplied with a rectangular function, cutting out values for <span class="math inline">\(t\in[-NT,NT]\)</span>, <span class="math inline">\(N\in\mathbb{N}\)</span>, and setting the remaining values to zero. Then, the resulting filter is shifted by <span class="math inline">\(NT\)</span> to the right, finally resulting in (with the properties of the Fourier transform as summarised in Theorem <a href="mathematical-basics.html#thm:fourier">E.1</a> and Definition <a href="mathematical-basics.html#def:defconvolution">E.3</a> in Appendix <a href="mathematical-basics.html#conv">E.3</a>)
+<span class="math display">\[p_+(t) = \frac{1}{T}\mathrm{sinc}\left(\frac{t-NT}{T}\right) \mathrm{rect}\left(\frac{t-NT}{2NT}\right)\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}P_+(f) &amp;= \mathrm{rect}(fT)*2NT\mathrm{sinc}(2NTf)e^{-j2\pi f NT}\\
+&amp; = 2NTe^{-j2\pi f NT}\int\limits_{-\infty}^\infty\mathrm{rect}((f-\nu)T)\mathrm{sinc}(2NT\nu)d\nu\\
+&amp;= 2NTe^{-j2\pi f NT}\int\limits_{f-\frac{1}{2T}}^{f+\frac{1}{2T}}
+\mathrm{sinc}(2NT\nu)d\nu.\end{aligned}\]</span>
+The integral term in the frequency response <span class="math inline">\(P_+(f)\)</span> must be solved numerically. The impulse response <span class="math inline">\(p_+(t)\)</span> and the absolute value of its frequency response <span class="math inline">\(P_+(f)\)</span> are depicted in Figure <a href="baseband.html#fig:causalsincspectrum">3.15</a>. It can be clearly seen, that the absolute value of the spectrum of the causal version is no longer the same than the one of the non-causal counterpart due to the windowing operation. However, the causal version of the sinc filter can be easily implemented by using a digital signal processor. Thus, most of the problems listed above are solved.</p>
+<div class="figure" style="text-align: center"><span id="fig:causalsincspectrum"></span>
+<img src="kt_files/figure-html/causalsincspectrum-1.svg" alt="Impulse response $p_+(t)$ and the absolute value of the frequency response $P_+(f)$ of a causal sinc filter with $N=4$ in comparison to a non-causal sinc filter" width="80%" />
+<p class="caption">
+Figure 3.15: Impulse response <span class="math inline">\(p_+(t)\)</span> and the absolute value of the frequency response <span class="math inline">\(P_+(f)\)</span> of a causal sinc filter with <span class="math inline">\(N=4\)</span> in comparison to a non-causal sinc filter
+</p>
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-22" class="example"><strong>Example 3.6  (Pulse Shaping GNU Radio Simulation)  </strong></span>The following GNU Radio simulation shows the effect of pulse shaping on the spectrum of a baseband singal.<a href="baseband.html#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>
+It can be seen that the out-of-band attenuation is much higher in the case of a sinc filter compared to the one of a rectangular filter. This is the reason why sinc filters are especially interesting in wireless communications to end up with spectrally efficient systems.
+</div>
+<figure style="text-align:center;margin-bottom:10px">
+<video width="80%" controls>
+<source src="media/pulse_shaping.mp4" type="video/mp4">
+</video>
+</figure>
+</div>
+<div id="nyquistrolloff" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Raised-Cosine or Nyquist-Roll-Off Filter</h3>
+<p>Another band-limited filter is the <strong>raised-cosine</strong> or <strong>Nyquist-roll-off filter</strong> which has been already used as an example to demonstrate the sampling theorem in Section <a href="digitalrepresentation.html#sampling">2.1</a>. Compared to the sinc filter, the raised-cosine filter is not an ideal lowpass filter, thus, it is practically feasible. In fact, the raised-cosine filter is the most commonly used pulse shaping filter in today’s wireless communications systems where a limited bandwidth is crucial. The impulse response of the raised-cosine filter is defined as</p>
+<p><span class="math display">\[p(t) = \frac{1}{T}\mathrm{sinc}\left(\frac{t}{T}\right) \frac{\cos\left(
+\frac{\alpha \pi t}{T}\right)}{1-4\alpha^2 \left(\frac{t}{T}\right)^2}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P(f) = \begin{cases}
+1, &amp; |f|\leq(1-\alpha)\frac{1}{2T},\\
+\frac{1}{2}\left(
+1-\sin\left(\frac{\pi T}{\alpha}\left(|f|-\frac{1}{2T}\right)\right)\right), &amp; \frac{1-\alpha}{2T}&lt;|f|\leq\frac{1+\alpha}{2T},\\
+0, &amp; \text{otherwise}.
+\end{cases}\]</span></p>
+<p>Here, <span class="math inline">\(\alpha\in[0,1]\)</span> denotes the <strong>roll-off factor</strong> and defines the steepness of the point symmetric slope in the spectrum, i.e., the smaller <span class="math inline">\(\alpha\)</span>, the steeper the slope of the spectrum. For <span class="math inline">\(\alpha=0\)</span>, the raised-cosine filter equals a sinc filter. Figure <a href="baseband.html#fig:raisedcosinepulse">3.16</a> shows a raised-cosine filter together with its spectrum whose (onesided) bandwidth is <span class="math inline">\(B=(1+\alpha)\frac{1}{2T}\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:raisedcosinepulse"></span>
+<img src="kt_files/figure-html/raisedcosinepulse-1.svg" alt="Impulse response $p(t)$ and frequency response $P(f)$ of the raised-cosine pulse" width="672" />
+<p class="caption">
+Figure 3.16: Impulse response <span class="math inline">\(p(t)\)</span> and frequency response <span class="math inline">\(P(f)\)</span> of the raised-cosine pulse
+</p>
+</div>
+<p>For the causal version of the raised-cosine filter, we follow the same steps as the ones in Subsection <a href="baseband.html#sincfilter">3.2.3</a> for the derivation of the causal sinc filter, i.e., applying windowing for <span class="math inline">\(t\in[-NT,NT]\)</span> and a <span class="math inline">\(NT\)</span>-time-translation. Doing so, we get
+<span class="math display">\[p_+(t) = p(t-NT) \mathrm{rect}\left(\frac{t-NT}{2NT}\right)\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}P_+(f) &amp;= P(f)*2NT\mathrm{sinc}(2NTf)e^{-j2\pi f NT}.
+\end{aligned}\]</span>
+A further simplifcation of the above formulas is unnecessary because they have to be solved numerically anyway. The resulting impulse response <span class="math inline">\(p_+(t)\)</span> and the absolute value of its frequency response <span class="math inline">\(P_+(f)\)</span> are depicted in Figure <a href="baseband.html#fig:causalraisedcosinespectrum">3.17</a>. Again, the absolute value of the spectrum of the causal version is no longer the same than the one of the non-causal counterpart due to the windowing operation. However, the difference between both filter versions is less than in the case of the sinc filter because the raised-cosine filter converges more quickly to zero. Thus, the error by nulling values for <span class="math inline">\(t\notin[0,2NT]\)</span> is almost negligible.</p>
+<div class="figure" style="text-align: center"><span id="fig:causalraisedcosinespectrum"></span>
+<img src="kt_files/figure-html/causalraisedcosinespectrum-1.svg" alt="Impulse response $p_+(t)$ and and the absolute value of the frequency response $P_+(f)$ of a causal raised-cosine filter with $N=4$ and $\alpha=0.5$ in comparison to a non-causal raised-cosine filter" width="80%" />
+<p class="caption">
+Figure 3.17: Impulse response <span class="math inline">\(p_+(t)\)</span> and and the absolute value of the frequency response <span class="math inline">\(P_+(f)\)</span> of a causal raised-cosine filter with <span class="math inline">\(N=4\)</span> and <span class="math inline">\(\alpha=0.5\)</span> in comparison to a non-causal raised-cosine filter
+</p>
+</div>
+
+<div class="example">
+<span id="exm:exaraisedcosinesignal" class="example"><strong>Example 3.7  (Raised-Cosine Transmit Signal)  </strong></span>In this example, we plot the transmit signal <span class="math inline">\(s(t)\)</span> to the bit sequence
+<span class="math display">\[\begin{aligned}b[k] &amp;= 0\cdot\delta[k] + 1\cdot \delta[k-1] +
+0\cdot\delta[k-2] + 0\cdot\delta[k-3]\\ &amp;\phantom{=}+ 1\cdot\delta[k-4]+0\cdot\delta[k-5]+0\cdot\delta[k-6]\end{aligned}\]</span>
+from Example <a href="baseband.html#exm:exasymbolmapping">3.1</a> assuming causal raised-cosine pulse shaping with polar symbol mapping with <span class="math inline">\(N=4\)</span> and <span class="math inline">\(\alpha=0.5\)</span>. Again, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the symbol duration is <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>. The result is depicted in Figure <a href="baseband.html#fig:raisedcosinesignal">3.18</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:raisedcosinesignal"></span>
+<img src="kt_files/figure-html/raisedcosinesignal-1.svg" alt="Transmit signal $s(t)$ with causal raised-cosine pulse shaping ($N=4$ and $\alpha=0.5$) and polar symbol mapping" width="80%" />
+<p class="caption">
+Figure 3.18: Transmit signal <span class="math inline">\(s(t)\)</span> with causal raised-cosine pulse shaping (<span class="math inline">\(N=4\)</span> and <span class="math inline">\(\alpha=0.5\)</span>) and polar symbol mapping
+</p>
+</div>
+<p>Due to the time translation by <span class="math inline">\(NT\)</span> which is needed to obtain the causal raised-cosine filter, there is a time lag between the data signal <span class="math inline">\(d(t)\)</span> and the transmit signal <span class="math inline">\(s(t)\)</span>, which can be seen by comparing <span class="math inline">\(s(t)\)</span> and the time-shifted version <span class="math inline">\(d(t-NT)\)</span> of the data signal.</p>
+
+<div class="example">
+<span id="exm:exaraisedcosinespectrum" class="example"><strong>Example 3.8  (Raised-Cosine Transmit PSD)  </strong></span>In this example, we estimate the two-sided Power Sectral Density (PSD, see Appendix <a href="mathematical-basics.html#probability">E.4</a>) of a raised-cosine transmit signal with 500 equally distributed random bits based on a simulation with Python and compare it to its exact expression (cf. Equation <a href="baseband.html#eq:psd">(3.2)</a>)
+<span class="math display">\[\Phi_s(f)=TD^2\left|P_+(f)\right|^2.\]</span>
+Again, we assume causal pulse shaping with <span class="math inline">\(N=4\)</span> and <span class="math inline">\(\alpha=0.5\)</span>, polar symbol mapping, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the symbol duration is <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>. The code and result is depicted in Figure <a href="baseband.html#fig:raisedcosinespectrum">3.19</a>.
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="baseband.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="baseband.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal</span>
+<span id="cb4-3"><a href="baseband.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
+<span id="cb4-4"><a href="baseband.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-5"><a href="baseband.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="baseband.html#cb4-6" aria-hidden="true" tabindex="-1"></a>no_symbols <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb4-7"><a href="baseband.html#cb4-7" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1e-6</span></span>
+<span id="cb4-8"><a href="baseband.html#cb4-8" aria-hidden="true" tabindex="-1"></a>Ts <span class="op">=</span> <span class="fl">1e-7</span></span>
+<span id="cb4-9"><a href="baseband.html#cb4-9" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-10"><a href="baseband.html#cb4-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb4-11"><a href="baseband.html#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="baseband.html#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># raised-cosine spectrum</span></span>
+<span id="cb4-13"><a href="baseband.html#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> raised_cos_spec(f):</span>
+<span id="cb4-14"><a href="baseband.html#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(f)<span class="op">&lt;=</span>(<span class="dv">1</span><span class="op">-</span>alpha)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>T):</span>
+<span id="cb4-15"><a href="baseband.html#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb4-16"><a href="baseband.html#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">abs</span>(f)<span class="op">&gt;</span>(<span class="dv">1</span><span class="op">-</span>alpha)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>T) <span class="kw">and</span> <span class="bu">abs</span>(f)<span class="op">&lt;=</span>(<span class="dv">1</span><span class="op">+</span>alpha)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>T):</span>
+<span id="cb4-17"><a href="baseband.html#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">.5</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>np.sin((np.pi<span class="op">*</span>T<span class="op">/</span>alpha<span class="op">*</span>(<span class="bu">abs</span>(f)<span class="op">-</span><span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>T)))))</span>
+<span id="cb4-18"><a href="baseband.html#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span> </span>
+<span id="cb4-19"><a href="baseband.html#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="baseband.html#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># raised-cosine filter (limited to region from -NT to NT)</span></span>
+<span id="cb4-21"><a href="baseband.html#cb4-21" aria-hidden="true" tabindex="-1"></a>tn <span class="op">=</span> np.arange(<span class="op">-</span>N<span class="op">*</span>T, N<span class="op">*</span>T, Ts)<span class="op">;</span></span>
+<span id="cb4-22"><a href="baseband.html#cb4-22" aria-hidden="true" tabindex="-1"></a>raised_cos <span class="op">=</span> np.sinc(tn<span class="op">/</span>T)<span class="op">*</span>np.cos(alpha<span class="op">*</span>np.pi<span class="op">*</span>tn<span class="op">/</span>T)<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span><span class="dv">4</span><span class="op">*</span>(alpha<span class="op">*</span>tn<span class="op">/</span>T)<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb4-23"><a href="baseband.html#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="baseband.html#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># generate random raised-cosine signal</span></span>
+<span id="cb4-25"><a href="baseband.html#cb4-25" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(<span class="dv">0</span>, (no_symbols<span class="op">+</span><span class="dv">2</span><span class="op">*</span>N)<span class="op">*</span>T, Ts)<span class="op">;</span></span>
+<span id="cb4-26"><a href="baseband.html#cb4-26" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.random.choice([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], size<span class="op">=</span>(no_symbols,), p<span class="op">=</span>[<span class="fl">1.</span><span class="op">/</span><span class="dv">2</span>, <span class="fl">1.</span><span class="op">/</span><span class="dv">2</span>])</span>
+<span id="cb4-27"><a href="baseband.html#cb4-27" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.zeros((no_symbols,<span class="bu">int</span>(T<span class="op">/</span>Ts)))<span class="op">;</span></span>
+<span id="cb4-28"><a href="baseband.html#cb4-28" aria-hidden="true" tabindex="-1"></a>d[:,<span class="dv">0</span>] <span class="op">=</span> u<span class="op">;</span></span>
+<span id="cb4-29"><a href="baseband.html#cb4-29" aria-hidden="true" tabindex="-1"></a>d_padded <span class="op">=</span> np.reshape(d, no_symbols<span class="op">*</span><span class="bu">int</span>(T<span class="op">/</span>Ts))<span class="op">;</span></span>
+<span id="cb4-30"><a href="baseband.html#cb4-30" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.convolve(d_padded, raised_cos)<span class="op">;</span></span>
+<span id="cb4-31"><a href="baseband.html#cb4-31" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> t[<span class="dv">0</span>:<span class="bu">len</span>(s)]<span class="op">;</span></span>
+<span id="cb4-32"><a href="baseband.html#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="baseband.html#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># compute PSD</span></span>
+<span id="cb4-34"><a href="baseband.html#cb4-34" aria-hidden="true" tabindex="-1"></a>f, s_spec <span class="op">=</span> signal.welch(s, <span class="dv">1</span><span class="op">/</span>Ts, return_onesided<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-35"><a href="baseband.html#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="baseband.html#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># cut-out positive frequencies</span></span>
+<span id="cb4-37"><a href="baseband.html#cb4-37" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> f[<span class="dv">0</span>:<span class="bu">int</span>(f.size<span class="op">/</span><span class="dv">2</span>)]</span>
+<span id="cb4-38"><a href="baseband.html#cb4-38" aria-hidden="true" tabindex="-1"></a>s_spec <span class="op">=</span> s_spec[<span class="dv">0</span>:<span class="bu">int</span>(s_spec.size<span class="op">/</span><span class="dv">2</span>)]</span>
+<span id="cb4-39"><a href="baseband.html#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="baseband.html#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># compute exact PSD (convolution numerically computed)</span></span>
+<span id="cb4-41"><a href="baseband.html#cb4-41" aria-hidden="true" tabindex="-1"></a>f_theory <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>Ts),<span class="dv">1000</span>)</span>
+<span id="cb4-42"><a href="baseband.html#cb4-42" aria-hidden="true" tabindex="-1"></a>cspec <span class="op">=</span> np.zeros(<span class="bu">len</span>(f_theory))</span>
+<span id="cb4-43"><a href="baseband.html#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(f_theory)):</span>
+<span id="cb4-44"><a href="baseband.html#cb4-44" aria-hidden="true" tabindex="-1"></a>    cspec[i], err <span class="op">=</span> integrate.quad(<span class="kw">lambda</span> x: raised_cos_spec(f_theory[i]<span class="op">-</span>x)<span class="op">*</span>np.sinc(x<span class="op">*</span><span class="dv">2</span><span class="op">*</span>N<span class="op">*</span>T),f_theory[i]<span class="op">-</span>(<span class="dv">1</span><span class="op">+</span>alpha)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>T),f_theory[i]<span class="op">+</span>(<span class="dv">1</span><span class="op">+</span>alpha)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>T))</span>
+<span id="cb4-45"><a href="baseband.html#cb4-45" aria-hidden="true" tabindex="-1"></a>s_spec_theory <span class="op">=</span> T<span class="op">*</span><span class="bu">abs</span>(<span class="dv">2</span><span class="op">*</span>N<span class="op">*</span>T<span class="op">*</span>cspec)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-46"><a href="baseband.html#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="baseband.html#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb4-48"><a href="baseband.html#cb4-48" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.semilogy(f<span class="op">*</span><span class="fl">1e-6</span>, <span class="bu">abs</span>(s_spec), <span class="st">&#39;#114da1&#39;</span>, f_theory<span class="op">*</span><span class="fl">1e-6</span>, s_spec_theory, <span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb4-49"><a href="baseband.html#cb4-49" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;$f$ in MHz&#39;</span>)</span>
+<span id="cb4-50"><a href="baseband.html#cb4-50" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;in W/Hz&#39;</span>)</span>
+<span id="cb4-51"><a href="baseband.html#cb4-51" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb4-52"><a href="baseband.html#cb4-52" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb4-53"><a href="baseband.html#cb4-53" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb4-54"><a href="baseband.html#cb4-54" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="dv">0</span>,<span class="fl">4.5</span>)</span>
+<span id="cb4-55"><a href="baseband.html#cb4-55" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.ylim(<span class="fl">1e-16</span>,<span class="fl">2e-6</span>)</span>
+<span id="cb4-56"><a href="baseband.html#cb4-56" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.legend([<span class="vs">r&#39;Estimate $\hat{\Phi}_s(f)$&#39;</span>, <span class="vs">r&#39;Exact $\Phi_s(f)$&#39;</span>])</span>
+<span id="cb4-57"><a href="baseband.html#cb4-57" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-58"><a href="baseband.html#cb4-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:raisedcosinespectrum"></span>
+<img src="kt_files/figure-html/raisedcosinespectrum-1.svg" alt="Cut-out of the two-sided PSD of a random polar raised-cosine transmit signal" width="80%" />
+<p class="caption">
+Figure 3.19: Cut-out of the two-sided PSD of a random polar raised-cosine transmit signal
+</p>
+</div>
+
+<div class="exercise">
+<span id="exr:raisedcosine" class="exercise"><strong>Exercise 3.2  (Raised-Cosine Filter)  </strong></span>A raised-cosine filter has the cut-off frequencies <span class="math inline">\(f_1 = (1 - \alpha ) /(2T) = 12.4\,\mathrm{MHz}\)</span> and <span class="math inline">\(f_2 = (1 + \alpha ) /(2T) = 31.6\,\mathrm{MHz}\)</span>. Compute the roll-off factor <span class="math inline">\(\alpha\)</span>, the data rate <span class="math inline">\(1/T\)</span> and the (onesided) bandwidth <span class="math inline">\(B\)</span> of the filter.
+</div>
+<button class="popup" onclick="popup(&#39;raisedcosinesol&#39;)">
+Solution
+</button>
+<div id="raisedcosinesol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Raised-Cosine Filter). </span> The solution to Exercise <a href="baseband.html#exr:raisedcosine">3.2</a> is as follows:
+</div>
+<p><span class="math inline">\(f_1=(1-\alpha)\frac{1}{2T}=12.4\,\mathrm{MHz}\)</span><br>
+<span class="math inline">\(f_2=(1+\alpha)\frac{1}{2T}=31.6\,\mathrm{MHz}\)</span><br>
+Onesided bandwidth: <span class="math inline">\(B=f_2=31.6\,\mathrm{MHz}\)</span><br>
+Data rate: <span class="math inline">\(f_1+f_2=\frac{1}{T}=44.0\,\mathrm{MHz}\)</span><br>
+Roll-off factor: <span class="math inline">\(f_2-f_1=\alpha\frac{1}{T}=19.2\,\mathrm{MHz}\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\alpha=T(f_2-f_1)=0.436\)</span><br></p>
+</div>
+</div>
+<div id="gaussfilter" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Gaussian Filter</h3>
+<p>Finally, the <strong>Gaussian filter</strong> is neither time- nor band-limited and reads as
+<span class="math display">\[p(t) = \frac{1}{T}e^{-\pi\left(\frac{t}{\alpha T}\right)^2}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P(f) = \alpha e^{-\pi\left(\alpha T f\right)^2},\]</span>
+where <span class="math inline">\(\alpha\)</span> defines the timewidth of the filter, i.e., the smaller <span class="math inline">\(\alpha\)</span>, the more concentrated is the filter in the time domain.</p>
+<!-- TODO: Plot the Gaussian filter for different alphas-->
+<form class="quiz" data-correct="4">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+What pulse shaping filter is most commonly used in <strong>wireless</strong> communcations systems?
+</div>
+<input value="A. Rectangular filter"/>
+<input value="B. Gaussian filter"/>
+<input value="C. Sinc filter"/>
+<input value="D. Raised-cosine filter"/>
+</form>
+</div>
+</div>
+<div id="heisenberg" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Time-Bandwidth Product</h2>
+<p>With the definitions of the timewidth <span class="math inline">\(T_0\)</span> and bandwidth <span class="math inline">\(B_0\)</span> over the second moments
+<span class="math display">\[\begin{align*}
+T_0&amp;:=\sqrt{\frac{\int_{-\infty}^\infty t^2 g^2(t)dt}{\int_{-\infty}^\infty g^2(t)dt}}\ \mathrm{and}\\
+B_0&amp;:=\sqrt{\frac{\int_{-\infty}^\infty f^2 G^2(f)df}{\int_{-\infty}^\infty |P(f)|^2df}},
+\end{align*}\]</span>
+the time-bandwidth-product <span class="math inline">\(T_0B_0\)</span> is lower bounded by
+<span class="math display">\[\begin{equation*}
+T_0B_0\geq \frac{1}{4\pi},
+\end{equation*}\]</span>
+which is also denoted as the Heisenberg uncertainty principle of communications. In other words, a filter cannot simultaneously be time- and band-limited. The proof of this formula is omitted here. See,e.g., <span class="citation"><a href="references.html#ref-Proakis" role="doc-biblioref">Proakis</a> (<a href="references.html#ref-Proakis" role="doc-biblioref">2000</a>)</span> for further details.</p>
+</div>
+<div id="isi" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> First Nyquist Criterion</h2>
+<p>In this section, we discuss the problem of <strong>Inter-Symbol Interference</strong> (ISI, German: <em>Intersymbolinterferenz</em>), i.e., the effect that adjacent symbols interfere with each other, and how it can be avoided.First, we consider only the symmetric, i.e., non-causal, versions of pulse shaping filters. Then, at the end of this section, we explain how the obtained findings can be easily transferred to causal pulse shaping filters.</p>
+<p>As long as the pulse shaping filter is time-limited to the symbol duration <span class="math inline">\(T\)</span>, there is clearly no ISI. However, if the pulse shaping filter is not time-limited to <span class="math inline">\(T\)</span>, there is no ISI only as long as the transmitted signal <span class="math inline">\(s(t)\)</span> at the time <span class="math inline">\(t=iT\)</span>, <span class="math inline">\(i\in\mathbb{Z}\)</span>, solely depends on <span class="math inline">\(d[i]\)</span> and not on adjacent symbol <span class="math inline">\(d[i\pm 1]\)</span>, <span class="math inline">\(d[i\pm 2]\)</span>, <span class="math inline">\(\dots\)</span>. Mathematically speaking, it holds that
+<span class="math display" id="eq:isi">\[\begin{equation}
+s(i T) = d[i],\ \forall i\in\mathbb{Z}.
+\tag{3.4}
+\end{equation}\]</span>
+How does this requirement restrict <span class="math inline">\(p(t)\leftrightarrow P(f)\)</span>?</p>
+<p>Remember that <span class="math inline">\(s(t) = T\sum_{\ell=-\infty}^\infty d[\ell] p(t-\ell T)\)</span>. Sampling at <span class="math inline">\(t=i T\)</span>, <span class="math inline">\(i\in\mathbb{Z}\)</span>, yields
+<span class="math display" id="eq:sampledtx">\[\begin{equation}
+s(iT) = T\sum_{\ell=-\infty}^\infty d[\ell] p((i -\ell) T).
+\tag{3.5}
+\end{equation}\]</span>
+Equations <a href="baseband.html#eq:isi">(3.4)</a> and <a href="baseband.html#eq:sampledtx">(3.5)</a> are equal if the pulse shaping filter fulfills
+<span class="math display">\[\begin{equation*}
+p(iT) = \begin{cases}
+\frac{1}{T}, &amp; i=0,\\
+0, &amp; i\neq 0.
+\end{cases}
+\end{equation*}\]</span>
+An equivalent formulation leads to the first Nyquist criterion summarised in the following theorem.</p>
+
+<div class="theorem">
+<span id="thm:nyquist" class="theorem"><strong>Theorem 3.2  (First Nyquist Criterion)  </strong></span>To avoid ISI when transmitting with a symbol period of <span class="math inline">\(T\)</span>, the pulse shaping filter needs to be either time-limited to <span class="math inline">\(T\)</span> or its with the sampling rate <span class="math inline">\(1/T\)</span><a href="baseband.html#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>, also called the <strong>Nyquist rate</strong> (German: <em>Nyquist-Rate</em>), sampled version needs to fulfill
+<span class="math display">\[p_\mathrm{s}(t) = p(t)\cdot T\sum_{n=-\infty}^\infty \delta(t-n T) = \delta(t)\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[P_\mathrm{s}(f) = \sum_{k=-\infty}^\infty P\left(f-\frac{k}{T}\right)=1,\]</span>
+i.e., the by multiples of <span class="math inline">\(1/T\)</span> shifted spectra add up to a constant.
+</div>
+
+<div class="example">
+<p><span id="exm:isi" class="example"><strong>Example 3.9  (Pulse shaping filters with or without ISI)  </strong></span>Assuming a symbol duration of <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span>, the following pulses are examples for pulses which are not fulfilling the first Nyquist criterion, i.e., they result in ISI (cf. Appendices <a href="important-functions.html#rect">D.1</a> and <a href="important-functions.html#sinc">D.2</a> for the definition of the rectangular and sinc function):</p>
+<ul>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{rect}(t/3\,\mu\mathrm{s})\)</span>,</li>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{sinc}(t/2\,\mu\mathrm{s})\)</span> and</li>
+<li>any Gaussian pulse (e.g., <span class="math inline">\(\alpha=2\)</span> as used in Figure <a href="baseband.html#fig:isifilters">3.20</a>),</li>
+</ul>
+which can be easily verified by considering the with the sampling period <span class="math inline">\(T\)</span> sampled versions <span class="math inline">\(p_\mathrm{s}(t)\)</span> in Figure <a href="baseband.html#fig:isifilters">3.20</a> which is clearly unequal to <span class="math inline">\(\delta(t)\)</span>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:isifilters"></span>
+<img src="kt_files/figure-html/isifilters-1.svg" alt="Examples of pulse shaping filters with ISI" width="80%" />
+<p class="caption">
+Figure 3.20: Examples of pulse shaping filters with ISI
+</p>
+</div>
+<p>Contrary to that, the following pulses are examples for ISI-free pulses with <span class="math inline">\(p_\mathrm{s}(t)=\delta(t)\)</span> as can be seen in Figure <a href="baseband.html#fig:noisifilters">3.21</a>:</p>
+<ul>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{rect}(t/1.5\,\mu\mathrm{s})\)</span>,</li>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{sinc}(kt/1\,\mu\mathrm{s})\)</span>, <span class="math inline">\(k\in\mathbb{N}\)</span> (e.g., <span class="math inline">\(k=2\)</span> as used in Figure <a href="baseband.html#fig:isifilters">3.20</a>) and</li>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{rect}(t/T_g)\)</span>, <span class="math inline">\(T_g\leq1\,\mu\mathrm{s}\)</span> (e.g., <span class="math inline">\(T_g=500\,\mathrm{ns}\)</span> as used in Figure <a href="baseband.html#fig:isifilters">3.20</a>).</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:noisifilters"></span>
+<img src="kt_files/figure-html/noisifilters-1.svg" alt="Examples of pulse shaping filters without ISI" width="80%" />
+<p class="caption">
+Figure 3.21: Examples of pulse shaping filters without ISI
+</p>
+</div>
+<p>It can be seen that not only the type of pulse shaping filter but also the chosen symbol duration <span class="math inline">\(T\)</span> is important for avoiding ISI.</p>
+<!-- TODO: ISI-free pulse shaping in case of non-ideal channel -->
+
+<div class="exercise">
+<span id="exr:isisignals" class="exercise"><strong>Exercise 3.3  (Nyquist Spectra and Signals)  </strong></span>Plot for each of the filters in the Example <a href="baseband.html#exm:isi">3.9</a> the spectrum
+<span class="math display">\[P_\text{s}(f)=\sum_{k=-\infty}^\infty G\left(f-\frac{k}{T}\right),\]</span>
+as well as the transmit signal
+<span class="math display">\[s(t)= T\sum_{\ell=-\infty}^\infty d[\ell] p(t-\ell T),\]</span>
+assuming a symbol duration of <span class="math inline">\(T=1\,\mu\mathrm{s}\)</span> and the symbol sequence
+<span class="math display">\[\begin{aligned}d[\ell] &amp;= \delta[\ell] +\delta[\ell-1] - \delta[\ell-2]- \delta[\ell-3] -\delta[\ell-4]\\
+&amp;\phantom{=}+\delta[\ell-5]-\delta[\ell-6].\end{aligned}\]</span>
+Use Python if you are interested in exact drawings, otherwise a qualitative sketch of the graphs is sufficient.
+</div>
+<button class="popup" onclick="popup(&#39;isisignalssol&#39;)">
+Solution
+</button>
+<div id="isisignalssol" class="popupsolution">
+
+<div class="solution">
+<p> <span class="solution"><em>Solution</em> (Nyquist Spectra and Signals). </span> Let us first consider the pulse shaping filters with ISI. With the frequency responses (cf. Subsections <a href="baseband.html#rectfilter">3.2.1</a>, <a href="baseband.html#sincfilter">3.2.3</a>, <a href="baseband.html#gaussfilter">3.2.5</a> and Theorem <a href="mathematical-basics.html#thm:fourier">E.1</a>)</p>
+<ul>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{rect}(t/3\,\mu\mathrm{s})\)</span> <span class="math inline">\(\leftrightarrow\)</span>
+<span class="math inline">\(P(f)=3\mathrm{sinc}(3\,\mu\mathrm{s}\cdot f)\)</span>,</li>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{sinc}(t/2\,\mu\mathrm{s})\)</span> <span class="math inline">\(\leftrightarrow\)</span>
+<span class="math inline">\(P(f)=2\mathrm{rect}(2\,\mu\mathrm{s}\cdot f)\)</span> and</li>
+<li><span class="math inline">\(p(t)=1\,\mathrm{MHz}\cdot\mathrm{exp}(-\pi(t/2\,\mu\mathrm{s})^2)\)</span> $<span class="math inline">\(P(f)=2e^{-\pi(2\,\mu\mathrm{s}\cdot f)^2}\)</span>,</li>
+</ul>
+of the pulse shaping filters, the Nyquist spectra <span class="math inline">\(P_\mathrm{s}(f)\)</span> compute as depicted in Figure <a href="baseband.html#fig:isispectrum">3.22</a> by the following Python code. We clearly see that the shifted versions <span class="math inline">\(P(f-k/T)\)</span> (red dashed lines) do not add up to one, i.e., <span class="math inline">\(P_\mathrm{s}(f)\neq 1\)</span>, and the first Nyquist criterion is not fulfilled.
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="baseband.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="baseband.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="baseband.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="baseband.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># symbol duration</span></span>
+<span id="cb5-5"><a href="baseband.html#cb5-5" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="fl">1e-6</span></span>
+<span id="cb5-6"><a href="baseband.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># number of shifted replica which are added up</span></span>
+<span id="cb5-7"><a href="baseband.html#cb5-7" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">50</span> </span>
+<span id="cb5-8"><a href="baseband.html#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="baseband.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># rectangular function</span></span>
+<span id="cb5-10"><a href="baseband.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rect(x):</span>
+<span id="cb5-11"><a href="baseband.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> np.where(<span class="bu">abs</span>(x)<span class="op">&lt;=</span><span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb5-12"><a href="baseband.html#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="baseband.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># frequency</span></span>
+<span id="cb5-14"><a href="baseband.html#cb5-14" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">2.5e6</span>, <span class="fl">2.5e6</span>, <span class="dv">1000</span>)</span>
+<span id="cb5-15"><a href="baseband.html#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="baseband.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># plot output</span></span>
+<span id="cb5-17"><a href="baseband.html#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="fl">7.5</span>))</span>
+<span id="cb5-18"><a href="baseband.html#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="baseband.html#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># first pulse shaping filter</span></span>
+<span id="cb5-20"><a href="baseband.html#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb5-21"><a href="baseband.html#cb5-21" aria-hidden="true" tabindex="-1"></a>Ps <span class="op">=</span> np.zeros(<span class="bu">len</span>(f))</span>
+<span id="cb5-22"><a href="baseband.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span>N,N):</span>
+<span id="cb5-23"><a href="baseband.html#cb5-23" aria-hidden="true" tabindex="-1"></a>  P_shifted <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>np.sinc(<span class="fl">3e-6</span><span class="op">*</span>(f<span class="op">-</span>k<span class="op">/</span>T))</span>
+<span id="cb5-24"><a href="baseband.html#cb5-24" aria-hidden="true" tabindex="-1"></a>  dummy <span class="op">=</span> plt.plot(f<span class="op">*</span>T, P_shifted, <span class="st">&#39;--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb5-25"><a href="baseband.html#cb5-25" aria-hidden="true" tabindex="-1"></a>  Ps <span class="op">=</span> Ps <span class="op">+</span> P_shifted</span>
+<span id="cb5-26"><a href="baseband.html#cb5-26" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(f<span class="op">*</span>T, Ps, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb5-27"><a href="baseband.html#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$f$ in MHz&#39;</span>)</span>
+<span id="cb5-28"><a href="baseband.html#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r&#39;$P_\mathrm</span><span class="sc">{s}</span><span class="vs">(f)$ for $p(t)=1\,\mathrm</span><span class="sc">{MHz}</span><span class="vs">\cdot\mathrm</span><span class="sc">{rect}</span><span class="vs">(t/3\,\mu\mathrm</span><span class="sc">{s}</span><span class="vs">)$&#39;</span>)</span>
+<span id="cb5-29"><a href="baseband.html#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb5-30"><a href="baseband.html#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb5-31"><a href="baseband.html#cb5-31" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb5-32"><a href="baseband.html#cb5-32" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="op">-</span><span class="fl">2.5</span>,<span class="fl">2.5</span>)</span>
+<span id="cb5-33"><a href="baseband.html#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="baseband.html#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># second pulse shaping filter</span></span>
+<span id="cb5-35"><a href="baseband.html#cb5-35" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb5-36"><a href="baseband.html#cb5-36" aria-hidden="true" tabindex="-1"></a>Ps <span class="op">=</span> np.zeros(<span class="bu">len</span>(f))</span>
+<span id="cb5-37"><a href="baseband.html#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span>N,N):</span>
+<span id="cb5-38"><a href="baseband.html#cb5-38" aria-hidden="true" tabindex="-1"></a>  P_shifted <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>rect(<span class="fl">2e-6</span><span class="op">*</span>(f<span class="op">-</span>k<span class="op">/</span>T))</span>
+<span id="cb5-39"><a href="baseband.html#cb5-39" aria-hidden="true" tabindex="-1"></a>  dummy <span class="op">=</span> plt.plot(f<span class="op">*</span>T, P_shifted, <span class="st">&#39;--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb5-40"><a href="baseband.html#cb5-40" aria-hidden="true" tabindex="-1"></a>  Ps <span class="op">=</span> Ps <span class="op">+</span> P_shifted</span>
+<span id="cb5-41"><a href="baseband.html#cb5-41" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(f<span class="op">*</span>T, Ps, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb5-42"><a href="baseband.html#cb5-42" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$f$ in MHz&#39;</span>)</span>
+<span id="cb5-43"><a href="baseband.html#cb5-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r&#39;$P_\mathrm</span><span class="sc">{s}</span><span class="vs">(f)$ for $p(t)=1\,\mathrm</span><span class="sc">{MHz}</span><span class="vs">\cdot\mathrm</span><span class="sc">{sinc}</span><span class="vs">(t/2\,\mu\mathrm</span><span class="sc">{s}</span><span class="vs">)$&#39;</span>)</span>
+<span id="cb5-44"><a href="baseband.html#cb5-44" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb5-45"><a href="baseband.html#cb5-45" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb5-46"><a href="baseband.html#cb5-46" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb5-47"><a href="baseband.html#cb5-47" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="op">-</span><span class="fl">2.5</span>,<span class="fl">2.5</span>)</span>
+<span id="cb5-48"><a href="baseband.html#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="baseband.html#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co"># third pulse shaping filter</span></span>
+<span id="cb5-50"><a href="baseband.html#cb5-50" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb5-51"><a href="baseband.html#cb5-51" aria-hidden="true" tabindex="-1"></a>Ps <span class="op">=</span> np.zeros(<span class="bu">len</span>(f))</span>
+<span id="cb5-52"><a href="baseband.html#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span>N,N):</span>
+<span id="cb5-53"><a href="baseband.html#cb5-53" aria-hidden="true" tabindex="-1"></a>  P_shifted <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>(<span class="fl">2e-6</span><span class="op">*</span>(f<span class="op">-</span>k<span class="op">/</span>T))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-54"><a href="baseband.html#cb5-54" aria-hidden="true" tabindex="-1"></a>  dummy <span class="op">=</span> plt.plot(f<span class="op">*</span>T, P_shifted, <span class="st">&#39;--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb5-55"><a href="baseband.html#cb5-55" aria-hidden="true" tabindex="-1"></a>  Ps <span class="op">=</span> Ps <span class="op">+</span> P_shifted</span>
+<span id="cb5-56"><a href="baseband.html#cb5-56" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(f<span class="op">*</span>T, Ps, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb5-57"><a href="baseband.html#cb5-57" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$f$ in MHz&#39;</span>)</span>
+<span id="cb5-58"><a href="baseband.html#cb5-58" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r&#39;$P_\mathrm</span><span class="sc">{s}</span><span class="vs">(f)$ for $p(t)=1\,\mathrm</span><span class="sc">{MHz}</span><span class="vs">\cdot\mathrm</span><span class="sc">{exp}</span><span class="vs">(-\pi(t/2\,\mu\mathrm</span><span class="sc">{s}</span><span class="vs">)^2)$&#39;</span>)</span>
+<span id="cb5-59"><a href="baseband.html#cb5-59" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb5-60"><a href="baseband.html#cb5-60" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb5-61"><a href="baseband.html#cb5-61" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb5-62"><a href="baseband.html#cb5-62" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="op">-</span><span class="fl">2.5</span>,<span class="fl">2.5</span>)</span>
+<span id="cb5-63"><a href="baseband.html#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-64"><a href="baseband.html#cb5-64" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-65"><a href="baseband.html#cb5-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:isispectrum"></span>
+<img src="kt_files/figure-html/isispectrum-1.svg" alt="Spectra $P_\mathrm{s}(f)$ (blue line) of pulse shaping filters with ISI" width="80%" />
+<p class="caption">
+Figure 3.22: Spectra <span class="math inline">\(P_\mathrm{s}(f)\)</span> (blue line) of pulse shaping filters with ISI
+</p>
+</div>
+<p>The following code generates Figure <a href="baseband.html#fig:isisignal">3.23</a> showing the transmit signal <span class="math inline">\(s(t)\)</span> for the pulse shaping filters with ISI as a blue line. The red dots represent the data values <span class="math inline">\(d[i]\)</span> and the red dashed lines the weighted and shifted impulse responses <span class="math inline">\(d[\ell]p(t-\ell/T)\)</span> which add up to <span class="math inline">\(s(t)\)</span>. Due to severe ISI in this case, the data cannot be reconstructed from the transmit signal even if there is no noise which is usually present in a communications system. This is a direct consequence once the first Nyquist criterion is not fulfilled.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="baseband.html#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="baseband.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="baseband.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-4"><a href="baseband.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="baseband.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># symbol duration</span></span>
+<span id="cb6-6"><a href="baseband.html#cb6-6" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="fl">1e-6</span></span>
+<span id="cb6-7"><a href="baseband.html#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="baseband.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># rectangular function</span></span>
+<span id="cb6-9"><a href="baseband.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rect(x):</span>
+<span id="cb6-10"><a href="baseband.html#cb6-10" aria-hidden="true" tabindex="-1"></a> <span class="cf">return</span> np.where(<span class="bu">abs</span>(x)<span class="op">&lt;=</span><span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb6-11"><a href="baseband.html#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="baseband.html#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># time</span></span>
+<span id="cb6-13"><a href="baseband.html#cb6-13" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">0.5e-6</span>, <span class="fl">6.5e-6</span>, <span class="dv">1000</span>)</span>
+<span id="cb6-14"><a href="baseband.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="baseband.html#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># data signal</span></span>
+<span id="cb6-16"><a href="baseband.html#cb6-16" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb6-17"><a href="baseband.html#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="baseband.html#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># plot output</span></span>
+<span id="cb6-19"><a href="baseband.html#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>,<span class="fl">7.5</span>))</span>
+<span id="cb6-20"><a href="baseband.html#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="baseband.html#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># first pulse shaping filter</span></span>
+<span id="cb6-22"><a href="baseband.html#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb6-23"><a href="baseband.html#cb6-23" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.zeros(<span class="bu">len</span>(t))</span>
+<span id="cb6-24"><a href="baseband.html#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>):</span>
+<span id="cb6-25"><a href="baseband.html#cb6-25" aria-hidden="true" tabindex="-1"></a> p_shifted <span class="op">=</span> d[l]<span class="op">*</span>rect((t<span class="op">-</span>l<span class="op">*</span>T)<span class="op">/</span><span class="fl">3e-6</span>)</span>
+<span id="cb6-26"><a href="baseband.html#cb6-26" aria-hidden="true" tabindex="-1"></a> dummy <span class="op">=</span> plt.plot(t<span class="op">/</span>T, p_shifted, <span class="st">&#39;--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb6-27"><a href="baseband.html#cb6-27" aria-hidden="true" tabindex="-1"></a> s <span class="op">=</span> s <span class="op">+</span> p_shifted</span>
+<span id="cb6-28"><a href="baseband.html#cb6-28" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>), d, <span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb6-29"><a href="baseband.html#cb6-29" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(t<span class="op">/</span>T, s, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb6-30"><a href="baseband.html#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$t$ in $\mu$s&#39;</span>)</span>
+<span id="cb6-31"><a href="baseband.html#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r&#39;$s(t)$ for $p(t)=1\,\mathrm</span><span class="sc">{MHz}</span><span class="vs">\cdot\mathrm</span><span class="sc">{rect}</span><span class="vs">(t/3\,\mu\mathrm</span><span class="sc">{s}</span><span class="vs">)$&#39;</span>)</span>
+<span id="cb6-32"><a href="baseband.html#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb6-33"><a href="baseband.html#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb6-34"><a href="baseband.html#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb6-35"><a href="baseband.html#cb6-35" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="op">-</span><span class="fl">0.5</span>,<span class="fl">6.5</span>)</span>
+<span id="cb6-36"><a href="baseband.html#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="baseband.html#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># second pulse shaping filter</span></span>
+<span id="cb6-38"><a href="baseband.html#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb6-39"><a href="baseband.html#cb6-39" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.zeros(<span class="bu">len</span>(t))</span>
+<span id="cb6-40"><a href="baseband.html#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>):</span>
+<span id="cb6-41"><a href="baseband.html#cb6-41" aria-hidden="true" tabindex="-1"></a> p_shifted <span class="op">=</span> d[l]<span class="op">*</span>np.sinc((t<span class="op">-</span>l<span class="op">*</span>T)<span class="op">/</span><span class="fl">2e-6</span>)</span>
+<span id="cb6-42"><a href="baseband.html#cb6-42" aria-hidden="true" tabindex="-1"></a> dummy <span class="op">=</span> plt.plot(t<span class="op">/</span>T, p_shifted, <span class="st">&#39;--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb6-43"><a href="baseband.html#cb6-43" aria-hidden="true" tabindex="-1"></a> s <span class="op">=</span> s <span class="op">+</span> p_shifted</span>
+<span id="cb6-44"><a href="baseband.html#cb6-44" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>), d, <span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb6-45"><a href="baseband.html#cb6-45" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(t<span class="op">/</span>T, s, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb6-46"><a href="baseband.html#cb6-46" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$t$ in $\mu$s&#39;</span>)</span>
+<span id="cb6-47"><a href="baseband.html#cb6-47" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r&#39;$s(t)$ for $p(t)=1\,\mathrm</span><span class="sc">{MHz}</span><span class="vs">\cdot\mathrm</span><span class="sc">{sinc}</span><span class="vs">(t/2\,\mu\mathrm</span><span class="sc">{s}</span><span class="vs">)$&#39;</span>)</span>
+<span id="cb6-48"><a href="baseband.html#cb6-48" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb6-49"><a href="baseband.html#cb6-49" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb6-50"><a href="baseband.html#cb6-50" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb6-51"><a href="baseband.html#cb6-51" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="op">-</span><span class="fl">0.5</span>,<span class="fl">6.5</span>)</span>
+<span id="cb6-52"><a href="baseband.html#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="baseband.html#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co"># third pulse shaping filter</span></span>
+<span id="cb6-54"><a href="baseband.html#cb6-54" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb6-55"><a href="baseband.html#cb6-55" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.zeros(<span class="bu">len</span>(t))</span>
+<span id="cb6-56"><a href="baseband.html#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>):</span>
+<span id="cb6-57"><a href="baseband.html#cb6-57" aria-hidden="true" tabindex="-1"></a> p_shifted <span class="op">=</span> d[l]<span class="op">*</span>np.exp(<span class="op">-</span>np.pi<span class="op">*</span>((t<span class="op">-</span>l<span class="op">*</span>T)<span class="op">/</span><span class="fl">2e-6</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-58"><a href="baseband.html#cb6-58" aria-hidden="true" tabindex="-1"></a> dummy <span class="op">=</span> plt.plot(t<span class="op">/</span>T, p_shifted, <span class="st">&#39;--&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb6-59"><a href="baseband.html#cb6-59" aria-hidden="true" tabindex="-1"></a> s <span class="op">=</span> s <span class="op">+</span> p_shifted</span>
+<span id="cb6-60"><a href="baseband.html#cb6-60" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>), d, <span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;#b33333&#39;</span>)</span>
+<span id="cb6-61"><a href="baseband.html#cb6-61" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.plot(t<span class="op">/</span>T, s, color<span class="op">=</span><span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb6-62"><a href="baseband.html#cb6-62" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r&#39;$t$ in $\mu$s&#39;</span>)</span>
+<span id="cb6-63"><a href="baseband.html#cb6-63" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r&#39;$s(t)$ for $p(t)=1\,\mathrm</span><span class="sc">{MHz}</span><span class="vs">\cdot\mathrm</span><span class="sc">{exp}</span><span class="vs">(-\pi(t/2\,\mu\mathrm</span><span class="sc">{s}</span><span class="vs">)^2)$&#39;</span>)</span>
+<span id="cb6-64"><a href="baseband.html#cb6-64" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb6-65"><a href="baseband.html#cb6-65" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb6-66"><a href="baseband.html#cb6-66" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb6-67"><a href="baseband.html#cb6-67" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="op">-</span><span class="fl">0.5</span>,<span class="fl">6.5</span>)</span>
+<span id="cb6-68"><a href="baseband.html#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-69"><a href="baseband.html#cb6-69" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-70"><a href="baseband.html#cb6-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:isisignal"></span>
+<img src="kt_files/figure-html/isisignal-1.svg" alt="Transmit signal $s(t)$ (blue line) for different pulse shaping filters with ISI" width="80%" />
+<p class="caption">
+Figure 3.23: Transmit signal <span class="math inline">\(s(t)\)</span> (blue line) for different pulse shaping filters with ISI
+</p>
+</div>
+<p>Next, we consider the ISI-free pulse shaping filters. With the frequency responses (cf. Subsections <a href="baseband.html#rectfilter">3.2.1</a>, <a href="baseband.html#sincfilter">3.2.3</a> and Theorem <a href="mathematical-basics.html#thm:fourier">E.1</a>)</p>
+<ul>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{rect}(t/1.5\,\mu\mathrm{s})\)</span> <span class="math inline">\(\leftrightarrow\)</span>
+<span class="math inline">\(P(f)=1.5\mathrm{sinc}(1.5\,\mu\mathrm{s}\cdot f)\)</span>,</li>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{sinc}(2t/1\,\mu\mathrm{s})\)</span> <span class="math inline">\(\leftrightarrow\)</span>
+<span class="math inline">\(P(f)=0.5\mathrm{rect}(0.5\,\mu\mathrm{s}\cdot f)\)</span> and</li>
+<li><span class="math inline">\(p(t) = 1\,\mathrm{MHz}\cdot\mathrm{rect}(t/0.5\,\mu\mathrm{s})\)</span> <span class="math inline">\(\leftrightarrow\)</span>
+<span class="math inline">\(P(f)=0.5\mathrm{sinc}(0.5\,\mu\mathrm{s}\cdot f)\)</span>,</li>
+</ul>
+<p>of the pulse shaping filters, the Nyquist spectra <span class="math inline">\(P_\mathrm{s}(f)\)</span> compute as depicted in Figure <a href="baseband.html#fig:isispectrum">3.22</a>. Note that we omit the Python code for the remainder of this exercise because it is the same as for the case with ISI except for the different pulse shaping filters and frequency responses. Here, the shifted versions <span class="math inline">\(P(f-k/T)\)</span> (red dashed lines) add up to one, i.e., <span class="math inline">\(P_\mathrm{s}(f)= 1\)</span>, and the frequency domain version of the first Nyquist criterion is fulfilled.</p>
+<div class="figure" style="text-align: center"><span id="fig:noisispectrum"></span>
+<img src="kt_files/figure-html/noisispectrum-1.svg" alt="Spectra $P_\mathrm{s}(f)$ (blue line) of pulse shaping filters without ISI" width="80%" />
+<p class="caption">
+Figure 3.24: Spectra <span class="math inline">\(P_\mathrm{s}(f)\)</span> (blue line) of pulse shaping filters without ISI
+</p>
+</div>
+<p>Finally, Figure <a href="baseband.html#fig:noisisignal">3.25</a> shows the transmit signal <span class="math inline">\(s(t)\)</span> for pulse shaping filters without ISI as a blue line. Again, the red dots represent the data values <span class="math inline">\(d[i]\)</span> and the red dashed lines the weighted and shifted impulse responses <span class="math inline">\(d[\ell]p(t-\ell/T)\)</span> which add up to <span class="math inline">\(s(t)\)</span>. Although the pulse shaping filters still overlap for some cases, the red dots lie on the blue lines, i.e., <span class="math inline">\(s(i T)=d[i]\)</span>, <span class="math inline">\(i\in\mathbb{Z}\)</span>, and the time domain version of the first Nyquist criterion is fulfilled.</p>
+<div class="figure" style="text-align: center"><span id="fig:noisisignal"></span>
+<img src="kt_files/figure-html/noisisignal-1.svg" alt="Transmit signal $s(t)$ (blue line) for different pulse shaping filters without ISI" width="80%" />
+<p class="caption">
+Figure 3.25: Transmit signal <span class="math inline">\(s(t)\)</span> (blue line) for different pulse shaping filters without ISI
+</p>
+</div>
+</div>
+
+<div class="exercise">
+<p><span id="exr:exenyquist" class="exercise"><strong>Exercise 3.4  (Nyquist Criterion)  </strong></span>Which of the following pulse shaping filters fulfill the first Nyquist criterion and what is the largest Nyquist rate in this case?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Rectangular filter of length <span class="math inline">\(T\)</span>,</li>
+<li>Manchester code of length <span class="math inline">\(T\)</span>,</li>
+<li>Sinc filter with first zero at <span class="math inline">\(t=T\)</span>,</li>
+<li>Raised-cosine filter with first zero at <span class="math inline">\(t=T\)</span>,</li>
+<li>Gaussian filter,</li>
+<li>Filter with the trapezoidal spectrum as depicted in Figure <a href="baseband.html#fig:trapezspectrum">3.26</a> and</li>
+<li>Filter with the parabola spectrum as depicted in Figure <a href="baseband.html#fig:parabolaspectrum">3.27</a>.
+</div></li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:trapezspectrum"></span>
+<img src="kt_files/figure-html/trapezspectrum-1.svg" alt="Trapezoidal spectrum" width="80%" />
+<p class="caption">
+Figure 3.26: Trapezoidal spectrum
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:parabolaspectrum"></span>
+<img src="kt_files/figure-html/parabolaspectrum-1.svg" alt="Parabola spectrum" width="80%" />
+<p class="caption">
+Figure 3.27: Parabola spectrum
+</p>
+</div>
+<button class="popup" onclick="popup(&#39;nyquistsol&#39;)">
+Solution
+</button>
+<div id="nyquistsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Nyquist Criterion). </span> The solution to Exercise <a href="baseband.html#exr:exenyquist">3.4</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>The rectangular filter fulfills the first Nyquist criterion because it is time-limited to <span class="math inline">\(T\)</span>. The Nyquist rate is <span class="math inline">\(\frac{1}{T}\)</span>.</li>
+<li>The Manchester code fulfills the first Nyquist criterion because it is time-limited to <span class="math inline">\(T\)</span>. The Nyquist rate is <span class="math inline">\(\frac{1}{T}\)</span>.</li>
+<li>The sinc filter fulfills the first Nyquist criterion because it is zero at <span class="math inline">\(t=iT\)</span>, <span class="math inline">\(i\in\mathbb{Z}\)</span>, or because the periodic replica of the spectrum sum up to one. The Nyquist rate is <span class="math inline">\(\frac{1}{T}\)</span>.</li>
+<li>The raised-cosine filter fulfills the first Nyquist criterion because it is zero at <span class="math inline">\(t=iT\)</span>, <span class="math inline">\(i\in\mathbb{Z}\)</span>, or because the periodic replica of the spectrum sum up to one. The Nyquist rate is <span class="math inline">\(\frac{1}{T}\)</span>.</li>
+<li>The Gaussian filter does not fulfill the first Nyquist criterion because it is not zero at <span class="math inline">\(t=iT\)</span>, <span class="math inline">\(i\in\mathbb{Z}\)</span>, and the periodic replica of the spectrum do not sum up to one.</li>
+<li>The filter to the corresponding trapezoidal spectrum fulfills the first Nyquist criterion because the periodic replica of the spectrum sum up to one if the Nyquist rate is chosen to be <span class="math inline">\(\frac{1}{T}=2B(1-\frac{\alpha}{2})\)</span>.</li>
+<li>The filter to the corresponding parabol spectrum does not fulfill the first Nyquist criterion because there exists no Nyquist rate for which the periodic replica of the spectrum sum up to one.</li>
+</ol>
+</div>
+<p>So far, we only considered symmetric, i.e., non-causal, pulse shaping filters in this section. However, all findings also hold for the causal versions thereof if we introduce a time lag. In this case, the first Nyquist criterion reads as
+<span class="math display">\[p_s(t)=\delta(t-T/2)\]</span>
+if the filter is time-limited, i.e., unequal to zero only for <span class="math inline">\(t\in[0,T]\)</span>, or
+<span class="math display">\[p_s(t)=\delta(t-NT)\]</span>
+if it is band-limited and where windowing to <span class="math inline">\([-NT,NT]\)</span> and <span class="math inline">\(NT\)</span>-time-shifting has been applied. The first Nyquist criterion in the frequency domain is still that the spectrum <span class="math inline">\(P_\mathrm{s}(f)\)</span> needs to be constant but this constant is now generally complex-valued.</p>
+</div>
+<div id="eyediagram" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Eye Diagram</h2>
+<p>The <strong>eye diagram</strong> (German: <em>Augendiagramm</em>) visualises ISI of a transmit signal. To do so, a modulo operation is applied to the time axis which is realised via adjusting the sweep of the oscilloscope to fit exactly two symbol durations and to turn on persistence afterglow (German: <em>Nachleuchten</em>). The transmitted data is chosen to be random, thus, many possible impulse response combinations are overlayed in the diagram. The result is depicted in Figure <a href="baseband.html#fig:eyediagram">3.28</a> for the example of polar symbol mapping with <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and pulse shaping with a sinc filter. At <span class="math inline">\(t=T\)</span>, it can be seen that there occurs no ISI in this case because the <strong>vertical eye size</strong> <span class="math inline">\(A_\text{v}\)</span> (German: <em>vertikale Augenöffnung</em>) is maximally opened, i.e., <span class="math inline">\(A_\text{v}=2D=2\sqrt{\mathrm{W}}\)</span>. In cases where <span class="math inline">\(A_\text{v}&lt;2D\)</span>, the eye starts to close, i.e., ISI occurs and there might be transmission errors in case of noise. If the eye is completely closed, i.e., <span class="math inline">\(A_\text{v}=0\)</span>, ISI is so severe that bit errors occur even without noise. In Figure <a href="baseband.html#fig:eyediagram">3.28</a>, compared to the vertical eye size being maximally open, the <strong>horizontal eye size</strong> <span class="math inline">\(T_\text{h}\)</span> (German: <em>horizontale Augenöffnung</em>) is reduced, i.e. <span class="math inline">\(T_\text{h}&lt;T\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:eyediagram"></span>
+<img src="kt_files/figure-html/eyediagram-1.svg" alt="Example of an eye diagram of a transmit signal with polar symbol mapping ($D=1\sqrt{\mathrm{W}}$) and a sinc pulse shaping filter" width="80%" />
+<p class="caption">
+Figure 3.28: Example of an eye diagram of a transmit signal with polar symbol mapping (<span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span>) and a sinc pulse shaping filter
+</p>
+</div>
+<p>To sum up, the eye diagram can be described by the following properties which are listed in the following together with their consequences:</p>
+<ul>
+<li><strong>Vertical eye size</strong>: The larger <span class="math inline">\(A_\text{v}\)</span>, the smaller the number of errors due to noise.</li>
+<li><strong>Horizontal eye size</strong>: The larger <span class="math inline">\(T_\text{h}\)</span>, the smaller the effects of phase shifts of the clock signal.</li>
+<li><strong>Slope</strong> (German: <em>Flanke</em>): The steeper the eye around the sampling point, the larger is the sensitivity to phase noise (jitter, German: <em>Phasenrauschen</em>) of the clock signal (German: <em>Taktsignal</em>).</li>
+</ul>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-26" class="example"><strong>Example 3.10  (Eye Diagram GNU Radio Simulation)  </strong></span>The following GNU Radio simulation shows the eye diagram of a transmit signal with polar symbol mapping and a sinc pulse shaping filter.<a href="baseband.html#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>
+It can be seen that even if the eye is vertically completely open, additional noise closes the eye and leads to an erroneous transmission. This effect will be further discussed in Chapter <a href="noise.html#noise">4</a>.</p>
+</div>
+<figure style="text-align:center;margin-bottom:10px">
+<video width="80%" controls>
+<source src="media/eyediagram.mp4" type="video/mp4">
+</video>
+</figure>
+<form class="quiz" data-correct="2" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+How does additional noise change the eye diagram?
+</div>
+<input value="A. The eye opens."/>
+<input value="B. The eye closes."/>
+<input value="C. Only the horizontal eye size decreases."/>
+<input value="D. Only the vertical eye size increases."/>
+</form>
+
+<div class="exercise">
+<span id="exr:triangulareye" class="exercise"><strong>Exercise 3.5  (Eye Diagram of Triangular Filter)  </strong></span>Consider the following triangular filter (German: <em>Dreiecksfilter</em>) for pulse shaping:
+<span class="math display">\[\begin{equation*}
+    p(t) = \begin{cases}
+\frac{1}{T}\left(1-\frac{|t|}{T}\right), &amp; |t|&lt;T, \\
+    0, &amp; \text{otherwise}.
+    \end{cases}
+\end{equation*}\]</span>
+In other words, the triangular pulse shaping filter <span class="math inline">\(p(t)\)</span> (German: <em>dreickförmiges Pulsformfilter</em>) is used to transmit the binary data <span class="math inline">\(u[\ell]\in\{0,1\}\)</span> based on the transmit signal <span class="math inline">\(s(t)=p(t)*d(t)\)</span> with
+<span class="math display">\[\begin{equation*}
+d(t) = T\sum_{-\infty}^{\infty} d[\ell]\delta(t-\ell T)\ \text{and}\ 
+d[\ell] = \begin{cases} +D, &amp; u[\ell]=0,\\
+-D, &amp; u[\ell]=1.
+\end{cases}
+\end{equation*}\]</span>
+The data rate is <span class="math inline">\(1/T=1\,\mathrm{MHz}\)</span>, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the transmission channel (German: <em>Übertragungskanal</em>) is ideal. Plot the resulting eye diagram (German: <em>Augendiagram</em>) and determine <span class="math inline">\(A_\mathrm{v}\)</span> and <span class="math inline">\(T_\mathrm{h}\)</span>! Do we observe ISI in this case?
+</div>
+<button class="popup" onclick="popup(&#39;triangulareyesol&#39;)">
+Solution
+</button>
+<div id="triangulareyesol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Eye Diagram of Triangular Filter). </span> The solution to Exercise <a href="baseband.html#exr:triangulareye">3.5</a> is as follows: Figure <a href="baseband.html#fig:triangularfilter">3.29</a> depicts the impulse response of the triangular filter.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:triangularfilter"></span>
+<img src="kt_files/figure-html/triangularfilter-1.svg" alt="Impulse response $p(t)$ of the triangular filter" width="80%" />
+<p class="caption">
+Figure 3.29: Impulse response <span class="math inline">\(p(t)\)</span> of the triangular filter
+</p>
+</div>
+<p>It can be seen that the triangular pulse shaping filter is time-limited to <span class="math inline">\(t\in[-T,T]\)</span>, i.e., if the symbols are transmitted with the data rate <span class="math inline">\(1/T\)</span>, only the direct neighbor symbols overlap with each other. So, three adjacent bits have to be considered to draw the eye diagram leading to <span class="math inline">\(2^3=8\)</span> possible combinations. Figure <a href="baseband.html#fig:criticalsignals">3.30</a> depicts the transmit signal for all these combinations and Figure <a href="baseband.html#fig:triangulareyeresult">3.31</a> the final result.</p>
+<div class="figure" style="text-align: center"><span id="fig:criticalsignals"></span>
+<img src="kt_files/figure-html/criticalsignals-1.svg" alt="Transmit signals $s(t)$ (solid lines) corresponding to all 8 possible bit combinations (solid line is the sum of dashed lines which represent the contribution of each individual symbol)" width="80%" />
+<p class="caption">
+Figure 3.30: Transmit signals <span class="math inline">\(s(t)\)</span> (solid lines) corresponding to all 8 possible bit combinations (solid line is the sum of dashed lines which represent the contribution of each individual symbol)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:triangulareyeresult"></span>
+<img src="kt_files/figure-html/triangulareyeresult-1.svg" alt="Eye diagram of the triangular pulse shaping filter (blue: transmit signals of all possible bit combinations, red: eye diagram)" width="80%" />
+<p class="caption">
+Figure 3.31: Eye diagram of the triangular pulse shaping filter (blue: transmit signals of all possible bit combinations, red: eye diagram)
+</p>
+</div>
+<p>From Figure <a href="baseband.html#fig:triangulareyeresult">3.31</a>, we observe that <span class="math inline">\(A_\mathrm{v}=2D=2\sqrt{\mathrm{W}}\)</span> and <span class="math inline">\(T_\mathrm{h}=T=1\,\mu\mathrm{s}\)</span>. Thus, the eye is vertically and horizontally completely open and we do not observe any ISI.</p>
+</div>
+
+<div class="exercise">
+<p><span id="exr:sawtootheye" class="exercise"><strong>Exercise 3.6  (Eye Diagram of Sawtooth Filter)  </strong></span>The digital data stream <span class="math inline">\(\dots\)</span>, <span class="math inline">\(u[-1]\)</span>, <span class="math inline">\(u[0]\)</span>, <span class="math inline">\(u[1]\)</span>, <span class="math inline">\(\dots\)</span> shall be transmitted over a baseband system. To do so, we define the following data signal
+<span class="math display">\[\begin{equation*}
+d(t) = T\sum_{-\infty}^{\infty} d[\ell]\delta(t-\ell T)\ \text{and}\ 
+d[\ell] = \begin{cases} +D, &amp; u[\ell]=0,\\
+-D, &amp; u[\ell]=1,
+\end{cases}
+\end{equation*}\]</span>
+and apply the sawtooth pulse shaping filter defined as
+<span class="math display">\[\begin{equation*}
+    p(t) = \begin{cases}
+    \frac{1}{T}\left(1-\frac{|t|}{aT}\right), &amp; |t|\leq \frac{3aT}{2}, \\
+    \frac{1}{T}\left(\frac{|t|}{aT}-2\right), &amp; \frac{3aT}{2}&lt;|t|\leq 2aT, \\
+    0, &amp; \text{otherwise}.
+    \end{cases}
+\end{equation*}\]</span></p>
+<p>The resulting transmit signal is then <span class="math inline">\(s(t)=p(t) * d(t)\)</span>. The data rate is <span class="math inline">\(1/T\)</span>, <span class="math inline">\(D=1\sqrt{\mathrm{W}}\)</span> and the transmission channel is ideal.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Plot <span class="math inline">\(p(t)\)</span>.</li>
+<li>What values of <span class="math inline">\(a&gt;0\)</span> do not result in ISI? How is the underlying criterion called?</li>
+<li>How large is the vertical eye size <span class="math inline">\(A_\text{v}\)</span> in this case?</li>
+<li>In the following, it holds that <span class="math inline">\(a=1\)</span>. Which four critical bit sequences are relevant for the inner eye? Mark the central bit which lies in the middle of the eye. Plot the transmit signal <span class="math inline">\(s(t)\)</span> for all four critical bit sequences.<br>
+<strong>Hint</strong>: Plot first the bit sequence relevant for the inner eye in the first quadrant and then make use of symmetry!</li>
+<li>How large is the horizontal eye size <span class="math inline">\(T_\text{h}\)</span> in this case?</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;sawtootheyesol&#39;)">
+Solution
+</button>
+<div id="sawtootheyesol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Eye Diagram of Sawtooth Filter). </span> The solution to Exercise <a href="baseband.html#exr:sawtootheye">3.6</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>Figure <a href="baseband.html#fig:sawtoothfilter">3.32</a> depicts the impulse response <span class="math inline">\(p(t)\)</span> of the sawtooth filter.</p>
+<div class="figure" style="text-align: center"><span id="fig:sawtoothfilter"></span>
+<img src="kt_files/figure-html/sawtoothfilter-1.svg" alt="Impulse response $p(t)$ of the sawtooth filter" width="80%" />
+<p class="caption">
+Figure 3.32: Impulse response <span class="math inline">\(p(t)\)</span> of the sawtooth filter
+</p>
+</div></li>
+<li><p><span class="math inline">\(2aT\leq T\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(0&lt;a\leq \frac{1}{2}\)</span> and <span class="math inline">\(aT=T\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(a=1\)</span><br>
+This is the so-called first Nyquist criterion.</p></li>
+<li><p><span class="math inline">\(A_\mathrm{v}=2D=2\sqrt{\mathrm{W}}\)</span></p></li>
+<li><p>With <span class="math inline">\(a=1\)</span>, the duration of the pulse shaping filter is <span class="math inline">\(4T\)</span>. Assuming a data rate of <span class="math inline">\(1/T\)</span>, two neighboring bits at each side, viz., <span class="math inline">\(u[-2]\)</span>, <span class="math inline">\(u[-1]\)</span>, <span class="math inline">\(u[1]\)</span> and <span class="math inline">\(u[2]\)</span>, as well as the bit <span class="math inline">\(u[0]\)</span>, i.e., 5 bit in total, influence the transmit signal at <span class="math inline">\(s(0)\)</span>, <span class="math inline">\(n\in\mathbb{Z}\)</span>. Thus, we have to consider <span class="math inline">\(2^5=32\)</span> combinations which is quite cumbersome. In order to simplify the drawing procedure, only the critical bit combinations are considered, i.e., the ones which lead to the steepest slope around the origin. Furthermore, due to symmetry, it is sufficient to consider only one critical bit sequence for the drawing of the eye in the first quadrant and obtain the remaining eye parts by mirroring. The eye in the first quadrant is only influenced by the bit sequence <span class="math inline">\(u[-2]\)</span>, <span class="math inline">\(u[-1]\)</span>, <span class="math inline">\(u[0]\)</span> and <span class="math inline">\(u[1]\)</span>. Note that <span class="math inline">\(u[2]\)</span> has no influence on the eye in the first quadrant but only on its parts in the third and fourth quadrant. The critical bit sequence is
+<span class="math display">\[01{\bf 0}0_2\]</span>
+with the bold 0 being the central bit. The corresponsing transmit signal <span class="math inline">\(s(t)\)</span> is depicted in Figure <a href="baseband.html#fig:criticalsignalssawtooth">3.33</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:criticalsignalssawtooth"></span>
+<img src="kt_files/figure-html/criticalsignalssawtooth-1.svg" alt="Transmit signals $s(t)$ (solid line) corresponding to the bit sequence 01**0**0 (solid line is the sum of dashed lines which represent the contribution of each individual symbol)" width="80%" />
+<p class="caption">
+Figure 3.33: Transmit signals <span class="math inline">\(s(t)\)</span> (solid line) corresponding to the bit sequence 01<strong>0</strong>0 (solid line is the sum of dashed lines which represent the contribution of each individual symbol)
+</p>
+</div>
+<p>The remaining parts parts are obtained by mirroring at <span class="math inline">\(t=0\)</span> or <span class="math inline">\(s(t)=0\)</span>, respectively. This leads to the following complete set of critical bit sequences
+<span class="math display">\[\begin{aligned}
+  01&amp;{\bf 0}0_2,\\
+  0&amp;{\bf 0}10_2,\\
+  10&amp;{\bf 1}1_2,\\
+  1&amp;{\bf 1}01_2.
+  \end{aligned}\]</span>
+The resulting eye diagram is depicted in Figure <a href="baseband.html#fig:sawtootheyeresult">3.34</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:sawtootheyeresult"></span>
+<img src="kt_files/figure-html/sawtootheyeresult-1.svg" alt="Eye diagram of the sawtooth pulse shaping filter (blue: transmit signals of critical bit combinations, red: eye diagram)" width="80%" />
+<p class="caption">
+Figure 3.34: Eye diagram of the sawtooth pulse shaping filter (blue: transmit signals of critical bit combinations, red: eye diagram)
+</p>
+</div></li>
+<li><p>From Figure <a href="baseband.html#fig:triangulareyeresult">3.31</a>, we observe that <span class="math inline">\(T_\mathrm{h}=T/2\)</span>.</p></li>
+</ol>
+</div>
+</div>
+<div id="spectral-efficiency" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Spectral Efficiency</h2>
+
+<div class="definition">
+<span id="def:spectralefficiency" class="definition"><strong>Definition 3.2  (Spectral Efficiency)  </strong></span>The <strong>spectral efficiency</strong> (German: <em>spektrale Effizienz</em>) is defined as the ratio of the data rate <span class="math inline">\(R\)</span> (German: <em>Datenrate</em>), measured in <span class="math inline">\(\mathrm{bit}/\mathrm{s}\)</span> to the required bandwidth <span class="math inline">\(B\)</span>, i.e.,
+<span class="math display">\[\begin{equation*}
+\eta = \frac{R}{B}.
+\end{equation*}\]</span>
+The unit of the spectral efficiency is <span class="math inline">\([\eta] = \mathrm{bit}/\mathrm{s}/\mathrm{Hz}=1\)</span>.
+</div>
+
+<div class="example">
+<span id="exm:lteefficiency" class="example"><strong>Example 3.11  (Spectral Efficiency of Long-Term Evolution, LTE)  </strong></span>In LTE, a typical data rate is <span class="math inline">\(R=100\,\mathrm{Mbit}/\mathrm{s}\)</span> when a bandwidth of <span class="math inline">\(B=20\,\mathrm{MHz}\)</span> is allocated. This results in a spectral efficiency of <span class="math inline">\(\eta=5\,\mathrm{bit}/\mathrm{s}/\mathrm{Hz}\)</span>.
+</div>
+
+<div class="example">
+<span id="exm:raisedcosefficiency" class="example"><strong>Example 3.12  (Spectral Efficiency of Raised-Cosine Filter with Roll-Off Factor α)  </strong></span>In case of binary transmission, one bit is transmitted during one symbol duration <span class="math inline">\(T\)</span>, i.e., the data rate is <span class="math inline">\(R=1/T\)</span>. If a raised-cosine filter is used for pulse shaping, the required (one-sided) bandwidth for transmission is <span class="math inline">\(B=(1+\alpha)/(2T)\)</span> (cf. Figure <a href="baseband.html#fig:raisedcosinepulse">3.16</a>). Thus, the spectral efficiency in this case computes as <span class="math inline">\(\eta=2/(1+\alpha)\,\mathrm{bit}/\mathrm{s}/\mathrm{Hz}\)</span>. Remember that the roll-off factor <span class="math inline">\(\alpha\in[0,1]\)</span>. Consequently, the spectral efficiency lies in the region <span class="math inline">\(1\,\mathrm{bit}/\mathrm{s}/\mathrm{Hz}\leq \eta\leq 2\,\mathrm{bit}/\mathrm{s}/\mathrm{Hz}\)</span> where the latter is obtained if a sinc filter is applied for pulse shaping (<span class="math inline">\(\alpha=0\)</span>).
+</div>
+<form class="quiz" data-correct="3" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following pulse shaping filters has the highest spectral efficiency?
+</div>
+<input value="A. Rectangular filter"/>
+<input value="B. Manchester code"/>
+<input value="C. Sinc filter"/>
+<input value="D. Gaussian filter"/>
+</form>
+
+<div class="exercise">
+<span id="exr:exespectralefficiency" class="exercise"><strong>Exercise 3.7  (Spectral Efficiency)  </strong></span>Compute the spectral efficiency <span class="math inline">\(\eta\)</span> of the filter defined in Exercise <a href="baseband.html#exr:raisedcosine">3.2</a>.
+</div>
+<button class="popup" onclick="popup(&#39;spectralefficiencysol&#39;)">
+Solution
+</button>
+<div id="spectralefficiencysol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Spectral Efficiency). </span> The solution to Exercise <a href="baseband.html#exr:exespectralefficiency">3.7</a> is as follows: With the binary data rate <span class="math inline">\(R=1/T=44\,\mathrm{Mbps}\)</span> and the bandwidth <span class="math inline">\(B=31.6\,\mathrm{MHz}\)</span>, the spectral efficiency computes as
+<span class="math display">\[\eta=\frac{R}{B}=\frac{44\,\mathrm{Mbps}}{31.6\,\mathrm{MHz}}\approx 1.39\,\frac{\mathrm{bit}}{\mathrm{s}\cdot\mathrm{Hz}}.\]</span>
+</div>
+</div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="21">
+<li id="fn21"><p>The introduction of the new index <span class="math inline">\(\ell\)</span> is not necessary at this point but simplifies the definition of symbol mapping in the general form.<a href="baseband.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>Note that in general, the symbol duration <span class="math inline">\(T\)</span> and the sampling period <span class="math inline">\(T_\mathrm{s}\)</span> are different. Besides, <span class="math inline">\(d(t)\)</span> is unitless.<a href="baseband.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>See, e.g., <span class="citation"><a href="references.html#ref-Proakis" role="doc-biblioref">Proakis</a> (<a href="references.html#ref-Proakis" role="doc-biblioref">2000</a>)</span> for the derivation of <span class="math inline">\(\Phi_s(f)\)</span> in this case.<a href="baseband.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>The Parseval’s theorem in its general form reads as <span class="math inline">\(\int\limits_{-\infty}^\infty Z_1(f)Z_2^*(f)df=\int\limits_{-\infty}^\infty z_1(t)z_2^*(t)dt\)</span>.<a href="baseband.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>Compared to the NRZ code, the Return-to-Zero (RZ) code returns to zero within the symbol duration <span class="math inline">\(T\)</span>. RZ is used to reduce inter-symbol interference when the channel has a problematic frequency response. For this reason, Ethernet is based on RZ.<a href="baseband.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>Note that despite of the fact that this results in a non-causal filter, we begin in each subsection with a symmetric version of the pulse shaping filter for two reasons: first, in case of ideally band-limited filters, a causal definition does not exist and second, the corresponding spectrum is real-valued in this case.<a href="baseband.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>Again, the simulation file <a href="material/pulse_shaping.grc.html"><code>pulse_shaping.grc</code></a> can be used to run the code on your own GNU Radio installation.<a href="baseband.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>Note that in general, the Nyquist rate is not equal to the sampling rate used for transforming the analog signal into a digital one.<a href="baseband.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>Again, the simulation file <a href="material/eyediagram.grc.html"><code>eyediagram.grc</code></a> can be used to run the code on your own GNU Radio installation.<a href="baseband.html#fnref29" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="digitalrepresentation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="noise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": null
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"info": true,
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

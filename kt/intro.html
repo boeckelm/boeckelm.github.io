@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction | COMMUNICATIONS ENGINEERING</title>
+  <meta name="description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction | COMMUNICATIONS ENGINEERING" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction | COMMUNICATIONS ENGINEERING" />
+  
+  <meta name="twitter:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="Guido Dietl" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="preface.html"/>
+<link rel="next" href="digitalrepresentation.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<!-- Load my plugins -->
+<script src="plugins/quizcompiler.js"></script>
+<script src="plugins/popup.js"> </script>
+
+<!-- Load Mathjax version 3 -->
+<!--<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>-->
+
+<!-- Comment in case of local Mathjax! -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="plugins/quiz.css" type="text/css" />
+<link rel="stylesheet" href="plugins/popup.css" type="text/css" />
+<link rel="stylesheet" href="css/colors.css" type="text/css" />
+<link rel="stylesheet" href="css/postit.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="text-align:center">COMMUNICATIONS ENGINEERING</p>
+<p style="text-align:center">Guido Dietl</p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html"><i class="fa fa-check"></i>Disclaimer and Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#haftungsausschluss-disclaimer"><i class="fa fa-check"></i>Haftungsausschluss / Disclaimer</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#inhalt"><i class="fa fa-check"></i>Inhalt</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verweise-und-links"><i class="fa fa-check"></i>Verweise und Links</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#urheber--und-kennzeichenrecht"><i class="fa fa-check"></i>Urheber- und Kennzeichenrecht</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#rechtwirksamkeit"><i class="fa fa-check"></i>Rechtwirksamkeit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutz-data-protection"><i class="fa fa-check"></i>Datenschutz / Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutzerklärung"><i class="fa fa-check"></i>Datenschutzerklärung</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verantwortlicher"><i class="fa fa-check"></i>Verantwortlicher</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#personenbezogene-daten"><i class="fa fa-check"></i>Personenbezogene Daten</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#daten-beim-websiteaufruf"><i class="fa fa-check"></i>Daten beim Websiteaufruf</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#ihre-rechte"><i class="fa fa-check"></i>Ihre Rechte</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#einsatz-von-cookies"><i class="fa fa-check"></i>Einsatz von Cookies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-communications-engineering"><i class="fa fa-check"></i><b>1.1</b> What is Communications Engineering?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#history"><i class="fa fa-check"></i><b>1.2</b> History of Communications</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#signals-in-communications"><i class="fa fa-check"></i><b>1.3</b> Signals in Communications</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#signals-and-their-spectra"><i class="fa fa-check"></i><b>1.3.1</b> Signals and Their Spectra</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#detstosignals"><i class="fa fa-check"></i><b>1.3.2</b> Deterministic and Stochastic Signals</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#continuous-and-discrete-signals"><i class="fa fa-check"></i><b>1.3.3</b> Continuous and Discrete Signals</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#digital-representation"><i class="fa fa-check"></i><b>1.3.4</b> Digital Representation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#communications-systems"><i class="fa fa-check"></i><b>1.4</b> Communications Systems</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#wired-and-wireless-systems"><i class="fa fa-check"></i><b>1.4.1</b> Wired and Wireless Systems</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#frequency-bands"><i class="fa fa-check"></i><b>1.4.2</b> Frequency Bands</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#block-diagram"><i class="fa fa-check"></i><b>1.4.3</b> Block Diagram</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html"><i class="fa fa-check"></i><b>2</b> Digital Representation of Analog Signals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#sampling"><i class="fa fa-check"></i><b>2.1</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#energylimited"><i class="fa fa-check"></i><b>2.1.1</b> Energy- and Band-Limited Signals</a></li>
+<li class="chapter" data-level="2.1.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#ideal-sampling"><i class="fa fa-check"></i><b>2.1.2</b> Ideal Sampling</a></li>
+<li class="chapter" data-level="2.1.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#reconstruction"><i class="fa fa-check"></i><b>2.1.3</b> Ideal Reconstruction and Sampling Theorem</a></li>
+<li class="chapter" data-level="2.1.4" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#over--and-undersampling"><i class="fa fa-check"></i><b>2.1.4</b> Over- and Undersampling</a></li>
+<li class="chapter" data-level="2.1.5" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#real-sampling"><i class="fa fa-check"></i><b>2.1.5</b> Real Sampling</a></li>
+<li class="chapter" data-level="2.1.6" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#passbandsampling"><i class="fa fa-check"></i><b>2.1.6</b> Sampling of Passband Signals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#quantisation"><i class="fa fa-check"></i><b>2.2</b> Quantisation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#linear-quantisation"><i class="fa fa-check"></i><b>2.2.1</b> Linear Quantisation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#nonlinear-quantisation-or-companding"><i class="fa fa-check"></i><b>2.2.2</b> Nonlinear Quantisation or Companding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#pcm"><i class="fa fa-check"></i><b>2.3</b> Pulse Code Modulation (PCM)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="baseband.html"><a href="baseband.html"><i class="fa fa-check"></i><b>3</b> Baseband Communications</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="baseband.html"><a href="baseband.html#modulation"><i class="fa fa-check"></i><b>3.1</b> Modulation</a></li>
+<li class="chapter" data-level="3.2" data-path="baseband.html"><a href="baseband.html#pulseshaping"><i class="fa fa-check"></i><b>3.2</b> Pulse Shaping</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="baseband.html"><a href="baseband.html#rectfilter"><i class="fa fa-check"></i><b>3.2.1</b> Rectangular Filter or Non-Return-to-Zero (NRZ) Code</a></li>
+<li class="chapter" data-level="3.2.2" data-path="baseband.html"><a href="baseband.html#manchester-code"><i class="fa fa-check"></i><b>3.2.2</b> Manchester Code</a></li>
+<li class="chapter" data-level="3.2.3" data-path="baseband.html"><a href="baseband.html#sincfilter"><i class="fa fa-check"></i><b>3.2.3</b> Sinc Filter</a></li>
+<li class="chapter" data-level="3.2.4" data-path="baseband.html"><a href="baseband.html#nyquistrolloff"><i class="fa fa-check"></i><b>3.2.4</b> Raised-Cosine or Nyquist-Roll-Off Filter</a></li>
+<li class="chapter" data-level="3.2.5" data-path="baseband.html"><a href="baseband.html#gaussfilter"><i class="fa fa-check"></i><b>3.2.5</b> Gaussian Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="baseband.html"><a href="baseband.html#heisenberg"><i class="fa fa-check"></i><b>3.3</b> Time-Bandwidth Product</a></li>
+<li class="chapter" data-level="3.4" data-path="baseband.html"><a href="baseband.html#isi"><i class="fa fa-check"></i><b>3.4</b> First Nyquist Criterion</a></li>
+<li class="chapter" data-level="3.5" data-path="baseband.html"><a href="baseband.html#eyediagram"><i class="fa fa-check"></i><b>3.5</b> Eye Diagram</a></li>
+<li class="chapter" data-level="3.6" data-path="baseband.html"><a href="baseband.html#spectral-efficiency"><i class="fa fa-check"></i><b>3.6</b> Spectral Efficiency</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="noise.html"><a href="noise.html"><i class="fa fa-check"></i><b>4</b> Detection of Baseband Signals in Noise</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="noise.html"><a href="noise.html#awgn"><i class="fa fa-check"></i><b>4.1</b> Additive White Gaussian Noise (AWGN) Channel</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="noise.html"><a href="noise.html#whitenoise"><i class="fa fa-check"></i><b>4.1.1</b> White Gaussian Noise</a></li>
+<li class="chapter" data-level="4.1.2" data-path="noise.html"><a href="noise.html#signal-to-noise-power-ratio"><i class="fa fa-check"></i><b>4.1.2</b> Signal-to-Noise Power Ratio</a></li>
+<li class="chapter" data-level="4.1.3" data-path="noise.html"><a href="noise.html#noise-figure"><i class="fa fa-check"></i><b>4.1.3</b> Noise Figure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="noise.html"><a href="noise.html#baseband-receiver-for-detection"><i class="fa fa-check"></i><b>4.2</b> Baseband Receiver for Detection</a></li>
+<li class="chapter" data-level="4.3" data-path="noise.html"><a href="noise.html#matched-filter"><i class="fa fa-check"></i><b>4.3</b> Matched Filter</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="noise.html"><a href="noise.html#maximizing-snr"><i class="fa fa-check"></i><b>4.3.1</b> Maximizing SNR</a></li>
+<li class="chapter" data-level="4.3.2" data-path="noise.html"><a href="noise.html#frequency-selective-channel"><i class="fa fa-check"></i><b>4.3.2</b> Frequency-Selective Channel</a></li>
+<li class="chapter" data-level="4.3.3" data-path="noise.html"><a href="noise.html#root-raised-cosine-filter"><i class="fa fa-check"></i><b>4.3.3</b> Root-Raised-Cosine Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="noise.html"><a href="noise.html#bit-error-probability-bep"><i class="fa fa-check"></i><b>4.4</b> Bit Error Probability (BEP)</a></li>
+<li class="chapter" data-level="4.5" data-path="noise.html"><a href="noise.html#sync"><i class="fa fa-check"></i><b>4.5</b> Clock and Frame Synchronisation</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="noise.html"><a href="noise.html#clocksync"><i class="fa fa-check"></i><b>4.5.1</b> Clock Synchronisation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="noise.html"><a href="noise.html#framesync"><i class="fa fa-check"></i><b>4.5.2</b> Frame Synchronisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="passband.html"><a href="passband.html"><i class="fa fa-check"></i><b>5</b> Passband Communications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="passband.html"><a href="passband.html#equivalent"><i class="fa fa-check"></i><b>5.1</b> Equivalent Baseband Signal</a></li>
+<li class="chapter" data-level="5.2" data-path="passband.html"><a href="passband.html#QAM"><i class="fa fa-check"></i><b>5.2</b> Quadrature Amplitude Modulation (QAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="passband.html"><a href="passband.html#QAD"><i class="fa fa-check"></i><b>5.3</b> Quadrature Amplitude Demodulation (QAD)</a></li>
+<li class="chapter" data-level="5.4" data-path="passband.html"><a href="passband.html#carriersync"><i class="fa fa-check"></i><b>5.4</b> Carrier Synchronisation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="moddet.html"><a href="moddet.html"><i class="fa fa-check"></i><b>6</b> Digital Modulation and Detection Methods</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="moddet.html"><a href="moddet.html#linear-modulation-schemes"><i class="fa fa-check"></i><b>6.1</b> Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="moddet.html"><a href="moddet.html#ask"><i class="fa fa-check"></i><b>6.1.1</b> Amplitude Shift Keying (ASK)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="moddet.html"><a href="moddet.html#phase-shift-keying-psk"><i class="fa fa-check"></i><b>6.1.2</b> Phase Shift Keying (PSK)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="moddet.html"><a href="moddet.html#quadrature-amplitude-modulation-qam"><i class="fa fa-check"></i><b>6.1.3</b> Quadrature Amplitude Modulation (QAM)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="moddet.html"><a href="moddet.html#fsk"><i class="fa fa-check"></i><b>6.2</b> Binary Frequency-Shift-Keying (FSK)</a></li>
+<li class="chapter" data-level="6.3" data-path="moddet.html"><a href="moddet.html#coherent"><i class="fa fa-check"></i><b>6.3</b> Coherent Detection of Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="moddet.html"><a href="moddet.html#beps"><i class="fa fa-check"></i><b>6.3.1</b> BEPs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="moddet.html"><a href="moddet.html#frame-error-rate-and-mean-data-rate"><i class="fa fa-check"></i><b>6.3.2</b> Frame Error Rate and Mean Data Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="moddet.html"><a href="moddet.html#noncoherent-detection-of-ask-and-fsk"><i class="fa fa-check"></i><b>6.4</b> Noncoherent Detection of ASK and FSK</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="moddet.html"><a href="moddet.html#ed"><i class="fa fa-check"></i><b>6.4.1</b> Envelope Detection</a></li>
+<li class="chapter" data-level="6.4.2" data-path="moddet.html"><a href="moddet.html#noncoherent-ask-detector"><i class="fa fa-check"></i><b>6.4.2</b> Noncoherent ASK Detector</a></li>
+<li class="chapter" data-level="6.4.3" data-path="moddet.html"><a href="moddet.html#noncoherent-fsk-detector"><i class="fa fa-check"></i><b>6.4.3</b> Noncoherent FSK Detector</a></li>
+<li class="chapter" data-level="6.4.4" data-path="moddet.html"><a href="moddet.html#bep-of-noncoherent-detection"><i class="fa fa-check"></i><b>6.4.4</b> BEP of Noncoherent Detection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="moddet.html"><a href="moddet.html#comparison-of-digital-modulation-schemes"><i class="fa fa-check"></i><b>6.5</b> Comparison of Digital Modulation Schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="information.html"><a href="information.html"><i class="fa fa-check"></i><b>7</b> A Brief Introduction to Information Theory, Source and Channel Coding</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html"><i class="fa fa-check"></i><b>A</b> Geniuses of Communications</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#bell"><i class="fa fa-check"></i><b>A.1</b> Alexander Graham Bell</a></li>
+<li class="chapter" data-level="A.2" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#chappe"><i class="fa fa-check"></i><b>A.2</b> Abbé Claude Chappe</a></li>
+<li class="chapter" data-level="A.3" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#gauss"><i class="fa fa-check"></i><b>A.3</b> Johann Carl Friedrich Gauss</a></li>
+<li class="chapter" data-level="A.4" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hertz"><i class="fa fa-check"></i><b>A.4</b> Heinrich Rudolf Hertz</a></li>
+<li class="chapter" data-level="A.5" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hooke"><i class="fa fa-check"></i><b>A.5</b> Robert Hooke</a></li>
+<li class="chapter" data-level="A.6" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#marconi"><i class="fa fa-check"></i><b>A.6</b> Guglielmo Marconi</a></li>
+<li class="chapter" data-level="A.7" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#maxwell"><i class="fa fa-check"></i><b>A.7</b> James Clerk Maxwell</a></li>
+<li class="chapter" data-level="A.8" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#reeves"><i class="fa fa-check"></i><b>A.8</b> Alec Harley Reeves</a></li>
+<li class="chapter" data-level="A.9" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#shannon"><i class="fa fa-check"></i><b>A.9</b> Claude Elwood Shannon</a></li>
+<li class="chapter" data-level="A.10" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#weber"><i class="fa fa-check"></i><b>A.10</b> Wilhelm Eduard Weber</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="apphistory.html"><a href="apphistory.html"><i class="fa fa-check"></i><b>B</b> Historical Background Information</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="apphistory.html"><a href="apphistory.html#opttele"><i class="fa fa-check"></i><b>B.1</b> Optical Telegraphy</a></li>
+<li class="chapter" data-level="B.2" data-path="apphistory.html"><a href="apphistory.html#emwaves"><i class="fa fa-check"></i><b>B.2</b> Hertz’s Electromagnetic Waves Experiment</a></li>
+<li class="chapter" data-level="B.3" data-path="apphistory.html"><a href="apphistory.html#marconiradio"><i class="fa fa-check"></i><b>B.3</b> Marconi’s Radio Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="units.html"><a href="units.html"><i class="fa fa-check"></i><b>C</b> Units</a></li>
+<li class="chapter" data-level="D" data-path="important-functions.html"><a href="important-functions.html"><i class="fa fa-check"></i><b>D</b> Important Functions</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="important-functions.html"><a href="important-functions.html#rect"><i class="fa fa-check"></i><b>D.1</b> Rectangular Function</a></li>
+<li class="chapter" data-level="D.2" data-path="important-functions.html"><a href="important-functions.html#sinc"><i class="fa fa-check"></i><b>D.2</b> Sinc Function</a></li>
+<li class="chapter" data-level="D.3" data-path="important-functions.html"><a href="important-functions.html#sgn"><i class="fa fa-check"></i><b>D.3</b> Signum Function</a></li>
+<li class="chapter" data-level="D.4" data-path="important-functions.html"><a href="important-functions.html#erfc"><i class="fa fa-check"></i><b>D.4</b> Complimentary Error Function</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="mathematical-basics.html"><a href="mathematical-basics.html"><i class="fa fa-check"></i><b>E</b> Mathematical Basics</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#fourier"><i class="fa fa-check"></i><b>E.1</b> Fourier Transform</a></li>
+<li class="chapter" data-level="E.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#dirac"><i class="fa fa-check"></i><b>E.2</b> Dirac Delta Function</a>
+<ul>
+<li class="chapter" data-level="E.2.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#definition-and-properties"><i class="fa fa-check"></i><b>E.2.1</b> Definition and Properties</a></li>
+<li class="chapter" data-level="E.2.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#diraccomb"><i class="fa fa-check"></i><b>E.2.2</b> Dirac Comb</a></li>
+</ul></li>
+<li class="chapter" data-level="E.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#conv"><i class="fa fa-check"></i><b>E.3</b> Convolution</a></li>
+<li class="chapter" data-level="E.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#probability"><i class="fa fa-check"></i><b>E.4</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="E.4.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-experiment"><i class="fa fa-check"></i><b>E.4.1</b> Random Experiment</a></li>
+<li class="chapter" data-level="E.4.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-variable"><i class="fa fa-check"></i><b>E.4.2</b> Random Variable</a></li>
+<li class="chapter" data-level="E.4.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>E.4.3</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="E.4.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#pdf"><i class="fa fa-check"></i><b>E.4.4</b> Probability Density Function</a></li>
+<li class="chapter" data-level="E.4.5" data-path="mathematical-basics.html"><a href="mathematical-basics.html#mean"><i class="fa fa-check"></i><b>E.4.5</b> Mean</a></li>
+<li class="chapter" data-level="E.4.6" data-path="mathematical-basics.html"><a href="mathematical-basics.html#variance"><i class="fa fa-check"></i><b>E.4.6</b> Variance</a></li>
+<li class="chapter" data-level="E.4.7" data-path="mathematical-basics.html"><a href="mathematical-basics.html#randomprocess"><i class="fa fa-check"></i><b>E.4.7</b> Random Process</a></li>
+<li class="chapter" data-level="E.4.8" data-path="mathematical-basics.html"><a href="mathematical-basics.html#ensemble-and-time-average"><i class="fa fa-check"></i><b>E.4.8</b> Ensemble and Time Average</a></li>
+<li class="chapter" data-level="E.4.9" data-path="mathematical-basics.html"><a href="mathematical-basics.html#stationarity-and-ergodicity"><i class="fa fa-check"></i><b>E.4.9</b> Stationarity and Ergodicity</a></li>
+<li class="chapter" data-level="E.4.10" data-path="mathematical-basics.html"><a href="mathematical-basics.html#autocorr"><i class="fa fa-check"></i><b>E.4.10</b> Auto-Correlation Function</a></li>
+<li class="chapter" data-level="E.4.11" data-path="mathematical-basics.html"><a href="mathematical-basics.html#psd"><i class="fa fa-check"></i><b>E.4.11</b> Power Spectral Density</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="../kt.html">COMMUNICATIONS ENGINEERING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="what-is-communications-engineering" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> What is Communications Engineering?</h2>
+
+<div class="definition">
+<span id="def:communications" class="definition"><strong>Definition 1.1  (Communications)  </strong></span>In technical areas, <strong>telecommunications</strong> (German: <em>Telekommunikationstechnik</em>) or short <strong>communications</strong> (German: <em>Kommunikationstechnik</em>) defines the unaltered transmission of information over a channel.
+</div>
+<p>Depending on whether more theoretical basics or practical implementations are considered, the terms <strong>communications theory</strong>, <strong>communications systems</strong>, and <strong>communications engineering</strong> are also used (in German also <em>Nachrichtenübertragungstechnik</em> or <em>Übertragungstechnik</em>).</p>
+<p>Another area within communications is <strong>information theory</strong> (German: <em>Informationstheorie</em>) which has been founded by Claude E. <span class="citation"><a href="references.html#ref-Sh48" role="doc-biblioref">Shannon</a> (<a href="references.html#ref-Sh48" role="doc-biblioref">1948</a>)</span> (see Appendix <a href="geniuses-of-communications.html#shannon">A.9</a>). This theory quantifies the limits of transmission of information over a channel. Please see Chapter <a href="information.html#information">7</a> for further details!</p>
+</div>
+<div id="history" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> History of Communications</h2>
+<p>Table <a href="intro.html#tab:history">1.1</a> summarises historical landmarks of communications. For more details see Appendix <a href="apphistory.html#apphistory">B</a>.</p>
+<table>
+<caption> <span id="tab:history">Table 1.1: </span> List of historical communications landmarks</caption>
+<thead>
+<tr class="header">
+<th align="left">Year</th>
+<th align="left">Event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Prehistoric</td>
+<td align="left">Smoke signals, fire, drums, horns</td>
+</tr>
+<tr class="even">
+<td align="left">26-37 AD</td>
+<td align="left">Metal mirror reflector (used by Tiberius)</td>
+</tr>
+<tr class="odd">
+<td align="left">1667</td>
+<td align="left">Acoustical string telephony (Hooke, see Appendix <a href="geniuses-of-communications.html#hooke">A.5</a>)</td>
+</tr>
+<tr class="even">
+<td align="left">1792</td>
+<td align="left">Optical telegraphy (see Appendix <a href="apphistory.html#opttele">B.1</a>, Chappe, see Appendix <a href="geniuses-of-communications.html#chappe">A.2</a>)</td>
+</tr>
+<tr class="odd">
+<td align="left">1832</td>
+<td align="left">Wired telegraphy (Gauß, see Appendix <a href="geniuses-of-communications.html#gauss">A.3</a>, and Weber, see Appendix <a href="geniuses-of-communications.html#weber">A.10</a>)</td>
+</tr>
+<tr class="even">
+<td align="left">1864</td>
+<td align="left">Existence proof of electromagnetic waves (Maxwell, see Appendix <a href="geniuses-of-communications.html#maxwell">A.7</a>)</td>
+</tr>
+<tr class="odd">
+<td align="left">1876</td>
+<td align="left">Wired telephony (Bell, see Appendix <a href="geniuses-of-communications.html#bell">A.1</a>)</td>
+</tr>
+<tr class="even">
+<td align="left">1887</td>
+<td align="left">Experimental electromagnetic wave propagation (see Appendix <a href="apphistory.html#emwaves">B.2</a>, Hertz, see Appendix <a href="geniuses-of-communications.html#hertz">A.4</a>)</td>
+</tr>
+<tr class="odd">
+<td align="left">1895</td>
+<td align="left">Wireless telegraphy (see Appendix <a href="apphistory.html#marconiradio">B.3</a>, Marconi, see Appendix <a href="geniuses-of-communications.html#marconi">A.6</a>)</td>
+</tr>
+<tr class="even">
+<td align="left">1938</td>
+<td align="left">Pulse Code Modulation (PCM, Reeves, see Appendix <a href="geniuses-of-communications.html#reeves">A.8</a>)</td>
+</tr>
+<tr class="odd">
+<td align="left">1948</td>
+<td align="left">Mathematical theory of communications (<span class="citation"><a href="references.html#ref-Sh48" role="doc-biblioref">Shannon</a> (<a href="references.html#ref-Sh48" role="doc-biblioref">1948</a>)</span>, see Appendix <a href="geniuses-of-communications.html#shannon">A.9</a>)</td>
+</tr>
+<tr class="even">
+<td align="left">1988</td>
+<td align="left">Wired digital telephony (Integrated Services Digital Network, ISDN)</td>
+</tr>
+<tr class="odd">
+<td align="left">1991</td>
+<td align="left">Wireless digital telephony (Digital Global System for Mobile Communications, GSM, 2nd generation mobile system)</td>
+</tr>
+<tr class="even">
+<td align="left">1993</td>
+<td align="left">Digital Audio Broadcasting (DAB)</td>
+</tr>
+<tr class="odd">
+<td align="left">1995</td>
+<td align="left">Digital Video Broadcasting (DVB)</td>
+</tr>
+<tr class="even">
+<td align="left">1999</td>
+<td align="left">First Bluetooth version</td>
+</tr>
+<tr class="odd">
+<td align="left">2002</td>
+<td align="left">Universal Mobile Telecommunications System (UMTS, 3rd generation mobile system)</td>
+</tr>
+<tr class="even">
+<td align="left">2004</td>
+<td align="left">Voice over IP (VoIP)</td>
+</tr>
+<tr class="odd">
+<td align="left">2010</td>
+<td align="left">Long-Term Evolution (LTE, 4th generation mobile system)</td>
+</tr>
+<tr class="even">
+<td align="left">2020</td>
+<td align="left">New Radio (NR, 5th generation mobile system)</td>
+</tr>
+</tbody>
+</table>
+<!-- TODO: Add also other bluetooth versions as well as other communications systems, like, e.g., ZigBee, etc.-->
+</div>
+<div id="signals-in-communications" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Signals in Communications</h2>
+<div id="signals-and-their-spectra" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Signals and Their Spectra</h3>
+
+<div class="definition">
+<span id="def:signal" class="definition"><strong>Definition 1.2  (Signal)  </strong></span>A <strong>signal</strong> (German: <em>Signal</em>) in communications represents a message by a physical quantity like, e.g., a time-variant voltage <span class="math inline">\(u(t)\)</span> or an electric field strength <span class="math inline">\(E(t)\)</span>. For the sake of simplicity, we abbreviate signals as <span class="math inline">\(x(t)\)</span> and choose the unit to be <span class="math inline">\([x(t)]=1\sqrt{\text{W}}\)</span> (see also Appendix <a href="units.html#units">C</a>).<a href="intro.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+</div>
+<p>Besides representing signals over time, it can be sometimes necessary to represent them over frequency, resulting in the so-called <strong>spectrum</strong> (German: <em>Spektrum</em>) of a signal. Here, the spectrum of a deterministic time-continuous signal <span class="math inline">\(x(t)\)</span> is defined via its <strong>Fourier transform</strong> (German: <em>Fouriertransformation</em>)
+<span class="math display">\[X(f) = \int\limits_{-\infty}^\infty x(t) e^{-j2\pi f t} dt,\]</span>
+and the one of stochastic time-continuous signals<a href="intro.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> <span class="math inline">\(x(t)\)</span> via the <strong>Power Spectral Density</strong> (PSD, German: <em>Leistungsdichtespektrum</em>)
+<span class="math display">\[\Phi_x(f)
+\leftrightarrow
+\varphi_x(t)=E[x(t)x(t+\tau)]=
+\lim_{T\to\infty}\frac{1}{T}\int\limits_{-\frac{T}{2}}^\frac{T}{2} x(t)x(t+\tau)dt.\]</span>
+For more details on the Fourier transform or PSD, cf. Appendix <a href="mathematical-basics.html#fourier">E.1</a> or Appendix <a href="mathematical-basics.html#probability">E.4</a>, respectively. Deterministic and stochastic signals will be defined in the next subsection, i.e., Subsection <a href="intro.html#detstosignals">1.3.2</a>.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-3" class="example"><strong>Example 1.1  (Signal Spectra)  </strong></span>The spectrum of an analog phone signal lies within the range of 300 Hz to 3.4 kHz, whereas a general audio signal contains frequencies in the range of 15 Hz to 20 kHz. The bandwidth of a digital Long-Term Evolution (LTE) signal can be up to 20 MHz and its center frequency depends on the operator as well as the area where it is deployed (rural or urban).
+</div>
+</div>
+<div id="detstosignals" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Deterministic and Stochastic Signals</h3>
+<p>Here and in the next subsection, we discuss different classifications of signals. One possible classification is to distinguish between deterministic and stochastic signals.</p>
+
+<div class="definition">
+<span id="def:detsignal" class="definition"><strong>Definition 1.3  (Deterministic Signal)  </strong></span>A <strong>deterministic</strong> (German: <em>deterministisch</em>) signal has a known characteristic and can be represented by a function.
+</div>
+<p>Thus, deterministic signals contain no information in the communications sense.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-4" class="example"><strong>Example 1.2  (Deterministic Signal)  </strong></span>An example of a deterministic signal is a carrier signal, i.e., e.g., <span class="math inline">\(u(t) = 1\,\text{V} \cdot \cos(2.4\,\text{GHz} \cdot 2\pi t)\)</span> as the carrier of ISM band devices.
+</div>
+
+<div class="definition">
+<span id="def:stosignal" class="definition"><strong>Definition 1.4  (Stochastic Signal)  </strong></span>A <strong>stochastic</strong> (German: <em>stochastisch</em>) signal (or process) has a random characteristic and can be only represented by statistics like, e.g., its mean, its auto-correlation function, or its PSD (see Appendix <a href="mathematical-basics.html#probability">E.4</a> for more details).
+</div>
+
+<div class="example">
+<span id="exm:stochastic" class="example"><strong>Example 1.3  (Stochastic Signal)  </strong></span>Figure <a href="intro.html#fig:figstochastic">1.1</a> shows a band-limited white Gaussian noise signal <span class="math inline">\(x(t)\)</span> as an example for a stochastic signal together with an estimate <span class="math inline">\(\hat{\Phi}_x(f)\)</span> of its PSD. The one-sided bandwidth of the signal is <span class="math inline">\(B=4\,\text{kHz}\)</span> and the noise power density is assumed to be <span class="math inline">\(N_0=10^{-5}\,\text{W}/\text{Hz}\)</span>. This results in a noise power of <span class="math inline">\(P_n=\sigma_n^2=BN_0=40\,\text{mW}\)</span>. More details of noise signals and explanations to the above mentioned parameters can be found in Section <a href="noise.html#whitenoise">4.1.1</a>. With the following tool, one can listen to the audio file representing the considered stochastic signal.
+</div>
+<figure style="text-align:center">
+<audio controls>
+<source src="media/noise_signal.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure>
+<div class="figure" style="text-align: center"><span id="fig:figstochastic"></span>
+<img src="kt_files/figure-html/figstochastic-1.svg" alt="Bandlimited white Gaussian noise signal and a cut-out of its two-sided PSD estimate"  />
+<p class="caption">
+Figure 1.1: Bandlimited white Gaussian noise signal and a cut-out of its two-sided PSD estimate
+</p>
+</div>
+<p>Stochastic signals play a major role in modeling, investigating, and optimizing the components of a communications system.</p>
+
+<div class="remark">
+ <span class="remark"><em>Remark. </em></span> The transmission of information is modeled as a stochastic process (signal) because at the receiver, the information is not <em>a priori</em> known. Besides, impairments like, e.g., noise and interference, are stochastic processes (signals).
+</div>
+<p>We conclude this subsection with a quiz with which you can check if you understood the meaning of a stochastic signal.</p>
+<form class="quiz" data-correct="1">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following signals is stochastic?
+</div>
+<input value="A. Voice of a human being recorded with a real microphone"/>
+<input value="B. Ideal sine wave with fixed frequency"/>
+<input value="C. Output of an ideal quartz clock"/>
+<input value="D. Digital ASCII code of a known text file"/>
+</form>
+</div>
+<div id="continuous-and-discrete-signals" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Continuous and Discrete Signals</h3>
+<p>Another classification of signals is to separate <strong>continuous</strong> and <strong>discrete</strong> signals. Note that the time domain and/or the value domain can be discrete or continuous, leading to four types of signals which are summarised in Figure <a href="intro.html#fig:signaltypes">1.2</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:signaltypes"></span>
+<img src="kt_files/figure-html/signaltypes-1.svg" alt="Different types of communications signals" width="80%" />
+<p class="caption">
+Figure 1.2: Different types of communications signals
+</p>
+</div>
+<p>Finally, when we talk about <strong>analog</strong> signals, we refer to signals which are time-and value-continuous and used for analog communications whereas we use the term <strong>digital</strong> signals for time-and value-discrete signals used for digital communications. Although this course focuses solely on digital communications, we require analog signals when transmitting digital data over an analog channel as we will see in Chapter <a href="baseband.html#baseband">3</a>.</p>
+</div>
+<div id="digital-representation" class="section level3" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Digital Representation</h3>
+<p>In digital communications, signals are</p>
+<ul>
+<li>represented digitally (time- and value-discrete, pulse-code modulated),</li>
+<li>compressed and coded (e.g., for error correction) and mixed with addresses,</li>
+<li>but finally transmitted with analog signals (pulses) which are matched to the analog channel.</li>
+</ul>
+<p>More details to the digital representation of analog signals will be presented in Chapter <a href="digitalrepresentation.html#digitalrepresentation">2</a>.</p>
+</div>
+</div>
+<div id="communications-systems" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Communications Systems</h2>
+<div id="wired-and-wireless-systems" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Wired and Wireless Systems</h3>
+<p>Communications systems consist of a <strong>network</strong> (German: <em>Netzwerk</em>) of two or, in the most cases, of several <strong>nodes</strong> (German: <em>Knoten</em>) or <strong>transceivers</strong> (German: <em>Sendeempfänger</em>), i.e., devices containing transmitters and receivers, which are connected with each other via a communications link. This link can be either a wire or a wireless over-the-air channel.</p>
+<p>In <strong>wired</strong> (German: <em>drahtgebunden</em>) communications systems, network nodes are connected via wires, i.e., either copper or optical fibre. Examples of wired communications systems are:</p>
+<ul>
+<li>Digital Subscriber Line (DSL),</li>
+<li>Integrated Services Digital Network (ISDN),</li>
+<li>Fibre To The Home (FTTH),</li>
+<li>Ethernet, IEEE 802.3, and</li>
+<li>Universal Serial Bus (USB).</li>
+</ul>
+<p><strong>Wireless</strong> (German: <em>drahtlos</em>) communications systems transmit information over the air, i.e., no wired connections between network nodes are required. There exists principally two categories of wireless systems, viz., systems operating in <strong>unlicensed</strong> (German: <em>unlinzensiert</em>) frequency bands and systems operating in <strong>licensed</strong> (German: <em>lizensiert</em>) frequency bands. Examples of unlicensed wireless systems are:</p>
+<ul>
+<li>Wireless Local Area Network (WLAN), IEEE 802.11, Wi-Fi,</li>
+<li>Worldwide Interoperability for Microwave Access (WiMAX), IEEE 802.16 (used also in licensed spectra), and</li>
+<li>Bluetooth.</li>
+</ul>
+<p>Examples of licensed wireless systems are:</p>
+<ul>
+<li>Global System for Mobile Communications (GSM, 2nd generation mobile system) / Enhanced Data Rates for GSM Evolution (EDGE),</li>
+<li>Universal Mobile Telecommunications System (UMTS, 3rd generation mobile system) / High Speed Packet Access (HSPA),</li>
+<li>Long-Term Evolution (LTE, 4th generation mobile system), LTE-Advanced, LTE-Advanced Pro, and</li>
+<li>New Radio (NR, 5th generation mobile system).</li>
+</ul>
+</div>
+<div id="frequency-bands" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Frequency Bands</h3>
+<p>The so-called <strong>frequency plan</strong> (German: <em>Frequenzplan</em> or <em>Frequenzbelegungsplan</em>) of a country defines the assignment of frequency bands, i.e., a frequency region, to certain communications systems with specific usage rules. In Germany, this frequency plan is defined by the <em>Bundesnetzagentur</em> <span class="citation">(<a href="references.html#ref-Bu19" role="doc-biblioref">Bundesnetzagentur 2019</a>)</span> and can be found <a href="https://www.bundesnetzagentur.de/cln_1411/DE/Sachgebiete/Telekommunikation/Unternehmen_Institutionen/Frequenzen/Grundlagen/Frequenzplan/frequenzplan-node.html">here</a>.</p>
+</div>
+<div id="block-diagram" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Block Diagram</h3>
+<p>Figure <a href="intro.html#fig:comsystem">1.3</a> shows the blocks of a digital communications system.<a href="intro.html#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>
+This diagram will guide us through this textbook All blue blocks will be treated in this course and red blocks are for further study.</p>
+<div class="figure" style="text-align: center"><span id="fig:comsystem"></span>
+<img src="kt_files/figure-html/comsystem-1.svg" alt="Block diagram of a digital communications system" width="672" />
+<p class="caption">
+Figure 1.3: Block diagram of a digital communications system
+</p>
+</div>
+
+<div class="exercise">
+<p><span id="exr:execomsystem" class="exercise"><strong>Exercise 1.1  (Signal Classification in a Communications System)  </strong></span>Consider the digital communications system of Figure <a href="intro.html#fig:comsystem">1.3</a>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Determine for each of the signals in the block diagram, viz., <span class="math inline">\(x(t)\)</span>, <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(b[k]\)</span>, <span class="math inline">\(u[k]\)</span>, <span class="math inline">\(s(t)\)</span>, <span class="math inline">\(r(t)\)</span>, <span class="math inline">\(\hat{u}[k]\)</span>, <span class="math inline">\(\hat{b}[k]\)</span>, <span class="math inline">\(\hat{x}[n]\)</span>, and <span class="math inline">\(\hat{x}(t)\)</span>, if the signal is time-continuous, time-discrete, value-continuous, value-discrete, analog and/or digital.</li>
+<li>Explain why a digital communications system finally transmits the digital signal in an analog way? Why don’t we just transmit the analog signal directly over the channel?</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;comsystemsol&#39;)">
+Solution
+</button>
+<div id="comsystemsol" class="popupsolution">
+
+<div class="solution">
+<p> <span class="solution"><em>Solution</em> (Signal Classification in a Communications System). </span> The solution to Exercise <a href="intro.html#exr:execomsystem">1.1</a> is as follows:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(x(t)\)</span>, <span class="math inline">\(s(t)\)</span>, <span class="math inline">\(r(t)\)</span>, <span class="math inline">\(\hat{x}(t)\)</span>: analog, i.e., time- and value-continuous (German: <em>zeit- und wertkontinuierlich</em><br> <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(\hat{x}[n]\)</span>: time-discrete (German: <em>zeitdiskret</em>) and value-continuous<br> <span class="math inline">\(b[k]\)</span>, <span class="math inline">\(\hat{b}[k]\)</span>, <span class="math inline">\(u[k]\)</span>, <span class="math inline">\(\hat{u}[k]\)</span>: digital, i.e., time- and value-discrete (German: <em>wertdiskret</em>)</p></li>
+<li><p>Transforming the analog signal <span class="math inline">\(x(t)\)</span> to the digital signal <span class="math inline">\(b[k]\)</span> paves the way for source and channel coding (German: <em>Quellen- und Kanalcodierung</em>), i.e., it is possible to insert error correction coding which improves the performance of the system. Moreover, modulation can construct the analog signal <span class="math inline">\(s(t)\)</span> from the digital coded signal <span class="math inline">\(u[k]\)</span> in a specific way taking the physical channel into account. We will see in later sections that the transmitted signal <span class="math inline">\(s(t)\)</span> is matched to the channel, again leading to an improved performance of the system.</p></li>
+</ol>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The reason to choose the unit <span class="math inline">\(\sqrt{\text{W}}\)</span> for signals is that the instantaneous power (deutsch: <em>Momentanleistung</em>) of a signal <span class="math inline">\(x(t)\)</span> is defined as <span class="math inline">\(p(t)=x^2(t)\)</span>. If we consider the voltage <span class="math inline">\(u(t)\)</span> or current <span class="math inline">\(i(t)\)</span> of a resistor with the resistance <span class="math inline">\(R\)</span>, the signal <span class="math inline">\(x(t)\)</span> is defined as: <span class="math inline">\(x(t)=u(t)/\sqrt{R}\)</span> or <span class="math inline">\(x(t)=i(t)\sqrt{R}\)</span> and the instantaneous power computes as usual to <span class="math inline">\(p(t)=u^2(t)/R=Ri^2(t)\)</span>.<a href="intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>For the sake of simplicity, we use the notation <span class="math inline">\(x(t)\)</span> for the random process as well as its realisation. It should be clear from the context if it is the one or the other.<a href="intro.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Round brackets denote time-continuous and squared brackets time-discrete signals!<a href="intro.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="preface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="digitalrepresentation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": null
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"info": true,
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

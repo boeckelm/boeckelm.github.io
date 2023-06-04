@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Digital Representation of Analog Signals | COMMUNICATIONS ENGINEERING</title>
+  <meta name="description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Digital Representation of Analog Signals | COMMUNICATIONS ENGINEERING" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.jpg" />
+  <meta property="og:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Digital Representation of Analog Signals | COMMUNICATIONS ENGINEERING" />
+  
+  <meta name="twitter:description" content="Communications Engineering textbook to the corresponding lecture at the Landshut University for Applied Sciences. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:image" content="images/cover.jpg" />
+
+<meta name="author" content="Guido Dietl" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="baseband.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<!-- Load my plugins -->
+<script src="plugins/quizcompiler.js"></script>
+<script src="plugins/popup.js"> </script>
+
+<!-- Load Mathjax version 3 -->
+<!--<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>-->
+
+<!-- Comment in case of local Mathjax! -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="plugins/quiz.css" type="text/css" />
+<link rel="stylesheet" href="plugins/popup.css" type="text/css" />
+<link rel="stylesheet" href="css/colors.css" type="text/css" />
+<link rel="stylesheet" href="css/postit.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p style="text-align:center">COMMUNICATIONS ENGINEERING</p>
+<p style="text-align:center">Guido Dietl</p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html"><i class="fa fa-check"></i>Disclaimer and Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#haftungsausschluss-disclaimer"><i class="fa fa-check"></i>Haftungsausschluss / Disclaimer</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#inhalt"><i class="fa fa-check"></i>Inhalt</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verweise-und-links"><i class="fa fa-check"></i>Verweise und Links</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#urheber--und-kennzeichenrecht"><i class="fa fa-check"></i>Urheber- und Kennzeichenrecht</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#rechtwirksamkeit"><i class="fa fa-check"></i>Rechtwirksamkeit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutz-data-protection"><i class="fa fa-check"></i>Datenschutz / Data Protection</a>
+<ul>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#datenschutzerklärung"><i class="fa fa-check"></i>Datenschutzerklärung</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#verantwortlicher"><i class="fa fa-check"></i>Verantwortlicher</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#personenbezogene-daten"><i class="fa fa-check"></i>Personenbezogene Daten</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#daten-beim-websiteaufruf"><i class="fa fa-check"></i>Daten beim Websiteaufruf</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#ihre-rechte"><i class="fa fa-check"></i>Ihre Rechte</a></li>
+<li class="chapter" data-level="" data-path="disclaimer-and-data-protection.html"><a href="disclaimer-and-data-protection.html#einsatz-von-cookies"><i class="fa fa-check"></i>Einsatz von Cookies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#what-is-communications-engineering"><i class="fa fa-check"></i><b>1.1</b> What is Communications Engineering?</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#history"><i class="fa fa-check"></i><b>1.2</b> History of Communications</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#signals-in-communications"><i class="fa fa-check"></i><b>1.3</b> Signals in Communications</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#signals-and-their-spectra"><i class="fa fa-check"></i><b>1.3.1</b> Signals and Their Spectra</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#detstosignals"><i class="fa fa-check"></i><b>1.3.2</b> Deterministic and Stochastic Signals</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#continuous-and-discrete-signals"><i class="fa fa-check"></i><b>1.3.3</b> Continuous and Discrete Signals</a></li>
+<li class="chapter" data-level="1.3.4" data-path="intro.html"><a href="intro.html#digital-representation"><i class="fa fa-check"></i><b>1.3.4</b> Digital Representation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#communications-systems"><i class="fa fa-check"></i><b>1.4</b> Communications Systems</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="intro.html"><a href="intro.html#wired-and-wireless-systems"><i class="fa fa-check"></i><b>1.4.1</b> Wired and Wireless Systems</a></li>
+<li class="chapter" data-level="1.4.2" data-path="intro.html"><a href="intro.html#frequency-bands"><i class="fa fa-check"></i><b>1.4.2</b> Frequency Bands</a></li>
+<li class="chapter" data-level="1.4.3" data-path="intro.html"><a href="intro.html#block-diagram"><i class="fa fa-check"></i><b>1.4.3</b> Block Diagram</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html"><i class="fa fa-check"></i><b>2</b> Digital Representation of Analog Signals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#sampling"><i class="fa fa-check"></i><b>2.1</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#energylimited"><i class="fa fa-check"></i><b>2.1.1</b> Energy- and Band-Limited Signals</a></li>
+<li class="chapter" data-level="2.1.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#ideal-sampling"><i class="fa fa-check"></i><b>2.1.2</b> Ideal Sampling</a></li>
+<li class="chapter" data-level="2.1.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#reconstruction"><i class="fa fa-check"></i><b>2.1.3</b> Ideal Reconstruction and Sampling Theorem</a></li>
+<li class="chapter" data-level="2.1.4" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#over--and-undersampling"><i class="fa fa-check"></i><b>2.1.4</b> Over- and Undersampling</a></li>
+<li class="chapter" data-level="2.1.5" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#real-sampling"><i class="fa fa-check"></i><b>2.1.5</b> Real Sampling</a></li>
+<li class="chapter" data-level="2.1.6" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#passbandsampling"><i class="fa fa-check"></i><b>2.1.6</b> Sampling of Passband Signals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#quantisation"><i class="fa fa-check"></i><b>2.2</b> Quantisation</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#linear-quantisation"><i class="fa fa-check"></i><b>2.2.1</b> Linear Quantisation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#nonlinear-quantisation-or-companding"><i class="fa fa-check"></i><b>2.2.2</b> Nonlinear Quantisation or Companding</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="digitalrepresentation.html"><a href="digitalrepresentation.html#pcm"><i class="fa fa-check"></i><b>2.3</b> Pulse Code Modulation (PCM)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="baseband.html"><a href="baseband.html"><i class="fa fa-check"></i><b>3</b> Baseband Communications</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="baseband.html"><a href="baseband.html#modulation"><i class="fa fa-check"></i><b>3.1</b> Modulation</a></li>
+<li class="chapter" data-level="3.2" data-path="baseband.html"><a href="baseband.html#pulseshaping"><i class="fa fa-check"></i><b>3.2</b> Pulse Shaping</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="baseband.html"><a href="baseband.html#rectfilter"><i class="fa fa-check"></i><b>3.2.1</b> Rectangular Filter or Non-Return-to-Zero (NRZ) Code</a></li>
+<li class="chapter" data-level="3.2.2" data-path="baseband.html"><a href="baseband.html#manchester-code"><i class="fa fa-check"></i><b>3.2.2</b> Manchester Code</a></li>
+<li class="chapter" data-level="3.2.3" data-path="baseband.html"><a href="baseband.html#sincfilter"><i class="fa fa-check"></i><b>3.2.3</b> Sinc Filter</a></li>
+<li class="chapter" data-level="3.2.4" data-path="baseband.html"><a href="baseband.html#nyquistrolloff"><i class="fa fa-check"></i><b>3.2.4</b> Raised-Cosine or Nyquist-Roll-Off Filter</a></li>
+<li class="chapter" data-level="3.2.5" data-path="baseband.html"><a href="baseband.html#gaussfilter"><i class="fa fa-check"></i><b>3.2.5</b> Gaussian Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="baseband.html"><a href="baseband.html#heisenberg"><i class="fa fa-check"></i><b>3.3</b> Time-Bandwidth Product</a></li>
+<li class="chapter" data-level="3.4" data-path="baseband.html"><a href="baseband.html#isi"><i class="fa fa-check"></i><b>3.4</b> First Nyquist Criterion</a></li>
+<li class="chapter" data-level="3.5" data-path="baseband.html"><a href="baseband.html#eyediagram"><i class="fa fa-check"></i><b>3.5</b> Eye Diagram</a></li>
+<li class="chapter" data-level="3.6" data-path="baseband.html"><a href="baseband.html#spectral-efficiency"><i class="fa fa-check"></i><b>3.6</b> Spectral Efficiency</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="noise.html"><a href="noise.html"><i class="fa fa-check"></i><b>4</b> Detection of Baseband Signals in Noise</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="noise.html"><a href="noise.html#awgn"><i class="fa fa-check"></i><b>4.1</b> Additive White Gaussian Noise (AWGN) Channel</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="noise.html"><a href="noise.html#whitenoise"><i class="fa fa-check"></i><b>4.1.1</b> White Gaussian Noise</a></li>
+<li class="chapter" data-level="4.1.2" data-path="noise.html"><a href="noise.html#signal-to-noise-power-ratio"><i class="fa fa-check"></i><b>4.1.2</b> Signal-to-Noise Power Ratio</a></li>
+<li class="chapter" data-level="4.1.3" data-path="noise.html"><a href="noise.html#noise-figure"><i class="fa fa-check"></i><b>4.1.3</b> Noise Figure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="noise.html"><a href="noise.html#baseband-receiver-for-detection"><i class="fa fa-check"></i><b>4.2</b> Baseband Receiver for Detection</a></li>
+<li class="chapter" data-level="4.3" data-path="noise.html"><a href="noise.html#matched-filter"><i class="fa fa-check"></i><b>4.3</b> Matched Filter</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="noise.html"><a href="noise.html#maximizing-snr"><i class="fa fa-check"></i><b>4.3.1</b> Maximizing SNR</a></li>
+<li class="chapter" data-level="4.3.2" data-path="noise.html"><a href="noise.html#frequency-selective-channel"><i class="fa fa-check"></i><b>4.3.2</b> Frequency-Selective Channel</a></li>
+<li class="chapter" data-level="4.3.3" data-path="noise.html"><a href="noise.html#root-raised-cosine-filter"><i class="fa fa-check"></i><b>4.3.3</b> Root-Raised-Cosine Filter</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="noise.html"><a href="noise.html#bit-error-probability-bep"><i class="fa fa-check"></i><b>4.4</b> Bit Error Probability (BEP)</a></li>
+<li class="chapter" data-level="4.5" data-path="noise.html"><a href="noise.html#sync"><i class="fa fa-check"></i><b>4.5</b> Clock and Frame Synchronisation</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="noise.html"><a href="noise.html#clocksync"><i class="fa fa-check"></i><b>4.5.1</b> Clock Synchronisation</a></li>
+<li class="chapter" data-level="4.5.2" data-path="noise.html"><a href="noise.html#framesync"><i class="fa fa-check"></i><b>4.5.2</b> Frame Synchronisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="passband.html"><a href="passband.html"><i class="fa fa-check"></i><b>5</b> Passband Communications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="passband.html"><a href="passband.html#equivalent"><i class="fa fa-check"></i><b>5.1</b> Equivalent Baseband Signal</a></li>
+<li class="chapter" data-level="5.2" data-path="passband.html"><a href="passband.html#QAM"><i class="fa fa-check"></i><b>5.2</b> Quadrature Amplitude Modulation (QAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="passband.html"><a href="passband.html#QAD"><i class="fa fa-check"></i><b>5.3</b> Quadrature Amplitude Demodulation (QAD)</a></li>
+<li class="chapter" data-level="5.4" data-path="passband.html"><a href="passband.html#carriersync"><i class="fa fa-check"></i><b>5.4</b> Carrier Synchronisation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="moddet.html"><a href="moddet.html"><i class="fa fa-check"></i><b>6</b> Digital Modulation and Detection Methods</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="moddet.html"><a href="moddet.html#linear-modulation-schemes"><i class="fa fa-check"></i><b>6.1</b> Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="moddet.html"><a href="moddet.html#ask"><i class="fa fa-check"></i><b>6.1.1</b> Amplitude Shift Keying (ASK)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="moddet.html"><a href="moddet.html#phase-shift-keying-psk"><i class="fa fa-check"></i><b>6.1.2</b> Phase Shift Keying (PSK)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="moddet.html"><a href="moddet.html#quadrature-amplitude-modulation-qam"><i class="fa fa-check"></i><b>6.1.3</b> Quadrature Amplitude Modulation (QAM)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="moddet.html"><a href="moddet.html#fsk"><i class="fa fa-check"></i><b>6.2</b> Binary Frequency-Shift-Keying (FSK)</a></li>
+<li class="chapter" data-level="6.3" data-path="moddet.html"><a href="moddet.html#coherent"><i class="fa fa-check"></i><b>6.3</b> Coherent Detection of Linear Modulation Schemes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="moddet.html"><a href="moddet.html#beps"><i class="fa fa-check"></i><b>6.3.1</b> BEPs</a></li>
+<li class="chapter" data-level="6.3.2" data-path="moddet.html"><a href="moddet.html#frame-error-rate-and-mean-data-rate"><i class="fa fa-check"></i><b>6.3.2</b> Frame Error Rate and Mean Data Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="moddet.html"><a href="moddet.html#noncoherent-detection-of-ask-and-fsk"><i class="fa fa-check"></i><b>6.4</b> Noncoherent Detection of ASK and FSK</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="moddet.html"><a href="moddet.html#ed"><i class="fa fa-check"></i><b>6.4.1</b> Envelope Detection</a></li>
+<li class="chapter" data-level="6.4.2" data-path="moddet.html"><a href="moddet.html#noncoherent-ask-detector"><i class="fa fa-check"></i><b>6.4.2</b> Noncoherent ASK Detector</a></li>
+<li class="chapter" data-level="6.4.3" data-path="moddet.html"><a href="moddet.html#noncoherent-fsk-detector"><i class="fa fa-check"></i><b>6.4.3</b> Noncoherent FSK Detector</a></li>
+<li class="chapter" data-level="6.4.4" data-path="moddet.html"><a href="moddet.html#bep-of-noncoherent-detection"><i class="fa fa-check"></i><b>6.4.4</b> BEP of Noncoherent Detection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="moddet.html"><a href="moddet.html#comparison-of-digital-modulation-schemes"><i class="fa fa-check"></i><b>6.5</b> Comparison of Digital Modulation Schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="information.html"><a href="information.html"><i class="fa fa-check"></i><b>7</b> A Brief Introduction to Information Theory, Source and Channel Coding</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html"><i class="fa fa-check"></i><b>A</b> Geniuses of Communications</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#bell"><i class="fa fa-check"></i><b>A.1</b> Alexander Graham Bell</a></li>
+<li class="chapter" data-level="A.2" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#chappe"><i class="fa fa-check"></i><b>A.2</b> Abbé Claude Chappe</a></li>
+<li class="chapter" data-level="A.3" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#gauss"><i class="fa fa-check"></i><b>A.3</b> Johann Carl Friedrich Gauss</a></li>
+<li class="chapter" data-level="A.4" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hertz"><i class="fa fa-check"></i><b>A.4</b> Heinrich Rudolf Hertz</a></li>
+<li class="chapter" data-level="A.5" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#hooke"><i class="fa fa-check"></i><b>A.5</b> Robert Hooke</a></li>
+<li class="chapter" data-level="A.6" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#marconi"><i class="fa fa-check"></i><b>A.6</b> Guglielmo Marconi</a></li>
+<li class="chapter" data-level="A.7" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#maxwell"><i class="fa fa-check"></i><b>A.7</b> James Clerk Maxwell</a></li>
+<li class="chapter" data-level="A.8" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#reeves"><i class="fa fa-check"></i><b>A.8</b> Alec Harley Reeves</a></li>
+<li class="chapter" data-level="A.9" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#shannon"><i class="fa fa-check"></i><b>A.9</b> Claude Elwood Shannon</a></li>
+<li class="chapter" data-level="A.10" data-path="geniuses-of-communications.html"><a href="geniuses-of-communications.html#weber"><i class="fa fa-check"></i><b>A.10</b> Wilhelm Eduard Weber</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="apphistory.html"><a href="apphistory.html"><i class="fa fa-check"></i><b>B</b> Historical Background Information</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="apphistory.html"><a href="apphistory.html#opttele"><i class="fa fa-check"></i><b>B.1</b> Optical Telegraphy</a></li>
+<li class="chapter" data-level="B.2" data-path="apphistory.html"><a href="apphistory.html#emwaves"><i class="fa fa-check"></i><b>B.2</b> Hertz’s Electromagnetic Waves Experiment</a></li>
+<li class="chapter" data-level="B.3" data-path="apphistory.html"><a href="apphistory.html#marconiradio"><i class="fa fa-check"></i><b>B.3</b> Marconi’s Radio Experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="units.html"><a href="units.html"><i class="fa fa-check"></i><b>C</b> Units</a></li>
+<li class="chapter" data-level="D" data-path="important-functions.html"><a href="important-functions.html"><i class="fa fa-check"></i><b>D</b> Important Functions</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="important-functions.html"><a href="important-functions.html#rect"><i class="fa fa-check"></i><b>D.1</b> Rectangular Function</a></li>
+<li class="chapter" data-level="D.2" data-path="important-functions.html"><a href="important-functions.html#sinc"><i class="fa fa-check"></i><b>D.2</b> Sinc Function</a></li>
+<li class="chapter" data-level="D.3" data-path="important-functions.html"><a href="important-functions.html#sgn"><i class="fa fa-check"></i><b>D.3</b> Signum Function</a></li>
+<li class="chapter" data-level="D.4" data-path="important-functions.html"><a href="important-functions.html#erfc"><i class="fa fa-check"></i><b>D.4</b> Complimentary Error Function</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="mathematical-basics.html"><a href="mathematical-basics.html"><i class="fa fa-check"></i><b>E</b> Mathematical Basics</a>
+<ul>
+<li class="chapter" data-level="E.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#fourier"><i class="fa fa-check"></i><b>E.1</b> Fourier Transform</a></li>
+<li class="chapter" data-level="E.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#dirac"><i class="fa fa-check"></i><b>E.2</b> Dirac Delta Function</a>
+<ul>
+<li class="chapter" data-level="E.2.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#definition-and-properties"><i class="fa fa-check"></i><b>E.2.1</b> Definition and Properties</a></li>
+<li class="chapter" data-level="E.2.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#diraccomb"><i class="fa fa-check"></i><b>E.2.2</b> Dirac Comb</a></li>
+</ul></li>
+<li class="chapter" data-level="E.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#conv"><i class="fa fa-check"></i><b>E.3</b> Convolution</a></li>
+<li class="chapter" data-level="E.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#probability"><i class="fa fa-check"></i><b>E.4</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="E.4.1" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-experiment"><i class="fa fa-check"></i><b>E.4.1</b> Random Experiment</a></li>
+<li class="chapter" data-level="E.4.2" data-path="mathematical-basics.html"><a href="mathematical-basics.html#random-variable"><i class="fa fa-check"></i><b>E.4.2</b> Random Variable</a></li>
+<li class="chapter" data-level="E.4.3" data-path="mathematical-basics.html"><a href="mathematical-basics.html#cumulative-distribution-function"><i class="fa fa-check"></i><b>E.4.3</b> Cumulative Distribution Function</a></li>
+<li class="chapter" data-level="E.4.4" data-path="mathematical-basics.html"><a href="mathematical-basics.html#pdf"><i class="fa fa-check"></i><b>E.4.4</b> Probability Density Function</a></li>
+<li class="chapter" data-level="E.4.5" data-path="mathematical-basics.html"><a href="mathematical-basics.html#mean"><i class="fa fa-check"></i><b>E.4.5</b> Mean</a></li>
+<li class="chapter" data-level="E.4.6" data-path="mathematical-basics.html"><a href="mathematical-basics.html#variance"><i class="fa fa-check"></i><b>E.4.6</b> Variance</a></li>
+<li class="chapter" data-level="E.4.7" data-path="mathematical-basics.html"><a href="mathematical-basics.html#randomprocess"><i class="fa fa-check"></i><b>E.4.7</b> Random Process</a></li>
+<li class="chapter" data-level="E.4.8" data-path="mathematical-basics.html"><a href="mathematical-basics.html#ensemble-and-time-average"><i class="fa fa-check"></i><b>E.4.8</b> Ensemble and Time Average</a></li>
+<li class="chapter" data-level="E.4.9" data-path="mathematical-basics.html"><a href="mathematical-basics.html#stationarity-and-ergodicity"><i class="fa fa-check"></i><b>E.4.9</b> Stationarity and Ergodicity</a></li>
+<li class="chapter" data-level="E.4.10" data-path="mathematical-basics.html"><a href="mathematical-basics.html#autocorr"><i class="fa fa-check"></i><b>E.4.10</b> Auto-Correlation Function</a></li>
+<li class="chapter" data-level="E.4.11" data-path="mathematical-basics.html"><a href="mathematical-basics.html#psd"><i class="fa fa-check"></i><b>E.4.11</b> Power Spectral Density</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="../kt.html">COMMUNICATIONS ENGINEERING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="digitalrepresentation" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Digital Representation of Analog Signals</h1>
+<div id="sampling" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Sampling</h2>
+<div id="energylimited" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Energy- and Band-Limited Signals</h3>
+<p>In this textbook, we restrict the signals <span class="math inline">\(x(t)\)</span> to be <strong>energy-limited</strong> (German: <em>energiebegrenzt</em>), i.e., it holds<a href="digitalrepresentation.html#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>
+<span class="math display">\[E_x := \int\limits_{-\infty}^\infty x^2(t)\,dt &lt; \infty.\]</span></p>
+<p>Note that communications signals in practical systems are strictly time-limited, i.e., signals with a beginning and an end and time-limited signal are always energy-limited. Thus, the assumption above is practically motivated.</p>
+<p>Since the frequencies, which are included in a signal, play a major role when sampling is applied, especially for the signal quality after reconstruction from the sampled values, we need to firstly define band-limited signals before introducing sampling.</p>
+
+<div class="definition">
+<span id="def:bandlimit" class="definition"><strong>Definition 2.1  (Band-Limited Signals)  </strong></span>A signal <span class="math inline">\(x(t)\)</span> is <strong>band-limited</strong> (German: <em>bandbegrenzt</em>) if its spectrum <span class="math inline">\(X(f)\)</span> fulfills<a href="digitalrepresentation.html#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>
+<span class="math display">\[X(f)=0 \quad \forall |f|&gt;f_\mathrm{max},\]</span>
+where <span class="math inline">\(f_\mathrm{max}\)</span> is the maximum frequency in the spectrum.
+</div>
+
+<div class="example">
+<span id="exm:exabandlimit" class="example"><strong>Example 2.1  (DTMF Signals)  </strong></span>An example of band-limited signals are Dual-Tone Multi-Frequency (DTMF) signals used for dialing in a landline telephone system. DTMF signals have been introduced when rotary dials have been replaced by keypads. Figure <a href="digitalrepresentation.html#fig:dtmf3">2.1</a> and <a href="digitalrepresentation.html#fig:dtmf7">2.2</a> shows exemplarily the DTMF signals and spectra of the two keys “3” and “7.” Again, you can listen to the corresponding audio signal with the audio tool presented right below each figure.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:dtmf3"></span>
+<img src="kt_files/figure-html/dtmf3-1.svg" alt="Signal and spectrum of a DTMF signal corresponding to the key &quot;3&quot;" width="672" />
+<p class="caption">
+Figure 2.1: Signal and spectrum of a DTMF signal corresponding to the key “3”
+</p>
+</div>
+<figure style="text-align:center">
+<audio controls>
+<source src="media/dtmf_3.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure>
+<div class="figure" style="text-align: center"><span id="fig:dtmf7"></span>
+<img src="kt_files/figure-html/dtmf7-1.svg" alt="Signal and spectrum of a DTMF signal corresponding to the key &quot;7&quot;" width="672" />
+<p class="caption">
+Figure 2.2: Signal and spectrum of a DTMF signal corresponding to the key “7”
+</p>
+</div>
+<figure style="text-align:center">
+<audio controls>
+<source src="media/dtmf_7.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure>
+<form class="quiz" data-correct="3">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+What is the maximum bandwidth used by DTMF signaling when considering only the keys “0,” “1,” …, “9,” “*” and “#?” (Search the internet for all DTMF keypad frequencies!)
+</div>
+<input value="A. 941 Hz"/>
+<input value="B. 1633 Hz"/>
+<input value="C. 1477 Hz"/>
+<input value="D. 697 Hz"/>
+</form>
+</div>
+<div id="ideal-sampling" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Ideal Sampling</h3>
+<p>Before starting with the study of this subsection, it is recommended to briefly review the theory of the Dirac delta function in Appendix <a href="mathematical-basics.html#dirac">E.2</a>, convolution in Appendix <a href="mathematical-basics.html#conv">E.3</a>, and the Fourier transform in Appendix <a href="mathematical-basics.html#fourier">E.1</a>.</p>
+<p>The major goal of ideal sampling is to transfer losslessly value- and time-continuous signals to value-continuous and time-discrete signals. Here, the term “losslessly” means that the original signal can be ideally reconstructed (see Subsection <a href="digitalrepresentation.html#reconstruction">2.1.3</a>) from its value-continuous and time-discrete representation.</p>
+
+<div class="definition">
+<span id="def:idealsampling" class="definition"><strong>Definition 2.2  (Ideal Sampling)  </strong></span><strong>Ideal sampling</strong> (German: <em>ideale Abtastung</em>) with the <strong>sampling period</strong> (German: <em>Abtastperiode</em>) or <strong>sampling interval</strong> (German: <em>Abtastintervall</em>) <span class="math inline">\(T_\mathrm{s}\)</span> refers to the multiplication of <span class="math inline">\(x(t)\)</span> with a Dirac comb (cf. Appendix <a href="mathematical-basics.html#diraccomb">E.2.2</a>) where two adjacent Dirac delta functions have the distance <span class="math inline">\(T_\mathrm{s}\)</span>, i.e.,
+<span class="math display">\[x_\mathrm{s}(t) := x(t) \cdot T_\mathrm{s} \cdot \sum_{n=-\infty}^\infty
+\delta(t-nT_\mathrm{s})
+= T_\mathrm{s} \cdot \sum_{n=-\infty}^\infty
+x[n] \delta(t-nT_\mathrm{s}),\]</span>
+with <span class="math inline">\(x[n]=x(nT_\mathrm{s})\)</span> being the sampled values. The inversion of <span class="math inline">\(T_\mathrm{s}\)</span> equals the <strong>sampling rate</strong> (German: <em>Abtastrate</em>) or <strong>sampling frequency</strong> (German: <em>Abtastfrequenz</em>) <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span>.
+</div>
+<p>The question is, why don’t we just define ideal sampling via the equation <span class="math inline">\(x[n]=x(nT_\mathrm{s})\)</span>? Why do we need this cumbersome way based on a Dirac comb?</p>
+<p>The answer to this question is rather simple. The Fourier transform is only defined for time-continuous signals. This seems to contradict with the aim of sampling, i.e., transforming a time-continuous signal into a time-discrete one. However, by defining sampling via the multiplication of <span class="math inline">\(x(t)\)</span> with a Dirac comb, we ensure that the result is sampled but still time-continuous. Thus, the Fourier transform of the sampled signal exists and the need for alternative transforms like, e.g., the <span class="math inline">\(z\)</span>-transform, is avoided. Note that <span class="math inline">\(x[n]\)</span> is the sampled time-discrete counterpart of the sampled but still time-continuous signal <span class="math inline">\(x_\mathrm{s}(t)\)</span>.<a href="digitalrepresentation.html#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>With the Fourier transform of the Dirac comb (see Appendix <a href="mathematical-basics.html#diraccomb">E.2.2</a>) as given by
+<span class="math display">\[T_\mathrm{s}\sum_{n=-\infty}^\infty
+\delta(t-nT_\mathrm{s}) \leftrightarrow \sum_{k=-\infty}^\infty \delta(f - k f_\mathrm{s}),\]</span>
+with <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span>, the fact that multiplication in the time domain equals convolution in the frequency domain, i.e., <span class="math inline">\(x(t)\cdot y(t) \leftrightarrow X(f)*Y(f)\)</span> (see Theorem <a href="mathematical-basics.html#thm:fourier">E.1</a>), and the fact that <span class="math inline">\(X(f)*\delta(f-f_0)=X(f-f_0)\)</span> (see Theorem <a href="mathematical-basics.html#thm:dirac">E.2</a>), ideal sampling can be represented as a periodic repetition of the spectrum in the following way:
+<span class="math display">\[
+\begin{aligned} \displaystyle
+x_\mathrm{s}(t) &amp;= x(t) \cdot T_\mathrm{s} \cdot \sum_{n=-\infty}^\infty
+\delta(t-nT_\mathrm{s})
+= T_\mathrm{s} \cdot \sum_{n=-\infty}^\infty
+x[n] \delta(t-nT_\mathrm{s})\\
+ &amp;\updownarrow \\
+X_\mathrm{s}(f) &amp;= X(f)*\sum_{k=-\infty}^\infty \delta(f - k f_\mathrm{s}) = \sum_{k=-\infty}^\infty X(f-k f_\mathrm{s}).
+\end{aligned}
+\]</span></p>
+
+<div class="remark">
+ <span class="remark"><em>Remark. </em></span> Sampling in the time domain equals periodic repetition (German: <em>periodische Fortsetzung</em>) in the frequency domain, i.e.,
+<span class="math display">\[x_\mathrm{s}(t) = T_\mathrm{s}\sum_{n=-\infty}^\infty
+x[n] \delta(t-nT_\mathrm{s}) \leftrightarrow
+X_\mathrm{s}(f) = \sum_{k=-\infty}^\infty X(f-k f_\mathrm{s}).\]</span>
+If <span class="math inline">\(x(t)\)</span> is sampled with the sampling period <span class="math inline">\(T_\mathrm{s}\)</span>, the distance between two adjacent spectra replicas equals the sampling rate <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span>.
+</div>
+
+<div class="example">
+<span id="exm:exaidealsampling" class="example"><strong>Example 2.2  (Ideal Sampling of Raised-Cosine Filter)  </strong></span>Figure <a href="digitalrepresentation.html#fig:sampling">2.3</a> shows the signal <span class="math inline">\(x(t)\)</span> and the spectrum <span class="math inline">\(X(f)\)</span> of a raised-cosine filter whose definition and purpose is defined later in this textbook (see Subsection <a href="baseband.html#nyquistrolloff">3.2.4</a>). It can be seen that the spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the with the sampling period <span class="math inline">\(T_\mathrm{s}\)</span> sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span> is a periodic repetition of the original spectrum <span class="math inline">\(X(f)\)</span> where the distance between two adjacent spectra equals <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span>. Note that in Figure <a href="digitalrepresentation.html#fig:sampling">2.3</a>, the maximum frequency <span class="math inline">\(f_\mathrm{max}\)</span> in the spectrum equals the (one-sided) bandwidth <span class="math inline">\(B\)</span>, i.e., <span class="math inline">\(f_\mathrm{max}=B\)</span>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:sampling"></span>
+<img src="kt_files/figure-html/sampling-1.svg" alt="Signal and spectrum of an ideally sampled raised-cosine filter ($f_\mathrm{max}=B$)" width="672" />
+<p class="caption">
+Figure 2.3: Signal and spectrum of an ideally sampled raised-cosine filter (<span class="math inline">\(f_\mathrm{max}=B\)</span>)
+</p>
+</div>
+</div>
+<div id="reconstruction" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Ideal Reconstruction and Sampling Theorem</h3>
+<p>In this subsection, we derive the sampling theorem. This theorem postulates a relationship between the sampling rate <span class="math inline">\(f_\mathrm{s}\)</span> and the bandwidth <span class="math inline">\(B\)</span> of the original signal <span class="math inline">\(x(t)\)</span> such that <span class="math inline">\(x(t)\)</span> can be ideally reconstructed based on its sampled representation <span class="math inline">\(x_\mathrm{s}(t)\)</span>. As a side effect of this derivation, we will find out how to ideally reconstruct the original value- and time-continuous signal. The easiest access to the sampling theorem lies in the frequency domain.</p>
+<p>Consider the spectrum in Figure <a href="digitalrepresentation.html#fig:sampling">2.3</a> of Example <a href="digitalrepresentation.html#exm:exaidealsampling">2.2</a>. In order to reconstruct the blue spectrum <span class="math inline">\(X(f)\)</span> based on the red spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span>, a low-pass filter needs to be applied which removes all the unnecessary spectrum replicas. The cut-off frequency of the low-pass filter is chosen to be <span class="math inline">\(f_\mathrm{s}/2\)</span>, i.e., lying exactly in the middle of two spectrum replicas. By this choice, it is ensured that the original spectrum remains without throwing away any important information about the original signal <span class="math inline">\(x(t)\)</span> whereas its replicas are canceled completely. Note that this is only true as long as <span class="math inline">\(f_\mathrm{s}\geq 2f_\mathrm{max}\)</span>, i.e., if the spectra do not overlap.</p>
+
+<div class="definition">
+<span id="def:deflowpass" class="definition"><strong>Definition 2.3  (Ideal Low-Pass Filter)  </strong></span>The <strong>ideal low-pass filter</strong> (German: <em>idealer Tiefpassfilter</em>) with a cut-off frequency (German: <em>Grenzfrequenz</em>) of <span class="math inline">\(f_\mathrm{s}/2\)</span> is defined as
+<span class="math display">\[h(t) = f_\mathrm{s}\mathrm{sinc}(t f_\mathrm{s}) = f_\mathrm{s}\frac{\sin(\pi t f_\mathrm{s})}
+{\pi t f_\mathrm{s}}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[H(f) = \mathrm{rect}\left(\frac{f}{f_\mathrm{s}}\right) = \begin{cases}
+1, &amp; |f|\leq\frac{f_\mathrm{s}}{2},\\
+0, &amp; |f|&gt; \frac{f_\mathrm{s}}{2},
+\end{cases}
+\]</span>
+with the sinc function <span class="math inline">\(\mathrm{sinc}(\cdot)\)</span> as defined in Subsection <a href="important-functions.html#sinc">D.2</a> and the rectangular function <span class="math inline">\(\mathrm{rect}(\cdot)\)</span> as defined in Subsection <a href="important-functions.html#rect">D.1</a>. See Figure <a href="digitalrepresentation.html#fig:lowpass">2.4</a> for the visualisation of the impulse response <span class="math inline">\(h(t)\)</span> (German: <em>Impulsantwort</em>) and the frequency response <span class="math inline">\(H(f)\)</span> (German: <em>Frequenzgang</em>) of the ideal low-pass filter.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:lowpass"></span>
+<img src="kt_files/figure-html/lowpass-1.svg" alt="Impulse response $h(t)$ and frequency response $H(f)$ of the ideal low-pass filter with a cut-off frequency of $f_\mathrm{s}/2$" width="672" />
+<p class="caption">
+Figure 2.4: Impulse response <span class="math inline">\(h(t)\)</span> and frequency response <span class="math inline">\(H(f)\)</span> of the ideal low-pass filter with a cut-off frequency of <span class="math inline">\(f_\mathrm{s}/2\)</span>
+</p>
+</div>
+<p>As long as <span class="math inline">\(f_\mathrm{s}\geq 2f_\mathrm{max}\)</span>, low-pass filtering of <span class="math inline">\(x_\mathrm{s}(t)\)</span> with <span class="math inline">\(h(t)\)</span> yields the <strong>interpolation formula</strong> (German: <em>Interpolationsformel</em>), i.e., the representation of the signal <span class="math inline">\(x(t)\)</span> via its sampled values <span class="math inline">\(x(nT_\mathrm{s})=x[n]\)</span>. It holds (cf. Theorems <a href="mathematical-basics.html#thm:fourier">E.1</a>, <a href="mathematical-basics.html#thm:dirac">E.2</a> and <a href="mathematical-basics.html#thm:thmconvolution">E.4</a>)
+<span class="math display">\[X(f) = X_\mathrm{s}(f) \cdot H(f)\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}
+x(t) &amp;= x_\mathrm{s}(t)*h(t) = \left(T_\mathrm{s}\sum_{n=-\infty}^\infty
+x(nT_\mathrm{s}) \delta(t-nT_\mathrm{s})\right)*h(t) =\\
+&amp;= T_\mathrm{s}\sum_{n=-\infty}^\infty
+x(nT_\mathrm{s}) h(t-nT_\mathrm{s}) = \sum_{n=-\infty}^\infty
+x(nT_\mathrm{s}) \frac{\sin(\pi (tf_\mathrm{s}-n))}{\pi (tf_\mathrm{s}-n)}.
+\end{aligned}\]</span></p>
+<p>Figures <a href="digitalrepresentation.html#fig:reconstructionspectrum">2.5</a> and Figure <a href="digitalrepresentation.html#fig:reconstructionsignal">2.6</a> show the process of low-pass filtering or reconstruction for Example <a href="digitalrepresentation.html#exm:exaidealsampling">2.2</a> in the frequency domain and in the time domain, respectively. Again, in this special example, the maximum frequency in the spectrum equals the (one-sided) bandwidth, i.e., <span class="math inline">\(f_\mathrm{max}=B\)</span>. We see why the frequency representation of signals is very important. Whereas the process of reconstruction can be easily verified in the frequency domain (cf. Figure <a href="digitalrepresentation.html#fig:reconstructionspectrum">2.5</a>), it is rather hard to see in the time domain that the shifted and scaled low-pass impulse responses in Figure <a href="digitalrepresentation.html#fig:reconstructionsignal">2.6</a> add up to the original signal <span class="math inline">\(x(t)\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:reconstructionspectrum"></span>
+<img src="kt_files/figure-html/reconstructionspectrum-1.svg" alt="Low-pass filtering in the frequency domain: $X(f)=H(f)X_\mathrm{s}(f)$ ($f_\mathrm{max}=B$)" width="672" />
+<p class="caption">
+Figure 2.5: Low-pass filtering in the frequency domain: <span class="math inline">\(X(f)=H(f)X_\mathrm{s}(f)\)</span> (<span class="math inline">\(f_\mathrm{max}=B\)</span>)
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:reconstructionsignal"></span>
+<img src="kt_files/figure-html/reconstructionsignal-1.svg" alt="Low-pass filtering in the time domain: $x(t)=h(t)*x_\mathrm{s}(t)$" width="672" />
+<p class="caption">
+Figure 2.6: Low-pass filtering in the time domain: <span class="math inline">\(x(t)=h(t)*x_\mathrm{s}(t)\)</span>
+</p>
+</div>
+<p>Last but not least, it is important to point out that ideal reconstruction is not possible if <span class="math inline">\(f_\mathrm{s}&lt;2f_\mathrm{max}\)</span> because in this case, the spectrum replicas overlap and interfere with each other. This is the core statement of the sampling theorem which is summarised in Theorem <a href="digitalrepresentation.html#thm:thmsampling">2.1</a>.</p>
+
+<div class="theorem">
+<span id="thm:thmsampling" class="theorem"><strong>Theorem 2.1  (Sampling Theorem)  </strong></span>A band-limited signal <span class="math inline">\(x(t)\)</span> with the maximum frequency <span class="math inline">\(f_\mathrm{max}\)</span> can be ideally reconstructed from its sampling values <span class="math inline">\(x[n]=x(n T_\mathrm{s})\)</span> if the sampling rate <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span> is at least twice the maximum frequency <span class="math inline">\(f_\mathrm{max}\)</span>, i.e.,
+<span class="math display">\[f_\mathrm{s}\geq 2f_\mathrm{max}.\]</span>
+In case of a baseband signal (cf. Chapter <a href="baseband.html#baseband">3</a>), the maximum frequency <span class="math inline">\(f_\mathrm{max}\)</span> equals the (one-sided) bandwidth <span class="math inline">\(B\)</span> of the signal, i.e., <span class="math inline">\(f_\mathrm{max}=B\)</span>.
+</div>
+<form class="quiz" data-correct="2">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+A sinusoidal signal with frequency 2kHz is sampled with 4.5kHz. Where are the maxima of the resulting spectrum?
+</div>
+<input value="A. 2 kHz, 4.5 kHz, 6.5 kHz, 7 kHz, ..."/>
+<input value="B. 2 kHz, 2.5 kHz, 6.5 kHz, 7 kHz, ..."/>
+<input value="C. 2 kHz, 4.5 kHz, 9 kHz, 13.5 kHz, ..."/>
+<input value="D. 4.5 kHz, 9 kHz, 13.5 kHz, 18 kHz, ..."/>
+</form>
+</div>
+<div id="over--and-undersampling" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Over- and Undersampling</h3>
+<p>In case of <strong>oversampling</strong> (German: <em>Überabtastung</em>), it holds that <span class="math inline">\(f_\mathrm{s}&gt;2 f_\mathrm{max}\)</span>. This case relaxes the requirements on the low-pass filter because it does not need to be ideal. For instance, choosing the low-pass filter with the frequency response <span class="math inline">\(H(f)\)</span> as shown in Figure <a href="digitalrepresentation.html#fig:nonideallowpassreconstructionspectrum">2.7</a> still ideally reconstructs the original signal <span class="math inline">\(x(t)\)</span>. In general, the low-pass filter with the frequency response <span class="math inline">\(H(f)\)</span> can be arbitrary in the frequency region <span class="math inline">\(f_\mathrm{max}&lt;|f|&lt;f_\mathrm{s}-f_\mathrm{max}\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:nonideallowpassreconstructionspectrum"></span>
+<img src="kt_files/figure-html/nonideallowpassreconstructionspectrum-1.svg" alt="Nonideal low-pass filtering in the frequency domain: $X(f)=H(f)X_\mathrm{s}(f)$ ($f_\mathrm{max}=B$)" width="672" />
+<p class="caption">
+Figure 2.7: Nonideal low-pass filtering in the frequency domain: <span class="math inline">\(X(f)=H(f)X_\mathrm{s}(f)\)</span> (<span class="math inline">\(f_\mathrm{max}=B\)</span>)
+</p>
+</div>
+<p>In case of <strong>undersampling</strong> (German: <em>Unterabtastung</em>), it holds that <span class="math inline">\(f_\mathrm{s} &lt; 2 f_\mathrm{max}\)</span>. In this case, the spectrum replicas overlap and there exists no low-pass filter which reconstructs the original signal <span class="math inline">\(x(t)\)</span> ideally. Even the ideal low-pass filter cannot remove the influence of adjacent spectrum replicas as can be seen in Figure <a href="digitalrepresentation.html#fig:aliasing">2.8</a>. The resulting distortions are denoted as <strong>aliasing</strong>.</p>
+<!-- TODO: Insert an audio signal which is undersampled, showing the effects of aliasing!! Or a video signal where the wheel turns backwards!!-->
+<div class="figure" style="text-align: center"><span id="fig:aliasing"></span>
+<img src="kt_files/figure-html/aliasing-1.svg" alt="Example of the spectrum of a sampled signal with aliasing ($f_\mathrm{max}=B$)" width="672" />
+<p class="caption">
+Figure 2.8: Example of the spectrum of a sampled signal with aliasing (<span class="math inline">\(f_\mathrm{max}=B\)</span>)
+</p>
+</div>
+<p>If such a case occurs in a practical system, there are two solutions to avoid it. The first solution is to prefilter the signal <span class="math inline">\(x(t)\)</span> before sampling with a low-pass filter whose cut-off frequency is less or equal <span class="math inline">\(f_\mathrm{s}/2\)</span>. However, with this solution, an ideal reconstruction of the original signal is no longer possible. Nevertheless, the distortion due to low-pass prefiltering is in general less than the distortion which results from aliasing. So the second, more straightforward solution is to simply increase the sampling rate such that <span class="math inline">\(f_\mathrm{s}\geq 2f_\mathrm{max}\)</span> is fullfilled. Unfortunately, increasing the sampling rate also increases the amount of data obtained after quantisation, i.e., for transmission, a communications channel with a higher channel capacity is required.</p>
+<form class="quiz" data-correct="1">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+<p>The bandwidth of an analog baseband signal is 3.5kHz. Which of the following sampling frequencies lead to aliasing?</p>
+</div>
+<input value="A. 6 kHz"/>
+<input value="B. 7 kHz"/>
+<input value="C. 9 kHz"/>
+<input value="D. 12 kHz"/>
+</form>
+</div>
+<div id="real-sampling" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Real Sampling</h3>
+<p>We consider two different types of nonideal sampling, viz., natural sampling and sample-and-hold. Both sampling methods will be also investigated in additional laboratory experiments.</p>
+<div id="natural-sampling" class="section level4" number="2.1.5.1">
+<h4><span class="header-section-number">2.1.5.1</span> Natural Sampling</h4>
+<p>Let us first consider <strong>natural sampling</strong>. In this case, the Dirac delta functions are replaced by rectangular functions with the finite duration <span class="math inline">\(\Delta t\)</span>, i.e., (see Appendix <a href="mathematical-basics.html#fourier">E.1</a>)
+<span class="math display">\[\delta_{\Delta t}(t) = \mathrm{rect}\left(\frac{t}{\Delta t}\right) =
+\begin{cases}
+1, &amp; |t|\leq\frac{\Delta t}{2} \\
+0, &amp; |t|&gt;\frac{\Delta t}{2}
+\end{cases}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\Delta_{\Delta t}(f) = \Delta t \mathrm{sinc}(\Delta t f) = \Delta t\frac{\sin(\pi \Delta t f)}{\pi \Delta t f}.\]</span>
+This replacement influences the spectrum of the sampled signal as follows (cf. Theorems <a href="mathematical-basics.html#thm:fourier">E.1</a>, <a href="mathematical-basics.html#thm:dirac">E.2</a> and <a href="mathematical-basics.html#thm:thmconvolution">E.4</a>):
+<span class="math display">\[\begin{aligned}
+x_\mathrm{ns}(t)
+&amp;:= x(t) \cdot \sum_{n=-\infty}^\infty
+\delta_{\Delta t}(t-nT_\mathrm{s})\\
+&amp;=x(t)\cdot\sum_{n=-\infty}^\infty
+\delta(t-nT_\mathrm{s})* \mathrm{rect}\left(\frac{t}{\Delta t}\right)
+\end{aligned}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}X_\mathrm{ns}(f) &amp;= X(f)*\left(f_\mathrm{s}\sum_{k=-\infty}^\infty \delta(f - k f_\mathrm{s})\Delta_{\Delta t}(f)\right)\\
+&amp; = f_\mathrm{s}\Delta t\sum_{k=-\infty}^\infty \mathrm{sinc}(k \Delta t f_\mathrm{s})X(f-k f_\mathrm{s}),
+\end{aligned}\]</span>
+i.e., the spectrum replicas of the original spectrum are weighted with a sinc function. Since the weighted replicas do not overlap as long as the sampling theorem is fulfilled, the signal <span class="math inline">\(x(t)\)</span> can still be reconstructed perfectly.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-8" class="example"><strong>Example 2.3  (Natural Sampling of Raised-Cosine Filter)  </strong></span>Again, we choose the signal <span class="math inline">\(x(t)\)</span> of a raised cosine filter as an example for applying natural sampling (see Figure <a href="digitalrepresentation.html#fig:naturalsampling">2.9</a>). It can be seen that the spectrum <span class="math inline">\(X_\mathrm{ns}(f)\)</span> of the with the sampling period <span class="math inline">\(T_\mathrm{s}\)</span> sampled signal <span class="math inline">\(x_\mathrm{ns}(t)\)</span> is a scaled periodic repetition of the original spectrum <span class="math inline">\(X(f)\)</span> where the distance between two adjacent spectra equals <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span>. However, this time, the spectrum replicas are weighted with a sinc function whose first root lies at <span class="math inline">\(1/\Delta t\)</span> (outside of the diagram in Figure <a href="digitalrepresentation.html#fig:naturalsampling">2.9</a>).
+</div>
+<div class="figure" style="text-align: center"><span id="fig:naturalsampling"></span>
+<img src="kt_files/figure-html/naturalsampling-1.svg" alt="Signal and spectrum of a naturally sampled raised cosine impulse ($\Delta t = T_\mathrm{s}/4$)" width="672" />
+<p class="caption">
+Figure 2.9: Signal and spectrum of a naturally sampled raised cosine impulse (<span class="math inline">\(\Delta t = T_\mathrm{s}/4\)</span>)
+</p>
+</div>
+<p>It remains to mention a few words about the practicability of natural sampling. This sampling method no longer depends on ideal Dirac delta functions and therefore, its implementation is principally feasible. However, it is still rather a theoretical model because within the time span <span class="math inline">\(\Delta t\)</span>, the sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span> is still time-varying. This causes two problems: first of all, during the analog-to-digital conversion process, the input value changes, leading to wrong output values, especially if a successive-approximation <strong>Analog-to-Digital Converter</strong> (ADC, e.g., <span class="citation"><a href="references.html#ref-Schruefer" role="doc-biblioref">Schrüfer, Reindl, and Zagar</a> (<a href="references.html#ref-Schruefer" role="doc-biblioref">2012</a>)</span>) is used,<a href="digitalrepresentation.html#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> and second, based on the sampled values <span class="math inline">\(x[n]\)</span>, the exact values of <span class="math inline">\(x(t)\)</span> within the time span <span class="math inline">\(\Delta t\)</span>, i.e., <span class="math inline">\(x_\mathrm{s}(t)\)</span>, can no longer be ideally reconstructed. Nevertheless, if <span class="math inline">\(\Delta t\)</span> is chosen small enough, <span class="math inline">\(x(t)\)</span> is quasi-constant within <span class="math inline">\(\Delta t\)</span> and the degradation might be negligible, but then, this approach requires very fast ADCs.</p>
+</div>
+<div id="sample-and-hold" class="section level4" number="2.1.5.2">
+<h4><span class="header-section-number">2.1.5.2</span> Sample-and-Hold</h4>
+<p>As already discussed in the previous subsection, the major practical disadvantage of natural sampling is the fact that the sampled values only exist for a very short period of time (equals <span class="math inline">\(\Delta t\)</span>). In order to digitize the sampled values, very fast ADCs are required in this case. This is different if we hold the sampled value during the sampling period <span class="math inline">\(T_\mathrm{s}\)</span> constant, also denoted as <strong>sample-and-hold</strong>. In this case, the sampled signal reads as (cf. Table <a href="mathematical-basics.html#tab:fourier">E.1</a> and Theorems <a href="mathematical-basics.html#thm:fourier">E.1</a>, <a href="mathematical-basics.html#thm:dirac">E.2</a> and <a href="mathematical-basics.html#thm:thmconvolution">E.4</a>)
+<span class="math display">\[\begin{aligned}
+x_\mathrm{sh}(t) &amp;= x_\mathrm{s}(t) * \frac{1}{T_\mathrm{s}}\mathrm{rect}\left(\frac{t}{T_\mathrm{s}}-\frac{1}{2}\right)\\
+&amp;= \left( T_\mathrm{s}\sum_{n=-\infty}^\infty
+x[n] \delta(t-nT_\mathrm{s}) \right) * \frac{1}{T_\mathrm{s}}\mathrm{rect}\left(\frac{t}{T_\mathrm{s}}-\frac{1}{2}\right)\\
+&amp;= \sum_{n=-\infty}^\infty
+x[n] \mathrm{rect}\left(\frac{t}{T_\mathrm{s}} - n -\frac{1}{2}\right)\end{aligned}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{aligned}X_\mathrm{sh}(f) &amp;= X_\mathrm{s}(f) \cdot \mathrm{sinc}(fT_\mathrm{s})e^{-j\pi fT_\mathrm{s}}\\
+&amp;= \mathrm{sinc}(fT_\mathrm{s})e^{-j\pi fT_\mathrm{s}}\sum_{k=-\infty}^\infty X(f-k f_\mathrm{s}).
+\end{aligned}\]</span>
+In words, at <span class="math inline">\(t=nT_\mathrm{s}\)</span>, <span class="math inline">\(n\in\mathbb{Z}\)</span>, the signal <span class="math inline">\(x(t)\)</span> is sampled (<span class="math inline">\(x[n]=x(nT_\mathrm{s})\)</span>) and the resulting sampled values <span class="math inline">\(x[n]\)</span> are hold until the next sampled values <span class="math inline">\(x[n+1]\)</span> occur. The spectrum <span class="math inline">\(X_\mathrm{sh}(f)\)</span> is very similar to the spectrum <span class="math inline">\(X_\mathrm{ns}(f)\)</span> of natural sampling, however, here the whole spectrum is distorted by a sinc function whereas in case of natural sampling the spectrum replicas are only weighted based on the sinc function. Consequently, in case of sampling based on the sample-and-hold method, the original signal <span class="math inline">\(x(t)\)</span> can no longer be reconstructed perfectly to the sampled signal <span class="math inline">\(x_\mathrm{sh}(t)\)</span> by applying a low-pass filter, at least without further equalisation. However, low-pass filtering still provides an accurate approximation of <span class="math inline">\(x(t)\)</span> and is therefore commonly used in practical systems.</p>
+<p>Note that the spectrum <span class="math inline">\(X_\mathrm{sh}(f)/(\sqrt{\mathrm{W}}\mathrm{s})\in\mathbb{C}\)</span> due to the shifted rectangular functions. See Exercise <a href="mathematical-basics.html#exr:exefourier">E.1</a> for a derivation of the Fourier transform of a time shifted rectangular function.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-9" class="example"><strong>Example 2.4  (Sampling of a Raised-Cosine Filter with Sample-and-Hold)  </strong></span>Again, we choose the signal <span class="math inline">\(x(t)\)</span> of a raised-cosine filter as an example for applying sampling based on the sample-and-hold principle (see Figure <a href="digitalrepresentation.html#fig:sampleandhold">2.10</a>). One can clearly see the distortions in the spectrum <span class="math inline">\(X_\mathrm{sh}(f)\)</span> compared to the one of natural sampling. Since the first root of the sinc function lies at <span class="math inline">\(f_\mathrm{s}\)</span>, the distortions are the more severe, the closer the sampling rate <span class="math inline">\(f_\mathrm{s}\)</span> to <span class="math inline">\(2B\)</span>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:sampleandhold"></span>
+<img src="kt_files/figure-html/sampleandhold-1.svg" alt="Signal and spectrum of a with sample-and-hold sampled raised cosine filter" width="672" />
+<p class="caption">
+Figure 2.10: Signal and spectrum of a with sample-and-hold sampled raised cosine filter
+</p>
+</div>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-10" class="example"><strong>Example 2.5  (Sample-and-Hold GNU Radio Simulation)  </strong></span>GNU Radio <span class="citation">(<a href="references.html#ref-GNURadio" role="doc-biblioref">GNU Radio Project 2020</a>)</span> is a free and open software radio ecosystem. It is used for the simulation of communications systems as well as their prototype implementation. The latter can be realised by using so-called Software Defined Radios (SDRs), i.e., radios which can be configured and accessed directly via GNU Radio. The following video shows a simulation of sampling a sinusoidal signal based on the sample-and-hold method.<a href="digitalrepresentation.html#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+It can be seen how the spectrum changes for different sampling rates and frequencies. If the sampling rate has been chosen too small for the given frequency, aliasing can be observed.```</p>
+<figure style="text-align:center">
+<video width="80%" controls>
+<source src="media/sample_and_hold.mp4" type="video/mp4">
+</video>
+</figure>
+<p>From all discussed sampling methods and despite of its distorted spectrum, sample-and-hold is usually used in real systems because of the reasons mentioned already at the beginning of this subsection.</p>
+<form class="quiz" data-correct="3" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+<p>The bandwidth of an analog baseband signal is 5 kHz. Which of the following sampling methods yields perfect reconstruction via low-pass filtering assuming a cut-off frequency at 7 kHz?</p>
+</div>
+<input value="A. Ideal sampling with a sampling rate of 11 kHz."/>
+<input value="B. Natural sampling with a sampling rate of 11 kHz."/>
+<input value="C. Natural sampling with a sampling rate of 12 kHz."/>
+<input value="D. Sampling based on the sample-and-hold method with a sampling rate of 12 kHz."/>
+</form>
+</div>
+
+<div class="exercise">
+<p><span id="exr:exesampling" class="exercise"><strong>Exercise 2.1  (Sampling)  </strong></span>The normalised output signal of a microphone, i.e.,
+<span class="math display">\[x(t) = 
+1\sqrt{\mathrm{W}}\cdot\sin\frac{2\pi t}{\mathrm{ms}} +\frac{1\sqrt{\mathrm{W}}}{2}
+\sin\frac{4\pi t}{\mathrm{ms}},\]</span>
+is sampled with the sampling rate <span class="math inline">\(f_\mathrm{s}=8\,\mathrm{kHz}\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Plot the signal <span class="math inline">\(x(t)\)</span> for <span class="math inline">\(t\in[0,2\,\mathrm{ms}]\)</span> using Python.</li>
+<li>Compute the ideally sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span> and add it to the figure from above by hand.</li>
+<li>Add to this figure also the sampled signals <span class="math inline">\(x_\mathrm{ns}(t)\)</span> and <span class="math inline">\(x_\mathrm{sh}(t)\)</span> in case of natural sampling and sampling based on the sample-and-hold method, respectively, assuming <span class="math inline">\(\Delta t= T_\mathrm{s}/2\)</span> in case of natural sampling.</li>
+<li>Compute the spectrum <span class="math inline">\(X(f)\)</span> of the original signal <span class="math inline">\(x(t)\)</span> and the spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span>. Draw the results in a diagram for <span class="math inline">\(f\in[-3\,\mathrm{kHz},20\,\mathrm{kHz}]\)</span>.</li>
+<li>Explain in words how the spectra <span class="math inline">\(X_\mathrm{ns}(f)\)</span> and <span class="math inline">\(X_\mathrm{sh}(f)\)</span> in case of natural sampling and sampling based on the sample-and-hold method, respectively, differ from the one of <span class="math inline">\(X_\mathrm{s}(f)\)</span>.</li>
+<li>For reconstruction of the original signal, an ideal low-pass filter with the cut-off frequency <span class="math inline">\(f_\mathrm{c}\)</span> is applied. Formulate the impulse response <span class="math inline">\(h(t)\)</span> as well as the frequency response <span class="math inline">\(H(f)\)</span> of this reconstruction filter!</li>
+<li>What values of the cut-off frequency <span class="math inline">\(f_\mathrm{c}\)</span> guarantee an ideal reconstruction?</li>
+<li>What is the minimum value of the sampling frequency <span class="math inline">\(f_\mathrm{s}\)</span> for which ideal reconstruction is possible?</li>
+<li>Plot the spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span> if a sampling frequency of <span class="math inline">\(f_\mathrm{s}=3{,}5\,\mathrm{kHz}\)</span> is applied. Why is no ideal reconstruction possible in this case? Compute and plot the reconstructed signal if an ideal low-pass filter with the cut-off frequency <span class="math inline">\(f_\mathrm{c}=3\,\mathrm{kHz}\)</span> is used as the reconstruction filter.</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;samplingsol&#39;)">
+Solution
+</button>
+<div id="samplingsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Sampling). </span> The solution to Exercise <a href="digitalrepresentation.html#exr:exesampling">2.1</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>It follows the Python code for the generation of Figure <a href="digitalrepresentation.html#fig:sines">2.11</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="digitalrepresentation.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="digitalrepresentation.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="digitalrepresentation.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="digitalrepresentation.html#cb1-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="fl">2e-3</span>,<span class="dv">1000</span>)</span>
+<span id="cb1-5"><a href="digitalrepresentation.html#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t<span class="op">/</span><span class="fl">1e-3</span>) <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>np.pi<span class="op">*</span>t<span class="op">/</span><span class="fl">1e-3</span>)</span>
+<span id="cb1-6"><a href="digitalrepresentation.html#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.plot(t<span class="op">*</span><span class="fl">1e3</span>,x,<span class="st">&#39;#114da1&#39;</span>)</span>
+<span id="cb1-7"><a href="digitalrepresentation.html#cb1-7" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.xlim(<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="digitalrepresentation.html#cb1-8" aria-hidden="true" tabindex="-1"></a>dummy <span class="op">=</span> plt.ylim(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>)</span>
+<span id="cb1-9"><a href="digitalrepresentation.html#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;$t$ in ms&#39;</span>)</span>
+<span id="cb1-10"><a href="digitalrepresentation.html#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r&#39;$x(t)$ in $\sqrt{\mathrm</span><span class="sc">{W}</span><span class="vs">}$&#39;</span>)</span>
+<span id="cb1-11"><a href="digitalrepresentation.html#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.minorticks_on()</span>
+<span id="cb1-12"><a href="digitalrepresentation.html#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;major&#39;</span>, color<span class="op">=</span><span class="st">&#39;#666666&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb1-13"><a href="digitalrepresentation.html#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.grid(which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, color<span class="op">=</span><span class="st">&#39;#BBBBBB&#39;</span>, axis<span class="op">=</span><span class="st">&#39;both&#39;</span>)</span>
+<span id="cb1-14"><a href="digitalrepresentation.html#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-15"><a href="digitalrepresentation.html#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:sines"></span>
+<img src="kt_files/figure-html/sines-1.svg" alt="Signal $x(t)$" width="80%" />
+<p class="caption">
+Figure 2.11: Signal <span class="math inline">\(x(t)\)</span>
+</p>
+</div></li>
+<li><p>With the sampling frequency:
+<span class="math display">\[f_\mathrm{s} = 8\,\mathrm{kHz}\quad\Rightarrow\quad T_\mathrm{s} = \frac{1}{f_\mathrm{s}} = \frac{1}{8\,\mathrm{kHz}}\approx 125\,\mu\mathrm{s}\]</span>
+<span class="math display">\[x_\mathrm{s}(t) = x(t)T_\mathrm{s}\sum_{n=-\infty}^\infty \delta(t-nT_\mathrm{s}) = T_\mathrm{s}\sum_{n=-\infty}^\infty x(nT_\mathrm{s})\delta(t-nT_\mathrm{s}).\]</span>
+The result is plotted in Figure <a href="digitalrepresentation.html#fig:sampledsines">2.12</a>.<a href="digitalrepresentation.html#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<div class="figure" style="text-align: center"><span id="fig:sampledsines"></span>
+<img src="kt_files/figure-html/sampledsines-1.svg" alt="Ideally sampled version $x_\mathrm{s}(t)$ of the signal $x(t)$" width="80%" />
+<p class="caption">
+Figure 2.12: Ideally sampled version <span class="math inline">\(x_\mathrm{s}(t)\)</span> of the signal <span class="math inline">\(x(t)\)</span>
+</p>
+</div></li>
+<li><p>See Figure <a href="digitalrepresentation.html#fig:naturalsampledsines">2.13</a> for a naturally sampled version and Figure <a href="digitalrepresentation.html#fig:sampleandholdsines">2.14</a> for a sample-and-hold sampled version of the given superposition of two sines.</p>
+<div class="figure" style="text-align: center"><span id="fig:naturalsampledsines"></span>
+<img src="kt_files/figure-html/naturalsampledsines-1.svg" alt="Naturally sampled version $x_\mathrm{ns}(t)$ of the signal $x(t)$" width="80%" />
+<p class="caption">
+Figure 2.13: Naturally sampled version <span class="math inline">\(x_\mathrm{ns}(t)\)</span> of the signal <span class="math inline">\(x(t)\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:sampleandholdsines"></span>
+<img src="kt_files/figure-html/sampleandholdsines-1.svg" alt="Sample-and-hold sampled version $x_\mathrm{sh}(t)$ of the signal $x(t)$" width="80%" />
+<p class="caption">
+Figure 2.14: Sample-and-hold sampled version <span class="math inline">\(x_\mathrm{sh}(t)\)</span> of the signal <span class="math inline">\(x(t)\)</span>
+</p>
+</div></li>
+<li><p>From Table <a href="mathematical-basics.html#tab:fourier">E.1</a>, we remember:
+<span class="math display">\[\sin(2\pi f_0 t) \leftrightarrow \frac{j}{2}(\delta(f+f_0)-\delta(f-f_0)).\]</span>
+Then, we get:
+<span class="math display">\[x(t) = 1\sqrt{\mathrm{W}}\cdot\sin\frac{2\pi t}{\mathrm{ms}} +\frac{1\sqrt{\mathrm{W}}}{2} \sin\frac{4\pi t}{\mathrm{ms}}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{split}X(f)=\frac{j\sqrt{\mathrm{W}}}{2}\bigg(\delta(f+1\,\mathrm{kHz})-\delta(f-1\,\mathrm{kHz})\\
+  \left.+\frac{1}{2}\delta(f+2\,\mathrm{kHz})-\frac{1}{2}\delta(f-2\,\mathrm{kHz})\right)\end{split}\]</span>
+<span class="math display">\[X_\mathrm{s}(f)=\sum\limits_{k=-\infty}^{\infty}X(f-kf_\mathrm{s}) = \sum\limits_{k=-\infty}^{\infty}X(f-k\cdot 8\,\mathrm{kHz}).\]</span>
+Figure <a href="digitalrepresentation.html#fig:sinespectrum">2.15</a> shows the spectra <span class="math inline">\(X(f)\)</span> and <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the signal <span class="math inline">\(x(t)\)</span> and its sampled version <span class="math inline">\(x_\mathrm{s}(t)\)</span>, respectively, assuming a sampling frequency of <span class="math inline">\(f_\mathrm{s}=8\,\mathrm{kHz}\)</span>.<a href="digitalrepresentation.html#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<div class="figure" style="text-align: center"><span id="fig:sinespectrum"></span>
+<img src="kt_files/figure-html/sinespectrum-1.svg" alt="Spectra $X(f)$ and $X_\mathrm{s}(f)$ of the signal $x(t)$ and its sampled version $x_\mathrm{s}(t)$, respectively, assuming a sampling frequency of $f_\mathrm{s}=8\,\mathrm{kHz}$" width="80%" />
+<p class="caption">
+Figure 2.15: Spectra <span class="math inline">\(X(f)\)</span> and <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the signal <span class="math inline">\(x(t)\)</span> and its sampled version <span class="math inline">\(x_\mathrm{s}(t)\)</span>, respectively, assuming a sampling frequency of <span class="math inline">\(f_\mathrm{s}=8\,\mathrm{kHz}\)</span>
+</p>
+</div></li>
+<li><p>In case of natural sampling, each of the replica of the periodic spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span> is weighted by a scalar depending on the sinc function. In case of sample-and-hold, the whole spectrum is multiplied by a sinc function. This leads to a small distortion which requires a slightly more complex reconstruction filter, also known as an equalizer.</p></li>
+<li><p><span class="math inline">\(h(t) = 2f_\mathrm{c}\mathrm{sinc}(2t f_\mathrm{c}) := 2f_\mathrm{c}\frac{\sin(2\pi t f_\mathrm{c})}{2\pi t f_\mathrm{c}}\)</span>
+<span class="math inline">\(\leftrightarrow H(f) = \mathrm{rect}\left(\frac{f}{2f_\mathrm{c}}\right) =: \begin{cases} 1, &amp; |f|\leq f_\mathrm{c}\\ 0, &amp; |f|&gt;f_\mathrm{c} \end{cases}\)</span></p></li>
+<li><p><span class="math inline">\(f_\mathrm{max}=B=2\,\mathrm{kHz}&lt;f_\mathrm{c}&lt;6\,\mathrm{kHz}\)</span></p></li>
+<li><p><span class="math inline">\(B=4\,\mathrm{kHz} \Rightarrow f_\mathrm{s}\geq 2f_\mathrm{max}=2B = 4\,\mathrm{kHz}\)</span></p></li>
+<li><p>Figure <a href="digitalrepresentation.html#fig:undersinespectrum">2.16</a> shows the spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span> assuming a sampling frequency of <span class="math inline">\(f_\mathrm{s}=3{,}5\,\mathrm{kHz}\)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:undersinespectrum"></span>
+<img src="kt_files/figure-html/undersinespectrum-1.svg" alt="Spectra $X(f)$ and $X_\mathrm{s}(f)$ of the signal $x(t)$ and its sampled version $x_\mathrm{s}(t)$, respectively, assuming a sampling frequency of $f_\mathrm{s}=3{,}5\,\mathrm{kHz}$" width="80%" />
+<p class="caption">
+Figure 2.16: Spectra <span class="math inline">\(X(f)\)</span> and <span class="math inline">\(X_\mathrm{s}(f)\)</span> of the signal <span class="math inline">\(x(t)\)</span> and its sampled version <span class="math inline">\(x_\mathrm{s}(t)\)</span>, respectively, assuming a sampling frequency of <span class="math inline">\(f_\mathrm{s}=3{,}5\,\mathrm{kHz}\)</span>
+</p>
+</div>
+<p>Due to the fact that <span class="math inline">\(f_\mathrm{s}&lt;2f_\mathrm{max}=4\,\mathrm{kHz}\)</span>, the sampling theorem is not fulfilled, i.e., the spectrum replica overlap (aliasing) and the original signal cannot be ideally reconstructed by the application of a low-pass filter.</p>
+<p>Low-pass filtering with the cut-off frequency <span class="math inline">\(f_\mathrm{c}=3\,\mathrm{kHz}\)</span> yields the spectrum and the reconstructed signal as follows:
+<span class="math display">\[\begin{split}X^\prime(f)=X(f)+\frac{j\sqrt{\mathrm{W}}}{2}\bigg(\delta(f-1{,}5\,\mathrm{kHz})-\delta(f+1{,}5\,\mathrm{kHz})\\ \left.+\frac{1}{2}\delta(f-2{,}5\,\mathrm{kHz})-\frac{1}{2}\delta(f+2{,}5\,\mathrm{kHz})\right)
+  \end{split}\]</span>
+<span class="math display">\[\updownarrow\]</span>
+<span class="math display">\[\begin{split}x^\prime(t) = 1\sqrt{\mathrm{W}}\cdot\sin\frac{2\pi t}{\mathrm{ms}} 
+-\frac{1\sqrt{\mathrm{W}}}{2} \sin\frac{3\pi t}{\mathrm{ms}}\\
+  +\frac{1\sqrt{\mathrm{W}}}{2} \sin\frac{4\pi t}{\mathrm{ms}}
+  -1\sqrt{\mathrm{W}}\cdot\sin\frac{5\pi t}{\mathrm{ms}}\end{split}.\]</span>
+Figure <a href="digitalrepresentation.html#fig:aliasedsines">2.17</a> plots <span class="math inline">\(x^\prime(t)\)</span> and it can be clearly seen that it is not equal to the original signal <span class="math inline">\(x(t)\)</span> which is due to aliasing.</p>
+<div class="figure" style="text-align: center"><span id="fig:aliasedsines"></span>
+<img src="kt_files/figure-html/aliasedsines-1.svg" alt="Original signal $x(t)$ and reconstructed signal $x^\prime(t)$ with aliasing" width="80%" />
+<p class="caption">
+Figure 2.17: Original signal <span class="math inline">\(x(t)\)</span> and reconstructed signal <span class="math inline">\(x^\prime(t)\)</span> with aliasing
+</p>
+</div></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="passbandsampling" class="section level3" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Sampling of Passband Signals</h3>
+<p>Before we discuss the sampling of passband signals which play a major role in Chapter <a href="passband.html#passband">5</a>, we need to define the <strong>bandwidth</strong> of a signal.<a href="digitalrepresentation.html#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+
+<div class="definition">
+<span id="def:bandwidth" class="definition"><strong>Definition 2.4  (Bandwidth)  </strong></span>With <span class="math inline">\(f_\mathrm{min}\geq 0\)</span> being the minimum frequency and <span class="math inline">\(f_\mathrm{max}&gt;f_\mathrm{min}\)</span> the maximum frequency in the spectrum <span class="math inline">\(X(f)\)</span> of a signal <span class="math inline">\(x(t)\)</span>, i.e.,
+<span class="math display">\[X(f)=0 \quad \forall |f|&lt;f_\mathrm{min}\wedge|f|&gt;f_\mathrm{max},\]</span>
+the <strong>(one-sided) bandwidth</strong> (German: <em>(einseitige) Bandbreite</em>) of <span class="math inline">\(x(t)\)</span> is defined as
+<span class="math display">\[B=f_\mathrm{max}-f_\mathrm{min},\]</span>
+and the center frequency computes as <span class="math inline">\(f_0=(f_\mathrm{min}+f_\mathrm{max})/2\)</span>.
+</div>
+<p>Next, we consider a bandbass signal with bandwidth <span class="math inline">\(B\)</span> and center frequency <span class="math inline">\(f_\mathrm{0}\)</span>. Such a signal has a maximum frequency of <span class="math inline">\(f_\mathrm{max}=f_\mathrm{0}+B/2\)</span> (cf. Example in Figure <a href="digitalrepresentation.html#fig:bandpasssampling">2.18</a>). In this case, the sampling theorem tells us to choose the sampling rate greater or equal than <span class="math inline">\(2f_\mathrm{0}+B\)</span>.</p>
+
+<div class="example">
+<span id="exm:umtssampling" class="example"><strong>Example 2.6  (Sampling of a UMTS Signal)  </strong></span>Consider a communications system like, e.g., the Universal Mobile Telecommunications System (UMTS), having a center frequency at 2.17 GHz and a bandwidth of 5 MHz. If you want to directly sample the UMTS passband signal by, e.g., a Software Defined Radio (SDR), a sampling rate greater or equal than 4.345 GHz would be required.
+</div>
+<p>Is there a way to sample the passband signal with a lower sampling rate than <span class="math inline">\(2f_\mathrm{0}+B\)</span> such that perfect reconstruction is still possible?</p>
+<p>The answer is clearly yes and is summarised in the following Theorem <a href="digitalrepresentation.html#thm:thmbandpasssampling">2.2</a>. An illustration of this theorem is shown in Figure <a href="digitalrepresentation.html#fig:bandpasssampling">2.18</a> which includes an animation for playing around with different bandwidths, carrier and sampling frequencies.</p>
+
+<div class="theorem">
+<span id="thm:thmbandpasssampling" class="theorem"><strong>Theorem 2.2  (Sampling Theorem for Passband Signals)  </strong></span>A passband signal <span class="math inline">\(x(t)\)</span> with the bandwidth <span class="math inline">\(B\)</span> and the center frequency <span class="math inline">\(f_\mathrm{0}\)</span> can be ideally reconstructed from its sampling values <span class="math inline">\(x[n]=x(n T_\mathrm{s})\)</span> as long as the sampling rate <span class="math inline">\(f_\mathrm{s}=1/T_\mathrm{s}\)</span> follows
+<span class="math display">\[2B \leq \frac{2f_\mathrm{0}+B}{m+1} \leq f_\mathrm{s} \leq \frac{2f_\mathrm{0}-B}{m},\ \forall m\in\mathbb{N}.\]</span>
+The reconstruction filter is an ideal passband filter covering the passband signal in this case.
+</div>
+<p>A proof of Theorem <a href="digitalrepresentation.html#thm:thmbandpasssampling">2.2</a> can be found in <span class="citation"><a href="references.html#ref-Lyons" role="doc-biblioref">Lyons</a> (<a href="references.html#ref-Lyons" role="doc-biblioref">2004</a>)</span> which is also available online.</p>
+<div class="figure" style="text-align: center"><span id="fig:bandpasssampling"></span>
+<iframe src="https://www.geogebra.org/material/iframe/id/fz6Qs6H8/width/881/height/373/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="672" height="287px">
+</iframe>
+<p class="caption">
+Figure 2.18: Animation to verify passband sampling frequency limits (Source: Guido Dietl, 2015, <a href="http://www.geogebra.org">www.geogebra.org</a>)
+</p>
+</div>
+
+<div class="example">
+<span id="exm:umts2" class="example"><strong>Example 2.7  (Sampling of a UMTS Signal, Continued)  </strong></span>For the UMTS system described in Example <a href="digitalrepresentation.html#exm:umtssampling">2.6</a>, the smallest limits for the sampling frequency are obtained for <span class="math inline">\(m=433\)</span> which leads to
+<span class="math display">\[2\cdot 5 \leq 10.01152073733 \leq f_\mathrm{s}/\mathrm{MHz} \leq 10.01154734411.\]</span>
+Thus, one possible sampling frequency allowing ideal reconstruction would be <span class="math inline">\(f_\mathrm{s}=10.01153\,\mathrm{MHz}\)</span> which is clearly much smaller than the one calculated in Example <a href="digitalrepresentation.html#exm:umtssampling">2.6</a> without exploiting the passband characteristics.
+</div>
+<p>Example <a href="digitalrepresentation.html#exm:umts2">2.7</a> shows that the choice of the sampling frequency needs to lie in a very small frequency band, thus, the oscillator generating this frequency must be very precise and the frequency should not change with time. In order to avoid these special hardware requirements, common sampling approachs firstly mix the input passband signal to one with a center frequency, also denoted as the <strong>Intermediate Frequency</strong> (IF), which is close to 0 and thus, much smaller than the carrier frequency (heterodyne receiver, German: <em>Heterodynempfänger</em>). Sampling is then performed on this IF signal. The resulting sampling frequency is still much smaller than <span class="math inline">\(2f_\mathrm{max}\)</span>, i.e., the sampling frequency required in case of directly sampling the passband signal and not exploiting the passband characteristics</p>
+<!--<div style="color:red">
+TODO:
+
+* Further check why passband sampling is not used in real systems? Are there application scenarios like, e.g., the sampling oscilloscope? References? 
+* Exercise for sampling of a passband signal (similar to Andreas exam)
+</div>-->
+</div>
+</div>
+<div id="quantisation" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Quantisation</h2>
+<div id="linear-quantisation" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Linear Quantisation</h3>
+<!-- NOTE: $A$ is only used for maximum quantisation level and equal to the signal peak value only if the range of the quantiser is fully exploited! -->
+<p>After sampling of the analog signal <span class="math inline">\(x(t)\)</span> (time- and value-continuous), the samples <span class="math inline">\(x[n]=x(nT_\mathrm{s})\)</span> (time-discrete but still value-continuous) need to be quantised in order to obtain the <strong>quantised samples</strong> (German: <em>Abtastwerte</em>) <span class="math inline">\(x_\mathrm{q}[n]=x_\mathrm{q}(nT_\mathrm{s})\)</span> (time- and value-discrete).</p>
+
+<div class="definition">
+<span id="def:linearquantisation" class="definition"><strong>Definition 2.5  (Linear Quantisation)  </strong></span>Assume sampled values <span class="math inline">\(x[n]=x(nT_\mathrm{s})\)</span> and a quantiser with the range space <span class="math inline">\([-A,A]\)</span>. There are two types of <strong>linear quantiser functions</strong> (German: <em>lineare Quantisierungsfunktionen</em>), viz., the <strong>mid-riser</strong> type with the quantisation function
+<span class="math display">\[x_\mathrm{q}^\mathrm{mr}[n] = 
+\begin{cases}
+\Delta \left( \left\lfloor \frac{x[n]}{\Delta}\right\rfloor + \frac{1}{2}
+\right), &amp; |x[n]|&lt; A,\\
+\mathrm{sgn}(x[n])\left(A-\frac{\Delta}{2}\right), &amp; |x[n]|\geq A, 
+\end{cases}\]</span>
+and the <strong>mid-tread</strong> type with the quantisation function
+<span class="math display">\[x_\mathrm{q}^\mathrm{mt}[n] = \mathrm{sgn} ( x[n]) \begin{cases}
+\Delta \left\lfloor \frac{|x[n]|}{\Delta}+ \frac{1}{2}
+\right\rfloor, &amp; |x[n]|\leq A,\\
+A, &amp; |x[n]|&gt; A, 
+\end{cases}\]</span>
+with the <strong>maximum quantisation level</strong> <span class="math inline">\(A&gt;0\)</span> (German: <em>Aussteuerungsmaximum des Quantisierers</em>),<a href="digitalrepresentation.html#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> the <strong>step size</strong> <span class="math inline">\(\Delta\)</span> (German: <em>Stufenhöhe</em>), the floor function <span class="math inline">\(\lfloor\cdot\rfloor\)</span><a href="digitalrepresentation.html#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>, and the signum function <span class="math inline">\(\mathrm{sgn}(\cdot)\)</span> (cf. Appendix <a href="important-functions.html#sgn">D.3</a>).
+</div>
+<p>With the quantisation function as defined above, the <strong>quantisation levels</strong> (German: <em>Quantisierungspegel</em>) or <strong>quantised values</strong> (German: <em>Quantisierungswerte</em>) of the mid-riser quantiser compute as <span class="math inline">\(\pm \Delta/2\)</span>, <span class="math inline">\(\pm 3\Delta/2\)</span>, <span class="math inline">\(\dots\)</span>, and the one of the mid-tread quantiser as <span class="math inline">\(0\)</span>, <span class="math inline">\(\pm \Delta\)</span>, <span class="math inline">\(\pm 2\Delta\)</span>, <span class="math inline">\(\dots\)</span>, whereas the <strong>quantisation thresholds</strong> (German: <em>Quantisierungsgrenzen</em>) of the mid-riser quantiser are <span class="math inline">\(0\)</span>, <span class="math inline">\(\pm \Delta\)</span>, <span class="math inline">\(\pm 2\Delta\)</span>, <span class="math inline">\(\dots\)</span>, and the one of the mid-tread quantiser are <span class="math inline">\(\pm \Delta/2\)</span>, <span class="math inline">\(\pm 3\Delta/2\)</span>, <span class="math inline">\(\dots\)</span>.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-12" class="example"><strong>Example 2.8  (Linear Quantisation)  </strong></span>Figure <a href="digitalrepresentation.html#fig:linearquantiser">2.19</a> shows a mid-riser and mid-tread quantiser for a maximum quantisation level of <span class="math inline">\(A=4\sqrt{\mathrm{W}}\)</span> and a step size of <span class="math inline">\(\Delta=1\sqrt{\mathrm{W}}\)</span>, resulting in <span class="math inline">\(N_\mathrm{q}^\mathrm{mr}=2A/\Delta = 8\)</span> or <span class="math inline">\(N_\mathrm{q}^\mathrm{mt}=2A/\Delta+1=9\)</span> quantisation levels (<span class="math inline">\(7\)</span> or <span class="math inline">\(8\)</span> steps).
+</div>
+<div class="figure" style="text-align: center"><span id="fig:linearquantiser"></span>
+<img src="kt_files/figure-html/linearquantiser-1.svg" alt="Example of linear quantisation functions ($A=4\sqrt{\mathrm{W}}$, $\Delta=1\sqrt{\mathrm{W}}$)" width="672" />
+<p class="caption">
+Figure 2.19: Example of linear quantisation functions (<span class="math inline">\(A=4\sqrt{\mathrm{W}}\)</span>, <span class="math inline">\(\Delta=1\sqrt{\mathrm{W}}\)</span>)
+</p>
+</div>
+
+<div class="exercise">
+<p><span id="exr:quantisationvalues" class="exercise"><strong>Exercise 2.2  (Quantisation Levels and Thresholds)  </strong></span>The sampled values <span class="math inline">\(x[n]\)</span> of a signal are given in Table <a href="digitalrepresentation.html#tab:quantisationvalues">2.1</a>.</p>
+<table>
+<caption> <span id="tab:quantisationvalues">Table 2.1: </span> Sampled values <span class="math inline">\(x[n]\)</span> of a signal</caption>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{x[n]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left">0.42</td>
+<td align="left">1.92</td>
+<td align="left">–1.5</td>
+<td align="left">4.19</td>
+<td align="left">2.96</td>
+<td align="left">–2.12</td>
+<td align="left">1.49</td>
+</tr>
+</tbody>
+</table>
+<p>In this exercise, the sampled values of Table <a href="digitalrepresentation.html#tab:quantisationvalues">2.1</a> are quantised with a linear mid-riser quantiser assuming <span class="math inline">\(N_\mathrm{q}=4\)</span> quantisation levels and an maximum quantisation level of <span class="math inline">\(A=3\sqrt{\mathrm{W}}\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the step size <span class="math inline">\(\Delta\)</span> as well as the quantisation thresholds and levels.</li>
+<li>Compute and plot the quantised values <span class="math inline">\(x_\mathrm{q}[n]\)</span>.</li>
+<li>Assuming that the sampled values <span class="math inline">\(x[n]\)</span> follow a uniform distribution between <span class="math inline">\(-3\sqrt{\mathrm{W}}\)</span> and <span class="math inline">\(5\sqrt{\mathrm{W}}\)</span>, what transformation would improve the quantisation result?
+</div></li>
+</ol>
+<button class="popup" onclick="popup(&#39;quantisationvaluessol&#39;)">
+Solution
+</button>
+<div id="quantisationvaluessol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Quantisation Values and Thresholds). </span> The solution to Exercise <a href="digitalrepresentation.html#exr:quantisationvalues">2.2</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>With <span class="math inline">\(N_\mathrm{q}=4\)</span> being the number of quantisation levels and <span class="math inline">\(A=3\sqrt{\mathrm{W}}\)</span>, we get the step size
+<span class="math display">\[\Delta=\frac{2A}{N_\mathrm{q}}=\frac{6\sqrt{\mathrm{W}}}{4}=1.5\sqrt{\mathrm{W}}.\]</span>
+Thus, the quantisation thresholds read as <span class="math inline">\(0\)</span> and <span class="math inline">\(\pm 1.5\sqrt{\mathrm{W}}\)</span> and the quantisation levels as <span class="math inline">\(\pm 0.75\sqrt{\mathrm{W}}\)</span> and <span class="math inline">\(\pm 2.25\sqrt{\mathrm{W}}\)</span>.</p></li>
+<li><p>With the formula given in Definition <a href="digitalrepresentation.html#def:linearquantisation">2.5</a>, we get the quantised values <span class="math inline">\(x_\mathrm{q}[n]\)</span> as summarised in Table <a href="digitalrepresentation.html#tab:quantisationvaluessol">2.2</a>. Figure <a href="digitalrepresentation.html#fig:quantisedvalues">2.20</a> illustrates this result.</p>
+<table>
+<caption> <span id="tab:quantisationvaluessol">Table 2.2: </span> Quantised values <span class="math inline">\(x_\mathrm{q}[n]\)</span></caption>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span></td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{x_\mathrm{q}[n]}{\sqrt{\mathrm{W}}}\)</span></td>
+<td align="left">0.75</td>
+<td align="left">2.25</td>
+<td align="left">–0.75</td>
+<td align="left">2.25</td>
+<td align="left">2.25</td>
+<td align="left">–2.25</td>
+<td align="left">0.75</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:quantisedvalues"></span>
+<img src="kt_files/figure-html/quantisedvalues-1.svg" alt="Sampled signal values $x[n]$ and quantised version $x_\mathrm{q}[n]$ thereof" width="80%" />
+<p class="caption">
+Figure 2.20: Sampled signal values <span class="math inline">\(x[n]\)</span> and quantised version <span class="math inline">\(x_\mathrm{q}[n]\)</span> thereof
+</p>
+</div></li>
+<li><p>The transformation needs to be such that the whole range space of the quantiser is exploited, i.e., <span class="math inline">\(\max_n x^\prime[n]=|\min_n x^\prime[n]|=A\)</span>. Thus, transforming <span class="math inline">\(x[n]\)</span> to <span class="math inline">\(x^\prime[n]=3(x[n]-1\sqrt{\mathrm{W}})/4\)</span> before quantisation would yield the best performance.</p></li>
+</ol>
+</div>
+<p>Note that one drawback of the mid-riser quantiser is the fact that the quantised values toggle between <span class="math inline">\(-\Delta/2\)</span> and <span class="math inline">\(\Delta/2\)</span> if the input signal is zero and noisy. Besides, both quantisers suffer from overload noise if the peak value of the input signal is larger than <span class="math inline">\(A\)</span>. In the following, we only consider mid-riser quantisers, i.e., <span class="math inline">\(x_\mathrm{q}[n]=x_\mathrm{q}^\mathrm{mr}[n]\)</span>.</p>
+<p>Whereas sampling can be reversed without any errors under certain conditions (see the sampling theorem, i.e., Theorem <a href="digitalrepresentation.html#thm:thmsampling">2.1</a>, quantisation leads to permanent errors in any case. These errors are quantified via the quantisation error defined as follows.</p>
+
+<div class="definition">
+<span id="def:defquantisationerror" class="definition"><strong>Definition 2.6  (Quantisation Error)  </strong></span>The <strong>quantisation error</strong> <span class="math inline">\(q[n]\)</span> (German: <em>Quantisierungsfehler</em>) is defined as
+<span class="math display">\[q[n]=x_\mathrm{q}[n]-x[n].\]</span>
+</div>
+
+<div class="example">
+<span id="exm:exaquantisationerror" class="example"><strong>Example 2.9  (Quantisation Error)  </strong></span>Again, in Figure <a href="digitalrepresentation.html#fig:quantisationerror">2.21</a>, we show examplarily the quantisation error for a maximum quantisation level of <span class="math inline">\(A=4\sqrt{\mathrm{W}}\)</span> and a step size of <span class="math inline">\(\Delta=1\sqrt{\mathrm{W}}\)</span> assuming a mid-riser quantiser.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:quantisationerror"></span>
+<img src="kt_files/figure-html/quantisationerror-1.svg" alt="Quantisation error of a mid-riser quantiser ($A=4\sqrt{\mathrm{W}}$, $\Delta=1\sqrt{\mathrm{W}}$)" width="672" />
+<p class="caption">
+Figure 2.21: Quantisation error of a mid-riser quantiser (<span class="math inline">\(A=4\sqrt{\mathrm{W}}\)</span>, <span class="math inline">\(\Delta=1\sqrt{\mathrm{W}}\)</span>)
+</p>
+</div>
+<p>In real systems where the signal <span class="math inline">\(x(t)\)</span> can be modeled as a random process, the quantisation error <span class="math inline">\(q[n]\)</span> acts like a noise signal. Based on this assumption, the quality of quantisation can be measured by the ratio of the signal power <span class="math inline">\(P_x\)</span> to the quantisation noise power <span class="math inline">\(P_n\)</span> defined as follows.</p>
+
+<div class="definition">
+<span id="def:defsnrq" class="definition"><strong>Definition 2.7  (Signal-to-Quantisation-Noise Power Ratio, SQNR)  </strong></span>The <strong>Signal-to-Quantisation-Noise (power) Ratio</strong> (SQNR) <span class="math inline">\(\gamma_\mathrm{q}\)</span> (German: <em>Signal-zu-Quantisierungsrauschleistungsverhältnis</em>) is defined as
+<span class="math display">\[\gamma_\mathrm{q} = \frac{P_x}{P_q}\]</span>
+with the <strong>signal power</strong> <span class="math inline">\(P_x\)</span> (German: <em>Signalleistung</em>) and the <strong>quantisation noise power</strong> <span class="math inline">\(P_q\)</span> (German: <em>Leistung des Quantisierungsrauschens</em>).
+</div>
+<p>In order to compute <span class="math inline">\(\gamma_\mathrm{q}\)</span> according to Definition <a href="digitalrepresentation.html#def:defsnrq">2.7</a>, the power of random signals, viz., <span class="math inline">\(P_x\)</span> and <span class="math inline">\(P_q\)</span> needs to be determined. To do so, we need to apply findings of probability theory as briefly summarised in Appendix <a href="mathematical-basics.html#probability">E.4</a>.</p>
+<p>Let us first consider the power <span class="math inline">\(P_q\)</span> of the quantisation noise. Since we don’t know any information about the distribution of the quantisation noise, we assume that <span class="math inline">\(q[n]\)</span> is uniformly distributed between <span class="math inline">\(-\Delta/2\)</span> and <span class="math inline">\(\Delta/2\)</span>,<a href="digitalrepresentation.html#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> i.e., its Probability Density Function (PDF, cf. Appendix <a href="mathematical-basics.html#pdf">E.4.4</a>) reads as (see Appendix <a href="important-functions.html#rect">D.1</a> for a definition of the rectangular function)<a href="digitalrepresentation.html#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>
+<span class="math display">\[f_q(q) = \frac{1}{\Delta}\mathrm{rect}\left(\frac{q}{\Delta}\right).\]</span></p>
+<!--<span style="color:red">TODO: Draw probability density function of the quantisation error for sine, uniformly and Gaussian distrbuted signals.</span>-->
+<p>Assuming this distribution for the quantisation noise, its mean power or variance computes as (cf. Appendix <a href="mathematical-basics.html#variance">E.4.6</a>)
+<span class="math display">\[P_q = \sigma_q^2 = \int\limits_{-\frac{\Delta}{2}}^{\frac{\Delta}{2}}\frac{q^2}{\Delta}dq = \left[ \frac{q^3}{3\Delta} \right]_{-\frac{\Delta}{2}}^{\frac{\Delta}{2}} =
+\frac{\Delta^3}{3\Delta\cdot 8} + \frac{\Delta^3}{3\Delta\cdot 8} = \frac{\Delta^2}{12}.\]</span></p>
+<p>Next, we compute the signal power <span class="math inline">\(P_x\)</span>. Here, we consider two different types of signals, first a signal <span class="math inline">\(x[n]\)</span> which is uniformly distributed between <span class="math inline">\(-A\)</span> and <span class="math inline">\(A\)</span> and secondly, a signal <span class="math inline">\(x[n]\)</span> resulting from sampling of a sinusoidal (German: <em>sinusförmig</em>) signal <span class="math inline">\(x(t)\)</span>. In case of a uniformly distributed <span class="math inline">\(x[n]\)</span>, i.e., the PDF of <span class="math inline">\(x[n]\)</span> reads as
+<span class="math display">\[f_x(x) = \frac{1}{2A}\mathrm{rect}\left(\frac{x}{2A}\right),\]</span>
+the power of <span class="math inline">\(x[n]\)</span> computes as
+<span class="math display">\[P_x = \sigma_x^2 = \int\limits_{-A}^{A}\frac{x^2}{2A}dx = \left[ \frac{x^3}{6A} \right]_{-A}^{A} =
+\frac{A^3}{6A} + \frac{A^3}{6A} = \frac{A^2}{3}.\]</span>
+In case that the values <span class="math inline">\(x[n]\)</span> arise from sampling of a sinusoidal signal <span class="math inline">\(x(t)\)</span> with amplitude <span class="math inline">\(\hat{x}=A\)</span> and period <span class="math inline">\(T_\mathrm{p}\)</span>, its power can be computed via time averaging of the analog signal <span class="math inline">\(x(t)\)</span>, i.e.,
+<span class="math display">\[P_x = \frac{1}{2T_\mathrm{p}} \int\limits_{-T_\mathrm{p}}^{T_\mathrm{p}} x^2(t) dt = \frac{A^2}{2}.\]</span></p>
+<p>Recall that a mid-riser quantiser with step size <span class="math inline">\(\Delta\)</span> and maximum quantisation level <span class="math inline">\(A\)</span> results in <span class="math inline">\(N_\mathrm{q}=2A/\Delta\)</span> quantisation levels. If one codes these levels with a <span class="math inline">\(m\)</span>-bit digital code (see Section <a href="digitalrepresentation.html#pcm">2.3</a>), it holds
+<span class="math display">\[N_\mathrm{q}=\frac{2A}{\Delta} = 2^m \Leftrightarrow \frac{A}{\Delta} = 2^{m-1}.\]</span></p>
+<p>Taking everything into account, we obtain the expressions for the <span class="math inline">\(\gamma_\mathrm{q}\)</span> as summarised in Theorem <a href="digitalrepresentation.html#thm:snrq">2.3</a>.</p>
+
+<div class="theorem">
+<span id="thm:snrq" class="theorem"><strong>Theorem 2.3  (Signal-to-Quantisation-Noise Power Ratio)  </strong></span>The SQNR of a signal <span class="math inline">\(x[n]\)</span> with the peak value <span class="math inline">\(A\)</span> computes as
+<span class="math display">\[\gamma_\mathrm{q} = \begin{cases}
+4\frac{A^2}{\Delta^2} = 2^{2m}, &amp; \text{if $x[n]$ uniformly distributed},\\
+6\frac{ A^2}{\Delta^2} = \frac{3}{2} 2^{2m}, &amp; \text{if $x[n]$ sinusoidal},
+\end{cases}\]</span>
+or its logarithmic value as<a href="digitalrepresentation.html#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>
+<span class="math display">\[10\lg \gamma_\mathrm{q}\,\mathrm{dB} = 20m\lg 2\,\mathrm{dB} + \begin{cases}
+0, &amp; \mathrm{(uniform)},\\
+10\lg\frac{3}{2}\,\mathrm{dB}, &amp; \mathrm{(sinusoid)},
+\end{cases}\]</span>
+assuming a quantiser with step size <span class="math inline">\(\Delta\)</span> or representing the quantisation levels with <span class="math inline">\(m\)</span> bits. A linear <span class="math inline">\(m\)</span>-bit quantiser has a SQNR of <span class="math inline">\(m\cdot 6\,\mathrm{dB}\)</span> excluding a signal depending correction term, e.g., <span class="math inline">\(10\lg\frac{3}{2}\,\mathrm{dB}=1.76\,\mathrm{dB}\)</span> in case of a sinusoidal signal.
+</div>
+
+<div class="example">
+<span id="exm:unnamed-chunk-14" class="example"><strong>Example 2.10  (Quantisation on a Compact Disc)  </strong></span>The compact disc format uses a linear 16-bit quantiser. Thus, its SQNR is <span class="math inline">\(10\lg \gamma_\mathrm{q} = 16\cdot 6\,\mathrm{dB}= 96\,\mathrm{dB}\)</span>.
+</div>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-15" class="example"><strong>Example 2.11  (Quantised 440-Hz-Tone)  </strong></span>This example presents a quantised 440-Hz-tone with different number of bits. One clearly hears how the power of the quantisation error (noise) decreases with the number of bits.</p>
+<ul>
+<li>1-bit-quantiser:
+<figure style="text-align:center">
+<audio controls>
+<source src="media/tone_1bit.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure></li>
+<li>2-bit-quantiser:
+<figure style="text-align:center">
+<audio controls>
+<source src="media/tone_2bit.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure></li>
+<li>4-bit-quantiser:
+<figure style="text-align:center">
+<audio controls>
+<source src="media/tone_4bit.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure></li>
+<li>8-bit-quantiser:
+<figure style="text-align:center">
+<audio controls>
+<source src="media/tone_8bit.mp3" type="audio/mpeg">
+Here should be a link to an audio file. In this document format, however, audio files are not supported!
+</audio>
+</figure>
+</div></li>
+</ul>
+<form class="quiz" data-correct="4">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+<p>To improve the quality of a digital signal, the number of bits per sample is doubled. How much increases this measure the SQNR <span class="math inline">\(\gamma_\mathrm{q}\)</span>?</p>
+</div>
+<input value="A. 0 dB"/>
+<input value="B. 3 dB"/>
+<input value="C. It doubles."/>
+<input value="D. The amount of increase depends on the type of signal (uniformly distributed or sinusoidal)."/>
+</form>
+</div>
+<div id="nonlinear-quantisation-or-companding" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Nonlinear Quantisation or Companding</h3>
+<p>In case of <strong>nonlinear quantisation</strong> (German: <em>nichtlineare Quantisierung</em>) or <strong>companding</strong> (German: <em>Kompandierung</em>), sometimes also denoted as <strong>compansion</strong>, the signal is compressed before applying linear quantisation and expanded afterwards. Here, <strong>compression</strong> (German: <em>Kompression</em>) refers to applying a certain function <span class="math inline">\(g\)</span> to the signal <span class="math inline">\(x[n]\)</span>, resulting in <span class="math inline">\(x^\prime[n]=g(x[n])\)</span>, which limits the maximum value to a certain level and weighs different values of the input signal in a certain way. <strong>Expanding</strong> or <strong>Expansion</strong> (German: <em>Expandierung</em>) refers to applying the inverted function <span class="math inline">\(g^{-1}\)</span> yielding <span class="math inline">\(x_\mathrm{q}[n]=g^{-1}(x^\prime_\mathrm{q}[n])\)</span>, and is applied after linear quantisation of <span class="math inline">\(x^\prime[n]\)</span>. The whole process is summarised in the block diagram of Figure <a href="digitalrepresentation.html#fig:nonlinearquantisation">2.22</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:nonlinearquantisation"></span>
+<img src="kt_files/figure-html/nonlinearquantisation-1.svg" alt="Block diagram of nonlinear quantisation" width="672" />
+<p class="caption">
+Figure 2.22: Block diagram of nonlinear quantisation
+</p>
+</div>
+<p>The main advantage of nonlinear quantisation is a higher <span class="math inline">\(\gamma_\mathrm{q}\)</span> for</p>
+<ul>
+<li>non-uniformly distributed signals and</li>
+<li>signals whose maximal absolute values are not limited to <span class="math inline">\(A\)</span>.</li>
+</ul>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-16" class="example"><strong>Example 2.12  (A- and μ-law Function)  </strong></span>For Pulse Code Modulation (PCM) systems as introduced in Subsection <a href="digitalrepresentation.html#pcm">2.3</a>, two functions, the so-called A- and μ-law function, are mainly used for nonlinear quantisation. The A-law function is defined as<a href="digitalrepresentation.html#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>
+<span class="math display">\[g_A(x) := \mathrm{sgn}(x) \begin{cases}
+\frac{A_0|x|}{1+\ln A_0}, &amp; |x| &lt; \frac{1}{A_0}, \\
+\frac{1+\ln (A_0|x|)}{1+\ln A_0}, &amp; \frac{1}{A_0} \leq |x| \leq 1,
+\end{cases}\]</span>
+and is often used in Europe with <span class="math inline">\(A_0=87.6\)</span>, whereas the μ-law function reads as
+<span class="math display">\[g_\mu(x) := \mathrm{sgn}(x)
+\frac{\ln(1+\mu |x|)}{\ln(1+\mu)},\ -1\leq x \leq 1,\]</span>
+and is recommended by the International Telecommunication Union (ITU) and therefore used in North America and Japan with <span class="math inline">\(\mu=255\)</span> resulting in a digital signal with 8 bit. In both cases, we assume signals with a peak value of one. If the peak value is different, additional scaling is applied. The μ-law function and the resulting quantisation function is examplarily drawn in Figure <a href="digitalrepresentation.html#fig:mulawquantisation">2.23</a>. It can be seen, that values close to zero are quantised with smaller quantisation steps compared to values which are close to maximum. Thus, the maximum limit of the quantiser can be chosen much higher without loosing the resolution for smaller values.</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:mulawquantisation"></span>
+<img src="kt_files/figure-html/mulawquantisation-1.svg" alt="Nonlinear &amp;mu;-law quantisation" width="672" />
+<p class="caption">
+Figure 2.23: Nonlinear μ-law quantisation
+</p>
+</div>
+<!--%TODO: Plot also the quantisation error for nonlinear mu-law quantisation!-->
+<p>This higher resolution for smaller values results in higher <span class="math inline">\(\gamma_\mathrm{q}\)</span> values. This effect is quantified by the companding gain defined as follows.</p>
+
+<div class="definition">
+<span id="def:defcompandinggain" class="definition"><strong>Definition 2.8  (Companding Gain)  </strong></span>The <strong>companding gain</strong> <span class="math inline">\(g_\mathrm{c}\)</span> (German: <em>Kompandierungsgewinn</em>) is the gain of nonlinear quantisation for small values compared to pure linear quantisation, measured by the <span class="math inline">\(\gamma_\mathrm{q}\)</span>.
+</div>
+
+<div class="example">
+<span id="exm:exacompandinggain" class="example"><strong>Example 2.13  (Companding Gain)  </strong></span>The companding gain <span class="math inline">\(g_\mathrm{c}\)</span> of nonlinear quantisation compared to linear quantisation can be exemplarily seen in Figure <a href="digitalrepresentation.html#fig:compandinggain">2.24</a> which depicts the <span class="math inline">\(\gamma_\mathrm{q}\)</span> of a 16-bit-quantised sinusoidal signal depending on its amplitude <span class="math inline">\(\hat{x}\)</span>, either for linear and nonlinear quantisation. The maximum quantisation level has been chosen to be <span class="math inline">\(A=1\sqrt{\mathrm{W}}\)</span> and the μ-law function has been used in case of nonlinear quantisation.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:compandinggain"></span>
+<img src="kt_files/figure-html/compandinggain-1.svg" alt="$\gamma_\mathrm{q}$ of a 16-bit-quantised sinusoidal signal depending on its amplitude $\hat{x}$ (maximum quantisation level of $A=1\sqrt{\mathrm{W}}$, &amp;mu;-law in case of nonlinear quantisation)" width="80%" />
+<p class="caption">
+Figure 2.24: <span class="math inline">\(\gamma_\mathrm{q}\)</span> of a 16-bit-quantised sinusoidal signal depending on its amplitude <span class="math inline">\(\hat{x}\)</span> (maximum quantisation level of <span class="math inline">\(A=1\sqrt{\mathrm{W}}\)</span>, μ-law in case of nonlinear quantisation)
+</p>
+</div>
+<p>It can be seen that nonlinear quantisation of sinusoidal signals with a small amplitude <span class="math inline">\(\hat{x}\)</span> leads to a much higher <span class="math inline">\(\gamma_\mathrm{q}\)</span> compared to its linear counterpart. In Figure <a href="digitalrepresentation.html#fig:compandinggain">2.24</a>, we observe that the companding gain is</p>
+<p><span class="math display">\[10\lg g_\mathrm{c}\approx 32\,\mathrm{dB}\]</span></p>
+<p>in this case. However, if the amplitude <span class="math inline">\(\hat{x}\)</span> of the sinusoidal signal is large or even equal to the maximum quantisation level <span class="math inline">\(A\)</span>, i.e., <span class="math inline">\(\hat{x}=A\)</span>, nonlinear quantisation experiences a degradation compared to the linear one. The reason for this lies in the fact that signal values close to <span class="math inline">\(A\)</span> are quantised with larger quantisation steps compared to values close to 0, and especially these large values occur more frequently in sinusoidal signals as can be seen if we consider the histogram depicted in Figure <a href="digitalrepresentation.html#fig:sinedist">2.25</a>. For other signals where small values occur more frequently than large values, e.g., by following a Gaussian distribution, this degradation vanishes.</p>
+<!--<span style="color:red">Shall we show the following picture? Better show distribution of a voice signal?</span>-->
+<div class="figure" style="text-align: center"><span id="fig:sinedist"></span>
+<img src="kt_files/figure-html/sinedist-1.svg" alt="Histogram of sinusoidal signal values" width="80%" />
+<p class="caption">
+Figure 2.25: Histogram of sinusoidal signal values
+</p>
+</div>
+<p>Despite of the degradation for sinusoidal signals with large amplitudes, the <span class="math inline">\(\gamma_\mathrm{q}\)</span> of nonlinear quantisation is almost independent from the signal amplitude <span class="math inline">\(\hat{x}\)</span> in this case. Thus, nonlinear quantisation is also advantageous if the peak value of the signal is not known at the time of quantiser design.</p>
+<!--<span style="color:red">TODO: Show results also for band-limited noise with different powers!</span>
+
+<span style="color:red">TODO: Is the reason for the bad performance really the fact that large values occur more often or is it due to the fact that high values are quantised more inaccurately? (If one applies the inverse mu law first and after quantisation, the performance is overall worse than the one of linear quantisation. This oberservation is a counter argument to the conjecture above.)</span>
+
+-->
+<!--<form class="quiz" data-correct="2" style="margin-bottom:20px">
+<div class="question-title">Quiz</div>
+<div class="question-core">What is the companding gain of the nonlinear quantiser shown in Figure&nbsp;\@ref(fig:compandinggain)?</div>
+<input value="A. ca. 20 dB"/>
+<input value="B. ca. 30 dB"/>
+<input value="C. ca. 40 dB"/>
+<input value="D. ca. 50 dB"/>
+</form>-->
+<form class="quiz" data-correct="2" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following signals leads to a companding gain greater than one?
+</div>
+<input value="A. Signal with uniformly distributed values between the minimum and maximum quantisation level"/>
+<input value="B. Noise signal with values following a Gaussian distribution"/>
+<input value="C. Sinusoidal signal with an amplitude equal to the maximum quantisation level"/>
+<input value="D. Sawtooth signal with an amplitude equal to the maximum quantisation level"/>
+</form>
+
+<div class="exercise">
+<p><span id="exr:exesnrq" class="exercise"><strong>Exercise 2.3  (Signal-to-Quantisation-Noise Power Ratio)  </strong></span>The samples <span class="math inline">\(x[n]=x(nT_\mathrm{s})\)</span>, <span class="math inline">\(n\in\mathbb{Z}\)</span>, <span class="math inline">\(T_\mathrm{s}=1/f_\mathrm{s}\)</span>, of the function <span class="math inline">\(x(t)\)</span> in Exercise <a href="digitalrepresentation.html#exr:exesampling">2.1</a> are linearly quantised with <span class="math inline">\(m=8\,\mathrm{bit}\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the SQNR <span class="math inline">\(\gamma_\mathrm{q}\)</span> in this case if the maximum level of the quantiser <span class="math inline">\(A\)</span> has been chosen to cover the peak value <span class="math inline">\(\hat{x}\)</span> of the signal, i.e., <span class="math inline">\(A=\hat{x}=\max_t x(t)\)</span>. What is the value of <span class="math inline">\(A\)</span>?</li>
+<li>Explain, why nonlinear quantisation has no benefits when applied to the given signal <span class="math inline">\(x(t)\)</span>.</li>
+<li>Compute <span class="math inline">\(\gamma_\mathrm{q}\)</span> if the maximum level of the quantiser has been chosen to be <span class="math inline">\(A^\prime=3\sqrt{\mathrm{W}}\)</span>.</li>
+</ol>
+</div>
+<button class="popup" onclick="popup(&#39;snrqexr&#39;)">
+Solution
+</button>
+<div id="snrqexr" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (Signal-to-Quantisation-Noise Power Ratio). </span> The solution to Exercise <a href="digitalrepresentation.html#exr:exesnrq">2.3</a> is as follows:
+</div>
+<ol style="list-style-type: lower-alpha">
+<li><p>With <span class="math inline">\(x(t)\)</span> being a sinusoidal-like signal, we can compute the approximation
+<span class="math display">\[\gamma_\mathrm{q}\approx \frac{3}{2}2^{2m}=\frac{3}{2}2^{2\cdot 8}=98304\]</span>
+or
+<span class="math display">\[10\lg\gamma_\mathrm{q}\approx 50\,\mathrm{dB}.\]</span>
+Note that a precise computation of the SQNR would require the computation of the time average <span class="math inline">\(P_x=\frac{1}{2T}\int_{-T}^T x^2(t)dt\)</span> with <span class="math inline">\(T=2\,\mathrm{ms}\)</span>.
+From Figure <a href="digitalrepresentation.html#fig:sines">2.11</a>, we get:
+<span class="math display">\[A\approx 1.25\sqrt{\mathrm{W}}.\]</span>
+The exact value of <span class="math inline">\(A\)</span> can be also computed by finding the extreme values of <span class="math inline">\(x(t)\)</span> based on its derivation <span class="math inline">\(\dot{x}(t)\)</span>.</p></li>
+<li><p>Nonlinear quantisation has no benefits in this case because the signal <span class="math inline">\(x(t)\)</span> is sinusoidal-like with a peak value equal to the maximum quantisation level <span class="math inline">\(A\)</span>.</p></li>
+<li><p>For sinusoidal signal with amplitude <span class="math inline">\(\hat{x}=A\)</span>, it holds (see derivation of Theorem <a href="digitalrepresentation.html#thm:snrq">2.3</a>):
+<span class="math display">\[\gamma_\mathrm{q}=\frac{A^2}{2}\frac{12}{\Delta^2}\]</span>
+with the step size <span class="math inline">\(\Delta\)</span>. This formula only holds if the maximum quantisation level <span class="math inline">\(A\)</span> is equal to the amplitude <span class="math inline">\(\hat{x}\)</span> of the signal. If the maximum quantisation level <span class="math inline">\(A^\prime\)</span> is different from the amplitude <span class="math inline">\(\hat{x}\)</span>, the <span class="math inline">\(2^m\)</span> quantisation levels lie in the range space <span class="math inline">\([-A^\prime,A^\prime]\)</span>, i.e., the step size computes as
+<span class="math display">\[\Delta = \frac{2A^\prime}{2^m} = \frac{A^\prime}{2^{m-1}}\]</span>
+and the SQNR to
+<span class="math display">\[\gamma_\mathrm{q}^\prime= \frac{\hat{x}^2}{2}\frac{12\cdot 2^{2m-2}}{A^{\prime 2}}=\left(\frac{\hat{x}}{A^\prime}\right)^2 \frac{3}{2}2^{2m}\approx\left(\frac{1.25}{3}\right)^2\frac{3}{2}2^{2\cdot 8}\approx 17067\]</span></p>
+<p>or
+<span class="math display">\[10\lg\gamma_\mathrm{q}^\prime\approx 42.3\,\mathrm{dB}.\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="pcm" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Pulse Code Modulation (PCM)</h2>
+
+<div class="definition">
+<span id="def:defpcm" class="definition"><strong>Definition 2.9  (Pulse Code Modulation, PCM)  </strong></span><strong>Pulse Code Modulation</strong> (PCM) converts an analog signal into a digital one by applying sequentially sampling, quantisation and <strong>binary coding</strong> (German: <em>Binärcodierung</em>) as summarised in Figure <a href="digitalrepresentation.html#fig:pcmsystem">2.26</a>.
+</div>
+<div class="figure" style="text-align: center"><span id="fig:pcmsystem"></span>
+<img src="kt_files/figure-html/pcmsystem-1.svg" alt="PCM system" width="672" />
+<p class="caption">
+Figure 2.26: PCM system
+</p>
+</div>
+<p>Sampling and quantisation has been already described in the Subsections <a href="digitalrepresentation.html#sampling">2.1</a> and <a href="digitalrepresentation.html#quantisation">2.2</a>, respectively. It remains to explain <strong>binary coding</strong>. A binary coder assigns each quantisation value <span class="math inline">\(x_\mathrm{q}[n]\in\mathbb{R}\)</span> a specific binary code with <span class="math inline">\(m\)</span> bits, i.e.,<a href="digitalrepresentation.html#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>
+<span class="math display">\[(x_\mathrm{q}[n]/\sqrt{\mathrm{W}})_{10} \mapsto (b_{m-1}[n]\,b_{m-2}[n]\,\dots\, b_2[n]\,b_1[n]\,b_0[n])_2.\]</span>
+Remember that such a code can cover <span class="math inline">\(2^m\)</span> quantisation levels (or values), leading to the formula that <span class="math inline">\(A/\Delta=2^{m-1}\)</span> if we assume a signal with peak value <span class="math inline">\(\hat{x}=A\)</span> and a quantisation step size of <span class="math inline">\(\Delta\)</span>. After this assignment, the resulting codes are aligned one after each other, finally resulting in the digital signal
+<span class="math display">\[b[k] :=  b_i[n]\in\{0,1\},\quad n=\left\lfloor \frac{k}{m} \right\rfloor, \quad i=(n+1)m-(k+1).\]</span></p>
+<p>Different types of this assignment define different types of binary coding. Two famous examples are <strong>natural binary</strong> and <strong>signed integer</strong>. Whereas the quantisation level indices are simply binary coded in case of natural binary, in case of signed integer binary coding, the bit <span class="math inline">\(b_{m-1}[n]\)</span> refers to the sign of <span class="math inline">\(x_\mathrm{q}[n]\)</span> and the remaining bits <span class="math inline">\(b_{m-2}[n]\)</span>, <span class="math inline">\(b_{m-3}[n]\)</span>, <span class="math inline">\(\dots\)</span> and <span class="math inline">\(b_0[n]\)</span> to its absolute value. Thus, <span class="math inline">\(b_{m-1}[n]\)</span> is the <strong>Most Significant Bit</strong> (MSB) and <span class="math inline">\(b_0[n]\)</span> the <strong>Least Significant Bit</strong> (LSB), i.e., if the MSB is erroneous degrades performance more severely than if the LSB is erroneous. It follows an example illustrating the difference between natural binary and signed integer.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-18" class="example"><strong>Example 2.14  (Natural Binary and Signed Integer)  </strong></span>Natural binary and signed integer are shown in Table <a href="digitalrepresentation.html#tab:binarycoding">2.3</a> as examples for binary codes. In this example, we assume a linear mid-rise quantiser with a maximum quantisation level of <span class="math inline">\(A=4\sqrt{\mathrm{W}}\)</span> and with the quantisation step size <span class="math inline">\(\Delta=1\sqrt{\mathrm{W}}\)</span> (cf. Figure <a href="digitalrepresentation.html#fig:linearquantiser">2.19</a>).
+</div>
+<table>
+<caption> <span id="tab:binarycoding">Table 2.3: </span> Example of binary codes with <span class="math inline">\(m=3\,\mathrm{bit}\)</span></caption>
+<thead>
+<tr class="header">
+<th align="left"><span class="math inline">\(x_\mathrm{q}[n]\)</span></th>
+<th align="left">Index</th>
+<th align="left">Natural Binary</th>
+<th align="left">Signed Integer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">3.5</td>
+<td align="left">7</td>
+<td align="left">111</td>
+<td align="left">011</td>
+</tr>
+<tr class="even">
+<td align="left">2.5</td>
+<td align="left">6</td>
+<td align="left">110</td>
+<td align="left">010</td>
+</tr>
+<tr class="odd">
+<td align="left">1.5</td>
+<td align="left">5</td>
+<td align="left">101</td>
+<td align="left">001</td>
+</tr>
+<tr class="even">
+<td align="left">0.5</td>
+<td align="left">4</td>
+<td align="left">100</td>
+<td align="left">000</td>
+</tr>
+<tr class="odd">
+<td align="left">–0.5</td>
+<td align="left">3</td>
+<td align="left">011</td>
+<td align="left">100</td>
+</tr>
+<tr class="even">
+<td align="left">–1.5</td>
+<td align="left">2</td>
+<td align="left">010</td>
+<td align="left">101</td>
+</tr>
+<tr class="odd">
+<td align="left">–2.5</td>
+<td align="left">1</td>
+<td align="left">001</td>
+<td align="left">110</td>
+</tr>
+<tr class="even">
+<td align="left">–3.5</td>
+<td align="left">0</td>
+<td align="left">000</td>
+<td align="left">111</td>
+</tr>
+</tbody>
+</table>
+
+<div class="example">
+<span id="exm:unnamed-chunk-19" class="example"><strong>Example 2.15  (PCM System—ITU-T Recommendation G.711)  </strong></span>Here, we consider a PCM system with nonlinear quantisation according to the recommendation G.711 of the <span class="citation"><a href="references.html#ref-ITUG711" role="doc-biblioref">Telecommunication Standardization Sector of International Telecommunication Union (ITU-T)</a> (<a href="references.html#ref-ITUG711" role="doc-biblioref">1993</a>)</span> assuming an A-law function. Figure <a href="digitalrepresentation.html#fig:itupcm">2.27</a> shows the quantisation function for positive values between 0 and 1. Each value is assigned to an integer between 0 and <span class="math inline">\(2^7-1=127\)</span> representing 128 quantisation levels. Together with the negative values,<a href="digitalrepresentation.html#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> this results in 256 quantisation levels which are finally respresented by a code with <span class="math inline">\(m=8\,\mathrm{bit}\)</span>. The curve is separated into 7 segments where each segement has a different resolution, i.e., in segment “G,” 32 levels are used to represent values between 0 and 1/64, in segment “F,” 16 levels are used to represent values between 1/64 and 1/32, <span class="math inline">\(\dots\)</span> and in segment “A,” 16 levels are used to represent values between 1/2 and 1. This type of nonlinear quantiser is denoted a 13-segment-quantiser because the same 7 segments are used for negative values resulting in 6 additional segments.<a href="digitalrepresentation.html#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:itupcm"></span>
+<img src="kt_files/figure-html/itupcm-1.svg" alt="Nonlinear quantisation with 13 segments for 8-bit-voice-coding" width="672" />
+<p class="caption">
+Figure 2.27: Nonlinear quantisation with 13 segments for 8-bit-voice-coding
+</p>
+</div>
+<p>The companding gain of this nonlinear quantiser is computed by assuming that the highest resolution, i.e., the resolution around 0, is used for all values by applying a linear quantiser. If one extends the 32 levels, which are used for values between 0 and 1/64, to a range of –1 to 1, <span class="math inline">\(2\cdot 64 \cdot 32=4096\)</span> quantisation levels or a code with 12 bit would be needed. Thus, the companding gain of this nonlinear quantiser computes as
+<span class="math display">\[g_\mathrm{c}=10\lg(\gamma_\mathrm{q}|_{m=12\,\mathrm{bit}})-10\lg(\gamma_\mathrm{q}|_{m=8\,\mathrm{bit}})=24\,\mathrm{dB}.\]</span></p>
+<p>The 256 quantisation levels are represented by the binary code <span class="math inline">\((b_7\,b_6\,b_5\,b_4\,b_3\,b_2\,b_1\,b_0)_2\)</span> as follows. The MSB <span class="math inline">\(b_7\)</span> represents the sign (<span class="math inline">\(1_2\)</span> for <span class="math inline">\(+\)</span> and <span class="math inline">\(0_2\)</span> for <span class="math inline">\(-\)</span>), the next three bits, i.e., <span class="math inline">\(b_6\)</span>, <span class="math inline">\(b_5\)</span>, and <span class="math inline">\(b_4\)</span>, represent the segment, and the last four bits, i.e., <span class="math inline">\(b_3\)</span>, <span class="math inline">\(b_2\)</span>, <span class="math inline">\(b_1\)</span>, and <span class="math inline">\(b_0\)</span>, including the LSB, represent the 16 levels within each segment.</p>
+<form class="quiz" data-correct="3" style="margin-bottom:20px">
+<div class="question-title">
+Quiz
+</div>
+<div class="question-core">
+Which of the following statements is right?
+</div>
+<input value="A. A PCM coded analog signal can be fully reconstructed if the sampling theorem is fullfilled."/>
+<input value="B. The SQNR does not depend on the number of bits per sample."/>
+<input value="C. PCM with 3 TDM channels, 16 bit per sample and a sampling frequency of 4 kHz yields a bit rate of 192 kbps."/>
+<input value="D. A PCM signal with bit rate 44 kbps has been sampled with 44 kHz."/>
+</form>
+
+<div class="exercise">
+<span id="exr:pcm" class="exercise"><strong>Exercise 2.4  (PCM Code)  </strong></span>Compute the PCM code to the sampled value <span class="math display">\[x[0]=-0.2013487456\sqrt{\mathrm{W}},\]</span>
+according to ITU-T G.711.
+</div>
+<button class="popup" onclick="popup(&#39;pcmsol&#39;)">
+Solution
+</button>
+<div id="pcmsol" class="popupsolution">
+
+<div class="solution">
+ <span class="solution"><em>Solution</em> (PCM Code). </span> The solution to Exercise <a href="digitalrepresentation.html#exr:pcm">2.4</a> is as follows:
+</div>
+<p>The sampled value is negative. Thus, the first bit is <span class="math inline">\(b_7=0\)</span>. Then, the absolute value <span class="math inline">\(0.2013487456\sqrt{\mathrm{W}}\)</span> lies between <span class="math inline">\(1/8\sqrt{\mathrm{W}}\)</span> and <span class="math inline">\(1/4\sqrt{\mathrm{W}}\)</span>, i.e., in Segment “C,” represented by the binary code <span class="math inline">\((b_6\,b_5\,b_4)_2=101_2\)</span> (see Figure <a href="digitalrepresentation.html#fig:itupcm">2.27</a>). The quantisation step size in Segment “C” is <span class="math inline">\((1/4-1/8)/16=0.0078125\sqrt{\mathrm{W}}\)</span>. Table <a href="digitalrepresentation.html#tab:pcmlevels">2.4</a> summarises the mapping of the individual value regions to the last 4 bit of the PCM code if the value lies in Segment “C.”</p>
+<table>
+<caption><span id="tab:pcmlevels">Table 2.4: </span> Mapping of regions to <span class="math inline">\((b_3\,b_2\,b_1\,b_0)_2\)</span> in Segment “C”</caption>
+<thead>
+<tr class="header">
+<th align="left"><span class="math inline">\(x[n]/\sqrt{\mathrm{W}}\in\)</span></th>
+<th align="left"><span class="math inline">\((b_3\,b_2\,b_1\,b_0)_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">[0.1250000,0.1328125[</td>
+<td align="left">0000</td>
+</tr>
+<tr class="even">
+<td align="left">[0.1328125,0.1406250[</td>
+<td align="left">0001</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.1406250,0.1484375[</td>
+<td align="left">0010</td>
+</tr>
+<tr class="even">
+<td align="left">[0.1484375,0.1562000[</td>
+<td align="left">0011</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.1562000,0.1640625[</td>
+<td align="left">0100</td>
+</tr>
+<tr class="even">
+<td align="left">[0.1640625,0.1718750[</td>
+<td align="left">0101</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.1718750,0.1816875[</td>
+<td align="left">0110</td>
+</tr>
+<tr class="even">
+<td align="left">[0.1816875,0.1895000[</td>
+<td align="left">0111</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.1895000,0.1973125[</td>
+<td align="left">1000</td>
+</tr>
+<tr class="even">
+<td align="left">[0.1973125,0.2051250[</td>
+<td align="left">1001</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.2051250,0.2129375[</td>
+<td align="left">1010</td>
+</tr>
+<tr class="even">
+<td align="left">[0.2129375,0.2207500[</td>
+<td align="left">1011</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.2207500,0.2285625[</td>
+<td align="left">1100</td>
+</tr>
+<tr class="even">
+<td align="left">[0.2285625,0.2363750[</td>
+<td align="left">1101</td>
+</tr>
+<tr class="odd">
+<td align="left">[0.2363750,0.2441875[</td>
+<td align="left">1110</td>
+</tr>
+<tr class="even">
+<td align="left">[0.2441875,0.2500000[</td>
+<td align="left">1111</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, the absolute value <span class="math inline">\(0.2013487456\sqrt{\mathrm{W}}\)</span> lies in the region with <span class="math inline">\((b_3\,b_2\,b_1\,b_0)_2=1001_2\)</span> and the PCM code to the sampled value <span class="math inline">\(x[0]=-0.2013487456\sqrt{\mathrm{W}}\)</span> reads finally as
+<span class="math display">\[01011001_2.\]</span></p>
+</div>
+<p>Additional topics in this context of PCM are <strong>Differential Pulse Code Modulation</strong> (DPCM) invented by <span class="citation"><a href="references.html#ref-Cu50" role="doc-biblioref">Cutler</a> (<a href="references.html#ref-Cu50" role="doc-biblioref">1950</a>)</span> and <strong>Sigma-Delta-Modulation</strong> or <strong>Sigma-Delta-Conversion</strong> (cf., e.g., <span class="citation"><a href="references.html#ref-AzSoSp96" role="doc-biblioref">Aziz, Sorensen, and van der Spiegel</a> (<a href="references.html#ref-AzSoSp96" role="doc-biblioref">1996</a>)</span>) which are not further explained here.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>Due to the unit <span class="math inline">\([x(t)]=1\sqrt{\mathrm{W}}\)</span>, the unit of the energy is <span class="math inline">\([E_x]=1\,\mathrm{J}\)</span> (see also Appendix <a href="units.html#units">C</a>).<a href="digitalrepresentation.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>The symbol “<span class="math inline">\(\forall\)</span>” abbreviates “for all.”<a href="digitalrepresentation.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Note that one could also use the <span class="math inline">\(z\)</span>-transform to explain the periodicity in the spectrum as derived next, however, it would be rather difficult to see how to reconstruct the time-continuous signal from the sampled one.<a href="digitalrepresentation.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>In case of a direct-conversion ADC with a bank of comparators (e.g., <span class="citation"><a href="references.html#ref-Schruefer" role="doc-biblioref">Schrüfer, Reindl, and Zagar</a> (<a href="references.html#ref-Schruefer" role="doc-biblioref">2012</a>)</span>), the time-varying input might be not such a big problem.<a href="digitalrepresentation.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>GNU Radio is an open source software, i.e., feel free to download and install it on your computer and play with the simulation file <a href="https://dietl.co/kt/material/sample_and_hold.grc"><code>sample_and_hold.grc</code></a> by yourself.<a href="digitalrepresentation.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>The unit of the signal <span class="math inline">\(x(t)\)</span> as well as of the ideally sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span> is <span class="math inline">\([x(t)]=[x_\mathrm{s}(t)]=1\sqrt{\mathrm{W}}\)</span>, because <span class="math inline">\([\delta(t)]=1\,\mathrm{Hz}\)</span> and <span class="math inline">\([T_\mathrm{s}]=1\,\mathrm{s}\)</span> (cf. Appendix <a href="units.html#units">C</a>). Thus, the unit of the normalised sampled signal <span class="math inline">\(x_\mathrm{s}(t)/T_\mathrm{s}\)</span> is <span class="math inline">\([x_\mathrm{s}(t)/T_\mathrm{s}]=1\sqrt{\mathrm{W}}/\mathrm{s}\)</span>. Nevertheless, the length of the vectors in Figure <a href="digitalrepresentation.html#fig:sampledsines">2.12</a> representing Dirac pulses equals the area below the pulses (see Appendix <a href="mathematical-basics.html#dirac">E.2</a>), i.e., this length has the unit <span class="math inline">\([x_\mathrm{s}(t)dt/T_\mathrm{s}]=1\sqrt{\mathrm{W}}\)</span>.<a href="digitalrepresentation.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>The unit of the spectrum <span class="math inline">\(X(f)\)</span> as well as of the Spectrum <span class="math inline">\(X_\mathrm{s}(f)\)</span>, corresponding to the ideally sampled signal <span class="math inline">\(x_\mathrm{s}(t)\)</span>, is <span class="math inline">\([X(f)]=[X_\mathrm{s}(f)]=1\sqrt{\mathrm{W}}/\mathrm{Hz}\)</span> because <span class="math inline">\([\delta(f)]=1\,\mathrm{s}\)</span> (cf. Appendix <a href="units.html#units">C</a>). However, the length of the vectors in Figure <a href="digitalrepresentation.html#fig:sinespectrum">2.15</a> representing Dirac delta functions equals the area below the impulse (see Appendix <a href="mathematical-basics.html#dirac">E.2</a>), i.e., this length has the unit <span class="math inline">\([X(f)df]=[X_\mathrm{s}(f)df]=1\sqrt{\mathrm{W}}\)</span>.<a href="digitalrepresentation.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Real systems are often not strictly band-limited. In this case, the bandwidth according to Definition <a href="digitalrepresentation.html#def:bandwidth">2.4</a> would be infinite. That is why alternative definitions of the bandwidth, like, e.g., the 3-dB-bandwidth, exist.<a href="digitalrepresentation.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Here, we denote <span class="math inline">\(A\)</span> as the maximum quantisation level although in the case of mid-riser quantisation the maximum level is precisely <span class="math inline">\(A-\Delta/2\)</span>.<a href="digitalrepresentation.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>The floor function outputs the closest integer smaller than or equal to the given argument.<a href="digitalrepresentation.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>Note that except for Appendix <a href="mathematical-basics.html#probability">E.4</a>, for simplicity, we do not distinguish between random variables and their realisations by using captial and small letters, respectively. It should be clear from the context, if it is the one or the other.<a href="digitalrepresentation.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>Clearly, this is only true if there is no clipping, i.e., if <span class="math inline">\(\max_n x[n]&lt;A\)</span> and <span class="math inline">\(\min_n x[n]&gt;-A\)</span>.<a href="digitalrepresentation.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>The function <span class="math inline">\(\lg(\cdot)\)</span> equals <span class="math inline">\(\log_{10}(\cdot)\)</span>.<a href="digitalrepresentation.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>Note that the index of the value <span class="math inline">\(A_0\)</span> of the A-law function is necessary to avoid confusion with the maximum quantisation level <span class="math inline">\(A\)</span> of Definition <a href="digitalrepresentation.html#def:linearquantisation">2.5</a>. However, usually this value is denoted as <span class="math inline">\(A\)</span>, i.e., without the index.<a href="digitalrepresentation.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p><span class="math inline">\((\cdot)_{10}\)</span> and <span class="math inline">\((\cdot)_2\)</span> denotes a decimal and binary number, respectively.<a href="digitalrepresentation.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>For negative values, the curve is just inverted at the origin.<a href="digitalrepresentation.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>The two segments around 0 can be summarised to one.<a href="digitalrepresentation.html#fnref20" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="baseband.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": null
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"info": true,
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
