@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="480" height="780" id="svg2" version="1.1" inkscape:version="0.48.4 r9939" sodipodi:docname="Chappe.svg">
+  <sodipodi:namedview id="base" showgrid="true">
+    <inkscape:grid type="xygrid" empspacing="5" visible="true" enabled="true" snapvisiblegridlinesonly="true" spacingx="10px" spacingy="10px"/>
+  </sodipodi:namedview>
+  <defs>
+    <marker  id="end" refY="0" refX="0" orient="auto" style="overflow:visible">
+      <path style="fill:#ffffff" d="m 0,0 0,-0.5 -0.2,0 L 0,0 l 0,0.5 -0.2,0 z"/>
+    </marker>
+    <marker id="start" refX="0" refY="0" orient="auto" style="overflow:visible">
+      <path style="fill:#ffffff" d="m 0,0 0,-0.5 0.2,0 L 0,0 l 0,0.5 0.2,0 z"/>
+    </marker>
+    <marker id="joint" refY="0" refX="0" orient="auto" style="overflow:visible">
+      <circle r="0.7" style="stroke:#ffffff;stroke-width:0.1px"/>
+    </marker>
+  </defs>
+  <g inkscape:label="Ebene 1" inkscape:groupmode="layer" id="layer1">
+    <g style="fill:none;stroke:#0000ff;stroke-width:4">
+      <path d="m 40,90 0,-50"/>
+      <path d="m 120,90 0,-50"/>
+      <path d="m 200,90 0,-50"/>
+      <path d="m 280,90 0,-50"/>
+      <path d="m 360,90 0,-50"/>
+      <path d="m 440,90 0,-50"/>
+      <path d="m 40,220 0,-50"/>
+      <path d="m 120,220 0,-50"/>
+      <path d="m 200,220 0,-50"/>
+      <path d="m 280,220 0,-50"/>
+      <path d="m 360,220 0,-50"/>
+      <path d="m 440,220 0,-50"/>
+      <path d="m 40,350 0,-50"/>
+      <path d="m 120,350 0,-50"/>
+      <path d="m 200,350 0,-50"/>
+      <path d="m 280,350 0,-50"/>
+      <path d="m 360,350 0,-50"/>
+      <path d="m 440,350 0,-50"/>
+      <path d="m 40,480 0,-50"/>
+      <path d="m 120,480 0,-50"/>
+      <path d="m 200,480 0,-50"/>
+      <path d="m 280,480 0,-50"/>
+      <path d="m 360,480 0,-50"/>
+      <path d="m 440,480 0,-50"/>
+      <path d="m 40,610 0,-50"/>
+      <path d="m 120,610 0,-50"/>
+      <path d="m 200,610 0,-50"/>
+      <path d="m 280,610 0,-50"/>
+      <path d="m 360,610 0,-50"/>
+      <path d="m 440,610 0,-50"/>
+      <path d="m 40,740 0,-50"/>
+      <path d="m 120,740 0,-50"/>
+      <path d="m 200,740 0,-50"/>
+      <path d="m 280,740 0,-50"/>
+      <path d="m 360,740 0,-50"/>
+      <path d="m 440,740 0,-50"/>
+    </g>
+    <g style="fill:none;stroke:#000000;stroke-width:4;marker-start:url(#start);marker-mid:url(#joint);marker-end:url(#end)">
+      <path d="m 10,20 0,20 30,0 30,0 0,-20"/>
+      <path d="m 112.929,4.645 -14.1421,14.1421 21.2132,21.2132 21.2132,21.2132 14.1421,-14.1421"/>
+      <path d="m 220,10 -20,0 0,30 0,30 20,0"/>
+      <path d="m 272.929,75.355 -14.1421,-14.1421 21.2132,-21.2132 21.2132,-21.2132 14.1421,14.1421"/>
+      <path d="m 330,60 0,-20 30,0 30,0 0,20"/>
+      <path d="m 404.645,32.929 14.1421,-14.1421 21.2132,21.2132 21.2132,21.2132 -14.1421,14.1421"/>
+      <path d="m 20,200 20,0 0,-30 0,-30 -20,0"/>
+      <path d="m 84.645,177.071 14.1421,14.1421 21.2132,-21.2132 21.2132,-21.2132 -14.1421,-14.1421"/>
+      <path d="m 170,190 0,-20 30,0 30,0 0,-20"/>
+      <path d="m 244.645,162.929 14.1421,-14.1421 21.2132,21.2132 21.2132,21.2132 14.1421,-14.1421"/>
+      <path d="m 340,140 20,0 0,30 0,30 20,0"/>
+      <path d="m 432.929,205.355 -14.1421,-14.1421 21.2132,-21.2132 21.2132,-21.2132 -14.1421,-14.1421"/>
+      <path d="m 10,280 0,20 30,0 30,0 0,20"/>
+      <path d="m 112.929,264.645 -14.1421,14.1421 21.2132,21.2132 21.2132,21.2132 -14.1421,14.1421"/>
+      <path d="m 180,330 20,0 0,-30 0,-30 20,0"/>
+      <path d="m 244.645,307.071 14.1421,14.1421 21.2132,-21.2132 21.2132,-21.2132 14.1421,14.1421"/>
+      <path d="m 330,280 0,20 30,0 30,0 -20,0"/>
+      <path d="m 432.929,264.645 -14.1421,14.1421 21.2132,21.2132 21.2132,21.2132 -14.1421,-14.1421"/>
+      <path d="m 40,440 0,20 0,-30 0,-30 20,0"/>
+      <path d="m 112.929,437.071 -14.1421,14.1421 21.2132,-21.2132 21.2132,-21.2132 14.1421,14.1421"/>
+      <path d="m 190,430 -20,0 30,0 30,0 0,20"/>
+      <path d="m 272.929,422.929 -14.1421,-14.1421 21.2132,21.2132 21.2132,21.2132 -14.1421,14.1421"/>
+      <path d="m 340,460 20,0 0,-30 0,-30 0,20"/>
+      <path d="m 404.645,437.071 14.1421,14.1421 21.2132,-21.2132 21.2132,-21.2132 -14.1421,14.1421"/>
+      <path d="m 30,560 -20,0 30,0 30,0 0,-20"/>
+      <path d="m 112.929,552.929 -14.1421,-14.1421 21.2132,21.2132 21.2132,21.2132 14.1421,-14.1421"/>
+      <path d="m 200,550 0,-20 0,30 0,30 20,0"/>
+      <path d="m 272.929,595.355 -14.1421,-14.1421 21.2132,-21.2132 21.2132,-21.2132 -14.1421,14.1421"/>
+      <path d="m 330,580 0,-20 30,0 30,0 -20,0"/>
+      <path d="m 404.645,552.929 14.1421,-14.1421 21.2132,21.2132 21.2132,21.2132 -14.1421,-14.1421"/>
+      <path d="m 40,700 0,20 0,-30 0,-30 -20,0"/>
+      <path d="m 112.929,697.071 -14.1421,14.1421 21.2132,-21.2132 21.2132,-21.2132 -14.1421,-14.1421"/>
+      <path d="m 190,690 -20,0 30,0 30,0 -20,0"/>
+      <path d="m 272.929,682.929 -14.1421,-14.1421 21.2132,21.2132 21.2132,21.2132 -14.1421,-14.1421"/>
+      <path d="m 360,680 0,-20 0,30 0,30 0,-20"/>
+      <path d="m 432.929,697.071 -14.1421,14.1421 21.2132,-21.2132 21.2132,-21.2132 -14.1421,14.1421"/>
+    </g>
+    <g style="font-size:36px;font-weight:bold;text-align:center;text-anchor:middle;fill:#000000;font-family:'Liberation Sans',sans-serif">
+      <text x="40" y="120">A</text>
+      <text x="120" y="120">B</text>
+      <text x="200" y="120">C</text>
+      <text x="280" y="120">D</text>
+      <text x="360" y="120">E</text>
+      <text x="440" y="120">F</text>
+      <text x="40" y="250">G</text>
+      <text x="120" y="250">H</text>
+      <text x="200" y="250">I</text>
+      <text x="280" y="250">K</text>
+      <text x="360" y="250">L</text>
+      <text x="440" y="250">M</text>
+      <text x="40" y="380">N</text>
+      <text x="120" y="380">O</text>
+      <text x="200" y="380">P</text>
+      <text x="280" y="380">Q</text>
+      <text x="360" y="380">R</text>
+      <text x="440" y="380">S</text>
+      <text x="40" y="510">T</text>
+      <text x="120" y="510">U</text>
+      <text x="200" y="510">V</text>
+      <text x="280" y="510">W</text>
+      <text x="360" y="510">X</text>
+      <text x="440" y="510">Y</text>
+      <text x="40" y="640">Z</text>
+      <text x="120" y="640">&amp;</text>
+      <text x="200" y="640">1</text>
+      <text x="280" y="640">2</text>
+      <text x="360" y="640">3</text>
+      <text x="440" y="640">4</text>
+      <text x="40" y="770">5</text>
+      <text x="120" y="770">6</text>
+      <text x="200" y="770">7</text>
+      <text x="280" y="770">8</text>
+      <text x="360" y="770">9</text>
+      <text x="440" y="770">10</text>
+    </g>
+  </g>
+</svg>
