@@ -1,0 +1,204 @@
+#!/usr/bin/env python3
+#
+# Author: Guido Dietl, Date: 2020-04-10
+#
+# This simulation software is based on the file berwagn.py which is
+# part of the GNU Radio software package.
+
+import numpy as np
+from gnuradio import gr, digital
+from gnuradio import blocks
+from gnuradio.filter import firdes
+from gnuradio import channels
+from scipy.special import erfc
+
+# simulation parameters
+no_trials = 100  # number of simulation runs
+max_errors = 100 # simulation is stopped if this number of errors is reached
+no_packets = 100 # number of packets per run
+pack_len = 1000  # length of one packet in bytes (8 bit per byte)
+
+def compute_bep(EsN0_dB):
+  # computes the theoretical Bit Error Probability (BEP)
+
+  return 0.5*erfc(np.sqrt(10**(float(EsN0_dB)/10)))
+
+class bersim(gr.top_block):
+  # GNU Radio flow graph as the basis of the simulation
+
+  def __init__(self, EbN0_dB):
+
+    gr.top_block.__init__(self)
+
+    self.sps = 5 # number of samples per symbol (or bit in case of BPSK)
+    alpha = 0.5  # roll-off factor
+
+    # generate BPSK symbol constellation
+    const = digital.constellation_bpsk().base()
+
+    # binary source generating a stream with no_packets*pack_len*8 bits (the stream is not repeated)
+    src = blocks.vector_source_b(list(map(int, np.random.randint(0, 256, int(no_packets*pack_len)))), False)
+
+    # output data for bit error computation 
+    self.data = blocks.vector_sink_f()
+    self.connect(src,
+            blocks.unpack_k_bits_bb(8),
+            blocks.uchar_to_float(),
+            self.data)
+
+    # header generation for each packet
+    tag = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, pack_len, "len_key")
+    hdr_format = digital.header_format_default(digital.packet_utils.default_access_code, 0)
+    header = digital.protocol_formatter_bb(hdr_format, 'len_key')
+    mux = blocks.tagged_stream_mux(gr.sizeof_char*1, 'len_key', 0)
+    remove_tag = blocks.tag_gate(gr.sizeof_char * 1, False)
+    self.connect(src,tag,header,(mux,0))
+    self.connect(tag,(mux,1))
+    self.connect(mux,remove_tag)
+
+    # modulation
+    modulator = digital.generic_mod(
+      constellation=const,
+      differential=False,
+      samples_per_symbol=self.sps,
+      pre_diff_code=True,
+      excess_bw=alpha,
+      verbose=False,
+      log=False
+      )
+
+    # AWGN channel
+    channel = channels.channel_model(
+       noise_voltage=self.EbN0_to_noise_voltage(EbN0_dB),
+       frequency_offset=0,
+       epsilon=1.0,
+       taps=[1],
+       noise_seed=42,
+       block_tags=False
+       )
+
+    # filter taps of the Matched Filter (MF)
+    rrc_taps = firdes.root_raised_cosine(32, 32, 1.0/float(self.sps), alpha, 45*32)
+    
+    # clock synchronization (including MF)
+    # (note that parameters have huge influence on performance, see example_timing.py of GNU Radio package)
+    sync = digital.pfb_clock_sync_ccf(
+      self.sps,
+      2*np.pi/100.0,
+      rrc_taps,
+      32,
+      16,
+      1.5,
+      1
+      )
+
+    # detection
+    detector = digital.constellation_decoder_cb(const)
+
+    # payload extraction
+    payload = digital.correlate_access_code_bb_ts(digital.packet_utils.default_access_code, 0, 'len_key2')
+
+    # connect communications blocks
+    self.connect(remove_tag, modulator, channel, sync, detector, payload)
+
+    # output received data for bit error rate computation
+    self.rxdata = blocks.vector_sink_f()
+    self.connect(payload,
+      blocks.uchar_to_float(),
+      self.rxdata)
+
+  def EbN0_to_noise_voltage(self, EbN0_dB):
+    # computes the noise voltage level based on Eb/N0 in dB
+
+    spb = float(self.sps) # number of samples per bit
+
+    # variance of the real-valued noise signal is 1/(2*EbN0) (see manuscript),
+    # but the channel module uses a complex noise source whose variance is 2
+    # times the variance of the real or imaginary part, respectively. Therefore
+    # the variance of the complex-valued noise is 1/EbN0. Besides, the factor
+    # spb is necessary, because the bit energy is spread over spb samples per bit.
+    return 1.0/np.sqrt(10**(float(EbN0_dB)/10)/spb)
+
+def simulate_ber(EbN0_dB):
+  # function for simulating flow graph and computing BER
+
+  # initialization
+  no_biterrors = 0
+  no_txbits = 0
+
+  # perform no_trials simulation runs
+  for trial in range(no_trials):
+
+    # run simulation
+    fg = bersim(EbN0_dB)
+    fg.run()
+    data = np.array(fg.data.data())
+    rxdata = np.array(fg.rxdata.data())
+
+    # discard uncomplete packet at the end
+    rxdata = rxdata[0:int(rxdata.size/8/pack_len)*8*pack_len]
+
+    # compute BER if at least one packet has been detected
+    if rxdata.size > 0:
+
+      # number of received pakets
+      no_rxpackets = int(rxdata.size/8/pack_len)
+
+      # find for each received packet the corresponding transmitted packet
+      # (here, by correlation and not by specific header information)
+      txdata = np.zeros(rxdata.size)
+      for i in range(no_rxpackets):
+        packet_begin = np.argmax(np.correlate(data,rxdata[i*8*pack_len:(i+1)*8*pack_len]))
+        txdata[i*8*pack_len:(i+1)*8*pack_len]=data[packet_begin:packet_begin+8*pack_len]
+
+      # count number of bit errors
+      biterror = np.where (txdata != rxdata)
+      biterrors = len(biterror[0])
+      no_biterrors += biterrors
+
+      # count number of transmitted bits
+      no_txbits += rxdata.size
+
+    else: # break for-loop if no packet header is detected
+      break
+
+    # output some information about the status of the simulation
+    if np.mod(no_trials,10)==0:
+      print("  (Eb/N0)_dB =",EbN0_dB, "dB, trial no.", trial, "est. BER=",
+        no_biterrors/no_txbits if no_txbits>0 else 0.5, ", no. of transmitted bits",
+        no_txbits, ", no. of errors", no_biterrors)
+
+    # break simulation if at least 1000 bit errors occured
+    if no_biterrors > 1000:
+      break
+
+  # compute BER if at least one packet has been detected
+  if no_txbits > 0:
+    BER = no_biterrors/no_txbits
+    print("(Eb/N0)_dB =", EbN0_dB, "dB completed;", no_txbits, "bits; BER=", BER)
+
+  # otherwise, choose equally probable random bits, resulting in BER=0.5
+  else:
+    BER = 0.5
+    print("(Eb/N0)_dB =", EbN0_dB, "dB completed; header not detected; BER=0.5")
+
+  return BER
+
+# main program 
+if __name__ == "__main__":
+
+  # range of Eb/N0 values
+  EbN0_dB_min = 0
+  EbN0_dB_max = 12
+  EbN0_dB = range(EbN0_dB_min, EbN0_dB_max+1)
+
+  # compute BEP
+  bep = [compute_bep(x) for x in EbN0_dB]
+
+  # simulate and compute BER
+  print("Starting simulation ...")
+  ber = [simulate_ber(x) for x in EbN0_dB]
+
+  # save simulation results
+  np.savez('bersim_bpsk_awgn_data.npz', EbN0_dB=EbN0_dB, bep=bep, ber=ber,
+    max_errors=max_errors, pack_len=pack_len, no_packets=no_packets, no_trials=no_trials)
